@@ -3,7 +3,7 @@ import './styles.scss'
 
 interface HamburgerProps {
   open: boolean
-  setOpen: Function
+  setOpen: (open: boolean) => void
 }
 
 const Hamburger: React.FC<HamburgerProps> = ({ open, setOpen }) => {

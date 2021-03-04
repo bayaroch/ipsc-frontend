@@ -7,41 +7,54 @@ import './styles.scss'
 
 interface SliderProps {
   images?: any[]
-  type: string
+  fullSize?: boolean
 }
 
 SwiperCore.use([EffectFade, Pagination, Autoplay])
 
-const Slider: React.FC<SliderProps> = ({ images, type }) => {
+const Slider: React.FC<SliderProps> = ({ images, fullSize }) => {
+  const customStyle = fullSize ? { width: '100%', height: '100%' } : {}
+  const customImageStyle: any = fullSize
+    ? {
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+        objectPosition: 'top center',
+      }
+    : {}
+  const parentClass = fullSize ? 'slider full-slider' : 'slider'
+
   return (
-    <>
-     <Swiper
-        effect="fade"
-        slidesPerView={1}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
-        autoplay={true}
-      >
-        {!!images &&
-          images.map((img, index) => {
-            return (
-                <SwiperSlide key={index} virtualIndex={index}>
-                   <img src={img.url} />
-                </SwiperSlide>
-            )
-          })}
-      </Swiper>
-    </>
+    <Swiper
+      className={parentClass}
+      effect="fade"
+      pagination={{ clickable: true }}
+      scrollbar={{ draggable: true }}
+      slidesPerView={1}
+      onSlideChange={() => {}}
+      onSwiper={(swiper) => {}}
+      autoplay={{ delay: 5000 }}
+    >
+      {!!images &&
+        images.map((img, index) => {
+          return (
+            <SwiperSlide key={index} virtualIndex={index} style={customStyle}>
+              <img style={customImageStyle} src={img.url} />
+            </SwiperSlide>
+          )
+        })}
+    </Swiper>
   )
 }
 
 Slider.defaultProps = {
-   images: [
+  images: [
     { url: 'https://via.placeholder.com/300.png/ed4d8b/' },
     { url: 'https://via.placeholder.com/300.png/f8bf80/' },
     { url: 'https://via.placeholder.com/300.png/f3a8bb/' },
     { url: 'https://via.placeholder.com/300.png/fcf1f0/' },
   ],
+  fullSize: false,
 }
 
 export default Slider

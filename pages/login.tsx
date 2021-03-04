@@ -1,33 +1,25 @@
-import {useEffect} from "react"
-import { useDispatch, useSelector} from "react-redux";
-import { MainLayout } from '@components/layout/MainLayout'
-import {postsActions} from '@store/posts/postsActions'
-import {AppState} from '@store/store'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import MainLayout from '@components/layout/MainLayout'
+import { postsActions } from '@store/posts/postsActions'
+
 /*
  * Homepage
  */
 const HomePage = () => {
-  const dispatch = useDispatch();
-  const posts = useSelector((state: AppState) => state.posts? state.posts.posts : [])
-  console.log("posts", posts)
+  const dispatch = useDispatch()
 
-    useEffect(() => {
+  useEffect(() => {
     dispatch(postsActions.GetAllPost())
-    return () => {
-    }
+    return () => {}
   }, [])
   return (
     <>
- 
-      <div className="container">
-        Login
-      </div>
+      <div className="container">Login</div>
     </>
   )
 }
 
 HomePage.Layout = MainLayout
-
-
 
 export default HomePage

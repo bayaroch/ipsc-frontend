@@ -2,15 +2,19 @@ import styled from 'styled-components'
 import Hamburger from '@components/layout/Hamburger/Hamburger'
 import { PreHeader } from '@components/layout/PreHeader'
 import Button from '@components/common/Button'
+import useSticky from '@utils/hooks/useSticky'
 import './layout.scss'
 
 interface HeaderProps {
   open: boolean
-  setOpen: Function
+  setOpen: (open: boolean) => void
   isBanner: boolean
 }
 
 export const Header: React.FC<HeaderProps> = ({ open, setOpen, isBanner }) => {
+  const sticky = useSticky(30)
+  const defaultClass = 'navbar header is-dark is-spacing '
+  const headerClass = sticky ? defaultClass + 'is-fixed-top' : defaultClass
   const containerClass = isBanner
     ? 'banner-page header-container'
     : 'header-container'
@@ -19,15 +23,15 @@ export const Header: React.FC<HeaderProps> = ({ open, setOpen, isBanner }) => {
     <div className={containerClass}>
       <PreHeader />
       <nav
-        className="navbar header is-dark is-spacing"
+        className={headerClass}
         role="navigation"
         aria-label="main navigation "
       >
         <div className="container menu-container">
           <div className="navbar-brand">
-            <LogoContainer>
+            <LogoContainer className="logo-brand">
               <LogoBox>
-                <a href="" style={{ display: 'block', height: 80 }}>
+                <a href="" style={{ display: 'block', lineHeight: 1 }}>
                   <img src="/images/logo.png" alt="logo" />
                 </a>
               </LogoBox>
@@ -36,12 +40,17 @@ export const Header: React.FC<HeaderProps> = ({ open, setOpen, isBanner }) => {
 
           <div id="navbarBasicExample" className="navbar-menu">
             <div className="navbar-start">
-              <a className="navbar-item">Танилцуулга</a>
+              <div className="navbar-item has-dropdown is-hoverable">
+                <a className="navbar-link">Танилцуулга</a>
+                <div className="navbar-dropdown">
+                  <a className="navbar-item">Апп</a>
+                  <a className="navbar-item">Газрууд</a>
+                </div>
+              </div>
               <a className="navbar-item">Спортын дүрэм</a>
               <a className="navbar-item">Тэмцээн</a>
               <div className="navbar-item has-dropdown is-hoverable">
                 <a className="navbar-link">Бусад</a>
-
                 <div className="navbar-dropdown">
                   <a className="navbar-item">Апп</a>
                   <a className="navbar-item">Газрууд</a>
@@ -66,6 +75,11 @@ export const Header: React.FC<HeaderProps> = ({ open, setOpen, isBanner }) => {
 export const LogoContainer = styled.div`
   margin:5px;
   width:80px;
+  margin-right:20px;
+  @media(max-width:1024px) {
+    width:50px;
+    margin:5px auto
+  }
 }
 `
 

@@ -13,7 +13,8 @@
               "@common": "./src/common",
               "@store": "./src/store",
               "@constants": "./src/constants",
-              "@services": "./src/services"
+              "@services": "./src/services",
+              "@utils": "./src/utils"
             }
           }
         ],
@@ -33,7 +34,8 @@
               "@common": "./src/common",
               "@store": "./src/store",
               "@constants": "./src/constants",
-              "@services": "./src/services"
+              "@services": "./src/services",
+              "@utils": "./src/utils"
             }
           }
         ],
@@ -62,7 +64,8 @@
               "@common": "./src/common",
               "@store": "./src/store",
               "@constants": "./src/constants",
-              "@services": "./src/services"
+              "@services": "./src/services",
+              "@utils": "./src/utils"
             }
           }
         ],

@@ -5,16 +5,25 @@ import Drawer from '@components/layout/Drawer/Drawer'
 
 interface MainLayoutProps {
   isBanner?: boolean
+  darkMode?: boolean
 }
 
-const MainLayout: React.FC<MainLayoutProps> = ({ children, isBanner }) => {
+const MainLayout: React.FC<MainLayoutProps> = ({
+  children,
+  isBanner,
+  darkMode,
+}) => {
   const [open, letOpen] = useState(false)
   const setOpen = (val: boolean) => {
     letOpen(val)
     console.log('opening')
   }
   return (
-    <div className={'wrapper ' + (open ? 'open' : '')}>
+    <div
+      className={
+        'wrapper ' + (open ? 'open' : '') + (darkMode ? 'dark-theme' : '')
+      }
+    >
       <div className="main">
         <Header
           isBanner={isBanner ? isBanner : false}
@@ -23,13 +32,14 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, isBanner }) => {
         />
         <div className="content-wrapper">{children}</div>
       </div>
-      <Drawer />
+      <Drawer close={setOpen} />
     </div>
   )
 }
 
 MainLayout.defaultProps = {
   isBanner: false,
+  darkMode: false,
 }
 
 export default MainLayout

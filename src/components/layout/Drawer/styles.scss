@@ -1,3 +1,10 @@
 .offcanvas-menu {
-    padding: 1rem;
+  padding: 1rem;
+}
+.drawer-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+  padding: 1rem;
 }

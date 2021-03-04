@@ -8,6 +8,7 @@ $family-primary: $family-sans-serif;
 $body-family: $family-primary;
 $link: $colorsecondary;
 //end
+@import url('https://cdn.jsdelivr.net/npm/@mdi/font@5.9.55/css/materialdesignicons.min.css');
 @import '~bulma/sass/utilities/_all.sass';
 @import '~bulma/sass/base/_all';
 @import '~bulma/sass/elements/button.sass';

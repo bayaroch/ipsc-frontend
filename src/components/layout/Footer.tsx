@@ -1,12 +1,10 @@
-interface FooterProps {}
-
-export const Footer: React.FC<FooterProps> = () => {
+export const Footer: React.FC = () => {
   return (
     <>
       <footer className="footer">
         <div className="container">
           <div className="content has-text-centered">
-            <p>Babyzone by </p>
+            <p>IPSCAA </p>
           </div>
         </div>
       </footer>

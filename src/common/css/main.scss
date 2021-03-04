@@ -47,15 +47,16 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap');
 
 .main {
-  transition: -webkit-transform 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1);
-  transition: transform 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1);
-  transition: transform 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1),
-    -webkit-transform 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  transition: -webkit-transform 0.23s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  transition: transform 0.23s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  transition: transform 0.23s cubic-bezier(0.694, 0.0482, 0.335, 1),
+    -webkit-transform 0.2s3s cubic-bezier(0.694, 0.0482, 0.335, 1);
   position: relative;
   width: 100%;
   right: 0;
   z-index: 3;
   min-height: 100vh;
+  height: 2000px;
   background-color: #000;
 }
 .wrapper.open .main {
@@ -86,7 +87,7 @@ body {
   align-items: center;
 }
 .off-canvas {
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 0;
   width: 0;
@@ -98,7 +99,9 @@ body {
     -webkit-transform 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1);
   height: 100%;
   overflow: auto;
-  background: $colorsecondary;
+  background-color: $colorsecondary;
+  will-change: auto;
+  background-size: cover;
 }
 .off-canvas:before {
   content: '';
@@ -161,13 +164,15 @@ body {
 .navbar.is-dark .navbar-end .navbar-link:hover,
 .navbar.is-dark .navbar-end .navbar-link.is-active {
   color: $white;
-  background-color: $colorprimary;
+  background: rgba(7, 78, 160, 0.6);
+  transition: 0.2s ease-out all;
 }
 
 .navbar.is-dark .navbar-item.has-dropdown:focus .navbar-link,
 .navbar.is-dark .navbar-item.has-dropdown:hover .navbar-link,
 .navbar.is-dark .navbar-item.has-dropdown.is-active .navbar-link {
-  background-color: $colorprimary;
+  background: rgba(7, 78, 160, 0.6);
+  transition: 0.2s ease-out all;
 }
 
 @media screen and (min-width: 1024px) {
@@ -199,6 +204,12 @@ body {
   .navbar-dropdown a.navbar-item:hover {
     background-color: #000;
     color: #fff !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .preheader {
+    display: none;
   }
 }
 

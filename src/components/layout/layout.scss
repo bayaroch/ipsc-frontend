@@ -17,7 +17,6 @@
   background-color: rgba(0, 0, 0, 0.5);
   padding: 0;
   border: 0 none;
-  position: relative;
 }
 .banner-page.header-container .navbar.header:before {
   content: '';
@@ -30,4 +29,21 @@
   height: 100%;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
+}
+
+.navbar.header.is-fixed-top .logo-brand {
+  transition: all 0.1s ease-out;
+  width: 50px;
+}
+
+.header-container .navbar.header.is-fixed-top {
+  background-color: rgba(0, 0, 0, 1);
+  transition: all 0.1s ease-out;
+  will-change: auto;
+}
+
+@media (max-width: 1024px) {
+  .preheader {
+    display: none;
+  }
 }

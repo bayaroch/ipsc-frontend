@@ -1,24 +1,23 @@
-import './styles.scss'
 interface DrawerProps {}
 
-const Menu: React.FC<DrawerProps> = () => {
+const SideMenu: React.FC<DrawerProps> = () => {
   return (
     <>
       <aside className="offcanvas-menu">
-        <p className="menu-label">Transactions</p>
+        <p className="menu-label">Гишүүдэд</p>
         <ul className="menu-list">
           <li className="custom-menu-list">
-            <a>Payments</a>
+            <a>Тэмцээн</a>
           </li>
           <li className="custom-menu-list">
-            <a>Transfers</a>
+            <a>Нэвтрэх</a>
           </li>
           <li className="custom-menu-list">
-            <a>Balance</a>
+            <a>Гарах</a>
           </li>
         </ul>
       </aside>
     </>
   )
 }
-export default Menu
+export default SideMenu

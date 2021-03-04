@@ -11,7 +11,6 @@ import '@common/css/main.scss'
 const CustomApp = ({ Component, pageProps }: any) => {
   const Layout = Component.Layout ? Component.Layout : React.Fragment
   const theme = require('sass-extract-loader?{"plugins":["sass-extract-js"]}!@common/css/theme.scss')
-  console.log(theme)
   return (
     <ThemeProvider theme={theme}>
       <Layout>

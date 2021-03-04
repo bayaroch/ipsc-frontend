@@ -6,7 +6,6 @@
   padding-bottom: 40%;
   min-height: 500px;
   background-size: cover;
-  background-image: url('/images/bg_test.jpg');
 }
 .image-container {
   position: absolute;
@@ -18,11 +17,12 @@
   width: 100%;
   z-index: 1;
 }
-.image-container:before {
+.image-container:after {
   position: absolute;
   bottom: 0;
   left: 0;
   content: '';
+  pointer-events: none;
   right: 0;
   background: url('/images/overlay.png') bottom left;
   width: 100%;
@@ -43,6 +43,7 @@
 .intro-content {
   padding-bottom: 40px;
   max-width: 400px;
+  pointer-events: all;
 }
 .intro-headline {
   font-family: 'PT Sans Narrow', 'Open Sans', 'Helvetica Neue', 'Helvetica',
@@ -56,4 +57,26 @@
   text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
   letter-spacing: 3px;
   text-transform: uppercase;
+}
+.intro-wrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  .intro-content {
+    padding: 1rem;
+    margin: 0 auto;
+    text-align: center;
+    .intro-button {
+      margin: 0 auto;
+    }
+  }
+  .dvc-logo {
+    margin: 0 auto;
+  }
 }
