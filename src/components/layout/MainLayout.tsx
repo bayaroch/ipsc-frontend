@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { Header } from '@components/layout/Header'
+import { Footer } from '@components/layout/Footer'
 
 import Drawer from '@components/layout/Drawer/Drawer'
+import { Copyright } from '@components/layout/Copyright'
 
 interface MainLayoutProps {
   isBanner?: boolean
@@ -31,6 +33,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({
           setOpen={setOpen}
         />
         <div className="content-wrapper">{children}</div>
+        <Footer />
+        <Copyright />
       </div>
       <Drawer close={setOpen} />
     </div>

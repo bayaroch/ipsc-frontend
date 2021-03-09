@@ -3,6 +3,7 @@ import Hamburger from '@components/layout/Hamburger/Hamburger'
 import { PreHeader } from '@components/layout/PreHeader'
 import Button from '@components/common/Button'
 import useSticky from '@utils/hooks/useSticky'
+import TopMenu from '@containers/Menus/TopMenu'
 import './layout.scss'
 
 interface HeaderProps {
@@ -40,22 +41,7 @@ export const Header: React.FC<HeaderProps> = ({ open, setOpen, isBanner }) => {
 
           <div id="navbarBasicExample" className="navbar-menu">
             <div className="navbar-start">
-              <div className="navbar-item has-dropdown is-hoverable">
-                <a className="navbar-link">Танилцуулга</a>
-                <div className="navbar-dropdown">
-                  <a className="navbar-item">Апп</a>
-                  <a className="navbar-item">Газрууд</a>
-                </div>
-              </div>
-              <a className="navbar-item">Спортын дүрэм</a>
-              <a className="navbar-item">Тэмцээн</a>
-              <div className="navbar-item has-dropdown is-hoverable">
-                <a className="navbar-link">Бусад</a>
-                <div className="navbar-dropdown">
-                  <a className="navbar-item">Апп</a>
-                  <a className="navbar-item">Газрууд</a>
-                </div>
-              </div>
+              <TopMenu />
             </div>
             <div className="navbar-end navbar-item">
               <Button onClick={navigateLogin} type={'is-link'}>

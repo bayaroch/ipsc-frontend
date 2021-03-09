@@ -4,7 +4,10 @@ import './styles.scss'
 
 interface IntroProps {}
 
-const banners = [{ url: '/images/intro/slide1.jpg' }]
+const banners = [
+  { url: '/images/intro/slide1.jpg' },
+  { url: '/images/intro/slide2.jpg' },
+]
 
 const Intro: React.FC<IntroProps> = () => {
   const onIntroClick = () => {

@@ -1,6 +1,8 @@
 import MainLayout from '@components/layout/MainLayout'
 import Featured from '@containers/Featured'
+import Products from '@containers/Featured/products'
 import Intro from '@containers/Intro'
+
 /*
  * Homepage
  */
@@ -9,7 +11,7 @@ const HomePage = () => {
     <MainLayout isBanner={true}>
       <Intro />
       <Featured />
-      <div className="container"></div>
+      <Products />
     </MainLayout>
   )
 }

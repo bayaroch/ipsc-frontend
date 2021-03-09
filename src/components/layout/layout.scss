@@ -1,3 +1,4 @@
+@import './theme.scss';
 .preheader {
   height: 30px;
   background-color: #000;
@@ -46,4 +47,38 @@
   .preheader {
     display: none;
   }
+}
+
+.footer {
+  background-color: $colorprimary;
+  padding: 3rem 1.5rem 3rem;
+}
+
+.footer-item {
+  color: #e4f1ff;
+  font-size: 14px;
+  padding: 2px 0;
+  display: block;
+}
+.copyright {
+  background-color: $colorprimary;
+  border-top: 1px solid #0e5cb7;
+  padding: 0.6rem 0;
+  text-align: center;
+  width: 100%;
+  color: #fff;
+  font-size: 13px;
+}
+.social-small {
+  color: #ccc;
+  transition: all 0.2s ease-out;
+}
+.social-small:hover {
+  color: #fff;
+}
+
+.login-layout .content-wrapper {
+  min-height: calc(100vh - 38px);
+  background: radial-gradient(circle farthest-side, #323667, #090818);
+  background-repeat: no-repeat;
 }

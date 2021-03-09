@@ -1,20 +1,28 @@
-export const featured = [
+export const topmenu = [
   {
-    title: 'Гишүүнчлэл',
-    desc: 'Дэлгэрэнгүй...',
-    image: '/images/featured/image-1.jpg',
-    route: '/featured/membership',
+    label: 'Танилцуулга',
+    is_parent: true,
+    child_menu: [
+      {
+        label: 'IPSC гэж юу вэ?',
+        route: '/about_ipsc',
+      },
+      {
+        label: 'IPSC ACTION AIR',
+        route: '/about_aasc',
+      },
+      {
+        label: 'ACTION AIR SHOOTING CLUB',
+        route: '/club',
+      },
+    ],
   },
   {
-    title: 'Сургалт',
-    desc: 'Дэлгэрэнгүй...',
-    image: '/images/featured/image-2.jpg',
-    route: '/featured/course',
+    label: 'Cургалт',
+    route: '/courses',
   },
   {
-    title: 'Тэмцээн',
-    desc: 'Дэлгэрэнгүй...',
-    image: '/images/featured/image-3.jpg',
-    route: '/matches/',
+    label: 'Гишүүнчлэл',
+    route: '/membership',
   },
 ]

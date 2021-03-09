@@ -56,7 +56,6 @@
   right: 0;
   z-index: 3;
   min-height: 100vh;
-  height: 2000px;
   background-color: #000;
 }
 .wrapper.open .main {
@@ -119,7 +118,10 @@ body {
   width: $off-canvas-width;
 }
 .content-wrapper {
-  min-height: 1000px;
+}
+
+a:hover {
+  color: $colorlightyellow;
 }
 
 .header.is-dark.navbar {
