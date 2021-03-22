@@ -4,6 +4,7 @@ import { Footer } from '@components/layout/Footer'
 
 import Drawer from '@components/layout/Drawer/Drawer'
 import { Copyright } from '@components/layout/Copyright'
+import './layout.scss'
 
 interface MainLayoutProps {
   isBanner?: boolean

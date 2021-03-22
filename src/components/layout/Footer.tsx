@@ -38,7 +38,7 @@ export const Footer: React.FC = () => {
                   scrolling="no"
                   frameBorder="0"
                   allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                ></iframe>
+                />
               </div>
             </div>
           </div>

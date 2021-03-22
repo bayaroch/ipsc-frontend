@@ -1,14 +1,26 @@
-import axios from 'axios'
+import api from './api'
 
-axios.interceptors.request.use(req => {
-    console.log(`${req.method} ${req.url}`);
-    // Important: request interceptors **must** return the request.
-    return req;
-  });
-  
-  axios.interceptors.response.use(res => {
-    console.log(res.data.json);
-    // Important: response interceptors **must** return the response.
-    return res;
-  });
-  
+export const authorizationProvider = (store: any) => {
+  api.interceptors.request.use(
+    (config) => {
+      const { auth } = store.getState()
+      const user = auth.user
+      if (user) {
+        const token = `Bearer ${user.accessToken}`
+        if (token) {
+          config.headers.Authorization = `${token}`
+        }
+      }
+      return config
+    },
+    (error) => Promise.reject(error)
+  )
+  api.interceptors.response.use(
+    (response) => {
+      return response
+    },
+    (error) => {
+      return Promise.reject(error)
+    }
+  )
+}

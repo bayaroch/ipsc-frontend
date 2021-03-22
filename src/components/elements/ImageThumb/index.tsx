@@ -24,7 +24,7 @@ const ImageThumb: React.FC<ImageThumbProps> = ({
               backgroundImage: `url(${data.image})`,
               backgroundColor: '#000',
             }}
-          ></div>
+          />
         </div>
         <div className="tile-content">
           <div className="text-wrapper">

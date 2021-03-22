@@ -7,7 +7,7 @@ interface ButtonProps {
 const Icon: React.FC<ButtonProps> = ({ icon }) => {
   return (
     <span className="icon">
-      <i className={'mdi ' + icon}></i>
+      <i className={'mdi ' + icon}/>
     </span>
   )
 }

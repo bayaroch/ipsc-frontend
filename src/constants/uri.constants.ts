@@ -1,7 +1,7 @@
-const DOMAIN = 'http://dev.babyzone.mn'
-const REST_API_PATH = '/wp-json/wp/v2/'
+const DOMAIN = 'https://morning-garden-98261.herokuapp.com/'
+const REST_API_PATH = '/api/v1/'
 const API_ROOT = DOMAIN + REST_API_PATH
 
 export const URI = {
-  POSTS: API_ROOT + 'posts',
+  LOGIN: API_ROOT + 'auth/login',
 }
