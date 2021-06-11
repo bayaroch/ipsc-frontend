@@ -22,7 +22,7 @@ const LoginPage = () => {
               <div className="control has-icons-left">
                 <input
                   type="text"
-                  placeholder="e.g. bobsmith@gmail.com"
+                  placeholder="e.g. 077"
                   className="input"
                   name="usercode"
                   required={true}

@@ -15,29 +15,29 @@ export type UserRegisterData = {
   password: string
 }
 
-export interface UserAuthState {
-  token: string
-  refreshToken: string
-  id: number
-  firstLogin: boolean
+export interface UserData {
+  birthday?: string
+  class_id: number
   email: string
-  nickname: string
-  user_code: string
-  updateStep: number
-  avatar_url: string | null
-  is_social: boolean
-  sign_in_count: number
+  enabled: boolean
+  firstname: string
+  gender: number
+  id: number
+  lastname?: string
+  mo_badge?: string | null
+  usercode: string
+  usertype: number
 }
 
 export type AuthAction = {
   type: AUTH_ACTION_TYPE
-  payload?: any
+  user?: any
 }
 
 export type AuthState = {
   authenticated: boolean
-  user?: any
-  token?: any
+  user?: UserData | undefined
+  token?: string | undefined
 }
 
 export type UserProfile = {}

@@ -7,8 +7,8 @@ export const authActions = {
       dispatch(authActionCreators.loginRequest())
       authServices.login(data).then(
         (user) => {
+          console.log(user.data)
           dispatch(authActionCreators.loginSuccess(user.data))
-          console.log(user)
         },
         (error) => {
           dispatch(authActionCreators.loginFailure(error))

@@ -12,11 +12,12 @@ export const authReducer = function (
 ): AuthState {
   switch (action.type) {
     case AUTH_ACTION_TYPE.LOGIN_SUCCESS:
+      console.log('---->', action)
       return {
         ...state,
         authenticated: true,
-        token: action.payload.token,
-        user: action.payload.user,
+        token: action.user.data.token,
+        user: action.user.data.user,
       }
     default:
       return state
