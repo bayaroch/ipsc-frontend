@@ -16,7 +16,7 @@ const IntroButton: React.FC<ButtonProps> = ({
   return (
     <button
       className={buttonClass}
-      onClick={onClick}
+      onClick={() => onClick}
       type={submit ? 'submit' : 'button'}
     >
       {children}

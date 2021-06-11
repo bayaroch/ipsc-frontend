@@ -26,7 +26,8 @@
       "@styled/*": ["./src/styled/*"],
       "@constants/*": ["./src/constants/*"],
       "@services/*": ["./src/services/*"],
-      "@utils/*": ["./src/utils/*"]
+      "@utils/*": ["./src/utils/*"],
+      "@theme/*": ["./src/theme/*"]
     },
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
