@@ -10,7 +10,6 @@ import {
   withStyles,
   Select,
   Box,
-  IconButton,
   FormControl,
 } from '@material-ui/core'
 import Paper from '@material-ui/core/Paper'

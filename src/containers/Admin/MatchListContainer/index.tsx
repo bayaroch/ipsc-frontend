@@ -1,13 +1,10 @@
-import { useEffect } from 'react'
 import { makeStyles, Box, Button } from '@material-ui/core/'
 import useMatch from './useMatch'
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
 import MatchList from '@components/admin/MatchList'
 import { useRouter } from 'next/router'
 
-export interface Props {}
-
-const MatchListContainer: React.FC<Props> = (props) => {
+const MatchListContainer: React.FC = () => {
   const classes = useStyles()
   const { getList, list, paginationMeta } = useMatch()
   const router = useRouter()
@@ -24,6 +21,7 @@ const MatchListContainer: React.FC<Props> = (props) => {
           size="small"
           startIcon={<AddCircleOutlineIcon />}
           color="primary"
+          onClick={() => router.push('/admin/matches/create')}
         >
           Create New
         </Button>
@@ -38,7 +36,7 @@ const MatchListContainer: React.FC<Props> = (props) => {
   )
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {},
   topControl: {
     paddingBottom: 10,
