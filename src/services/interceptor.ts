@@ -1,12 +1,13 @@
 import api from './api'
+import { StoreType } from '../store/store'
 
-export const authorizationProvider = (store: any) => {
+export const authorizationProvider = (store: StoreType): void => {
   api.interceptors.request.use(
     (config) => {
       const { auth } = store.getState()
       const user = auth.user
       if (user) {
-        const token = `Bearer ${user.accessToken}`
+        const token = `Bearer ${auth.token}`
         if (token) {
           config.headers.Authorization = `${token}`
         }

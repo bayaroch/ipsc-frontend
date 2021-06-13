@@ -10,6 +10,7 @@ import theme from '@theme/index'
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore } from 'redux-persist'
 import { useStore } from 'react-redux'
+import { authorizationProvider } from '@services/interceptor'
 
 /**
  * withRedux HOC
@@ -25,6 +26,7 @@ const CustomApp = ({ Component, pageProps }: Props) => {
   const Layout = Component.Layout ? Component.Layout : React.Fragment
   const themeSass = require('sass-extract-loader?{"plugins":["sass-extract-js"]}!@common/css/theme.scss')
   const store: StoreType = useStore()
+  authorizationProvider(store)
 
   useEffect(() => {
     // Remove the server-side injected CSS.

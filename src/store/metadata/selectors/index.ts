@@ -20,3 +20,18 @@ export const loginPending = createSelector(
   createMetadataSelector(helper(AUTH_ACTION_TYPE.LOGIN_REQUEST)),
   (metadata) => metadata
 )
+
+const getRoot = (state: RootState) => state.metadata
+
+const defaultMeta = {
+  pending: false,
+  loaded: false,
+  error: false,
+}
+
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export const createMetaSelector = ({ typePrefix }: { typePrefix: string }) => {
+  return createSelector(getRoot, (state) => {
+    return state[typePrefix] || defaultMeta
+  })
+}
