@@ -3,6 +3,6 @@ import { RootState } from '@store/reducers'
 
 const authState = (state: RootState) => state.auth
 
-export const token = createSelector(authState, (state) => state.lastKey)
-export const user = createSelector(authState, (state) => state.lastKey)
-export const isAuth = createSelector(authState, (state) => state.lastKey)
+export const token = createSelector(authState, (state) => state.token)
+export const user = createSelector(authState, (state) => state.user)
+export const isAuth = createSelector(authState, (state) => state.authenticated)

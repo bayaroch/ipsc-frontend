@@ -3,13 +3,23 @@ import LoginLayout from '@components/layout/LoginLayout'
 import LogoLogin from '@components/elements/LogoLogin'
 import Button from '@components/common/Button'
 import useLoginForm from '@utils/hooks/useLoginForm'
+import { isAuth } from '@store/auth/selectors'
+import { useRouter } from 'next/router'
+import { useSelector } from 'react-redux'
 
 const LoginPage = () => {
   const { register, onSubmit, errors } = useLoginForm()
 
+  const router = useRouter()
+  const isLoggedIn = useSelector(isAuth)
+
   useEffect(() => {
+    console.log()
+    if (isLoggedIn === true) {
+      router.push('/admin/')
+    }
     return () => {}
-  }, [])
+  }, [isLoggedIn])
 
   return (
     <>

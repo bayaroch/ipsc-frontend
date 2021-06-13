@@ -1,0 +1,22 @@
+@import './theme.scss';
+.admin-main {
+  padding-top: 50px;
+}
+.logo-brand {
+  margin: 5px;
+  width: 80px;
+  margin-left: 140px;
+  margin-right: 20px;
+  @media (max-width: 1024px) {
+    width: 50px;
+    margin: 5px auto;
+  }
+  a {
+    display: block;
+    height: 50px;
+    img {
+      max-height: 100%;
+      width: auto;
+    }
+  }
+}

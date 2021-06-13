@@ -13,12 +13,6 @@ export const Colors = {
     '300': '#ADABAB',
     '400': '#707070',
   },
-  text: {
-    '100': '#FFFFFF',
-    '200': '#FFFFFFB3',
-    '300': '#FFFFFF4D',
-    '400': '#212121',
-  },
   black: '#000000',
   white: '#ffffff',
   white_opacity: {

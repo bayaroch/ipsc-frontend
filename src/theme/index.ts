@@ -3,7 +3,7 @@ import { Colors } from '@theme/colors'
 import { breakpointValues } from '@theme/variables'
 
 const font =
-  "SF UI Display', 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial',sans-serif'"
+  "'SF UI Display', 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
 
 const $titlefamily =
   "'PT Sans Narrow', 'Open Sans', 'Helvetica Neue', 'Helvetica','Arial', sans-serif"
@@ -25,10 +25,7 @@ export default createMuiTheme({
     error: {
       main: '#F7F735',
     },
-    text: {
-      primary: Colors.text[200],
-      secondary: Colors.text[300],
-    },
+    text: {},
   },
   breakpoints: {
     values: breakpointValues,
@@ -38,7 +35,6 @@ export default createMuiTheme({
     h2: {
       fontSize: 18,
       fontWeight: 500,
-      color: Colors.white,
       fontFamily: $titlefamily,
     },
     h3: {
