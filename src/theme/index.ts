@@ -19,9 +19,6 @@ export default createMuiTheme({
     secondary: {
       main: Colors.secondary,
     },
-    background: {
-      default: Colors.grey[100],
-    },
     error: {
       main: '#F7F735',
     },

@@ -91,9 +91,6 @@ const useStyles = makeStyles((theme) => ({
       paddingLeft: 0,
       tranistion: 'all 0.3s ease',
     },
-    '& .MuiAppBar-colorSecondary': {
-      background: '#fff',
-    },
     '& .MuiToolbar-regular': {
       minHeight: 50,
     },

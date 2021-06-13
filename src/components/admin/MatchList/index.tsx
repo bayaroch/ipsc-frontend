@@ -35,10 +35,9 @@ const MatchList: React.FC<MatchListProps> = (props) => {
 
   useEffect(() => {
     getList({ page: page, per_page: rowsPerPage })
-    console.log('meta------------>', page, rowsPerPage)
   }, [page, rowsPerPage])
 
-  const emptyRows = rowsPerPage - list.length
+  const emptyRows = rowsPerPage - _.get(list, 'length', 0)
 
   const handleChangePage = (
     _event: any,
@@ -70,7 +69,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
             <TableBody>
               {list.map((row) => (
                 <TableRow key={row.name}>
-                  <TableCell scope="row">{row.name}</TableCell>
+                  <StyledTableCell scope="row">{row.name}</StyledTableCell>
                   <TableCell style={{ width: 160 }} align="right">
                     {row.lvl}
                   </TableCell>
@@ -124,6 +123,7 @@ const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.common.white,
+    padding: 10,
   },
   body: {
     fontSize: 14,

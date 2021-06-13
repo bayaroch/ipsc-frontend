@@ -1,7 +1,6 @@
 @import './theme.scss';
 .main-content-wrap {
   padding-top: 50px;
-  min-height: 100vh;
   background: #fcfcfc;
 }
 .logo-brand {
@@ -193,5 +192,16 @@ span.m-holder.router-link-active:after {
   }
 }
 .content-wrapper-admin {
-  padding: 1rem;
+  padding: 2.5rem 4rem;
+  min-height: calc(100vh - 88px);
+}
+
+.copyright {
+  background-color: $colorprimary;
+  border-top: 1px solid #0e5cb7;
+  padding: 0.6rem 0;
+  text-align: center;
+  width: 100%;
+  color: #fff;
+  font-size: 13px;
 }
