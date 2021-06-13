@@ -10,8 +10,6 @@ const MatchListContainer: React.FC<Props> = (props) => {
   const classes = useStyles()
   const { getList, meta, list, paginationMeta } = useMatch()
 
-  console.log(meta, list)
-
   return (
     <Box>
       <Box className={classes.topControl}>

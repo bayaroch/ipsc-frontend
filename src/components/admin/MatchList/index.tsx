@@ -4,15 +4,17 @@ import {
   Table,
   TableHead,
   TableRow,
-  TablePagination,
   TableFooter,
   TableContainer,
   TableCell,
   TableBody,
   withStyles,
+  Select,
+  Box,
+  FormControl,
 } from '@material-ui/core'
 import Paper from '@material-ui/core/Paper'
-import PaginationActions from '@components/admin/PaginationActions'
+import Pagination from '@material-ui/lab/Pagination'
 import { MatchPaginationMeta, MatchPageMeta } from '@services/match.services'
 import { MatchItem } from '@store/match/actions/types'
 import _ from 'lodash'
@@ -23,11 +25,14 @@ export interface MatchListProps {
   pagination: MatchPaginationMeta
 }
 
+const defaultPerPage = 5
+
 const MatchList: React.FC<MatchListProps> = (props) => {
   const { getList, list, pagination } = props
   const classes = useStyles()
-  const [page, setPage] = useState(1)
-  const [rowsPerPage, setRowsPerPage] = useState(2)
+  const [page, setPage] = useState<number>(1)
+  const [rowsPerPage, setRowsPerPage] = useState<number>(defaultPerPage)
+  const [selectRow, setSelectRow] = useState<string>(defaultPerPage.toString())
 
   useEffect(() => {
     getList({ page: page, per_page: rowsPerPage })
@@ -36,6 +41,12 @@ const MatchList: React.FC<MatchListProps> = (props) => {
   useEffect(() => {
     getList({ page: page, per_page: rowsPerPage })
   }, [page, rowsPerPage])
+
+  useEffect(() => {
+    if (pagination && pagination.total_objects < rowsPerPage) {
+      setRowsPerPage(pagination.total_objects)
+    }
+  }, [pagination])
 
   const emptyRows = rowsPerPage - _.get(list, 'length', 0)
 
@@ -46,7 +57,10 @@ const MatchList: React.FC<MatchListProps> = (props) => {
     setPage(newPage)
   }
 
-  const handleChangeRowsPerPage = (event: { target: { value: string } }) => {
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<{ name?: string; value: any }>
+  ) => {
+    setSelectRow(event.target.value)
     if (pagination && pagination.total_objects < Number(event.target.value)) {
       setRowsPerPage(pagination.total_objects)
       setPage(1)
@@ -58,7 +72,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
 
   return (
     <>
-      {!_.isEmpty(list) && pagination ? (
+      {!_.isEmpty(list) && pagination !== undefined ? (
         <TableContainer component={Paper}>
           <Table className={classes.table} aria-label="custom pagination table">
             <TableHead>
@@ -99,32 +113,28 @@ const MatchList: React.FC<MatchListProps> = (props) => {
                 </TableRow>
               )}
             </TableBody>
-            {pagination ? (
-              <TableFooter>
-                <TableRow>
-                  <TablePagination
-                    rowsPerPageOptions={[
-                      5,
-                      10,
-                      25,
-                      { label: 'All', value: pagination.total_objects },
-                    ]}
-                    colSpan={6}
-                    count={pagination.total_objects}
-                    rowsPerPage={rowsPerPage}
-                    page={page > 0 && list.length < rowsPerPage ? 0 : page}
-                    SelectProps={{
-                      inputProps: { 'aria-label': 'rows per page' },
-                      native: true,
-                    }}
-                    onChangePage={handleChangePage}
-                    onChangeRowsPerPage={handleChangeRowsPerPage}
-                    ActionsComponent={PaginationActions}
-                  />
-                </TableRow>
-              </TableFooter>
-            ) : null}
           </Table>
+          <Box display="flex" className={classes.pagination}>
+            <FormControl variant="outlined" className={classes.formControl}>
+              <Select
+                inputProps={{
+                  id: 'demo-customized-select-native',
+                }}
+                value={selectRow}
+                onChange={handleChangeRowsPerPage}
+              >
+                <option value={5}>5</option>
+                <option value={10}>10</option>
+                <option value={20}>20</option>
+                <option value={-1}>All</option>
+              </Select>
+            </FormControl>
+            <Pagination
+              count={pagination.total_pages}
+              page={page}
+              onChange={handleChangePage}
+            />
+          </Box>
         </TableContainer>
       ) : null}
     </>
@@ -145,6 +155,18 @@ const StyledTableCell = withStyles((theme) => ({
 const useStyles = makeStyles({
   table: {
     minWidth: 500,
+  },
+  formControl: {
+    '& .MuiInputBase-root .MuiOutlinedInput-input': {
+      paddingTop: 10,
+      paddingBottom: 10,
+    },
+  },
+  pagination: {
+    position: 'relative',
+    justifyContent: 'space-between',
+    padding: 5,
+    width: '100%',
   },
 })
 
