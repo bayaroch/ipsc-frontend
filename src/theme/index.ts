@@ -47,7 +47,7 @@ export default createMuiTheme({
       fontWeight: 400,
     },
     body2: {
-      fontSize: 12,
+      fontSize: 13,
       fontWeight: 400,
     },
     caption: {
