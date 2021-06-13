@@ -1,26 +1,26 @@
 import React, { useState } from 'react'
-import { Copyright } from '@components/layout/Copyright'
+// import { Copyright } from '@components/layout/Copyright'
 import AdminHeader from '@components/layout/AdminElements/AdminHeader'
+import AdminSideBar from '@components/layout/AdminElements/AdminSideBar'
 import '@common/css/adminlayout.scss'
 import useAuthenticated from '@utils/hooks/useAuth'
 
 interface MainLayoutProps {
-  isBanner?: boolean
-  darkMode?: boolean
+  title?: string
 }
 
-const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
-  const [open, letOpen] = useState(false)
+const MainLayout: React.FC<MainLayoutProps> = ({ children, title }) => {
+  const [open, letOpen] = useState(true)
   const setOpen = (val: boolean) => {
     letOpen(val)
   }
   useAuthenticated()
   return (
     <div>
-      <div className="admin-main">
-        <AdminHeader open={open} setOpen={setOpen} />
+      <div className={`main-content-wrap ${open ? 'sidenav-open' : ''}`}>
+        <AdminHeader title={title} open={open} setOpen={setOpen} />
+        <AdminSideBar />
         <div className="content-wrapper">{children}</div>
-        <Copyright />
       </div>
     </div>
   )

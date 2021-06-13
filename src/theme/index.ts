@@ -12,7 +12,7 @@ export const userBreakpoints = breakpointValues
 
 export default createMuiTheme({
   palette: {
-    type: 'dark',
+    type: 'light',
     primary: {
       main: Colors.primary,
     },

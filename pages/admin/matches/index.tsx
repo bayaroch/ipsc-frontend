@@ -1,10 +1,8 @@
-import MessageLayout from '@components/layout/MainLayout'
+import AdminLayout from '@components/layout/AdminLayout'
 import PageWithLayoutType from '@constants/page'
 
 const Message: PageWithLayoutType = () => {
-  return <div>Admin hi</div>
+  return <AdminLayout title="Matches">Matches</AdminLayout>
 }
-
-Message.Layout = MessageLayout
 
 export default Message

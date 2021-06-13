@@ -9,13 +9,14 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
 import { makeStyles } from '@material-ui/core/styles'
 
-interface AdminHeaderProps {
+export interface AdminHeaderProps {
   open: boolean
   setOpen: (open: boolean) => void
+  title?: string
 }
 
-const AdminHeader: React.FC<AdminHeaderProps> = ({ open, setOpen }) => {
-  const classes = useStyles()
+const AdminHeader: React.FC<AdminHeaderProps> = ({ open, setOpen, title }) => {
+  const classes = useStyles({ open, setOpen })
   const [anchorEl, setAnchorEl] = useState(null)
 
   const subOpen = Boolean(anchorEl)
@@ -25,10 +26,17 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({ open, setOpen }) => {
     setAnchorEl(event.currentTarget)
   }
   return (
-    <div className={classes.root}>
-      <AppBar position="fixed" color="secondary" elevation={1}>
+    <div className={`${classes.root}`}>
+      <AppBar
+        position="fixed"
+        className={`${open ? classes.open : ''}`}
+        color="secondary"
+        elevation={1}
+      >
         <Toolbar>
           <IconButton
+            disableRipple
+            onClick={() => setOpen(!open)}
             edge="start"
             className={classes.menuButton}
             color="inherit"
@@ -36,9 +44,7 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({ open, setOpen }) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            Photos
-          </Typography>
+          <Typography className={classes.title}>{title}</Typography>
 
           <div>
             <IconButton
@@ -75,11 +81,17 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({ open, setOpen }) => {
   )
 }
 
+AdminHeader.defaultProps = {
+  title: 'IPSC admin',
+}
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     '& .MuiAppBar-root': {
-      paddingLeft: 70,
+      zIndex: 80,
+      paddingLeft: 0,
+      tranistion: 'all 0.3s ease',
     },
     '& .MuiAppBar-colorSecondary': {
       background: '#fff',
@@ -88,10 +100,14 @@ const useStyles = makeStyles((theme) => ({
       minHeight: 50,
     },
   },
+  open: {
+    paddingLeft: '100px !important',
+  },
   menuButton: {
     marginRight: theme.spacing(2),
   },
   title: {
+    fontWeight: 600,
     flexGrow: 1,
   },
 }))
