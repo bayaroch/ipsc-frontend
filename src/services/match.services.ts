@@ -56,10 +56,21 @@ export type MatchResponse = {
   version: string
 }
 
+export type MetaPagination = {
+  pagination: MatchPaginationMeta
+}
+
+export type MatchPaginationMeta = {
+  per_page: number
+  total_pages: number
+  total_objects: number
+}
+
 export type GetMatchesResponse = {
   data: Array<MatchItem>
   status: string
   version: string
+  meta: MetaPagination
 }
 
 export const matchServices = {

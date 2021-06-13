@@ -7,11 +7,15 @@ export interface Props {}
 
 const MatchListContainer: React.FC<Props> = (props) => {
   const classes = useStyles()
-  const { getList, meta, list } = useMatch()
+  const { getList, meta, list, paginationMeta } = useMatch()
 
   console.log(meta, list)
 
-  return <MatchList getList={getList} />
+  return (
+    <>
+      <MatchList list={list} getList={getList} pagination={paginationMeta} />
+    </>
+  )
 }
 
 const useStyles = makeStyles((theme) => ({

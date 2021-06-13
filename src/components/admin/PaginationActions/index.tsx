@@ -35,7 +35,7 @@ const PaginationActions = (props: TablePaginationActionsProps) => {
     <div className={classes.root}>
       <IconButton
         onClick={handleBackButtonClick}
-        disabled={page === 0}
+        disabled={page === 1}
         aria-label="previous page"
       >
         {theme.direction === 'rtl' ? (
@@ -46,7 +46,7 @@ const PaginationActions = (props: TablePaginationActionsProps) => {
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+        disabled={page >= Math.ceil(count / rowsPerPage)}
         aria-label="next page"
       >
         {theme.direction === 'rtl' ? (

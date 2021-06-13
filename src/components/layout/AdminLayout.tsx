@@ -20,7 +20,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, title }) => {
       <div className={`main-content-wrap ${open ? 'sidenav-open' : ''}`}>
         <AdminHeader title={title ? title : ''} open={open} setOpen={setOpen} />
         <AdminSideBar />
-        <div className="content-wrapper">{children}</div>
+        <div className="content-wrapper-admin">{children}</div>
       </div>
     </div>
   )
