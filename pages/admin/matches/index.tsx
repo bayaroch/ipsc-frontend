@@ -1,8 +1,19 @@
 import AdminLayout from '@components/layout/AdminLayout'
 import PageWithLayoutType from '@constants/page'
+import { makeStyles } from '@material-ui/core/'
+import MatchList from '@components/admin/MatchList'
 
-const Message: PageWithLayoutType = () => {
-  return <AdminLayout title="Matches">Matches</AdminLayout>
+const Matches: PageWithLayoutType = () => {
+  const classes = useStyles()
+  return (
+    <AdminLayout title="Matches">
+      <MatchList />
+    </AdminLayout>
+  )
 }
 
-export default Message
+const useStyles = makeStyles((theme) => ({
+  root: {},
+}))
+
+export default Matches

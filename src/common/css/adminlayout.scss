@@ -97,6 +97,9 @@
 .main-content-wrap.sidenav-open .sidebar {
   left: 0;
 }
+.main-content-wrap.sidenav-open {
+  padding-left: 100px;
+}
 
 .app-logo {
   height: 80px;
@@ -188,4 +191,8 @@ span.m-holder.router-link-active:after {
   .app-logo {
     display: block;
   }
+}
+
+.content-wrapper {
+  padding: 2rem;
 }

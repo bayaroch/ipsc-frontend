@@ -18,7 +18,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, title }) => {
   return (
     <div>
       <div className={`main-content-wrap ${open ? 'sidenav-open' : ''}`}>
-        <AdminHeader title={title} open={open} setOpen={setOpen} />
+        <AdminHeader title={title ? title : ''} open={open} setOpen={setOpen} />
         <AdminSideBar />
         <div className="content-wrapper">{children}</div>
       </div>
@@ -27,8 +27,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, title }) => {
 }
 
 MainLayout.defaultProps = {
-  isBanner: false,
-  darkMode: false,
+  title: 'IPSC admin',
 }
 
 export default MainLayout

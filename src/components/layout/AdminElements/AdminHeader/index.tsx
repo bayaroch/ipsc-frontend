@@ -21,7 +21,9 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({ open, setOpen, title }) => {
 
   const subOpen = Boolean(anchorEl)
 
-  const handleClose = () => {}
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
   const handleMenu = (event: any) => {
     setAnchorEl(event.currentTarget)
   }
@@ -72,17 +74,13 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({ open, setOpen, title }) => {
               onClose={handleClose}
             >
               <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>My account</MenuItem>
+              <MenuItem onClick={handleClose}>Logout</MenuItem>
             </Menu>
           </div>
         </Toolbar>
       </AppBar>
     </div>
   )
-}
-
-AdminHeader.defaultProps = {
-  title: 'IPSC admin',
 }
 
 const useStyles = makeStyles((theme) => ({

@@ -12,7 +12,7 @@ const AdminSideBar: React.FC<AdminHeaderProps> = () => {
   const router = useRouter()
   return (
     <aside className="sidebar" id="sidebar-main">
-      <div className="app-logo">
+      <div className="app-logo" onClick={() => router.push('/admin/')}>
         <img src="/images/logo-dvc.svg" alt="logo" />
       </div>
       <div id="nav" className="side-nav">
