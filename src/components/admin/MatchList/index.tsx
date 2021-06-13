@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Table,
@@ -26,8 +26,8 @@ export interface MatchListProps {
 const MatchList: React.FC<MatchListProps> = (props) => {
   const { getList, list, pagination } = props
   const classes = useStyles()
-  const [page, setPage] = React.useState(1)
-  const [rowsPerPage, setRowsPerPage] = React.useState(2)
+  const [page, setPage] = useState(1)
+  const [rowsPerPage, setRowsPerPage] = useState(2)
 
   useEffect(() => {
     getList({ page: page, per_page: rowsPerPage })
@@ -47,8 +47,13 @@ const MatchList: React.FC<MatchListProps> = (props) => {
   }
 
   const handleChangeRowsPerPage = (event: { target: { value: string } }) => {
-    setRowsPerPage(parseInt(event.target.value, 10))
-    setPage(0)
+    if (pagination && pagination.total_objects < Number(event.target.value)) {
+      setRowsPerPage(pagination.total_objects)
+      setPage(1)
+    } else {
+      setRowsPerPage(parseInt(event.target.value, 10))
+      setPage(1)
+    }
   }
 
   return (
@@ -94,24 +99,31 @@ const MatchList: React.FC<MatchListProps> = (props) => {
                 </TableRow>
               )}
             </TableBody>
-            <TableFooter>
-              <TableRow>
-                <TablePagination
-                  rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-                  colSpan={6}
-                  count={pagination.total_objects}
-                  rowsPerPage={rowsPerPage}
-                  page={page}
-                  SelectProps={{
-                    inputProps: { 'aria-label': 'rows per page' },
-                    native: true,
-                  }}
-                  onChangePage={handleChangePage}
-                  onChangeRowsPerPage={handleChangeRowsPerPage}
-                  ActionsComponent={PaginationActions}
-                />
-              </TableRow>
-            </TableFooter>
+            {pagination ? (
+              <TableFooter>
+                <TableRow>
+                  <TablePagination
+                    rowsPerPageOptions={[
+                      5,
+                      10,
+                      25,
+                      { label: 'All', value: pagination.total_objects },
+                    ]}
+                    colSpan={6}
+                    count={pagination.total_objects}
+                    rowsPerPage={rowsPerPage}
+                    page={page > 0 && list.length < rowsPerPage ? 0 : page}
+                    SelectProps={{
+                      inputProps: { 'aria-label': 'rows per page' },
+                      native: true,
+                    }}
+                    onChangePage={handleChangePage}
+                    onChangeRowsPerPage={handleChangeRowsPerPage}
+                    ActionsComponent={PaginationActions}
+                  />
+                </TableRow>
+              </TableFooter>
+            ) : null}
           </Table>
         </TableContainer>
       ) : null}
