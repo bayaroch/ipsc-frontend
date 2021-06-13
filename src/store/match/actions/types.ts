@@ -1,3 +1,4 @@
+import { MATCH_STATUS } from '@constants/common.constants'
 export interface MatchItem {
   id: number
   name: string
@@ -14,7 +15,7 @@ export interface MatchItem {
   sponsor_info?: string
   per_squad: number
   is_public: boolean
-  status: number
+  status: MATCH_STATUS
   last_modified_by: number
 }
 

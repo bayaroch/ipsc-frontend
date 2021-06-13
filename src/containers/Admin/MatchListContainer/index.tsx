@@ -3,12 +3,18 @@ import { makeStyles, Box, Button } from '@material-ui/core/'
 import useMatch from './useMatch'
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
 import MatchList from '@components/admin/MatchList'
+import { useRouter } from 'next/router'
 
 export interface Props {}
 
 const MatchListContainer: React.FC<Props> = (props) => {
   const classes = useStyles()
-  const { getList, meta, list, paginationMeta } = useMatch()
+  const { getList, list, paginationMeta } = useMatch()
+  const router = useRouter()
+
+  const handleEdit = (id: number) => {
+    router.push(`/admin/matches/edit/${id}`)
+  }
 
   return (
     <Box>
@@ -22,7 +28,12 @@ const MatchListContainer: React.FC<Props> = (props) => {
           Create New
         </Button>
       </Box>
-      <MatchList list={list} getList={getList} pagination={paginationMeta} />
+      <MatchList
+        onEditClick={handleEdit}
+        list={list}
+        getList={getList}
+        pagination={paginationMeta}
+      />
     </Box>
   )
 }

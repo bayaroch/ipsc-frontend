@@ -4,13 +4,13 @@ import {
   Table,
   TableHead,
   TableRow,
-  TableFooter,
   TableContainer,
   TableCell,
   TableBody,
   withStyles,
   Select,
   Box,
+  IconButton,
   FormControl,
 } from '@material-ui/core'
 import Paper from '@material-ui/core/Paper'
@@ -18,17 +18,20 @@ import Pagination from '@material-ui/lab/Pagination'
 import { MatchPaginationMeta, MatchPageMeta } from '@services/match.services'
 import { MatchItem } from '@store/match/actions/types'
 import _ from 'lodash'
+import EditIcon from '@material-ui/icons/Edit'
+import { MATCH_STATUS_TEXT } from '@constants/common.constants'
 
 export interface MatchListProps {
   getList: (params: MatchPageMeta) => void
   list: MatchItem[]
   pagination: MatchPaginationMeta
+  onEditClick: (id: number) => void
 }
 
 const defaultPerPage = 5
 
 const MatchList: React.FC<MatchListProps> = (props) => {
-  const { getList, list, pagination } = props
+  const { getList, list, pagination, onEditClick } = props
   const classes = useStyles()
   const [page, setPage] = useState<number>(1)
   const [rowsPerPage, setRowsPerPage] = useState<number>(defaultPerPage)
@@ -81,7 +84,6 @@ const MatchList: React.FC<MatchListProps> = (props) => {
                 <StyledTableCell align="right">Match lvl</StyledTableCell>
                 <StyledTableCell align="right">Tax</StyledTableCell>
                 <StyledTableCell align="right">Status</StyledTableCell>
-                <StyledTableCell align="right">Change Status</StyledTableCell>
                 <StyledTableCell align="right">Edit</StyledTableCell>
               </TableRow>
             </TableHead>
@@ -96,20 +98,20 @@ const MatchList: React.FC<MatchListProps> = (props) => {
                     {row.tax}
                   </TableCell>
                   <TableCell style={{ width: 160 }} align="right">
-                    {row.status}
+                    {MATCH_STATUS_TEXT[row.status]}
                   </TableCell>
                   <TableCell style={{ width: 160 }} align="right">
-                    Status Change UI
-                  </TableCell>
-                  <TableCell style={{ width: 160 }} align="right">
-                    Edit Icon
+                    <EditIcon
+                      onClick={() => onEditClick(row.id)}
+                      className={classes.editBtn}
+                    />
                   </TableCell>
                 </TableRow>
               ))}
 
               {emptyRows > 0 && (
                 <TableRow style={{ height: 53 * emptyRows }}>
-                  <TableCell colSpan={6} />
+                  <TableCell colSpan={5} />
                 </TableRow>
               )}
             </TableBody>
@@ -167,6 +169,9 @@ const useStyles = makeStyles({
     justifyContent: 'space-between',
     padding: 5,
     width: '100%',
+  },
+  editBtn: {
+    cursor: 'pointer',
   },
 })
 
