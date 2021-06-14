@@ -18,46 +18,54 @@ const MatchCreateContainer: React.FC = () => {
   return (
     <Box className={classes.container}>
       <CustomInput
+        required={true}
         labelPrimary="Match Name"
         placeholder={'Тэмцээны нэр'}
         fullWidth={true}
       />
       <CustomInput
+        required={true}
         labelPrimary="Match Start"
         type="datetime-local"
         placeholder={'Эхлэх огноо'}
         fullWidth={true}
       />
       <CustomInput
+        required={true}
         labelPrimary="Match End"
         type="datetime-local"
         placeholder={'Дуусах огноо'}
         fullWidth={true}
       />
       <CustomInput
+        required={true}
         labelPrimary="Registration Start"
         type="datetime-local"
         placeholder={'Бүртгэл эхлэх огноо'}
         fullWidth={true}
       />
       <CustomInput
+        required={true}
         labelPrimary="Registration End"
         type="datetime-local"
         placeholder={'Бүртгэл хаагдах огноо'}
         fullWidth={true}
       />
       <CustomInput
+        required={true}
         labelPrimary="LvL"
         placeholder={'Тэмцээны lvl'}
         fullWidth={true}
       />
       <CustomInput
+        required={true}
         labelPrimary="Point multiplier"
         placeholder={'Тэмцээны нэр'}
         fullWidth={true}
       />
 
       <CustomInput
+        required={true}
         labelPrimary="Per Squad"
         placeholder={'Тэмцээны нэр'}
         fullWidth={true}

@@ -21,15 +21,9 @@ export const Colors = {
     '30': 'rgba(255,255,255,.3)',
     '70': 'rgba(255,255,255,.7)',
   },
-  black_card: '#0A0A0A',
-  black_opacity: {
-    '15': 'rgba(0,0,0,.15)',
-    '30': 'rgba(0,0,0,.3)',
-    '70': 'rgba(0,0,0,.7)',
-    '80': 'rgba(0,0,0,.8)',
-  },
   yellow: '#F7F560',
   green: '#2CEBB0',
+  red: '#f44336',
   avatar: [
     '#8E47FF',
     '#476AFF',

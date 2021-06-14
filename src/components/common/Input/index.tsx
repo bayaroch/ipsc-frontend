@@ -59,7 +59,7 @@ const CustomInput: React.FC<OutlinedInputProps & InputProps> = ({
             />
             {required && (
               <Typography component="span" className={classes.required}>
-                asdasds
+                *
               </Typography>
             )}
           </Box>
@@ -106,14 +106,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: 0,
   },
   required: {
-    backgroundColor: Colors.primary,
-    borderRadius: 2,
     paddingLeft: theme.spacing(1 / 2),
     paddingRight: theme.spacing(1 / 2),
     height: 16,
     fontSize: 10,
-    marginLeft: theme.spacing(1),
-    color: Colors.white,
+    marginLeft: 5,
+    color: Colors.red,
   },
   end: {
     paddingRight: theme.spacing(1),
