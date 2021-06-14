@@ -14,7 +14,6 @@ const LoginPage = () => {
   const isLoggedIn = useSelector(isAuth)
 
   useEffect(() => {
-    console.log()
     if (isLoggedIn === true) {
       router.push('/admin/')
     }

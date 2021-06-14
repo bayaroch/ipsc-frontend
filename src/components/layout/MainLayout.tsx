@@ -19,7 +19,6 @@ const MainLayout: React.FC<MainLayoutProps> = ({
   const [open, letOpen] = useState(false)
   const setOpen = (val: boolean) => {
     letOpen(val)
-    console.log('opening')
   }
   return (
     <div

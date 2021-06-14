@@ -71,7 +71,11 @@ const CustomInput: React.FC<OutlinedInputProps & InputProps> = ({
         margin="dense"
         {...rest}
       />
-      {helperText && <FormHelperText error>{helperText}</FormHelperText>}
+      {helperText && (
+        <FormHelperText className={classes.errorText} error>
+          {helperText}
+        </FormHelperText>
+      )}
     </FormControl>
   )
 }
@@ -83,19 +87,22 @@ const useStyles = makeStyles((theme: Theme) => ({
   labelBox: {
     paddingBottom: 0,
   },
+  errorText: {
+    '&.Mui-error': {
+      color: Colors.red,
+    },
+  },
   root: {
     backgroundColor: Colors.white,
     '&.Mui-error .MuiOutlinedInput-notchedOutline': {
-      background: 'rgba(247, 247, 53, 0.1)',
+      background: 'transparent',
+      borderColor: Colors.red,
     },
     '&.Mui-disabled': {
       backgroundColor: 'transparent',
       '& .MuiOutlinedInput-notchedOutline': {
         borderColor: 'transparent',
       },
-    },
-    '& :-webkit-autofill': {
-      WebkitBoxShadow: '0 0 0 100px #000000 inset',
     },
   },
   numberAlign: {},

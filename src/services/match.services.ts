@@ -15,7 +15,7 @@ export type MatchCreateParams = {
   registration_end: string
   lvl: number
   point_multiplier: number
-  stage_number: number
+  stage_number?: number
   tax?: number
   tax_info?: string
   min_point?: string
@@ -24,7 +24,7 @@ export type MatchCreateParams = {
   per_squad: number
   is_public: number
   status: number
-  last_modified_by: number
+  last_modified_by?: number
 }
 
 export type MatchUpdateParams = {

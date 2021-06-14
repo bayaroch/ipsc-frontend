@@ -5,6 +5,12 @@ import { useDispatch } from 'react-redux'
 import { authActions } from '@store/auth/actions/index'
 import * as yup from 'yup'
 
+interface LoginInput {
+  usercode: string
+  password: string
+  password_repeat: string
+}
+
 const useLoginForm = () => {
   const dispatch = useDispatch()
 
@@ -17,10 +23,10 @@ const useLoginForm = () => {
     []
   )
 
-  const { register, handleSubmit, errors } = useForm<any>({
+  const { register, handleSubmit, errors } = useForm<LoginInput>({
     resolver: yupResolver(validationSchema),
   })
-  const onSubmit = useCallback((formValues: any) => {
+  const onSubmit = useCallback((formValues: LoginInput) => {
     dispatch(authActions.login(formValues))
   }, [])
 
