@@ -11,6 +11,7 @@ import {
   Select,
   Box,
   FormControl,
+  CircularProgress,
 } from '@material-ui/core'
 import Paper from '@material-ui/core/Paper'
 import Pagination from '@material-ui/lab/Pagination'
@@ -19,18 +20,20 @@ import { MatchItem } from '@store/match/actions/types'
 import _ from 'lodash'
 import EditIcon from '@material-ui/icons/Edit'
 import { MATCH_STATUS_TEXT } from '@constants/common.constants'
+import { Meta } from '@store/metadata/actions/types'
 
 export interface MatchListProps {
   getList: (params: MatchPageMeta) => void
   list: MatchItem[]
   pagination: MatchPaginationMeta
   onEditClick: (id: number) => void
+  meta: Meta
 }
 
 const defaultPerPage = 5
 
 const MatchList: React.FC<MatchListProps> = (props) => {
-  const { getList, list, pagination, onEditClick } = props
+  const { getList, list, pagination, onEditClick, meta } = props
   const classes = useStyles()
   const [page, setPage] = useState<number>(1)
   const [rowsPerPage, setRowsPerPage] = useState<number>(defaultPerPage)
@@ -72,9 +75,27 @@ const MatchList: React.FC<MatchListProps> = (props) => {
     }
   }
 
-  return (
-    <>
-      {!_.isEmpty(list) && pagination !== undefined ? (
+  const renderLoader = () => {
+    if (!meta.loaded && meta.pending && !meta.error && list === undefined) {
+      return (
+        <Box className={classes.loaderBox}>
+          <CircularProgress className={classes.loader} />
+        </Box>
+      )
+    }
+    return null
+  }
+
+  console.log(meta)
+
+  const renderList = () => {
+    if (
+      !_.isEmpty(list) &&
+      pagination !== undefined &&
+      meta.loaded &&
+      !meta.pending
+    ) {
+      return (
         <TableContainer component={Paper}>
           <Table className={classes.table} aria-label="custom pagination table">
             <TableHead>
@@ -137,7 +158,15 @@ const MatchList: React.FC<MatchListProps> = (props) => {
             />
           </Box>
         </TableContainer>
-      ) : null}
+      )
+    }
+    return null
+  }
+
+  return (
+    <>
+      {renderList()}
+      {renderLoader()}
     </>
   )
 }
@@ -162,6 +191,16 @@ const useStyles = makeStyles({
       paddingTop: 10,
       paddingBottom: 10,
     },
+  },
+  loader: {
+    fontSize: 12,
+  },
+  loaderBox: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: 300,
   },
   pagination: {
     position: 'relative',

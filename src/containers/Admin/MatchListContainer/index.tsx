@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 
 const MatchListContainer: React.FC = () => {
   const classes = useStyles()
-  const { getList, list, paginationMeta } = useMatch()
+  const { getList, list, paginationMeta, meta } = useMatch()
   const router = useRouter()
 
   const handleEdit = (id: number) => {
@@ -28,6 +28,7 @@ const MatchListContainer: React.FC = () => {
       </Box>
       <MatchList
         onEditClick={handleEdit}
+        meta={meta}
         list={list}
         getList={getList}
         pagination={paginationMeta}

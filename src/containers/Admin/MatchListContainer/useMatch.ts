@@ -1,6 +1,6 @@
 import { createMetaSelector } from '@store/metadata/selectors'
 import searchStore from '@store/match'
-import { metaState } from '@store/metadata/actions/types'
+import { Meta } from '@store/metadata/actions/types'
 import { useDispatch, useSelector } from 'react-redux'
 import { MatchPageMeta, MatchPaginationMeta } from '@services/match.services'
 import { MatchItem } from '@store/match/actions/types'
@@ -9,7 +9,7 @@ const { selectors, actions } = searchStore
 const getAllMatchesMeta = createMetaSelector(actions.getAllMatches)
 
 const useMatch = (): {
-  meta: metaState
+  meta: Meta
   list: MatchItem[]
   getList: (params: MatchPageMeta) => void
   paginationMeta: MatchPaginationMeta
