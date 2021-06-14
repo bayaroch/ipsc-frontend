@@ -1,5 +1,14 @@
-import { makeStyles, Box, Button } from '@material-ui/core/'
+import {
+  makeStyles,
+  Box,
+  Button,
+  Divider,
+  FormControl,
+  ButtonGroup,
+} from '@material-ui/core/'
+import CustomSwitch from '@components/common/CustomSwitch'
 import CustomInput from '@components/common/Input'
+import { CustomLabel } from '@components/common/Input'
 import { useRouter } from 'next/router'
 
 const MatchCreateContainer: React.FC = () => {
@@ -47,13 +56,16 @@ const MatchCreateContainer: React.FC = () => {
         placeholder={'Тэмцээны нэр'}
         fullWidth={true}
       />
+
       <CustomInput
-        labelPrimary="Stage number"
+        labelPrimary="Per Squad"
         placeholder={'Тэмцээны нэр'}
         fullWidth={true}
       />
+      <Divider className={classes.divider} />
       <CustomInput
         labelPrimary="Tax"
+        type="number"
         placeholder={'Тэмцээны нэр'}
         fullWidth={true}
       />
@@ -61,8 +73,18 @@ const MatchCreateContainer: React.FC = () => {
         labelPrimary="TaxInfo"
         placeholder={'Тэмцээны нэр'}
         fullWidth={true}
+        multiline
+        rows={3}
+        rowsMax={10}
       />
       <CustomInput
+        type="number"
+        labelPrimary="Stage number"
+        placeholder={'Тэмцээны нэр'}
+        fullWidth={true}
+      />
+      <CustomInput
+        type="number"
         labelPrimary="Min Point"
         placeholder={'Тэмцээны нэр'}
         fullWidth={true}
@@ -70,34 +92,43 @@ const MatchCreateContainer: React.FC = () => {
       <CustomInput
         labelPrimary="Additional Info"
         placeholder={'Тэмцээны нэр'}
+        multiline
+        rows={3}
+        rowsMax={10}
         fullWidth={true}
       />
       <CustomInput
         labelPrimary="Sponsor Info"
         placeholder={'Тэмцээны нэр'}
         fullWidth={true}
+        multiline
+        rows={3}
+        rowsMax={10}
       />
-      <CustomInput
-        labelPrimary="Per Squad"
-        placeholder={'Тэмцээны нэр'}
-        fullWidth={true}
-      />
-      <CustomInput
-        labelPrimary="Public"
-        placeholder={'Тэмцээны нэр'}
-        fullWidth={true}
-      />
+      <FormControl>
+        <CustomLabel text={'Is Public'} id={'public'} />
+        <CustomSwitch handleChange={() => {}} checked={true} name="Is Public" />
+      </FormControl>
       <CustomInput
         labelPrimary="Status"
         placeholder={'Тэмцээны нэр'}
         fullWidth={true}
       />
+      <ButtonGroup
+        disableElevation
+        variant="contained"
+        color="primary"
+      ></ButtonGroup>
     </Box>
   )
 }
 
 const useStyles = makeStyles(() => ({
   container: {},
+  divider: {
+    marginTop: 20,
+    marginBottom: 20,
+  },
 }))
 
 export default MatchCreateContainer

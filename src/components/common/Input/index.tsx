@@ -17,6 +17,16 @@ export type InputProps = {
   required?: boolean
 }
 
+export const CustomLabel = ({ text, id }: { text: string; id: string }) => {
+  const classes = useStyles2()
+
+  return (
+    <label htmlFor={id} className={classes.labelMargin}>
+      {text}
+    </label>
+  )
+}
+
 const CustomInput: React.FC<OutlinedInputProps & InputProps> = ({
   helperText,
   labelPrimary,
@@ -43,12 +53,10 @@ const CustomInput: React.FC<OutlinedInputProps & InputProps> = ({
             display="flex"
             alignItems="center"
           >
-            <label
-              htmlFor={rest.id ? rest.id : ''}
-              className={classes.labelMargin}
-            >
-              {labelPrimary}
-            </label>
+            <CustomLabel
+              id={rest.id ? rest.id : ''}
+              text={labelPrimary ? labelPrimary : ''}
+            />
             {required && (
               <Typography component="span" className={classes.required}>
                 asdasds
@@ -109,6 +117,15 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   end: {
     paddingRight: theme.spacing(1),
+  },
+}))
+
+const useStyles2 = makeStyles(() => ({
+  labelMargin: {
+    marginBottom: 5,
+  },
+  labelPrimaryContainer: {
+    padding: 0,
   },
 }))
 
