@@ -6,8 +6,8 @@ import {
   MatchResponse,
   MatchUpdateParams,
 } from '@services/match.services'
-import { createAsyncThunk } from '@reduxjs/toolkit'
-import { MATCH_ACTION_TYPE } from './types'
+import { createAsyncThunk, createAction } from '@reduxjs/toolkit'
+import { MATCH_ACTION_TYPE, CLEAR_MATCH_DATA } from './types'
 
 export const getAllMatches = createAsyncThunk<
   GetMatchesResponse,
@@ -25,7 +25,7 @@ export const getAllMatches = createAsyncThunk<
 })
 
 export const createMatch = createAsyncThunk<MatchResponse, MatchCreateParams>(
-  MATCH_ACTION_TYPE.GET_MATCHES,
+  MATCH_ACTION_TYPE.CREATE_MATCH,
   async (matchParams, { rejectWithValue }) => {
     try {
       const res = await matchServices.createMatch(matchParams)
@@ -40,7 +40,7 @@ export const createMatch = createAsyncThunk<MatchResponse, MatchCreateParams>(
 )
 
 export const updateMatch = createAsyncThunk<MatchResponse, MatchUpdateParams>(
-  MATCH_ACTION_TYPE.GET_MATCHES,
+  MATCH_ACTION_TYPE.UPDATE_MATCH,
   async (matchUpdateParams, { rejectWithValue }) => {
     try {
       const res = await matchServices.updateMatch(matchUpdateParams)
@@ -53,3 +53,5 @@ export const updateMatch = createAsyncThunk<MatchResponse, MatchUpdateParams>(
     }
   }
 )
+
+export const clearMatchData = createAction(CLEAR_MATCH_DATA)

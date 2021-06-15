@@ -1,9 +1,17 @@
+import { useEffect } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { useMemo } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { MatchCreateParams } from '@services/match.services'
+import { clearMatchData, createMatch } from '@store/match/actions'
 import { MATCH_STATUS } from '@constants/common.constants'
+import { useDispatch, useSelector } from 'react-redux'
+import { createMetaSelector } from '@store/metadata/selectors'
+import { createResult } from '@store/match/selectors'
+import { Meta } from '@store/metadata/actions/types'
+
+const createMatchesMeta = createMetaSelector(createMatch)
 
 export interface MatchCreateInputType {
   name: string
@@ -13,19 +21,27 @@ export interface MatchCreateInputType {
   registration_end: string
   lvl: number
   point_multiplier: number
-  stage_number?: number
+  stage_number?: number | undefined
   tax?: number
   tax_info?: string
-  min_point?: string
+  min_point?: string | undefined
   additional_info?: string
   sponsor_info?: string
-  per_squad: number
+  per_squad: number | undefined
   is_public: boolean
   status: MATCH_STATUS
   last_modified_by?: number
 }
 
 const useCreateMatch = () => {
+  const dispatch = useDispatch()
+  const metadata: Meta = useSelector(createMatchesMeta)
+  const response = useSelector(createResult)
+
+  useEffect(() => {
+    dispatch(clearMatchData())
+  }, [])
+
   const validationSchema = useMemo(
     () =>
       yup.object().shape({
@@ -52,11 +68,37 @@ const useCreateMatch = () => {
 
   const methods = useForm<MatchCreateInputType>({
     resolver: yupResolver(validationSchema),
+    defaultValues: {
+      name: '',
+      match_start: '',
+      match_end: '',
+      registration_start: '',
+      registration_end: '',
+      lvl: 1,
+      point_multiplier: 0,
+      is_public: false,
+      per_squad: undefined,
+      stage_number: undefined,
+      status: 1,
+      tax: 0,
+      tax_info: '',
+      min_point: undefined,
+      additional_info: '',
+      sponsor_info: '',
+      last_modified_by: 1,
+    },
   })
+
+  const create = (params: MatchCreateParams) => {
+    dispatch(createMatch(params))
+  }
 
   return {
     methods,
+    create,
     Controller,
+    metadata,
+    response,
   }
 }
 

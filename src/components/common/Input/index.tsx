@@ -21,7 +21,7 @@ export const CustomLabel = ({ text, id }: { text: string; id: string }) => {
   const classes = useStyles2()
 
   return (
-    <label htmlFor={id} className={classes.labelMargin}>
+    <label htmlFor={id} className={classes.label}>
       {text}
     </label>
   )
@@ -83,6 +83,7 @@ const CustomInput: React.FC<OutlinedInputProps & InputProps> = ({
 const useStyles = makeStyles((theme: Theme) => ({
   formControl: {
     paddingBottom: 5,
+    marginBottom: 5,
   },
   labelBox: {
     paddingBottom: 0,
@@ -93,7 +94,16 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   root: {
-    backgroundColor: Colors.white,
+    border: '0 none',
+    padding: '4px 4px',
+    borderColor: 'transparent',
+    backgroundColor: 'rgb(242, 245, 250)',
+    '& .MuiOutlinedInput-inputMultiline': {
+      padding: '4.5px 14px',
+    },
+    '& .MuiOutlinedInput-notchedOutline': {
+      borderColor: 'transparent',
+    },
     '&.Mui-error .MuiOutlinedInput-notchedOutline': {
       background: 'transparent',
       borderColor: Colors.red,
@@ -126,8 +136,10 @@ const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 const useStyles2 = makeStyles(() => ({
-  labelMargin: {
-    marginBottom: 5,
+  label: {
+    fontSize: 14,
+    paddingBottom: 3,
+    color: '#555',
   },
   labelPrimaryContainer: {
     padding: 0,

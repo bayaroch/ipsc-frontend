@@ -89,12 +89,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
   console.log(meta)
 
   const renderList = () => {
-    if (
-      !_.isEmpty(list) &&
-      pagination !== undefined &&
-      meta.loaded &&
-      !meta.pending
-    ) {
+    if (!_.isEmpty(list)) {
       return (
         <TableContainer component={Paper}>
           <Table className={classes.table} aria-label="custom pagination table">
@@ -118,7 +113,11 @@ const MatchList: React.FC<MatchListProps> = (props) => {
                     {row.tax}
                   </TableCell>
                   <TableCell style={{ width: 160 }} align="right">
-                    {MATCH_STATUS_TEXT[row.status]}
+                    {
+                      _.filter(MATCH_STATUS_TEXT, function (o) {
+                        return o.id === row.status
+                      })[0].value
+                    }
                   </TableCell>
                   <TableCell style={{ width: 160 }} align="right">
                     <EditIcon

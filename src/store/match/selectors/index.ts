@@ -1,11 +1,15 @@
 import { createSelector } from 'reselect'
 import { RootState } from '@store/reducers'
 
-const authState = (state: RootState) => state.match
+const getState = (state: RootState) => state.match
 
-export const matches = createSelector(authState, (state) => state.matchList)
+export const matches = createSelector(getState, (state) => state.matchList)
+export const createResult = createSelector(
+  getState,
+  (state) => state.createMatch
+)
 
 export const paginationMeta = createSelector(
-  authState,
+  getState,
   (state) => state.matchMeta
 )
