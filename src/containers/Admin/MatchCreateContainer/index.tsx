@@ -52,7 +52,7 @@ const MatchCreateContainer: React.FC = () => {
       ),
     })
     console.log('params', params)
-    create(params)
+    //create(params)
   }
 
   const renderLoader = () => {
@@ -400,10 +400,10 @@ const MatchCreateContainer: React.FC = () => {
                     fullWidth={true}
                     value={value}
                     label="Status"
-                    placeholder={'Тэмцээны нэр'}
-                    error={!!errors.lvl}
+                    placeholder={'Төлөв'}
+                    error={!!errors.status}
                     helperText={
-                      errors.lvl ? _.get(errors.lvl, 'message', '') : ''
+                      errors.status ? _.get(errors.status, 'message', '') : ''
                     }
                   >
                     {MATCH_STATUS_TEXT.map((item, index) => {
