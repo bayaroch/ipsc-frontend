@@ -21,7 +21,7 @@ import useCreateMatch from './useCreateMatch'
 import { MatchCreateParams } from '@services/match.services'
 import _ from 'lodash'
 import moment from 'moment'
-import { Menu } from '@material-ui/icons'
+import { MATCH_STATUS_TEXT } from '@constants/common.constants'
 
 const MatchCreateContainer: React.FC = () => {
   const classes = useStyles()
@@ -385,51 +385,76 @@ const MatchCreateContainer: React.FC = () => {
           />
         </section>
 
-        <section className={classes.section}>
-          <Controller
-            name="is_public"
-            control={control}
-            render={({ field: { onChange, value } }) => {
-              return (
-                <FormControl>
-                  <CustomLabel text={'Is Public'} id={'public'} />
-                  <CustomSwitch
-                    handleChange={onChange}
-                    checked={value}
-                    name="Is Public"
-                  />
-                </FormControl>
-              )
-            }}
-          />
-        </section>
+        <section className={classes.section}></section>
 
         <section className={classes.section}>
-          <Controller
-            name="status"
-            control={control}
-            render={({ field: { onChange, value } }) => (
-              <Select
-                onChange={onChange}
-                required={true}
-                fullWidth={true}
-                value={value}
-                label="Status"
-                placeholder={'Тэмцээны нэр'}
-                error={!!errors.lvl}
-                helperText={errors.lvl ? _.get(errors.lvl, 'message', '') : ''}
-              >
-                <MenuItem value={1}>1</MenuItem>
-                <MenuItem value={2}>2</MenuItem>
-                <MenuItem value={3}>3</MenuItem>
-              </Select>
-            )}
-          />
+          <Grid container spacing={3}>
+            <Grid item sm={12} md={8}>
+              <Controller
+                name="status"
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                  <Select
+                    onChange={onChange}
+                    required={true}
+                    fullWidth={true}
+                    value={value}
+                    label="Status"
+                    placeholder={'Тэмцээны нэр'}
+                    error={!!errors.lvl}
+                    helperText={
+                      errors.lvl ? _.get(errors.lvl, 'message', '') : ''
+                    }
+                  >
+                    {MATCH_STATUS_TEXT.map((item, index) => {
+                      if (item.id === 3) return null
+                      return (
+                        <MenuItem value={item.id} key={index}>
+                          {item.value}
+                        </MenuItem>
+                      )
+                    })}
+                  </Select>
+                )}
+              />
+            </Grid>
+            <Grid item sm={12} md={4}>
+              <Controller
+                name="is_public"
+                control={control}
+                render={({ field: { onChange, value } }) => {
+                  return (
+                    <FormControl>
+                      <CustomLabel text={'Is Public'} id={'public'} />
+                      <CustomSwitch
+                        handleChange={onChange}
+                        checked={value}
+                        name="Is Public"
+                      />
+                    </FormControl>
+                  )
+                }}
+              />
+            </Grid>
+          </Grid>
         </section>
 
-        <Button type="submit" variant="contained">
-          Save
-        </Button>
+        <Grid container spacing={3}>
+          <Grid item xs={6}>
+            <Button
+              onClick={() => router.push('/admin/matches')}
+              fullWidth
+              variant="contained"
+            >
+              CANCEL
+            </Button>
+          </Grid>
+          <Grid item xs={6}>
+            <Button type="submit" fullWidth variant="contained" color="primary">
+              CREATE
+            </Button>
+          </Grid>
+        </Grid>
       </form>
     </Box>
   )
