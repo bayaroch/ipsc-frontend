@@ -39,6 +39,8 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
     detail,
   } = useUpdateMatch(id)
 
+  console.log(id)
+
   const {
     control,
     handleSubmit,
@@ -51,7 +53,7 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
     }
   }, [metadata, response])
 
-  const onSubmit = (data: MatchCreateParams) => {
+  const onUpdate = (data: MatchCreateParams) => {
     const match = Object.assign({}, data, {
       match_start: moment(data.match_start).format('YYYY-MM-DD HH:mm:ss'),
       match_end: moment(data.match_end).format('YYYY-MM-DD HH:mm:ss'),
@@ -80,10 +82,12 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
     }
   }
 
+  console.warn(errors)
+
   const renderForm = () => {
     if (detail) {
       return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onUpdate)}>
           <section className={classes.section}>
             <Controller
               name="name"

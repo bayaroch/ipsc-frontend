@@ -30,7 +30,6 @@ export interface MatchCreateInputType {
   per_squad: number | undefined
   is_public: boolean
   status: MATCH_STATUS
-  last_modified_by?: number
 }
 
 const useCreateMatch = () => {
@@ -61,7 +60,6 @@ const useCreateMatch = () => {
         min_point: yup.number().notRequired(),
         additional_info: yup.string().max(400).notRequired(),
         sponsor_info: yup.string().max(400).notRequired(),
-        last_modified_by: yup.number().notRequired(),
       }),
     []
   )
@@ -85,7 +83,6 @@ const useCreateMatch = () => {
       min_point: undefined,
       additional_info: '',
       sponsor_info: '',
-      last_modified_by: 1,
     },
   })
 

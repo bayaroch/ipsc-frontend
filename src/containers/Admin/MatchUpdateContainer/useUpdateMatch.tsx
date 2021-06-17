@@ -32,7 +32,7 @@ const defaultData = {
   min_point: undefined,
   additional_info: '',
   sponsor_info: '',
-  last_modified_by: 1,
+  last_modified: undefined,
 }
 
 export interface MatchUpdateInputType {
@@ -52,7 +52,6 @@ export interface MatchUpdateInputType {
   per_squad: number | undefined
   is_public: boolean
   status: MATCH_STATUS
-  last_modified_by?: number
 }
 
 const useUpdateMatch = (id: string) => {
@@ -81,12 +80,13 @@ const useUpdateMatch = (id: string) => {
           'YYYY-MM-DDTHH:mm'
         ),
       })
+      console.log(formValue)
       setDefaultValue(formValue)
     }
   }, [detail])
 
   useEffect(() => {
-    reset(defaultValue)
+    methods.reset(defaultValue)
   }, [defaultValue])
 
   useEffect(() => {
@@ -114,7 +114,6 @@ const useUpdateMatch = (id: string) => {
         min_point: yup.number().notRequired(),
         additional_info: yup.string().max(400).notRequired(),
         sponsor_info: yup.string().max(400).notRequired(),
-        last_modified_by: yup.number().notRequired(),
       }),
     []
   )
@@ -125,7 +124,6 @@ const useUpdateMatch = (id: string) => {
       return defaultValue
     }, [defaultValue]),
   })
-  const { reset } = methods
 
   const update = (params: MatchUpdateParams) => {
     dispatch(updateMatch(params))

@@ -5,6 +5,8 @@ import { MatchItem } from '@store/match/actions/types'
 export type MatchPageMeta = {
   page: number
   per_page: number
+  sort_column?: string
+  sort_order?: 'ASC' | 'DESC'
 }
 
 export type MatchCreateParams = {
