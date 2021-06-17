@@ -1,14 +1,12 @@
 import React from 'react'
 import './introButton.scss'
 
-interface IntroButtonProps {
-  onClick: () => void
-}
+interface IntroButtonProps extends React.ComponentPropsWithoutRef<'button'> {}
 
-const IntroButton: React.FC<IntroButtonProps> = ({ children, onClick }) => {
+const IntroButton: React.FC<IntroButtonProps> = ({ children, ...rest }) => {
   return (
     <>
-      <button className="intro-button primary" type="button" onClick={onClick}>
+      <button className="intro-button primary" {...rest}>
         <div className="label">
           <span className="hover-effect" />
           <span className="label-text">{children}</span>

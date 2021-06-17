@@ -90,6 +90,10 @@ export default createMuiTheme({
       },
     },
     MuiTypography: {
+      h1: {
+        fontSize: '1.5em',
+        marginBottom: '0.5em',
+      },
       gutterBottom: {
         marginBottom: '1em',
       },
