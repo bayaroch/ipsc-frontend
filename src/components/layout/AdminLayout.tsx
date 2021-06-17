@@ -21,7 +21,6 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, title }) => {
         <AdminHeader title={title ? title : ''} open={open} setOpen={setOpen} />
         <AdminSideBar />
         <div className="content-wrapper-admin">{children}</div>
-        <Copyright />
       </div>
     </div>
   )
