@@ -1,6 +1,6 @@
 import { combineReducers, Reducer } from 'redux'
 import metadata from '@store/metadata'
-import { authReducer } from '@store/auth/reducers'
+import auth from '@store/auth/'
 import { HYDRATE } from 'next-redux-wrapper'
 import { MatchState } from './match/reducers'
 import match from '@store/match'
@@ -13,7 +13,7 @@ export interface AppState {
 
 const combinedReducers = combineReducers({
   metadata: metadata.reducer,
-  auth: authReducer,
+  auth: auth.reducer,
   match: match.reducer,
 })
 

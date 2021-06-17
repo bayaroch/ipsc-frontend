@@ -5,6 +5,7 @@ import { Footer } from '@components/layout/Footer'
 import Drawer from '@components/layout/Drawer/Drawer'
 import { Copyright } from '@components/layout/Copyright'
 import './layout.scss'
+import useAuth from '@utils/hooks/useAuth'
 
 interface MainLayoutProps {
   isBanner?: boolean
@@ -20,6 +21,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({
   const setOpen = (val: boolean) => {
     letOpen(val)
   }
+  const { isLoggedIn, exit } = useAuth()
+
   return (
     <div
       className={
@@ -28,6 +31,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
     >
       <div className="main">
         <Header
+          isLoggedIn={isLoggedIn}
           isBanner={isBanner ? isBanner : false}
           open={open}
           setOpen={setOpen}
@@ -36,7 +40,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
         <Footer />
         <Copyright />
       </div>
-      <Drawer close={setOpen} />
+      <Drawer exit={exit} isLoggedIn={isLoggedIn} close={setOpen} />
     </div>
   )
 }

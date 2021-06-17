@@ -10,9 +10,7 @@ const banners = [
 ]
 
 const Intro: React.FC<IntroProps> = () => {
-  const onIntroClick = () => {
-    console.log('im clicking')
-  }
+  const onIntroClick = () => {}
   return (
     <>
       <div className="intro-section">

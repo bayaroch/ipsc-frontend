@@ -16,7 +16,7 @@ const IntroButton: React.FC<ButtonProps> = ({
   return (
     <button
       className={buttonClass}
-      onClick={() => onClick}
+      onClick={() => onClick && onClick()}
       type={submit ? 'submit' : 'button'}
     >
       {children}
@@ -27,7 +27,6 @@ const IntroButton: React.FC<ButtonProps> = ({
 IntroButton.defaultProps = {
   type: 'is-primary',
   submit: false,
-  onClick: () => null,
 }
 
 export default IntroButton

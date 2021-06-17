@@ -27,6 +27,10 @@ export type MatchCreateParams = {
   last_modified_by?: number
 }
 
+export type matchParams = {
+  id: number
+}
+
 export type MatchUpdateParams = {
   data: {
     name: string
@@ -36,7 +40,7 @@ export type MatchUpdateParams = {
     registration_end: string
     lvl: number
     point_multiplier: number
-    stage_number: number
+    stage_number?: number
     tax?: number
     tax_info?: string
     min_point?: string
@@ -45,9 +49,9 @@ export type MatchUpdateParams = {
     per_squad: number
     is_public: number
     status: number
-    last_modified_by: number
+    last_modified_by?: number
   }
-  id: number
+  id: string
 }
 
 export type MatchResponse = {
@@ -80,8 +84,8 @@ export const matchServices = {
   },
 
   updateMatch: async (params: MatchUpdateParams): Promise<MatchResponse> => {
-    const { data } = await api.put<MatchResponse>(
-      URI.MATCH.replace(/:id/gi, String(params.id)),
+    const { data } = await api.patch<MatchResponse>(
+      `${URI.MATCH}/${params.id}`,
       params.data
     )
     return data
@@ -91,6 +95,11 @@ export const matchServices = {
     const { data } = await api.get<GetMatchesResponse>(
       `${URI.MATCH}?page=${meta.page}&per_page=${meta.per_page}`
     )
+    return data
+  },
+
+  getMatch: async (id: string): Promise<MatchResponse> => {
+    const { data } = await api.get<MatchResponse>(`${URI.MATCH}/${id}`)
     return data
   },
 }

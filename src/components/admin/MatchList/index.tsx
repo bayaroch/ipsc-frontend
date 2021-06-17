@@ -21,6 +21,7 @@ import _ from 'lodash'
 import EditIcon from '@material-ui/icons/Edit'
 import { MATCH_STATUS_TEXT } from '@constants/common.constants'
 import { Meta } from '@store/metadata/actions/types'
+import moment from 'moment'
 
 export interface MatchListProps {
   getList: (params: MatchPageMeta) => void
@@ -86,8 +87,6 @@ const MatchList: React.FC<MatchListProps> = (props) => {
     return null
   }
 
-  console.log(meta)
-
   const renderList = () => {
     if (!_.isEmpty(list)) {
       return (
@@ -96,6 +95,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
             <TableHead>
               <TableRow>
                 <StyledTableCell>Match Name</StyledTableCell>
+                <StyledTableCell align="right">Start Date</StyledTableCell>
                 <StyledTableCell align="right">Match lvl</StyledTableCell>
                 <StyledTableCell align="right">Tax</StyledTableCell>
                 <StyledTableCell align="right">Status</StyledTableCell>
@@ -104,9 +104,12 @@ const MatchList: React.FC<MatchListProps> = (props) => {
             </TableHead>
             <TableBody>
               {list.map((row) => (
-                <TableRow key={row.name}>
-                  <StyledTableCell scope="row">{row.name}</StyledTableCell>
-                  <TableCell style={{ width: 160 }} align="right">
+                <TableRow key={row.id}>
+                  <TableCell scope="row">{row.name}</TableCell>
+                  <TableCell style={{ width: 200 }} align="right">
+                    {moment(row.match_start).format('YYYY-MM-DD HH:mm:ss')}
+                  </TableCell>
+                  <TableCell style={{ width: 100 }} align="right">
                     {row.lvl}
                   </TableCell>
                   <TableCell style={{ width: 160 }} align="right">
@@ -119,7 +122,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
                       })[0].value
                     }
                   </TableCell>
-                  <TableCell style={{ width: 160 }} align="right">
+                  <TableCell style={{ width: 60 }} align="right">
                     <EditIcon
                       onClick={() => onEditClick(row.id)}
                       className={classes.editBtn}
@@ -130,7 +133,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
 
               {emptyRows > 0 && (
                 <TableRow style={{ height: 53 * emptyRows }}>
-                  <TableCell colSpan={5} />
+                  <TableCell colSpan={6} />
                 </TableRow>
               )}
             </TableBody>

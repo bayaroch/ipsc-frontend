@@ -23,6 +23,7 @@ export enum MATCH_ACTION_TYPE {
   GET_MATCHES = 'match/getMatches',
   CREATE_MATCH = 'match/createMatch',
   UPDATE_MATCH = 'match/updateMatch',
+  GET_MATCH = 'match/getMatch',
 }
 
 export const CLEAR_MATCH_DATA = 'match/clearMatchData'

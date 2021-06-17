@@ -8,6 +8,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle'
 import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
 import { makeStyles } from '@material-ui/core/styles'
+import { logOut } from '@store/auth/actions'
+import { useDispatch } from 'react-redux'
 
 export interface AdminHeaderProps {
   open: boolean
@@ -19,11 +21,19 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({ open, setOpen, title }) => {
   const classes = useStyles({ open, setOpen })
   const [anchorEl, setAnchorEl] = useState(null)
 
+  const dispatch = useDispatch()
+
   const subOpen = Boolean(anchorEl)
 
   const handleClose = () => {
     setAnchorEl(null)
   }
+
+  const handleLogOut = () => {
+    dispatch(logOut())
+    setAnchorEl(null)
+  }
+
   const handleMenu = (event: any) => {
     setAnchorEl(event.currentTarget)
   }
@@ -74,7 +84,7 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({ open, setOpen, title }) => {
               onClose={handleClose}
             >
               <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>Logout</MenuItem>
+              <MenuItem onClick={handleLogOut}>Logout</MenuItem>
             </Menu>
           </div>
         </Toolbar>
@@ -85,11 +95,11 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({ open, setOpen, title }) => {
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    transition: 'all 0.24s ease-in-out',
     flexGrow: 1,
     '& .MuiAppBar-root': {
       zIndex: 80,
       paddingLeft: 0,
-      tranistion: 'all 0.3s ease',
     },
     '& .MuiToolbar-regular': {
       minHeight: 50,

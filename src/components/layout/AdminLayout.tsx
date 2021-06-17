@@ -3,7 +3,7 @@ import { Copyright } from '@components/layout/Copyright'
 import AdminHeader from '@components/layout/AdminElements/AdminHeader'
 import AdminSideBar from '@components/layout/AdminElements/AdminSideBar'
 import '@common/css/adminlayout.scss'
-import useAuthenticated from '@utils/hooks/useAuth'
+import useAuthenticated from '@utils/hooks/useAuthenticated'
 
 interface MainLayoutProps {
   title?: string

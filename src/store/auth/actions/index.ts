@@ -1,36 +1,20 @@
-import { authServices } from '@services/auth.services'
+import { authServices, LoginResponse } from '@services/auth.services'
 import { UserLoginData, AUTH_ACTION_TYPE } from './types'
+import { createAsyncThunk, createAction } from '@reduxjs/toolkit'
 
-export const authActions = {
-  login: (data: UserLoginData) => {
-    return (dispatch: Function) => {
-      dispatch(authActionCreators.loginRequest())
-      authServices.login(data).then(
-        (user) => {
-          console.log(user.data)
-          dispatch(authActionCreators.loginSuccess(user.data))
-        },
-        (error) => {
-          dispatch(authActionCreators.loginFailure(error))
-        }
-      )
+export const login = createAsyncThunk<LoginResponse, UserLoginData>(
+  AUTH_ACTION_TYPE.LOGIN,
+  async (matchParams, { rejectWithValue }) => {
+    try {
+      const res = await authServices.login(matchParams)
+      return res
+    } catch (error) {
+      if (!error) {
+        throw error
+      }
+      return rejectWithValue(error)
     }
-  },
-}
+  }
+)
 
-export const authActionCreators = {
-  loginRequest: () => ({
-    type: AUTH_ACTION_TYPE.LOGIN_REQUEST,
-  }),
-  loginSuccess: (user: any) => ({
-    type: AUTH_ACTION_TYPE.LOGIN_SUCCESS,
-    user,
-  }),
-  loginFailure: (error: any) => ({
-    type: AUTH_ACTION_TYPE.LOGIN_FAILURE,
-    error,
-  }),
-  logout: () => ({
-    type: AUTH_ACTION_TYPE.LOGOUT,
-  }),
-}
+export const logOut = createAction(AUTH_ACTION_TYPE.LOGOUT)

@@ -54,4 +54,19 @@ export const updateMatch = createAsyncThunk<MatchResponse, MatchUpdateParams>(
   }
 )
 
+export const getMatch = createAsyncThunk<MatchResponse, string>(
+  MATCH_ACTION_TYPE.GET_MATCH,
+  async (id, { rejectWithValue }) => {
+    try {
+      const res = await matchServices.getMatch(id)
+      return res
+    } catch (error) {
+      if (!error) {
+        throw error
+      }
+      return rejectWithValue(error)
+    }
+  }
+)
+
 export const clearMatchData = createAction(CLEAR_MATCH_DATA)

@@ -23,3 +23,9 @@ export const MATCH_STATUS_TEXT = [
     value: 'Cancel',
   },
 ]
+
+export enum MEMBER_TYPE {
+  USER_ADMIN = 9,
+  USER_REGULAR = 1,
+  USER_STUDENT = 0,
+}

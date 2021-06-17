@@ -1,18 +1,22 @@
-import { useForm } from 'react-hook-form'
-import { useCallback, useMemo } from 'react'
+import { useForm, Controller } from 'react-hook-form'
+import { useMemo } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useDispatch } from 'react-redux'
-import { authActions } from '@store/auth/actions/index'
+import { useDispatch, useSelector } from 'react-redux'
+import { createMetaSelector } from '@store/metadata/selectors'
 import * as yup from 'yup'
+import { login } from '@store/auth/actions'
+import { Meta } from '@store/metadata/actions/types'
 
-interface LoginInput {
+export interface LoginInput {
   usercode: string
   password: string
-  password_repeat: string
 }
+
+const createLoginMeta = createMetaSelector(login)
 
 const useLoginForm = () => {
   const dispatch = useDispatch()
+  const metadata: Meta = useSelector(createLoginMeta)
 
   const validationSchema = useMemo(
     () =>
@@ -23,17 +27,23 @@ const useLoginForm = () => {
     []
   )
 
-  const { register, handleSubmit, errors } = useForm<LoginInput>({
+  const methods = useForm<LoginInput>({
     resolver: yupResolver(validationSchema),
+    defaultValues: {
+      usercode: '',
+      password: '',
+    },
   })
-  const onSubmit = useCallback((formValues: LoginInput) => {
-    dispatch(authActions.login(formValues))
-  }, [])
+
+  const submitLogin = (params: LoginInput) => {
+    dispatch(login(params))
+  }
 
   return {
-    register,
-    onSubmit: handleSubmit(onSubmit),
-    errors,
+    methods,
+    Controller,
+    submitLogin,
+    metadata,
   }
 }
 

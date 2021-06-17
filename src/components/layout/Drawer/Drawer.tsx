@@ -5,9 +5,11 @@ import useSticky from '@utils/hooks/useSticky'
 
 interface DrawerProps {
   close: (val: boolean) => void
+  isLoggedIn?: boolean
+  exit?: () => void
 }
 
-const Drawer: React.FC<DrawerProps> = ({ close }) => {
+const Drawer: React.FC<DrawerProps> = ({ close, isLoggedIn, exit }) => {
   const isShow = useSticky(30)
   return (
     <>
@@ -17,7 +19,10 @@ const Drawer: React.FC<DrawerProps> = ({ close }) => {
             <Icon icon={'mdi-close mdi-24px'} />
           </div>
         ) : null}
-        <SideMenu />
+        <SideMenu
+          exit={exit ? exit : () => null}
+          isLoggedIn={isLoggedIn ? isLoggedIn : false}
+        />
       </div>
     </>
   )

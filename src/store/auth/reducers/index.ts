@@ -1,24 +1,22 @@
-import { AUTH_ACTION_TYPE, AuthAction, AuthState } from '../actions/types'
+import { AuthState } from '../actions/types'
+import { createReducer } from '@reduxjs/toolkit'
+import * as actions from '../actions'
 
-export const INITIAL_STATE: AuthState = {
+export const initialState: AuthState = {
   authenticated: false,
   user: undefined,
   token: undefined,
 }
 
-export const authReducer = function (
-  state = INITIAL_STATE,
-  action: AuthAction
-): AuthState {
-  switch (action.type) {
-    case AUTH_ACTION_TYPE.LOGIN_SUCCESS:
-      return {
-        ...state,
-        authenticated: true,
-        token: action.user.data.token,
-        user: action.user.data.user,
-      }
-    default:
-      return state
-  }
-}
+export default createReducer(initialState, (builder) => {
+  builder.addCase(actions.login.fulfilled, (state, action) => {
+    state.authenticated = true
+    state.token = action.payload.data.token
+    state.user = action.payload.data.user
+  })
+  builder.addCase(actions.logOut, (state) => {
+    state.authenticated = false
+    state.token = undefined
+    state.user = undefined
+  })
+})

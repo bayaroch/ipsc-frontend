@@ -41,7 +41,6 @@ const MatchCreateContainer: React.FC = () => {
 
   const onSubmit = (data: MatchCreateParams) => {
     const params = Object.assign({}, data, {
-      is_public: Number(data.is_public),
       match_start: moment(data.match_start).format('YYYY-MM-DD HH:mm:ss'),
       match_end: moment(data.match_end).format('YYYY-MM-DD HH:mm:ss'),
       registration_start: moment(data.registration_start).format(
@@ -51,8 +50,7 @@ const MatchCreateContainer: React.FC = () => {
         'YYYY-MM-DD HH:mm:ss'
       ),
     })
-    console.log('params', params)
-    //create(params)
+    create(params)
   }
 
   const renderLoader = () => {

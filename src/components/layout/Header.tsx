@@ -5,21 +5,37 @@ import Button from '@components/common/Button'
 import useSticky from '@utils/hooks/useSticky'
 import TopMenu from '@containers/Menus/TopMenu'
 import './layout.scss'
+import { useRouter } from 'next/router'
 
 interface HeaderProps {
   open: boolean
   setOpen: (open: boolean) => void
   isBanner: boolean
+  isLoggedIn: boolean
 }
 
-export const Header: React.FC<HeaderProps> = ({ open, setOpen, isBanner }) => {
+export const Header: React.FC<HeaderProps> = ({
+  open,
+  setOpen,
+  isBanner,
+  isLoggedIn,
+}) => {
   const sticky = useSticky(30)
   const defaultClass = 'navbar header is-dark is-spacing '
   const headerClass = sticky ? defaultClass + 'is-fixed-top' : defaultClass
+  const router = useRouter()
   const containerClass = isBanner
     ? 'banner-page header-container'
     : 'header-container'
-  const navigateLogin = () => {}
+
+  const navigateLogin = () => {
+    router.push('/login')
+  }
+
+  const navigateMember = () => {
+    router.push('/admin')
+  }
+
   return (
     <div className={containerClass}>
       <PreHeader />
@@ -32,7 +48,7 @@ export const Header: React.FC<HeaderProps> = ({ open, setOpen, isBanner }) => {
           <div className="navbar-brand">
             <LogoContainer className="logo-brand">
               <LogoBox>
-                <a href="" style={{ display: 'block', lineHeight: 1 }}>
+                <a href="/" style={{ display: 'block', lineHeight: 1 }}>
                   <img src="/images/logo.png" alt="logo" />
                 </a>
               </LogoBox>
@@ -44,9 +60,13 @@ export const Header: React.FC<HeaderProps> = ({ open, setOpen, isBanner }) => {
               <TopMenu />
             </div>
             <div className="navbar-end navbar-item">
-              <Button onClick={navigateLogin} type={'is-link'}>
-                Нэвтрэх
-              </Button>
+              {isLoggedIn ? (
+                <Button onClick={navigateMember}>Гишүүдийн булан</Button>
+              ) : (
+                <Button onClick={navigateLogin} type={'is-link'}>
+                  Нэвтрэх
+                </Button>
+              )}
             </div>
           </div>
           <div className="hamburger-holder">

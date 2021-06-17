@@ -55,6 +55,11 @@ export default createMuiTheme({
     },
   },
   overrides: {
+    MuiTableCell: {
+      root: {
+        padding: 10,
+      },
+    },
     MuiButton: {
       root: {
         padding: '7px 16px',

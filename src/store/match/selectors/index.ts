@@ -9,7 +9,14 @@ export const createResult = createSelector(
   (state) => state.createMatch
 )
 
+export const updateResult = createSelector(
+  getState,
+  (state) => state.updateMatch
+)
+
 export const paginationMeta = createSelector(
   getState,
   (state) => state.matchMeta
 )
+
+export const matchDetail = createSelector(getState, (state) => state.detail)

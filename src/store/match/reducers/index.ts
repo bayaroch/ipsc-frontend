@@ -8,6 +8,7 @@ export type MatchState = {
   matchMeta: MatchPaginationMeta | undefined
   createMatch: MatchItem | undefined
   updateMatch: MatchItem | undefined
+  detail: MatchItem | undefined
 }
 
 const initialState: MatchState = {
@@ -15,6 +16,7 @@ const initialState: MatchState = {
   matchMeta: undefined,
   createMatch: undefined,
   updateMatch: undefined,
+  detail: undefined,
 }
 
 export default createReducer(initialState, (builder) => {
@@ -27,6 +29,9 @@ export default createReducer(initialState, (builder) => {
   })
   builder.addCase(actions.updateMatch.fulfilled, (state, action) => {
     state.updateMatch = action.payload.data
+  })
+  builder.addCase(actions.getMatch.fulfilled, (state, action) => {
+    state.detail = action.payload.data
   })
   builder.addCase(actions.clearMatchData, (state) => {
     state.updateMatch = undefined

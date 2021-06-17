@@ -3,15 +3,27 @@ import LoginLayout from '@components/layout/LoginLayout'
 import LogoLogin from '@components/elements/LogoLogin'
 import Button from '@components/common/Button'
 import useLoginForm from '@utils/hooks/useLoginForm'
+import { LoginInput } from '@utils/hooks/useLoginForm'
 import { isAuth } from '@store/auth/selectors'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
+import CustomInput from '@components/common/Input'
+import { CircularProgress, Box } from '@material-ui/core'
+import Alert from '@material-ui/lab/Alert'
+import _ from 'lodash'
 
 const LoginPage = () => {
-  const { register, onSubmit, errors } = useLoginForm()
+  const { methods, submitLogin, Controller, metadata } = useLoginForm()
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = methods
 
   const router = useRouter()
   const isLoggedIn = useSelector(isAuth)
+  const isLoading = metadata.pending && !metadata.error && !metadata.loaded
+  const isError = metadata.error && !metadata.pending
 
   useEffect(() => {
     if (isLoggedIn === true) {
@@ -20,49 +32,71 @@ const LoginPage = () => {
     return () => {}
   }, [isLoggedIn])
 
+  const onSubmit = (data: LoginInput) => {
+    submitLogin(data)
+  }
+
   return (
     <>
       <div className="container">
         <div className="columns is-centered is-flex">
-          <form action="" className="box" onSubmit={onSubmit}>
+          <form action="" className="box" onSubmit={handleSubmit(onSubmit)}>
             <LogoLogin />
-            <div className="field">
-              <label className="label">Usercode</label>
-              <div className="control has-icons-left">
-                <input
-                  type="text"
-                  placeholder="e.g. 077"
-                  className="input"
-                  name="usercode"
+            <Box>
+              {isError ? (
+                <Alert severity="warning">
+                  Failed to Login. Please check usercode and password!
+                </Alert>
+              ) : null}
+            </Box>
+            <Controller
+              name="usercode"
+              control={control}
+              render={({ field: { ref, ...rest } }) => (
+                <CustomInput
+                  {...rest}
+                  inputRef={ref}
                   required={true}
-                  ref={register}
+                  labelPrimary="UserCode"
+                  placeholder={'e.g. 077'}
+                  fullWidth={true}
+                  error={!!errors.usercode}
+                  helperText={
+                    errors.usercode ? _.get(errors.usercode, 'message', '') : ''
+                  }
                 />
-                <span className="icon is-small is-left">
-                  <i className="mdi mdi-email" />
-                </span>
-              </div>
-              <p>{errors.usercode?.message}</p>
-            </div>
-            <div className="field">
-              <label className="label">Password</label>
-              <div className="control has-icons-left">
-                <input
+              )}
+            />
+            <br />
+
+            <Controller
+              name="password"
+              control={control}
+              render={({ field: { ref, ...rest } }) => (
+                <CustomInput
+                  {...rest}
+                  inputRef={ref}
+                  required={true}
+                  labelPrimary="Password"
+                  placeholder={'*******'}
                   type="password"
-                  placeholder="*******"
-                  name="password"
-                  className="input"
-                  required={true}
-                  ref={register}
+                  fullWidth={true}
+                  error={!!errors.password}
+                  helperText={
+                    errors.password ? _.get(errors.password, 'message', '') : ''
+                  }
                 />
-                <span className="icon is-small is-left">
-                  <i className="mdi mdi-lock" />
-                </span>
-              </div>
-              <p>{errors.password?.message}</p>
-            </div>
+              )}
+            />
+            <br />
+            <br />
             <div className="field">
               <Button type="is-link is-fullwidth" submit={true}>
-                Login
+                {isLoading ? (
+                  <CircularProgress style={{ height: 14, width: 14 }} />
+                ) : (
+                  <>Login</>
+                )}
               </Button>
             </div>
           </form>
