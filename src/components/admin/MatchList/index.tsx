@@ -7,11 +7,11 @@ import {
   TableContainer,
   TableCell,
   TableBody,
-  withStyles,
   Select,
   Box,
   FormControl,
   CircularProgress,
+  Typography,
 } from '@material-ui/core'
 import Paper from '@material-ui/core/Paper'
 import Pagination from '@material-ui/lab/Pagination'
@@ -22,6 +22,8 @@ import EditIcon from '@material-ui/icons/Edit'
 import { MATCH_STATUS_TEXT } from '@constants/common.constants'
 import { Meta } from '@store/metadata/actions/types'
 import moment from 'moment'
+import Link from 'next/link'
+import { Colors } from '@theme/colors'
 
 export interface MatchListProps {
   getList: (params: MatchPageMeta) => void
@@ -31,7 +33,7 @@ export interface MatchListProps {
   meta: Meta
 }
 
-const defaultPerPage = 5
+const defaultPerPage = 10
 
 const MatchList: React.FC<MatchListProps> = (props) => {
   const { getList, list, pagination, onEditClick, meta } = props
@@ -90,22 +92,28 @@ const MatchList: React.FC<MatchListProps> = (props) => {
   const renderList = () => {
     if (!_.isEmpty(list)) {
       return (
-        <TableContainer component={Paper}>
+        <TableContainer>
           <Table className={classes.table} aria-label="custom pagination table">
             <TableHead>
               <TableRow>
-                <StyledTableCell>Match Name</StyledTableCell>
-                <StyledTableCell align="right">Start Date</StyledTableCell>
-                <StyledTableCell align="right">Match lvl</StyledTableCell>
-                <StyledTableCell align="right">Tax</StyledTableCell>
-                <StyledTableCell align="right">Status</StyledTableCell>
-                <StyledTableCell align="right">Edit</StyledTableCell>
+                <TableCell>Нэр</TableCell>
+                <TableCell align="right">Эхлэх өдөр</TableCell>
+                <TableCell align="right">Түвшин</TableCell>
+                <TableCell align="right">Tax</TableCell>
+                <TableCell align="right">Төлөв</TableCell>
+                <TableCell align="right"></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {list.map((row) => (
                 <TableRow key={row.id}>
-                  <TableCell scope="row">{row.name}</TableCell>
+                  <TableCell scope="row">
+                    <Link passHref href={`/member/matches/${row.id}`}>
+                      <a className={classes.link}>
+                        <Typography variant="h3">{row.name}</Typography>
+                      </a>
+                    </Link>
+                  </TableCell>
                   <TableCell style={{ width: 200 }} align="right">
                     {moment(row.match_start).format('YYYY-MM-DD HH:mm:ss')}
                   </TableCell>
@@ -173,18 +181,14 @@ const MatchList: React.FC<MatchListProps> = (props) => {
   )
 }
 
-const StyledTableCell = withStyles((theme) => ({
-  head: {
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.common.white,
-    padding: 10,
-  },
-  body: {
-    fontSize: 14,
-  },
-}))(TableCell)
-
 const useStyles = makeStyles({
+  link: {
+    color: Colors.grey[100],
+    '&:hover': {
+      color: Colors.primary,
+      transition: 'all 0.3s ease',
+    },
+  },
   table: {
     minWidth: 500,
   },

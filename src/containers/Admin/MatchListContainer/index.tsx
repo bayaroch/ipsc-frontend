@@ -1,6 +1,5 @@
-import { makeStyles, Box, Button } from '@material-ui/core/'
+import { makeStyles, Box } from '@material-ui/core/'
 import useMatch from './useMatch'
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
 import MatchList from '@components/admin/MatchList'
 import { useRouter } from 'next/router'
 
@@ -15,17 +14,7 @@ const MatchListContainer: React.FC = () => {
 
   return (
     <Box>
-      <Box className={classes.topControl}>
-        <Button
-          variant="contained"
-          size="small"
-          startIcon={<AddCircleOutlineIcon />}
-          color="primary"
-          onClick={() => router.push('/admin/matches/create')}
-        >
-          Create New
-        </Button>
-      </Box>
+      <Box className={classes.topControl}></Box>
       <MatchList
         onEditClick={handleEdit}
         meta={meta}

@@ -14,7 +14,7 @@ const ContentBox: React.FC<ContentBoxProps> = ({
   const classes = useStyles()
   return (
     <Paper
-      elevation={1}
+      elevation={0}
       className={`${classes.root} ${fullWidth ? '' : classes.boxed}`}
       style={{ maxWidth: maxWidth ? maxWidth : '' }}
     >
@@ -29,10 +29,13 @@ ContentBox.defaultProps = {
 
 export default ContentBox
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    padding: '2rem',
+    padding: '4rem',
     margin: '0 auto',
+  },
+  [theme.breakpoints.down('lg')]: {
+    padding: '1rem',
   },
   boxed: {
     maxWidth: 800,

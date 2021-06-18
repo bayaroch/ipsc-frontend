@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
-import AccountCircle from '@material-ui/icons/AccountCircle'
-import MenuItem from '@material-ui/core/MenuItem'
-import Menu from '@material-ui/core/Menu'
 import { makeStyles } from '@material-ui/core/styles'
-import { logOut } from '@store/auth/actions'
-import { useDispatch } from 'react-redux'
+import { Button } from '@material-ui/core'
+import AddCircleOutline from '@material-ui/icons/AddCircleOutline'
+import { useRouter } from 'next/router'
+
+import { Colors } from '@theme/colors'
 
 export interface AdminHeaderProps {
   open: boolean
@@ -19,31 +19,14 @@ export interface AdminHeaderProps {
 
 const AdminHeader: React.FC<AdminHeaderProps> = ({ open, setOpen, title }) => {
   const classes = useStyles({ open, setOpen })
-  const [anchorEl, setAnchorEl] = useState(null)
-
-  const dispatch = useDispatch()
-
-  const subOpen = Boolean(anchorEl)
-
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
-
-  const handleLogOut = () => {
-    dispatch(logOut())
-    setAnchorEl(null)
-  }
-
-  const handleMenu = (event: any) => {
-    setAnchorEl(event.currentTarget)
-  }
+  const router = useRouter()
   return (
     <div className={`${classes.root}`}>
       <AppBar
-        position="fixed"
         className={`${open ? classes.open : ''}`}
-        color="secondary"
-        elevation={1}
+        elevation={0}
+        position="relative"
+        color="default"
       >
         <Toolbar>
           <IconButton
@@ -57,36 +40,15 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({ open, setOpen, title }) => {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title}>{title}</Typography>
-
-          <div>
-            <IconButton
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              anchorEl={anchorEl}
-              open={subOpen}
-              onClose={handleClose}
-            >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleLogOut}>Logout</MenuItem>
-            </Menu>
-          </div>
+          <Button
+            variant="contained"
+            size="small"
+            startIcon={<AddCircleOutline />}
+            color="secondary"
+            onClick={() => router.push('/admin/matches/create')}
+          >
+            Тэмцээн үүсгэх
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
@@ -96,18 +58,19 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({ open, setOpen, title }) => {
 const useStyles = makeStyles((theme) => ({
   root: {
     transition: 'all 0.24s ease-in-out',
+    background: '#fff',
     flexGrow: 1,
     '& .MuiAppBar-root': {
       zIndex: 80,
+      background: Colors.white,
       paddingLeft: 0,
+      borderBottom: '1px solid #eee',
     },
     '& .MuiToolbar-regular': {
       minHeight: 50,
     },
   },
-  open: {
-    paddingLeft: '100px !important',
-  },
+  open: {},
   menuButton: {
     marginRight: theme.spacing(2),
   },

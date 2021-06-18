@@ -67,6 +67,7 @@
     "next-compose-plugins": "2.2.0",
     "next-redux-wrapper": "6.0.2",
     "react": "16.13.1",
+    "react-device-detect": "^1.17.0",
     "react-dom": "16.13.1",
     "react-hook-form": "^7.8.4",
     "react-redux": "7.2.0",

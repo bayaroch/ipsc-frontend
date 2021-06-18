@@ -1,6 +1,5 @@
 import IntroButton from '@components/common/IntroButton'
 import Slider from '@components/common/Slider'
-import './styles.scss'
 
 interface IntroProps {}
 
