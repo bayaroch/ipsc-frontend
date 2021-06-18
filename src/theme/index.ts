@@ -1,11 +1,14 @@
 import { createMuiTheme } from '@material-ui/core/styles'
 import { Colors } from '@theme/colors'
+import { breakpointValues } from '@theme/variables'
 
 const font =
   "'SF UI Display', 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
 
 const $titlefamily =
   "'PT Sans Narrow', 'Open Sans', 'Helvetica Neue', 'Helvetica','Arial', sans-serif"
+
+export const userBreakpoints = breakpointValues
 
 export default createMuiTheme({
   palette: {
@@ -20,6 +23,9 @@ export default createMuiTheme({
       main: '#F7F735',
     },
     text: {},
+  },
+  breakpoints: {
+    values: breakpointValues,
   },
   typography: {
     fontFamily: font,
@@ -117,9 +123,7 @@ export default createMuiTheme({
       },
     },
     MuiCardMedia: {
-      root: {
-        padding: '12px 12px 8px 12px',
-      },
+      root: {},
     },
     MuiContainer: {
       root: {

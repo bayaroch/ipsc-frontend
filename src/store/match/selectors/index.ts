@@ -1,5 +1,8 @@
 import { createSelector } from 'reselect'
 import { RootState } from '@store/reducers'
+import _ from 'lodash'
+import { MatchItem } from '../actions/types'
+import { MATCH_STATUS } from '@constants/common.constants'
 
 const getState = (state: RootState) => state.match
 
@@ -20,3 +23,10 @@ export const paginationMeta = createSelector(
 )
 
 export const matchDetail = createSelector(getState, (state) => state.detail)
+
+export const memberMatches = createSelector(getState, (state) => {
+  const memberFilter = _.filter(state.matchList, function (o: MatchItem) {
+    return o.status === MATCH_STATUS.MATCH_PUBLISH
+  })
+  return memberFilter
+})

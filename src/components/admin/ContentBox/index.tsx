@@ -1,5 +1,5 @@
 import React from 'react'
-import { Paper, makeStyles } from '@material-ui/core/'
+import { Paper, makeStyles, Theme } from '@material-ui/core/'
 
 interface ContentBoxProps {
   fullWidth?: boolean
@@ -29,13 +29,15 @@ ContentBox.defaultProps = {
 
 export default ContentBox
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     padding: '4rem',
     margin: '0 auto',
   },
   [theme.breakpoints.down('lg')]: {
-    padding: '1rem',
+    root: {
+      padding: '1rem',
+    },
   },
   boxed: {
     maxWidth: 800,
