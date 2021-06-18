@@ -1,4 +1,3 @@
-import './layout.scss'
 import Icon from '@components/common/Icon'
 interface PreHeaderProps {}
 

@@ -1,6 +1,5 @@
 import React from 'react'
 import { Copyright } from '@components/layout/Copyright'
-import './layout.scss'
 
 interface LoginLayoutProps {}
 

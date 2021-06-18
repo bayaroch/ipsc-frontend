@@ -11,6 +11,8 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore } from 'redux-persist'
 import { useStore } from 'react-redux'
 import { authorizationProvider } from '@services/interceptor'
+import 'swiper/swiper.scss'
+import 'swiper/components/pagination/pagination.scss'
 
 /**
  * withRedux HOC

@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import AdminHeader from '@components/layout/AdminElements/AdminHeader'
 import AdminSideBar from '@components/layout/AdminElements/AdminSideBar'
 import LargeSideBar from '@components/layout/AdminElements/LargeSidebar'
-import '@common/css/adminlayout.scss'
 import useAuthenticated from '@utils/hooks/useAuthenticated'
 import { isMobile } from 'react-device-detect'
 

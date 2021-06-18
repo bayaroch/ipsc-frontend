@@ -4,7 +4,6 @@ import { Footer } from '@components/layout/Footer'
 
 import Drawer from '@components/layout/Drawer/Drawer'
 import { Copyright } from '@components/layout/Copyright'
-import './layout.scss'
 import useAuth from '@utils/hooks/useAuth'
 
 interface MainLayoutProps {

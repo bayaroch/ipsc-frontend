@@ -4,7 +4,6 @@ import { PreHeader } from '@components/layout/PreHeader'
 import Button from '@components/common/Button'
 import useSticky from '@utils/hooks/useSticky'
 import TopMenu from '@containers/Menus/TopMenu'
-import './layout.scss'
 import { useRouter } from 'next/router'
 
 interface HeaderProps {
