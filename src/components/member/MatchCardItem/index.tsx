@@ -7,7 +7,7 @@ import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
-import { Avatar, Box, Divider } from '@material-ui/core'
+import { Avatar, Box, Divider, Chip } from '@material-ui/core'
 import { MatchItem } from '@store/match/actions/types'
 import moment from 'moment'
 import { red, green, orange, grey } from '@material-ui/core/colors'
@@ -20,6 +20,7 @@ const colorConstants: string[] = [grey[500], green[500], orange[500], red[500]]
 
 const MatchCardItem: React.FC<MatchCardItemProps> = ({ item }) => {
   const classes = useStyles()
+  const taxText = item.tax === 0 ? 'FREE' : item.tax + '₮'
 
   return (
     <Card className={classes.root}>
@@ -39,7 +40,20 @@ const MatchCardItem: React.FC<MatchCardItemProps> = ({ item }) => {
       />
       <Box className={classes.mediaBox}>
         <Box className={classes.onMediaContent}>
-          <Typography variant="h3">{item.lvl}</Typography>
+          <Typography
+            className={'intro-headline'}
+            gutterBottom
+            variant="h2"
+            component="h2"
+          >
+            {item.name}
+          </Typography>
+          <Chip
+            className={classes.tax}
+            color={item.tax === 0 ? 'default' : 'secondary'}
+            avatar={<Box className={classes.taxTitle}>TAX:</Box>}
+            label={taxText}
+          />
         </Box>
         <CardMedia
           component="img"
@@ -50,15 +64,6 @@ const MatchCardItem: React.FC<MatchCardItemProps> = ({ item }) => {
         />
       </Box>
       <CardContent>
-        <Typography
-          noWrap={true}
-          className={classes.cardTitle}
-          gutterBottom
-          variant="h2"
-          component="h2"
-        >
-          {item.name}
-        </Typography>
         <Typography
           variant="body2"
           noWrap={true}
@@ -88,6 +93,19 @@ const useStyles = makeStyles((theme) => ({
     margin: '0 auto',
     backgroundColor: lighten(theme.palette.background.paper, 0.1),
   },
+  tax: {
+    position: 'absolute',
+    bottom: 15,
+    right: 15,
+  },
+  taxTitle: {
+    backgroundColor: 'transparent !important',
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'flex',
+    paddingLeft: 10,
+    fontWeight: 600,
+  },
   media: {
     height: '100%',
   },
@@ -116,6 +134,10 @@ const useStyles = makeStyles((theme) => ({
   onMediaContent: {
     position: 'absolute',
     left: 0,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
     right: 0,
     bottom: 0,
     top: 0,

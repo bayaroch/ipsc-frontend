@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Box, CircularProgress, Grid } from '@material-ui/core'
-import Paper from '@material-ui/core/Paper'
 import Pagination from '@material-ui/lab/Pagination'
 import { MatchPaginationMeta, MatchPageMeta } from '@services/match.services'
 import { MatchItem } from '@store/match/actions/types'
 import _ from 'lodash'
-import { MATCH_STATUS_TEXT } from '@constants/common.constants'
 import { Meta } from '@store/metadata/actions/types'
-import moment from 'moment'
-import Link from 'next/link'
-import { Colors } from '@theme/colors'
 import MatchCardItem from '../MatchCardItem'
 
 export interface MatchListProps {
