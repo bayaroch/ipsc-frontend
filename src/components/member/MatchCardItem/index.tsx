@@ -14,11 +14,12 @@ import { red, green, orange, grey } from '@material-ui/core/colors'
 
 interface MatchCardItemProps {
   item: MatchItem
+  onClick: (id: number) => void
 }
 
 const colorConstants: string[] = [grey[500], green[500], orange[500], red[500]]
 
-const MatchCardItem: React.FC<MatchCardItemProps> = ({ item }) => {
+const MatchCardItem: React.FC<MatchCardItemProps> = ({ item, onClick }) => {
   const classes = useStyles()
   const taxText = item.tax === 0 ? 'FREE' : item.tax + '₮'
 
@@ -50,6 +51,7 @@ const MatchCardItem: React.FC<MatchCardItemProps> = ({ item }) => {
           </Typography>
           <Chip
             className={classes.tax}
+            size="small"
             color={item.tax === 0 ? 'default' : 'secondary'}
             avatar={<Box className={classes.taxTitle}>TAX:</Box>}
             label={taxText}
@@ -75,8 +77,8 @@ const MatchCardItem: React.FC<MatchCardItemProps> = ({ item }) => {
         </Typography>
       </CardContent>
       <Divider />
-      <CardActions>
-        <Button size="small" color="primary">
+      <CardActions className={classes.actions}>
+        <Button size="small" color="primary" onClick={() => onClick(item.id)}>
           Дэлгэрэнгүй
         </Button>
         <Button size="small" color="primary">
@@ -95,8 +97,11 @@ const useStyles = makeStyles((theme) => ({
   },
   tax: {
     position: 'absolute',
-    bottom: 15,
-    right: 15,
+    bottom: 5,
+    right: 5,
+  },
+  actions: {
+    justifyContent: 'space-between',
   },
   taxTitle: {
     backgroundColor: 'transparent !important',
@@ -105,6 +110,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     paddingLeft: 10,
     fontWeight: 600,
+    padding: 8,
+    width: '24px !important',
+    fontSize: '10px !important',
   },
   media: {
     height: '100%',

@@ -5,4 +5,5 @@ const API_ROOT = DOMAIN + REST_API_PATH
 export const URI = {
   LOGIN: API_ROOT + 'auth/login',
   MATCH: API_ROOT + 'matches',
+  PARTICIPANT: API_ROOT + 'participants',
 }

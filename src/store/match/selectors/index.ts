@@ -24,6 +24,11 @@ export const paginationMeta = createSelector(
 
 export const matchDetail = createSelector(getState, (state) => state.detail)
 
+export const registerDetail = createSelector(
+  getState,
+  (state) => state.registerDetail
+)
+
 export const memberMatches = createSelector(getState, (state) => {
   const memberFilter = _.filter(state.matchList, function (o: MatchItem) {
     return o.status === MATCH_STATUS.MATCH_PUBLISH

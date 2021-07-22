@@ -17,6 +17,7 @@ export interface MatchItem {
   is_public: boolean
   status: MATCH_STATUS
   last_modified_by: number
+  stage_number?: number
 }
 
 export enum MATCH_ACTION_TYPE {
@@ -24,6 +25,7 @@ export enum MATCH_ACTION_TYPE {
   CREATE_MATCH = 'match/createMatch',
   UPDATE_MATCH = 'match/updateMatch',
   GET_MATCH = 'match/getMatch',
+  REGISTER_MATCH = 'match/registerMatch',
 }
 
 export const CLEAR_MATCH_DATA = 'match/clearMatchData'

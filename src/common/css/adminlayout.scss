@@ -57,8 +57,12 @@
   }
 
   .main-content-wrap header {
-    position: fixed;
+    position: fixed !important;
+    width: '100%';
     z-index: 300 !important;
+    right: 0;
+    left: 0;
+    padding-left: 70px !important;
     top: 0;
   }
   .main-content {

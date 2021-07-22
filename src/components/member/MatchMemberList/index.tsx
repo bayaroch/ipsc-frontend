@@ -7,6 +7,7 @@ import { MatchItem } from '@store/match/actions/types'
 import _ from 'lodash'
 import { Meta } from '@store/metadata/actions/types'
 import MatchCardItem from '../MatchCardItem'
+import { useRouter } from 'next/router'
 
 export interface MatchListProps {
   getList: (params: MatchPageMeta) => void
@@ -23,6 +24,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
   const classes = useStyles()
   const [page, setPage] = useState<number>(1)
   const [rowsPerPage, setRowsPerPage] = useState<number>(defaultPerPage)
+  const router = useRouter()
 
   useEffect(() => {
     getList({
@@ -66,15 +68,19 @@ const MatchList: React.FC<MatchListProps> = (props) => {
     return null
   }
 
+  const handleDetail = (id: number) => {
+    router.push(`/member/matches/${id}`)
+  }
+
   const renderList = () => {
     if (!_.isEmpty(list) && meta.loaded && !meta.error && !meta.pending) {
       return (
         <Grid container spacing={3}>
           {list.map((item, index) => {
             return (
-              <Grid item xs={12} sm={6} md={4} lg={3}>
-                <Box key={index}>
-                  <MatchCardItem item={item} />
+              <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
+                <Box>
+                  <MatchCardItem onClick={handleDetail} item={item} />
                 </Box>
               </Grid>
             )

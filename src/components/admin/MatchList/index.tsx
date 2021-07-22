@@ -13,7 +13,6 @@ import {
   CircularProgress,
   Typography,
 } from '@material-ui/core'
-import Paper from '@material-ui/core/Paper'
 import Pagination from '@material-ui/lab/Pagination'
 import { MatchPaginationMeta, MatchPageMeta } from '@services/match.services'
 import { MatchItem } from '@store/match/actions/types'

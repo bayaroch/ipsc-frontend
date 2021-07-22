@@ -1,7 +1,10 @@
 import { createReducer } from '@reduxjs/toolkit'
 import { MatchItem } from '../actions/types'
 import * as actions from '../actions'
-import { MatchPaginationMeta } from '@services/match.services'
+import {
+  MatchPaginationMeta,
+  RegisterMatchData,
+} from '@services/match.services'
 
 export type MatchState = {
   matchList: MatchItem[] | undefined
@@ -9,6 +12,7 @@ export type MatchState = {
   createMatch: MatchItem | undefined
   updateMatch: MatchItem | undefined
   detail: MatchItem | undefined
+  registerMatch: RegisterMatchData | undefined
 }
 
 const initialState: MatchState = {
@@ -17,6 +21,7 @@ const initialState: MatchState = {
   createMatch: undefined,
   updateMatch: undefined,
   detail: undefined,
+  registerMatch: undefined,
 }
 
 export default createReducer(initialState, (builder) => {
@@ -36,5 +41,8 @@ export default createReducer(initialState, (builder) => {
   builder.addCase(actions.clearMatchData, (state) => {
     state.updateMatch = undefined
     state.createMatch = undefined
+  })
+  builder.addCase(actions.registerMatch.fulfilled, (state, action) => {
+    state.registerMatch = action.payload.data
   })
 })

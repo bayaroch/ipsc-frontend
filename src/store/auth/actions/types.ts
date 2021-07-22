@@ -24,6 +24,7 @@ export type AuthState = {
   authenticated: boolean
   user?: UserData | undefined
   token?: string | undefined
+  category: number | undefined
 }
 
 export type UserProfile = {}

@@ -79,6 +79,33 @@ export type GetMatchesResponse = {
   meta: MetaPagination
 }
 
+export type RegisterMatchParams = {
+  match_id: number
+  user_id: number
+  division_id: number
+  category_id: number
+  class_id: number
+  is_ro: number
+  remark: string
+}
+
+export type RegisterMatchResponse = {
+  data: RegisterMatchData
+  status: string
+  version: string
+}
+
+export type RegisterMatchData = {
+  id: number
+  match_id: number
+  user_id: number
+  division_id: number
+  category_id: number
+  class_id: number
+  is_ro: boolean
+  remark: string
+}
+
 export const matchServices = {
   createMatch: async (params: MatchCreateParams): Promise<MatchResponse> => {
     const { data } = await api.post<MatchResponse>(URI.MATCH, params)
@@ -102,6 +129,13 @@ export const matchServices = {
 
   getMatch: async (id: string): Promise<MatchResponse> => {
     const { data } = await api.get<MatchResponse>(`${URI.MATCH}/${id}`)
+    return data
+  },
+
+  registerMatch: async (
+    params: RegisterMatchParams
+  ): Promise<RegisterMatchResponse> => {
+    const { data } = await api.post<RegisterMatchResponse>(URI.MATCH, params)
     return data
   },
 }

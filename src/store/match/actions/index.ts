@@ -5,6 +5,8 @@ import {
   MatchCreateParams,
   MatchResponse,
   MatchUpdateParams,
+  RegisterMatchParams,
+  RegisterMatchResponse,
 } from '@services/match.services'
 import { createAsyncThunk, createAction } from '@reduxjs/toolkit'
 import { MATCH_ACTION_TYPE, CLEAR_MATCH_DATA } from './types'
@@ -68,5 +70,20 @@ export const getMatch = createAsyncThunk<MatchResponse, string>(
     }
   }
 )
+
+export const registerMatch = createAsyncThunk<
+  RegisterMatchResponse,
+  RegisterMatchParams
+>(MATCH_ACTION_TYPE.REGISTER_MATCH, async (params, { rejectWithValue }) => {
+  try {
+    const res = await matchServices.registerMatch(params)
+    return res
+  } catch (error) {
+    if (!error) {
+      throw error
+    }
+    return rejectWithValue(error)
+  }
+})
 
 export const clearMatchData = createAction(CLEAR_MATCH_DATA)
