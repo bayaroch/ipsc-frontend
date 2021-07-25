@@ -3,6 +3,7 @@ import { createWrapper, MakeStore } from 'next-redux-wrapper'
 import reducer from './reducers'
 import { persistReducer } from 'redux-persist'
 import storage from './storage'
+import { commonMiddleware } from './middlewares/commonMiddleware'
 
 export interface AppState {
   metadata: any
@@ -35,7 +36,7 @@ const initStore: MakeStore<AppState> = () => {
       reducer: persistedReducer,
       middleware: getDefaultMiddleware({
         serializableCheck: false,
-      }),
+      }).concat(commonMiddleware),
     })
 
     return store
@@ -44,3 +45,5 @@ const initStore: MakeStore<AppState> = () => {
 
 export const storeWrapper = createWrapper(initStore)
 export type StoreType = ReturnType<typeof initStore>
+export type RootState = ReturnType<StoreType['getState']>
+export type AppDispatch = StoreType['dispatch']

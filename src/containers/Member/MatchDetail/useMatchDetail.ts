@@ -8,6 +8,8 @@ import { RegisterMatchParams } from '@services/match.services'
 import { user, category as cat } from '@store/auth/selectors'
 import { UserData } from '@services/auth.services'
 import { CATEGORY } from '@constants/user.constants'
+import { support } from '@store/support/selectors'
+import { SupportItem } from '@services/support.services'
 
 const { selectors, actions } = searchStore
 const getDetailMeta = createMetaSelector(actions.getMatch)
@@ -19,6 +21,7 @@ const useMatchDetail = (): {
   register: (params: RegisterMatchParams) => void
   userData: UserData
   category: CATEGORY
+  divisions: SupportItem[]
 } => {
   useEffect(() => {
     dispatch(actions.clearMatchData())
@@ -32,8 +35,9 @@ const useMatchDetail = (): {
   }
   const userData = useSelector(user)
   const category = useSelector(cat)
+  const { divisions } = useSelector(support)
 
-  return { meta, detail, getDetail, register, userData, category }
+  return { meta, detail, getDetail, register, userData, category, divisions }
 }
 
 export default useMatchDetail

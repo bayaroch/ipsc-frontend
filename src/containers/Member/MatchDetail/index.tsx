@@ -1,4 +1,4 @@
-import { useEffect, useState, forwardRef } from 'react'
+import { useEffect, useState } from 'react'
 import {
   makeStyles,
   Box,
@@ -8,31 +8,17 @@ import {
   Divider,
   Paper,
   Button,
-  Dialog,
-  List,
-  ListItem,
-  ListItemText,
-  IconButton,
-  Slide,
 } from '@material-ui/core/'
 import useMatchDetail from './useMatchDetail'
 import _ from 'lodash'
 import ContentBox from '@components/admin/ContentBox'
 import { Colors } from '@theme/colors'
 import moment from 'moment'
-import { TransitionProps } from '@material-ui/core/transitions'
-import CloseIcon from '@material-ui/icons/Close'
+import MatchDivisionPicker from '@components/member/MatchDivisionPicker'
 
 interface MatchDetailProps {
   id: string
 }
-
-const Transition = forwardRef(function Transition(
-  props: TransitionProps & { children?: React.ReactElement },
-  ref: React.Ref<unknown>
-) {
-  return <Slide direction="up" ref={ref} {...props} />
-})
 
 const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
   const [open, setOpen] = useState<boolean>(false)
@@ -44,6 +30,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
     register,
     userData,
     category,
+    divisions,
   } = useMatchDetail()
   const [params, setParams] = useState()
 
@@ -61,18 +48,18 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
     setOpen(false)
   }
 
-  const handleRegister = () => {
+  const handleRegister = (division: number) => {
+    setOpen(false)
     if (id && userData.class_id) {
       const params = {
         match_id: Number(id),
         user_id: userData.id,
-        division_id: 1,
+        division_id: division,
         category_id: category,
         class_id: userData.class_id,
         is_ro: 0,
         remark: '#DVC',
       }
-      console.log(params)
       register(params)
     }
   }
@@ -88,47 +75,17 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
     if (!meta.pending && !meta.error && meta.loaded && detail) {
       return (
         <>
-          <Dialog
-            fullScreen
+          <MatchDivisionPicker
             open={open}
-            onClose={handleClose}
-            TransitionComponent={Transition}
-          >
-            <IconButton
-              edge="start"
-              color="inherit"
-              onClick={handleClose}
-              aria-label="close"
-            >
-              <CloseIcon />
-            </IconButton>
-            <Typography variant="h6" className={classes.title}>
-              Sound
-            </Typography>
-            <Button autoFocus color="inherit" onClick={handleClose}>
-              save
-            </Button>
-
-            <List>
-              <ListItem button>
-                <ListItemText primary="Phone ringtone" secondary="Titania" />
-              </ListItem>
-              <Divider />
-              <ListItem button>
-                <ListItemText
-                  primary="Default notification ringtone"
-                  secondary="Tethys"
-                />
-              </ListItem>
-            </List>
-          </Dialog>
-
+            divisions={divisions}
+            onSubmit={handleRegister}
+            handleClose={handleClose}
+          />
           <Box className={classes.header}>
             <Typography variant="h2" className={classes.title} align="center">
               {detail.name}
             </Typography>
           </Box>
-
           <ContentBox>
             <Paper className={classes.paper}>
               {!_.isEmpty(detail.additional_info) ? (

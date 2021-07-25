@@ -3,6 +3,7 @@ import AdminHeader from '@components/layout/AdminElements/AdminHeader'
 import AdminSideBar from '@components/layout/AdminElements/AdminSideBar'
 import LargeSideBar from '@components/layout/AdminElements/LargeSidebar'
 import useAuthenticated from '@utils/hooks/useAuthenticated'
+import useCommonData from '@utils/hooks/useCommonData'
 import { isMobile } from 'react-device-detect'
 
 interface MainLayoutProps {
@@ -15,6 +16,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, title }) => {
     letOpen(val)
   }
   useAuthenticated()
+  useCommonData()
   return (
     <div>
       <div className={`main-content-wrap ${open ? 'sidenav-open' : ''}`}>
