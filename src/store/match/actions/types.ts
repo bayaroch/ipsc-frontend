@@ -1,4 +1,5 @@
 import { MATCH_STATUS } from '@constants/common.constants'
+import { ParticipantsItem } from '@services/match.services'
 export interface MatchItem {
   id: number
   name: string
@@ -18,6 +19,7 @@ export interface MatchItem {
   status: MATCH_STATUS
   last_modified_by: number
   stage_number?: number
+  practicipants: Array<ParticipantsItem>
 }
 
 export enum MATCH_ACTION_TYPE {

@@ -1,6 +1,7 @@
 import api from './api'
 import { URI } from '@constants/uri.constants'
 import { MatchItem } from '@store/match/actions/types'
+import { UserData } from './auth.services'
 
 export type MatchPageMeta = {
   page: number
@@ -86,7 +87,7 @@ export type RegisterMatchParams = {
   category_id: number
   class_id: number
   is_ro: number
-  remark: string
+  remark?: string | null
 }
 
 export type RegisterMatchResponse = {
@@ -103,7 +104,19 @@ export type RegisterMatchData = {
   category_id: number
   class_id: number
   is_ro: boolean
-  remark: string
+  remark?: string | null
+}
+
+export type ParticipantsItem = {
+  id: number
+  match_id: number
+  user_id: number
+  division_id: number
+  category_id: number
+  class_id: number
+  is_ro: boolean
+  remark?: string | null
+  user: UserData
 }
 
 export const matchServices = {
@@ -135,7 +148,10 @@ export const matchServices = {
   registerMatch: async (
     params: RegisterMatchParams
   ): Promise<RegisterMatchResponse> => {
-    const { data } = await api.post<RegisterMatchResponse>(URI.MATCH, params)
+    const { data } = await api.post<RegisterMatchResponse>(
+      URI.PARTICIPANT,
+      params
+    )
     return data
   },
 }

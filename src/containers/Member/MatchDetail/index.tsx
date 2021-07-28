@@ -15,6 +15,7 @@ import ContentBox from '@components/admin/ContentBox'
 import { Colors } from '@theme/colors'
 import moment from 'moment'
 import MatchDivisionPicker from '@components/member/MatchDivisionPicker'
+import ParticipantsTable from '@components/member/ParticipantsTable'
 
 interface MatchDetailProps {
   id: string
@@ -30,9 +31,10 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
     register,
     userData,
     category,
-    divisions,
+    participantsFiltered,
+    support,
+    participants,
   } = useMatchDetail()
-  const [params, setParams] = useState()
 
   useEffect(() => {
     if (id) {
@@ -58,7 +60,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
         category_id: category,
         class_id: userData.class_id,
         is_ro: 0,
-        remark: '#DVC',
+        remark: null,
       }
       register(params)
     }
@@ -71,13 +73,49 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
     return null
   }
 
+  const renderRegisterButton = () => {
+    if (
+      _.isEmpty(participants) &&
+      participants.find((user) => user.user.id === userData.id)
+    ) {
+      return (
+        <Button
+          type="submit"
+          onClick={() => handleClickOpen()}
+          variant="contained"
+          color="primary"
+        >
+          Бүртгүүлэх
+        </Button>
+      )
+    } else {
+      return (
+        <Button
+          type="submit"
+          onClick={() => handleClickOpen()}
+          variant="contained"
+          color="primary"
+        >
+          Шинэчлэх
+        </Button>
+      )
+    }
+  }
+
   const renderContent = () => {
-    if (!meta.pending && !meta.error && meta.loaded && detail) {
+    if (
+      !meta.pending &&
+      !meta.error &&
+      meta.loaded &&
+      detail &&
+      support.divisions &&
+      support.class
+    ) {
       return (
         <>
           <MatchDivisionPicker
             open={open}
-            divisions={divisions}
+            divisions={support.divisions}
             onSubmit={handleRegister}
             handleClose={handleClose}
           />
@@ -236,20 +274,20 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
                 </>
               ) : null}
             </Paper>
+
+            <ParticipantsTable
+              classData={support.class}
+              divisions={support.divisions}
+              data={participantsFiltered}
+            />
+
             <Box
               display="flex"
               justifyContent="center"
               mt={5}
               alignItems="center"
             >
-              <Button
-                type="submit"
-                onClick={() => handleClickOpen()}
-                variant="contained"
-                color="primary"
-              >
-                Бүртгүүлэх
-              </Button>
+              {renderRegisterButton()}
             </Box>
           </ContentBox>
         </>

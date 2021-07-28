@@ -27,3 +27,30 @@ export enum CATEGORY {
   SUPER_SENIOR = 5,
   LADY = 6,
 }
+
+export const CAT_DATA = [
+  {
+    id: 1,
+    name: '',
+  },
+  {
+    id: 2,
+    name: 'Super Junior',
+  },
+  {
+    id: 3,
+    name: 'Junior',
+  },
+  {
+    id: 4,
+    name: 'Senior',
+  },
+  {
+    id: 5,
+    name: 'Super Senior',
+  },
+  {
+    id: 6,
+    name: 'Lady',
+  },
+]

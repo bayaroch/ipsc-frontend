@@ -9,6 +9,7 @@ import {
   ButtonGroup,
   Slide,
   Divider,
+  Box,
 } from '@material-ui/core/'
 import { TransitionProps } from '@material-ui/core/transitions'
 import { SupportItem } from '@services/support.services'
@@ -64,10 +65,9 @@ const MatchDivisionPicker: React.FC<PickerProps> = (props) => {
       <List className={classes.container}>
         {divisions.map((item, i) => {
           return (
-            <>
+            <Box key={i}>
               <ListItem
                 button
-                key={i}
                 selected={item.id === selected ? true : false}
                 onClick={() => {
                   choose(item.id)
@@ -76,7 +76,7 @@ const MatchDivisionPicker: React.FC<PickerProps> = (props) => {
                 <ListItemText primary={item.name} secondary={item.shorthand} />
               </ListItem>
               <Divider />
-            </>
+            </Box>
           )
         })}
       </List>
