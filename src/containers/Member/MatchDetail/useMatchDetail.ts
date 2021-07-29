@@ -11,6 +11,7 @@ import { CATEGORY } from '@constants/user.constants'
 import { support as SP } from '@store/support/selectors'
 import { ParticipantSortedList } from '@store/match/selectors/helpers'
 import { SupportState } from '@store/support/reducers'
+import _ from 'lodash'
 
 const { selectors, actions } = searchStore
 const getDetailMeta = createMetaSelector(actions.getMatch)
@@ -32,7 +33,7 @@ const useMatchDetail = (): {
   const dispatch = useDispatch()
   const meta = useSelector(getDetailMeta)
   const detail = useSelector(selectors.matchDetail)
-  const participants = detail.participants
+  const participants = _.get(detail, 'participants', [])
   const participantsFiltered = useSelector(selectors.matchParticipants)
   const getDetail = (id: string) => dispatch(actions.getMatch(id))
   const register = (params: RegisterMatchParams) => {
