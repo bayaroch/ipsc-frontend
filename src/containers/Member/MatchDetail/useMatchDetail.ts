@@ -4,13 +4,18 @@ import searchStore from '@store/match'
 import { Meta } from '@store/metadata/actions/types'
 import { useDispatch, useSelector } from 'react-redux'
 import { MatchItem } from '@store/match/actions/types'
-import { ParticipantsItem, RegisterMatchParams } from '@services/match.services'
+import {
+  ParticipantsItem,
+  RegisterMatchData,
+  RegisterMatchParams,
+} from '@services/match.services'
 import { user, category as cat } from '@store/auth/selectors'
 import { UserData } from '@services/auth.services'
 import { CATEGORY } from '@constants/user.constants'
 import { support as SP } from '@store/support/selectors'
 import { ParticipantSortedList } from '@store/match/selectors/helpers'
 import { SupportState } from '@store/support/reducers'
+import { registerMatch } from '@store/match/selectors'
 import _ from 'lodash'
 
 const { selectors, actions } = searchStore
@@ -21,11 +26,13 @@ const useMatchDetail = (): {
   detail: MatchItem
   getDetail: (id: string) => void
   register: (params: RegisterMatchParams) => void
+  update: (params: RegisterMatchParams) => void
   userData: UserData
   category: CATEGORY
   support: SupportState
   participantsFiltered: ParticipantSortedList
   participants: ParticipantsItem[]
+  registerState: RegisterMatchData
 } => {
   useEffect(() => {
     dispatch(actions.clearMatchData())
@@ -39,9 +46,13 @@ const useMatchDetail = (): {
   const register = (params: RegisterMatchParams) => {
     dispatch(actions.registerMatch(params))
   }
+  const update = (params: RegisterMatchParams) => {
+    dispatch(actions.updateRegisterMatch(params))
+  }
   const userData = useSelector(user)
   const category = useSelector(cat)
   const support = useSelector(SP)
+  const registerState = useSelector(registerMatch)
 
   return {
     meta,
@@ -53,6 +64,8 @@ const useMatchDetail = (): {
     support,
     participantsFiltered,
     participants,
+    update,
+    registerState,
   }
 }
 

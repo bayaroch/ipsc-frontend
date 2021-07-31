@@ -8,6 +8,7 @@ import {
   Divider,
   Paper,
   Button,
+  CircularProgress,
 } from '@material-ui/core/'
 import useMatchDetail from './useMatchDetail'
 import _ from 'lodash'
@@ -24,6 +25,7 @@ interface MatchDetailProps {
 const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
   const [open, setOpen] = useState<boolean>(false)
   const classes = useStyles()
+
   const {
     detail,
     meta,
@@ -34,6 +36,8 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
     participantsFiltered,
     support,
     participants,
+    update,
+    registerState,
   } = useMatchDetail()
 
   useEffect(() => {
@@ -41,6 +45,12 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
       getDetail(id)
     }
   }, [id])
+
+  useEffect(() => {
+    if (id) {
+      getDetail(id)
+    }
+  }, [registerState])
 
   const handleClickOpen = () => {
     setOpen(true)
@@ -66,17 +76,37 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
     }
   }
 
+  const handleUpdate = (division: number) => {
+    setOpen(false)
+    if (id && userData.class_id) {
+      const params = {
+        match_id: Number(id),
+        user_id: userData.id,
+        division_id: division,
+        category_id: category,
+        class_id: userData.class_id,
+        is_ro: 0,
+        remark: null,
+      }
+      update(params)
+    }
+  }
+
   const renderLoader = () => {
     if (!meta.loaded && meta.pending && !meta.error) {
-      return <>Loading</>
+      return (
+        <Box className={classes.loaderBox}>
+          <CircularProgress className={classes.loader} />
+        </Box>
+      )
     }
     return null
   }
 
   const renderRegisterButton = () => {
     if (
-      _.isEmpty(participants) &&
-      participants.find((user) => user.user.id === userData.id)
+      _.isEmpty(participants) ||
+      !participants.find((user) => user.user.id === userData.id)
     ) {
       return (
         <Button
@@ -116,7 +146,12 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
           <MatchDivisionPicker
             open={open}
             divisions={support.divisions}
-            onSubmit={handleRegister}
+            onSubmit={
+              _.isEmpty(participants) ||
+              !participants.find((user) => user.user.id === userData.id)
+                ? handleRegister
+                : handleUpdate
+            }
             handleClose={handleClose}
           />
           <Box className={classes.header}>
@@ -347,6 +382,16 @@ const useStyles = makeStyles(() => ({
       zIndex: 10,
       backgroundColor: 'rgba(43, 80, 237, 0.5)',
     },
+  },
+  loader: {
+    fontSize: 12,
+  },
+  loaderBox: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: 300,
   },
   section: {
     paddingTop: 15,

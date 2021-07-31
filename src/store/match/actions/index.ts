@@ -86,4 +86,22 @@ export const registerMatch = createAsyncThunk<
   }
 })
 
+export const updateRegisterMatch = createAsyncThunk<
+  RegisterMatchResponse,
+  RegisterMatchParams
+>(
+  MATCH_ACTION_TYPE.REGISTER_UPDATE_MATCH,
+  async (params, { rejectWithValue }) => {
+    try {
+      const res = await matchServices.registerUpdateMatch(params)
+      return res
+    } catch (error) {
+      if (!error) {
+        throw error
+      }
+      return rejectWithValue(error)
+    }
+  }
+)
+
 export const clearMatchData = createAction(CLEAR_MATCH_DATA)

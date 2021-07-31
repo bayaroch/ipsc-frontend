@@ -154,4 +154,14 @@ export const matchServices = {
     )
     return data
   },
+
+  registerUpdateMatch: async (
+    params: RegisterMatchParams
+  ): Promise<RegisterMatchResponse> => {
+    const { data } = await api.patch<RegisterMatchResponse>(
+      `${URI.PARTICIPANT}/${params.match_id}`,
+      params
+    )
+    return data
+  },
 }

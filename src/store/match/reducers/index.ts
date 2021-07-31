@@ -45,4 +45,7 @@ export default createReducer(initialState, (builder) => {
   builder.addCase(actions.registerMatch.fulfilled, (state, action) => {
     state.registerMatch = action.payload.data
   })
+  builder.addCase(actions.updateRegisterMatch.fulfilled, (state, action) => {
+    state.registerMatch = action.payload.data
+  })
 })
