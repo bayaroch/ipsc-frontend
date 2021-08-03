@@ -6,6 +6,7 @@ import { MatchState } from './match/reducers'
 import match from '@store/match'
 import { SupportState } from './support/reducers'
 import support from './support'
+import squads from './squads'
 
 export interface AppState {
   metadata: any
@@ -19,6 +20,7 @@ const combinedReducers = combineReducers({
   auth: auth.reducer,
   match: match.reducer,
   support: support.reducer,
+  squads: squads.reducer,
 })
 
 const reducer: Reducer<any> = (state, action) => {

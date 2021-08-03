@@ -7,6 +7,7 @@ import {
   MatchUpdateParams,
   RegisterMatchParams,
   RegisterMatchResponse,
+  UpdateMatchParams,
 } from '@services/match.services'
 import { createAsyncThunk, createAction } from '@reduxjs/toolkit'
 import { MATCH_ACTION_TYPE, CLEAR_MATCH_DATA } from './types'
@@ -88,7 +89,7 @@ export const registerMatch = createAsyncThunk<
 
 export const updateRegisterMatch = createAsyncThunk<
   RegisterMatchResponse,
-  RegisterMatchParams
+  UpdateMatchParams
 >(
   MATCH_ACTION_TYPE.REGISTER_UPDATE_MATCH,
   async (params, { rejectWithValue }) => {

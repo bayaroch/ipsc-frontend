@@ -8,6 +8,7 @@ import {
   ParticipantsItem,
   RegisterMatchData,
   RegisterMatchParams,
+  UpdateMatchParams,
 } from '@services/match.services'
 import { user, category as cat } from '@store/auth/selectors'
 import { UserData } from '@services/auth.services'
@@ -26,7 +27,7 @@ const useMatchDetail = (): {
   detail: MatchItem
   getDetail: (id: string) => void
   register: (params: RegisterMatchParams) => void
-  update: (params: RegisterMatchParams) => void
+  update: (params: UpdateMatchParams) => void
   userData: UserData
   category: CATEGORY
   support: SupportState
@@ -46,7 +47,7 @@ const useMatchDetail = (): {
   const register = (params: RegisterMatchParams) => {
     dispatch(actions.registerMatch(params))
   }
-  const update = (params: RegisterMatchParams) => {
+  const update = (params: UpdateMatchParams) => {
     dispatch(actions.updateRegisterMatch(params))
   }
   const userData = useSelector(user)

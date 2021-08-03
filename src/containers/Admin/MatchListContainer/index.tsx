@@ -12,11 +12,16 @@ const MatchListContainer: React.FC = () => {
     router.push(`/admin/matches/edit/${id}`)
   }
 
+  const handleEditSquad = (id: number) => {
+    router.push(`/admin/squad/edit/${id}`)
+  }
+
   return (
     <Box>
       <Box className={classes.topControl}></Box>
       <MatchList
         onEditClick={handleEdit}
+        onEditSquad={handleEditSquad}
         meta={meta}
         list={list}
         getList={getList}

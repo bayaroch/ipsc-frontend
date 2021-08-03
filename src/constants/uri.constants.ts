@@ -9,4 +9,5 @@ export const URI = {
   BADGES: API_ROOT + 'badges',
   DIVISIONS: API_ROOT + 'divisions',
   CLASS: API_ROOT + 'classifications',
+  SQUADS: API_ROOT + 'squads',
 }

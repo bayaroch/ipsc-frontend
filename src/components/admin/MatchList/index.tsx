@@ -29,13 +29,14 @@ export interface MatchListProps {
   list: MatchItem[]
   pagination: MatchPaginationMeta
   onEditClick: (id: number) => void
+  onEditSquad: (id: number) => void
   meta: Meta
 }
 
 const defaultPerPage = 10
 
 const MatchList: React.FC<MatchListProps> = (props) => {
-  const { getList, list, pagination, onEditClick, meta } = props
+  const { getList, list, pagination, onEditClick, meta, onEditSquad } = props
   const classes = useStyles()
   const [page, setPage] = useState<number>(1)
   const [rowsPerPage, setRowsPerPage] = useState<number>(defaultPerPage)
@@ -101,6 +102,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
                 <TableCell align="right">Tax</TableCell>
                 <TableCell align="right">Төлөв</TableCell>
                 <TableCell align="right"></TableCell>
+                <TableCell align="right"></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -128,6 +130,14 @@ const MatchList: React.FC<MatchListProps> = (props) => {
                         return o.id === row.status
                       })[0].value
                     }
+                  </TableCell>
+                  <TableCell style={{ width: 60 }} align="right">
+                    <Box
+                      onClick={() => onEditSquad(row.id)}
+                      className={classes.editBtn}
+                    >
+                      Edit Squad
+                    </Box>
                   </TableCell>
                   <TableCell style={{ width: 60 }} align="right">
                     <EditIcon

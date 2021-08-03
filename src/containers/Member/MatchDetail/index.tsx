@@ -25,7 +25,6 @@ interface MatchDetailProps {
 const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
   const [open, setOpen] = useState<boolean>(false)
   const classes = useStyles()
-
   const {
     detail,
     meta,
@@ -39,6 +38,10 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
     update,
     registerState,
   } = useMatchDetail()
+
+  const isRegistered = participants.find((user) => user.user.id === userData.id)
+
+  console.log(isRegistered)
 
   useEffect(() => {
     if (id) {
@@ -78,16 +81,20 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
 
   const handleUpdate = (division: number) => {
     setOpen(false)
-    if (id && userData.class_id) {
+    console.log('im here')
+    if (id && userData.class_id && isRegistered) {
       const params = {
-        match_id: Number(id),
-        user_id: userData.id,
-        division_id: division,
-        category_id: category,
-        class_id: userData.class_id,
-        is_ro: 0,
-        remark: null,
+        data: {
+          match_id: Number(id),
+          user_id: userData.id,
+          division_id: division,
+          category_id: category,
+          class_id: userData.class_id,
+          is_ro: 0,
+        },
+        id: isRegistered.id,
       }
+      console.log(params)
       update(params)
     }
   }
@@ -104,10 +111,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
   }
 
   const renderRegisterButton = () => {
-    if (
-      _.isEmpty(participants) ||
-      !participants.find((user) => user.user.id === userData.id)
-    ) {
+    if (_.isEmpty(participants) || !isRegistered) {
       return (
         <Button
           type="submit"
@@ -147,8 +151,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
             open={open}
             divisions={support.divisions}
             onSubmit={
-              _.isEmpty(participants) ||
-              !participants.find((user) => user.user.id === userData.id)
+              _.isEmpty(participants) || !isRegistered
                 ? handleRegister
                 : handleUpdate
             }

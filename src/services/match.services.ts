@@ -90,6 +90,11 @@ export type RegisterMatchParams = {
   remark?: string | null
 }
 
+export type UpdateMatchParams = {
+  data: RegisterMatchParams
+  id: number
+}
+
 export type RegisterMatchResponse = {
   data: RegisterMatchData
   status: string
@@ -156,11 +161,11 @@ export const matchServices = {
   },
 
   registerUpdateMatch: async (
-    params: RegisterMatchParams
+    params: UpdateMatchParams
   ): Promise<RegisterMatchResponse> => {
     const { data } = await api.patch<RegisterMatchResponse>(
-      `${URI.PARTICIPANT}/${params.match_id}`,
-      params
+      `${URI.PARTICIPANT}/${params.id}`,
+      params.data
     )
     return data
   },
