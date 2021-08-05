@@ -1,17 +1,20 @@
 import { createReducer } from '@reduxjs/toolkit'
 import * as actions from '../actions'
 import { SquadListData, SquadResponseData } from '@services/squad.services'
+import _ from 'lodash'
 
 export type MatchState = {
   squadList: SquadListData[] | undefined
   createSquad: SquadResponseData | undefined
   updateSquad: SquadResponseData | undefined
+  deleteStatus: string | undefined
 }
 
 const initialState: MatchState = {
   squadList: undefined,
   createSquad: undefined,
   updateSquad: undefined,
+  deleteStatus: undefined,
 }
 
 export default createReducer(initialState, (builder) => {
@@ -23,5 +26,11 @@ export default createReducer(initialState, (builder) => {
   })
   builder.addCase(actions.updateSquad.fulfilled, (state, action) => {
     state.updateSquad = action.payload.data
+  })
+  builder.addCase(actions.deleteSquads.fulfilled, (state, action) => {
+    console.log('im deleting', action.payload)
+    state.squadList = _.filter(state.squadList, (item) => {
+      return item.id !== Number(action.payload.data)
+    })
   })
 })

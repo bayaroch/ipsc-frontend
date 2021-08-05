@@ -55,8 +55,13 @@ export type SquadUpdateParams = {
   id: number
 }
 
+export type DeleteResponse = {
+  status: string
+  data: string
+}
+
 export const squadServices = {
-  getAllSquads: async (id: number): Promise<SquadListResponse> => {
+  getAllSquads: async (id: string): Promise<SquadListResponse> => {
     const { data } = await api.get<SquadListResponse>(`${URI.SQUADS}?id=${id}`)
     return data
   },
@@ -69,6 +74,11 @@ export const squadServices = {
       `${URI.SQUADS}/${params.id}`,
       params.data
     )
+    return data
+  },
+  deleteSquads: async (id: string): Promise<DeleteResponse> => {
+    const { data } = await api.delete<DeleteResponse>(`${URI.SQUADS}/${id}`)
+    console.log('at service', data)
     return data
   },
 }

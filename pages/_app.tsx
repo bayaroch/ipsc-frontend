@@ -13,6 +13,8 @@ import { useStore } from 'react-redux'
 import { authorizationProvider } from '@services/interceptor'
 import 'swiper/swiper.scss'
 import 'swiper/components/pagination/pagination.scss'
+import moment from 'moment'
+import { ConfirmProvider } from 'material-ui-confirm'
 
 /**
  * withRedux HOC
@@ -29,6 +31,7 @@ const CustomApp = ({ Component, pageProps }: Props) => {
   const themeSass = require('sass-extract-loader?{"plugins":["sass-extract-js"]}!@common/css/theme.scss')
   const store: StoreType = useStore()
   authorizationProvider(store)
+  moment.locale('mn')
 
   useEffect(() => {
     // Remove the server-side injected CSS.
@@ -42,9 +45,11 @@ const CustomApp = ({ Component, pageProps }: Props) => {
     <PersistGate persistor={persistStore(store)} loading={<div>Loading</div>}>
       <MuiThemeProvider theme={theme}>
         <ThemeStyled theme={themeSass}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <ConfirmProvider>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </ConfirmProvider>
         </ThemeStyled>
       </MuiThemeProvider>
     </PersistGate>

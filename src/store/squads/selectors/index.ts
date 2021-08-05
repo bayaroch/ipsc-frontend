@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect'
 import { RootState } from '@store/reducers'
 
-const getState = (state: RootState) => state.squad
+const getState = (state: RootState) => state.squads
 
 export const squads = createSelector(getState, (state) => state.squadList)
 export const createSquadResult = createSelector(
