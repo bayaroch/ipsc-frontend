@@ -31,7 +31,7 @@ const useUpdateMatch = (
   list: SquadListData[]
   update: (params: SquadUpdateParams) => void
   create: (params: SquadCreateParams) => void
-  deleting: (id: string) => void
+  deleting: (id: number) => void
   listMeta: Meta
   updateMeta: Meta
   createMeta: Meta
@@ -59,7 +59,7 @@ const useUpdateMatch = (
     dispatch(createSquad(params))
   }
 
-  const deleting = (id: string) => {
+  const deleting = (id: number) => {
     dispatch(deleteSquads(id))
   }
   return {

@@ -39,7 +39,7 @@ export const updateSquad = createAsyncThunk<SquadResponse, SquadUpdateParams>(
   }
 )
 
-export const deleteSquads = createAsyncThunk<DeleteResponse, string>(
+export const deleteSquads = createAsyncThunk<DeleteResponse, number>(
   SQUAD_ACTION_TYPE.DELETE_SQUAD,
   async (deleteParams, { rejectWithValue }) => {
     try {

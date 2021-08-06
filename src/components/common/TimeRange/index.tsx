@@ -3,15 +3,15 @@ import moment from 'moment'
 import { Box, makeStyles } from '@material-ui/core'
 
 interface ButtonProps {
-  timeStart: string
-  timeEnd: string
+  timeStart: string | Date
+  timeEnd: string | Date
 }
 
 const TimeRange: React.FC<ButtonProps> = ({ timeStart, timeEnd }) => {
   const classes = useStyles()
   const title = moment(timeStart).format('YYYY-MM-DD, dddd')
-  const ts = moment(timeStart).format('hh:mm')
-  const te = moment(timeEnd).format('hh:mm')
+  const ts = moment(timeStart).format('HH:mm')
+  const te = moment(timeEnd).format('HH:mm')
 
   return (
     <Box>

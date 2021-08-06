@@ -57,7 +57,7 @@ export type SquadUpdateParams = {
 
 export type DeleteResponse = {
   status: string
-  data: string
+  data: number
 }
 
 export const squadServices = {
@@ -76,7 +76,7 @@ export const squadServices = {
     )
     return data
   },
-  deleteSquads: async (id: string): Promise<DeleteResponse> => {
+  deleteSquads: async (id: number): Promise<DeleteResponse> => {
     const { data } = await api.delete<DeleteResponse>(`${URI.SQUADS}/${id}`)
     console.log('at service', data)
     return data

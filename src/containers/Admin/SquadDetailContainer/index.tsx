@@ -5,6 +5,7 @@ import _ from 'lodash'
 import SquadList from '@components/admin/SquadList'
 import { SquadListMembers } from '@services/squad.services'
 import { useConfirm } from 'material-ui-confirm'
+import SquadCreate from '@components/admin/SquadCreate'
 
 interface SquadDetailContainerProps {
   id: string
@@ -38,7 +39,7 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
     }
   }
 
-  const onDelete = (id: string) => {
+  const onDelete = (id: number) => {
     confirm({
       title: 'Та итгэлтэй байна уу',
       description: 'Энэ ээлжийг усгах гэж байна',
@@ -88,11 +89,21 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
     return null
   }
 
+  const onSubmit = () => {}
+
+  const renderSquadCreate = () => {
+    if (!listMeta.pending && listMeta.loaded && !listMeta.error) {
+      return <SquadCreate onSubmit={onSubmit} />
+    }
+    return null
+  }
+
   return (
     <Box className={classes.container}>
       {renderLoader()}
       {renderList()}
       {renderPlaceholder()}
+      {renderSquadCreate()}
     </Box>
   )
 }
