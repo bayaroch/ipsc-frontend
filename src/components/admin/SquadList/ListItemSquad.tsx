@@ -12,20 +12,41 @@ import Box from '@material-ui/core/Box'
 import TimeRange from '@components/common/TimeRange'
 import Badge from '@material-ui/core/Badge'
 import People from '@material-ui/icons/People'
+import Radio from '@material-ui/core/Radio'
 
 export interface SquadListProps {
   data: SquadListData
   onDelete?: (id: number) => void
   onExpandMembers?: (data: SquadListMembers[]) => void
   isDelete?: boolean
+  isEdit?: boolean
+  selectedId?: number
+  onSelectChange?: (id: number) => void
 }
 
 const ListItemSquad: React.FC<SquadListProps> = (props) => {
-  const { data, onDelete, onExpandMembers, isDelete } = props
+  const {
+    data,
+    onDelete,
+    onExpandMembers,
+    isDelete,
+    selectedId,
+    isEdit,
+    onSelectChange,
+  } = props
   const classes = useStyles()
 
   return (
     <ListItem>
+      {isEdit ? (
+        <Radio
+          checked={selectedId === data.id}
+          onChange={() => onSelectChange && onSelectChange(data.id)}
+          value={data.id}
+          name="radio-button"
+        />
+      ) : null}
+
       <ListItemAvatar>
         <Badge
           badgeContent={data.squad_members.length}
@@ -72,6 +93,7 @@ const useStyles = makeStyles({
 
 ListItemSquad.defaultProps = {
   isDelete: true,
+  isEdit: false,
 }
 
 export default ListItemSquad

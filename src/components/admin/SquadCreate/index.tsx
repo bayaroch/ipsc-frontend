@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import _ from 'lodash'
-import { Paper, Button, Box } from '@material-ui/core'
-import { SquadCreateParams } from '@services/squad.services'
+import { Paper, Button, Box, Grid, CircularProgress } from '@material-ui/core'
 import DateFnsUtils from '@date-io/date-fns'
 import {
   MuiPickersUtilsProvider,
@@ -10,21 +9,37 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers'
 import TimeRange from '@components/common/TimeRange'
+import CustomInput from '@components/common/Input'
+import useSquadCreate, {
+  SquadCreateInputType,
+  SquadValidateType,
+} from './useSquadCreate'
+import moment from 'moment'
+import { Colors } from '@theme/colors'
+import { SquadCreateParams } from '@services/squad.services'
 
 export interface SquadCreateProps {
-  onSubmit: (params: SquadCreateParams) => void
+  onSubmit: (params: SquadCreateInputType) => void
+  isDisabled?: boolean
+  isEdit?: boolean
+  editData?: SquadCreateParams
 }
 
 const SquadCreate: React.FC<SquadCreateProps> = (props) => {
-  const { onSubmit } = props
+  const { Controller, methods } = useSquadCreate()
 
-  const [timeStart, setTimeStart] = useState<Date | string>(
-    new Date('2014-08-18T21:11:54')
-  )
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = methods
 
-  const [timeEnd, setTimeEnd] = useState<Date | string>(
-    new Date('2014-08-18T21:11:54')
-  )
+  const { onSubmit, isEdit, editData } = props
+
+  const [timeStart, setTimeStart] = useState<Date | string>(new Date())
+
+  const [timeEnd, setTimeEnd] = useState<Date | string>(new Date())
 
   const handleDateChangeStart = (date: Date | null) => {
     if (date) setTimeStart(date)
@@ -41,51 +56,155 @@ const SquadCreate: React.FC<SquadCreateProps> = (props) => {
     }
   }
 
-  console.log(timeStart, timeEnd)
+  useEffect(() => {
+    if (isEdit && editData) {
+      setTimeStart(editData?.time_start)
+      setTimeEnd(editData?.time_end)
+      setValue('name', editData.name)
+      setValue('remark', editData.remark + '')
+    }
+  }, [isEdit, editData])
+
+  const _onSubmit = (data: SquadValidateType) => {
+    const params: SquadCreateInputType = Object.assign({}, data, {
+      time_start: moment(timeStart).format('YYYY-MM-DD HH:mm'),
+      time_end: moment(timeEnd).format('YYYY-MM-DD HH:mm'),
+    })
+    onSubmit(params)
+  }
+
+  const classes = useStyles()
 
   return (
-    <Paper>
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <Box>
-          <TimeRange timeStart={timeStart} timeEnd={timeEnd} />
-        </Box>
-        <Box></Box>
-        <KeyboardDatePicker
-          margin="normal"
-          id="date-picker-dialog"
-          label="Өдөр"
-          format="MM/dd/yyyy"
-          value={timeStart}
-          onChange={handleDateChange}
-          KeyboardButtonProps={{
-            'aria-label': 'change date',
-          }}
-        />
-        <KeyboardTimePicker
-          margin="normal"
-          id="starttime-picker"
-          label="Эхлэх цаг"
-          value={timeStart}
-          onChange={handleDateChangeStart}
-          KeyboardButtonProps={{
-            'aria-label': 'change time',
-          }}
-        />
-        <KeyboardTimePicker
-          margin="normal"
-          id="endtime-picker"
-          label="Дуусах цаг"
-          value={timeEnd}
-          onChange={handleDateChangeEnd}
-          KeyboardButtonProps={{
-            'aria-label': 'change time',
-          }}
-        />
-      </MuiPickersUtilsProvider>
+    <Paper className={classes.formCard}>
+      <form onSubmit={handleSubmit(_onSubmit)}>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <Grid container spacing={3}>
+            <Grid sm={6} md={2} item>
+              <Box display="flex" alignItems="center" flex={1} height={'100%'}>
+                <TimeRange timeStart={timeStart} timeEnd={timeEnd} />
+              </Box>
+            </Grid>
+            <Grid sm={6} md={4} item>
+              <KeyboardDatePicker
+                margin="normal"
+                id="date-picker-dialog"
+                label="Өдөр"
+                fullWidth
+                format="MM/dd/yyyy"
+                value={timeStart}
+                onChange={handleDateChange}
+                KeyboardButtonProps={{
+                  'aria-label': 'change date',
+                }}
+              />
+            </Grid>
+            <Grid sm={6} md={3} item>
+              <KeyboardTimePicker
+                margin="normal"
+                id="time_start"
+                name="time_start"
+                fullWidth
+                label="Эхлэх цаг"
+                value={timeStart}
+                onChange={handleDateChangeStart}
+                KeyboardButtonProps={{
+                  'aria-label': 'change time',
+                }}
+              />
+            </Grid>
+            <Grid sm={6} md={3} item>
+              <KeyboardTimePicker
+                margin="normal"
+                id="time_end"
+                label="Дуусах цаг"
+                fullWidth
+                name="time_end"
+                value={timeEnd}
+                onChange={handleDateChangeEnd}
+                KeyboardButtonProps={{
+                  'aria-label': 'change time',
+                }}
+              />
+            </Grid>
+          </Grid>
+          <Grid container spacing={3}>
+            <Grid item sm={12} md={5}>
+              <Controller
+                name="name"
+                control={control}
+                render={({ field: { ref, ...rest } }) => (
+                  <CustomInput
+                    {...rest}
+                    inputRef={ref}
+                    required={true}
+                    labelPrimary=""
+                    placeholder={'Ээлжийн нэр'}
+                    fullWidth={true}
+                    error={!!errors.name}
+                    helperText={
+                      errors.name ? _.get(errors.name, 'message', '') : ''
+                    }
+                  />
+                )}
+              />
+            </Grid>
+            <Grid item sm={12} md={5}>
+              <Controller
+                name="remark"
+                control={control}
+                render={({ field: { ref, ...rest } }) => (
+                  <CustomInput
+                    {...rest}
+                    name="remark"
+                    inputRef={ref}
+                    required={false}
+                    labelPrimary=""
+                    placeholder={'Нэмэлт тайлбар'}
+                    fullWidth={true}
+                    error={!!errors.remark}
+                    helperText={
+                      errors.remark ? _.get(errors.remark, 'message', '') : ''
+                    }
+                  />
+                )}
+              />
+            </Grid>
+            <Grid item sm={12} md={2}>
+              <Box display="flex" mt={'5px'}>
+                <Button
+                  variant="contained"
+                  disabled={props.isDisabled}
+                  fullWidth
+                  color={isEdit ? 'secondary' : 'primary'}
+                  type="submit"
+                >
+                  {props.isDisabled ? (
+                    <CircularProgress
+                      style={{ height: 22, width: 22, color: Colors.white }}
+                    />
+                  ) : (
+                    <> {isEdit ? 'Засах' : 'Үүсгэх'}</>
+                  )}
+                </Button>
+              </Box>
+            </Grid>
+          </Grid>
+        </MuiPickersUtilsProvider>
+      </form>
     </Paper>
   )
 }
 
-const useStyles = makeStyles({})
+const useStyles = makeStyles({
+  formCard: {
+    padding: 16,
+  },
+})
+
+SquadCreate.defaultProps = {
+  isDisabled: false,
+  isEdit: false,
+}
 
 export default SquadCreate

@@ -1,11 +1,25 @@
-import { makeStyles, Box, CircularProgress } from '@material-ui/core/'
+import { useState } from 'react'
+import {
+  makeStyles,
+  Box,
+  CircularProgress,
+  Button,
+  Typography,
+} from '@material-ui/core/'
 import { useRouter } from 'next/router'
 import useSquadDetail from './useSquadDetail'
-import _ from 'lodash'
+import _, { isArray } from 'lodash'
 import SquadList from '@components/admin/SquadList'
-import { SquadListMembers } from '@services/squad.services'
+import {
+  SquadCreateParams,
+  SquadUpdateParams,
+  SquadListData,
+  SquadListMembers,
+} from '@services/squad.services'
 import { useConfirm } from 'material-ui-confirm'
 import SquadCreate from '@components/admin/SquadCreate'
+import { SquadCreateInputType } from '@components/admin/SquadCreate/useSquadCreate'
+import { Edit, Close } from '@material-ui/icons'
 
 interface SquadDetailContainerProps {
   id: string
@@ -15,6 +29,10 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
   const classes = useStyles()
   const router = useRouter()
   const confirm = useConfirm()
+  const [mode, setMode] = useState<boolean>(false)
+  const [selectedData, setSelectedData] = useState<SquadListData | undefined>(
+    undefined
+  )
   const {
     list,
     listMeta,
@@ -47,7 +65,6 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
       cancellationText: 'Цуцлах',
     })
       .then(() => {
-        console.log('deleting')
         deleting(id)
       })
       .catch(() => {
@@ -56,6 +73,17 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
   }
 
   const onExpandMembers = (members: SquadListMembers[]) => {}
+
+  const onSelectChange = (id: number) => {
+    if (!_.isEmpty(list) && isArray(list)) {
+      const data = list.find((obj) => {
+        return obj.id === id
+      })
+      setSelectedData(data)
+    }
+
+    console.log(list, id)
+  }
 
   const renderList = () => {
     if (
@@ -66,7 +94,26 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
     ) {
       return (
         <Box>
+          <Box
+            display="flex"
+            width="100%"
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            <Typography variant="h3">Match Title</Typography>
+            <Button
+              onClick={() => {
+                setMode(!mode)
+              }}
+            >
+              {mode ? <Close /> : <Edit />}
+              {mode ? 'Цуцлах' : 'Засах'}
+            </Button>
+          </Box>
           <SquadList
+            isEdit={mode}
+            selectedId={_.get(selectedData, 'id', undefined)}
+            onSelectChange={onSelectChange}
             onDelete={onDelete}
             onExpandMembers={onExpandMembers}
             list={list}
@@ -89,11 +136,30 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
     return null
   }
 
-  const onSubmit = () => {}
+  const onSubmit = (data: SquadCreateInputType) => {
+    if (mode && selectedData) {
+      update({ data: { ...data, match_id: Number(id) }, id: selectedData.id })
+    } else {
+      create({
+        ...data,
+        match_id: Number(id),
+      })
+    }
+  }
 
   const renderSquadCreate = () => {
     if (!listMeta.pending && listMeta.loaded && !listMeta.error) {
-      return <SquadCreate onSubmit={onSubmit} />
+      return (
+        <SquadCreate
+          isEdit={mode}
+          editData={mode ? selectedData : undefined}
+          isDisabled={
+            (createMeta.pending && !createMeta.loaded && !createMeta.error) ||
+            (updateMeta.pending && !updateMeta.error && !updateMeta.loaded)
+          }
+          onSubmit={onSubmit}
+        />
+      )
     }
     return null
   }

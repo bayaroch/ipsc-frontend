@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import _ from 'lodash'
 import List from '@material-ui/core/List'
@@ -9,15 +9,28 @@ export interface SquadListProps {
   list: Array<SquadListData>
   onDelete: (id: number) => void
   onExpandMembers: (members: SquadListMembers[]) => void
+  isEdit?: boolean
+  onSelectChange?: (id: number) => void
+  selectedId?: number
 }
 
 const SquadList: React.FC<SquadListProps> = (props) => {
-  const { list, onExpandMembers, onDelete } = props
+  const {
+    list,
+    onExpandMembers,
+    onDelete,
+    isEdit,
+    onSelectChange,
+    selectedId,
+  } = props
   return (
     <List>
       {list.map((item, index) => {
         return (
           <ListItemSquad
+            isEdit={isEdit}
+            selectedId={selectedId}
+            onSelectChange={onSelectChange && onSelectChange}
             onDelete={onDelete}
             onExpandMembers={onExpandMembers}
             key={index}
@@ -29,27 +42,8 @@ const SquadList: React.FC<SquadListProps> = (props) => {
   )
 }
 
-const useStyles = makeStyles({
-  loader: {
-    fontSize: 12,
-  },
-  loaderBox: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    minHeight: 300,
-  },
-  pagination: {
-    position: 'relative',
-    justifyContent: 'space-between',
-    padding: 5,
-    width: '100%',
-    '& .MuiPagination-ul': {
-      width: '100%',
-      justifyContent: 'center',
-    },
-  },
-})
+SquadList.defaultProps = {
+  isEdit: false,
+}
 
 export default SquadList
