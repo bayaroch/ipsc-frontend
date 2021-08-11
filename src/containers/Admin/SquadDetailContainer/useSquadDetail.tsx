@@ -23,7 +23,7 @@ const getAllSquadsMeta = createMetaSelector(actions.squadList)
 const updateSquadsMeta = createMetaSelector(actions.updateSquad)
 const createSquadsMeta = createMetaSelector(actions.createSquad)
 
-const useUpdateMatch = (
+const useSquadDetail = (
   id: string
 ): {
   createResponse: SquadResponseData
@@ -45,7 +45,6 @@ const useUpdateMatch = (
   const createMeta: Meta = useSelector(createSquadsMeta)
 
   useEffect(() => {
-    console.log(id)
     if (id) {
       dispatch(squadList(id))
     }
@@ -75,4 +74,4 @@ const useUpdateMatch = (
   }
 }
 
-export default useUpdateMatch
+export default useSquadDetail

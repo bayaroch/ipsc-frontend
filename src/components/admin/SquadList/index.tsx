@@ -7,7 +7,7 @@ import ListItemSquad from './ListItemSquad'
 
 export interface SquadListProps {
   list: Array<SquadListData>
-  onDelete: (id: number) => void
+  onDelete?: (id: number) => void
   onExpandMembers: (members: SquadListMembers[]) => void
   isEdit?: boolean
   onSelectChange?: (id: number) => void
@@ -31,7 +31,7 @@ const SquadList: React.FC<SquadListProps> = (props) => {
             isEdit={isEdit}
             selectedId={selectedId}
             onSelectChange={onSelectChange && onSelectChange}
-            onDelete={onDelete}
+            onDelete={onDelete && onDelete}
             onExpandMembers={onExpandMembers}
             key={index}
             data={item}

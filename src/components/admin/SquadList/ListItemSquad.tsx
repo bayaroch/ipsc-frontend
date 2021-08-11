@@ -18,7 +18,6 @@ export interface SquadListProps {
   data: SquadListData
   onDelete?: (id: number) => void
   onExpandMembers?: (data: SquadListMembers[]) => void
-  isDelete?: boolean
   isEdit?: boolean
   selectedId?: number
   onSelectChange?: (id: number) => void
@@ -29,7 +28,6 @@ const ListItemSquad: React.FC<SquadListProps> = (props) => {
     data,
     onDelete,
     onExpandMembers,
-    isDelete,
     selectedId,
     isEdit,
     onSelectChange,
@@ -70,7 +68,7 @@ const ListItemSquad: React.FC<SquadListProps> = (props) => {
       <Box className={classes.time}>
         <TimeRange timeStart={data.time_start} timeEnd={data.time_end} />
       </Box>
-      {isDelete ? (
+      {onDelete ? (
         <ListItemSecondaryAction>
           <IconButton
             edge="end"
@@ -92,7 +90,6 @@ const useStyles = makeStyles({
 })
 
 ListItemSquad.defaultProps = {
-  isDelete: true,
   isEdit: false,
 }
 

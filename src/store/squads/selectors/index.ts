@@ -13,3 +13,5 @@ export const updateSquadResult = createSelector(
   getState,
   (state) => state.updateSquad
 )
+
+export const joinResponse = createSelector(getState, (state) => state.joinSquad)

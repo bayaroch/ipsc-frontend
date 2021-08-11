@@ -60,6 +60,29 @@ export type DeleteResponse = {
   data: number
 }
 
+export type SquadJoinResponse = {
+  data: SquadJoinData
+  status: string
+  version: string
+}
+
+export type SquadJoinData = {
+  id: number
+  squad_id: number
+  user_id: number
+  is_rm: boolean
+  is_ro: boolean
+  notify_squad_id?: null | number
+}
+
+export type SquadJoinParams = {
+  squad_id: number
+  user_id: number
+  is_rm: number | boolean
+  is_ro: number | boolean
+  notify_squad_id?: null | number
+}
+
 export const squadServices = {
   getAllSquads: async (id: string): Promise<SquadListResponse> => {
     const { data } = await api.get<SquadListResponse>(`${URI.SQUADS}?id=${id}`)
@@ -79,6 +102,11 @@ export const squadServices = {
   deleteSquads: async (id: number): Promise<DeleteResponse> => {
     const { data } = await api.delete<DeleteResponse>(`${URI.SQUADS}/${id}`)
     console.log('at service', data)
+    return data
+  },
+
+  joinSquads: async (params: SquadJoinParams): Promise<SquadJoinResponse> => {
+    const { data } = await api.post<SquadJoinResponse>(URI.SQUADSJOIN, params)
     return data
   },
 }

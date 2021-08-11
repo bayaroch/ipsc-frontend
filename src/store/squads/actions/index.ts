@@ -5,6 +5,8 @@ import {
   squadServices,
   SquadResponse,
   DeleteResponse,
+  SquadJoinParams,
+  SquadJoinResponse,
 } from '@services/squad.services'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { SQUAD_ACTION_TYPE } from './types'
@@ -63,6 +65,21 @@ export const squadList = createAsyncThunk<SquadListResponse, string>(
   async (id, { rejectWithValue }) => {
     try {
       const res = await squadServices.getAllSquads(id)
+      return res
+    } catch (error) {
+      if (!error) {
+        throw error
+      }
+      return rejectWithValue(error)
+    }
+  }
+)
+
+export const squadJoin = createAsyncThunk<SquadJoinResponse, SquadJoinParams>(
+  SQUAD_ACTION_TYPE.JOIN_SQUAD,
+  async (params, { rejectWithValue }) => {
+    try {
+      const res = await squadServices.joinSquads(params)
       return res
     } catch (error) {
       if (!error) {

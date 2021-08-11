@@ -6,40 +6,28 @@ import {
   Button,
   Typography,
 } from '@material-ui/core/'
-import useSquadDetail from './useSquadDetail'
+import useSquadJoin from './useSquadJoin'
 import _, { isArray } from 'lodash'
 import SquadList from '@components/admin/SquadList'
 import {
-  SquadCreateParams,
-  SquadUpdateParams,
+  SquadJoinParams,
   SquadListData,
   SquadListMembers,
 } from '@services/squad.services'
 import { useConfirm } from 'material-ui-confirm'
-import SquadCreate from '@components/admin/SquadCreate'
-import { SquadCreateInputType } from '@components/admin/SquadCreate/useSquadCreate'
-import { Edit, Close } from '@material-ui/icons'
 
-interface SquadDetailContainerProps {
+interface SquadJoinContainerProps {
   id: string
 }
 
-const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
+const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
   const classes = useStyles()
   const confirm = useConfirm()
-  const [mode, setMode] = useState<boolean>(false)
+  const [mode, setMode] = useState<boolean>(true)
   const [selectedData, setSelectedData] = useState<SquadListData | undefined>(
     undefined
   )
-  const {
-    list,
-    listMeta,
-    create,
-    createMeta,
-    update,
-    updateMeta,
-    deleting,
-  } = useSquadDetail(id)
+  const { list, listMeta, join, userData } = useSquadJoin(id)
 
   console.log(id)
 
@@ -53,21 +41,6 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
     }
   }
 
-  const onDelete = (id: number) => {
-    confirm({
-      title: 'Та итгэлтэй байна уу',
-      description: 'Энэ ээлжийг усгах гэж байна',
-      confirmationText: 'Устгах',
-      cancellationText: 'Цуцлах',
-    })
-      .then(() => {
-        deleting(id)
-      })
-      .catch(() => {
-        /* ... */
-      })
-  }
-
   const onExpandMembers = (members: SquadListMembers[]) => {}
 
   const onSelectChange = (id: number) => {
@@ -77,6 +50,24 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
       })
       setSelectedData(data)
     }
+    confirm({
+      title: 'Ээлж сонголт',
+      confirmationText: 'Тийм',
+      cancellationText: 'Үгүй',
+    })
+      .then(() => {
+        const params: SquadJoinParams = {
+          squad_id: id,
+          user_id: userData.id,
+          is_rm: false,
+          is_ro: false,
+          notify_squad_id: null,
+        }
+        join(params)
+      })
+      .catch(() => {
+        setSelectedData(undefined)
+      })
 
     console.log(list, id)
   }
@@ -97,20 +88,11 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
             alignItems="center"
           >
             <Typography variant="h3">Match Title</Typography>
-            <Button
-              onClick={() => {
-                setMode(!mode)
-              }}
-            >
-              {mode ? <Close /> : <Edit />}
-              {mode ? 'Цуцлах' : 'Засах'}
-            </Button>
           </Box>
           <SquadList
             isEdit={mode}
             selectedId={_.get(selectedData, 'id', undefined)}
             onSelectChange={onSelectChange}
-            onDelete={onDelete}
             onExpandMembers={onExpandMembers}
             list={list}
           />
@@ -132,40 +114,11 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
     return null
   }
 
-  const onSubmit = (data: SquadCreateInputType) => {
-    if (mode && selectedData) {
-      update({ data: { ...data, match_id: Number(id) }, id: selectedData.id })
-    } else {
-      create({
-        ...data,
-        match_id: Number(id),
-      })
-    }
-  }
-
-  const renderSquadCreate = () => {
-    if (!listMeta.pending && listMeta.loaded && !listMeta.error) {
-      return (
-        <SquadCreate
-          isEdit={mode}
-          editData={mode ? selectedData : undefined}
-          isDisabled={
-            (createMeta.pending && !createMeta.loaded && !createMeta.error) ||
-            (updateMeta.pending && !updateMeta.error && !updateMeta.loaded)
-          }
-          onSubmit={onSubmit}
-        />
-      )
-    }
-    return null
-  }
-
   return (
     <Box className={classes.container}>
       {renderLoader()}
       {renderList()}
       {renderPlaceholder()}
-      {renderSquadCreate()}
     </Box>
   )
 }
@@ -199,4 +152,4 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-export default SquadDetailContainer
+export default SquadJoinContainer

@@ -9,6 +9,7 @@ import {
   Paper,
   Button,
   CircularProgress,
+  ButtonGroup,
 } from '@material-ui/core/'
 import useMatchDetail from './useMatchDetail'
 import _ from 'lodash'
@@ -17,6 +18,7 @@ import { Colors } from '@theme/colors'
 import moment from 'moment'
 import MatchDivisionPicker from '@components/member/MatchDivisionPicker'
 import ParticipantsTable from '@components/member/ParticipantsTable'
+import { useRouter } from 'next/router'
 
 interface MatchDetailProps {
   id: string
@@ -41,7 +43,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
 
   const isRegistered = participants.find((user) => user.user.id === userData.id)
 
-  console.log(isRegistered)
+  const router = useRouter()
 
   useEffect(() => {
     if (id) {
@@ -130,10 +132,25 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
           variant="contained"
           color="primary"
         >
-          Шинэчлэх
+          Бүртгэл Өөрчлөх
         </Button>
       )
     }
+  }
+
+  const renderSquadButton = () => {
+    if (isRegistered) {
+      return (
+        <Button
+          onClick={() => router.push(`/member/squad/${id}`)}
+          variant="contained"
+          color="secondary"
+        >
+          Ээлж сонгох
+        </Button>
+      )
+    }
+    return null
   }
 
   const renderContent = () => {
@@ -318,14 +335,14 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
               divisions={support.divisions}
               data={participantsFiltered}
             />
-
             <Box
               display="flex"
-              justifyContent="center"
+              justifyContent="space-between"
               mt={5}
               alignItems="center"
             >
               {renderRegisterButton()}
+              {renderSquadButton()}
             </Box>
           </ContentBox>
         </>
