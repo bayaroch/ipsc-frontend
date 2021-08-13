@@ -10,12 +10,16 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { Dashboard } from '@material-ui/icons'
 import { ADMIN_MENU_LARGE, MEMBER_MENU_LARGE } from '@constants/admin.constants'
+import { memberType } from '@store/auth/selectors'
+import { useSelector } from 'react-redux'
+import { USER_TYPE } from '@constants/user.constants'
 
 interface AdminHeaderProps {}
 
 const LargeSideBar: React.FC<AdminHeaderProps> = () => {
   const classes = useStyles()
   const router = useRouter()
+  const userType = useSelector(memberType)
 
   return (
     <Box id="sidebar-main" className={`${classes.sidebar} sidebar-main`}>
@@ -33,24 +37,26 @@ const LargeSideBar: React.FC<AdminHeaderProps> = () => {
             </ListItem>
           </Link>
         </section>
-        <section className={classes.menuSection}>
-          <Box className={classes.sectionTitle}>Aдмин цэс</Box>
-          {ADMIN_MENU_LARGE.map((i) => {
-            return (
-              <Link key={i.id} href={i.route} passHref>
-                <ListItem
-                  className={classes.listItem}
-                  selected={router.pathname === i.route}
-                >
-                  <ListItemIcon className={classes.iconItem}>
-                    {React.createElement(i.icon)}
-                  </ListItemIcon>
-                  <Typography className={classes.text}>{i.name}</Typography>
-                </ListItem>
-              </Link>
-            )
-          })}
-        </section>
+        {userType === USER_TYPE.USER_ADMIN ? (
+          <section className={classes.menuSection}>
+            <Box className={classes.sectionTitle}>Aдмин цэс</Box>
+            {ADMIN_MENU_LARGE.map((i) => {
+              return (
+                <Link key={i.id} href={i.route} passHref>
+                  <ListItem
+                    className={classes.listItem}
+                    selected={router.pathname === i.route}
+                  >
+                    <ListItemIcon className={classes.iconItem}>
+                      {React.createElement(i.icon)}
+                    </ListItemIcon>
+                    <Typography className={classes.text}>{i.name}</Typography>
+                  </ListItem>
+                </Link>
+              )
+            })}
+          </section>
+        ) : null}
         <section className={classes.menuSection}>
           <Box className={classes.sectionTitle}>Гишүүдийн цэс</Box>
           {MEMBER_MENU_LARGE.map((i) => {

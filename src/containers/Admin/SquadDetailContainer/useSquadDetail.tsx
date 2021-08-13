@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import {
   SquadCreateParams,
   SquadListData,
@@ -13,11 +13,14 @@ import {
 } from '@store/squads/actions'
 import { createMetaSelector } from '@store/metadata/selectors'
 import { updateSquadResult, squads } from '@store/squads/selectors'
+import { matchDetail } from '@store/match/selectors'
+import { getMatch } from '@store/match/actions'
 import { Meta } from '@store/metadata/actions/types'
 import { useSelector, useDispatch } from 'react-redux'
 import searchStore from '@store/squads'
+import { MatchItem } from '@store/match/actions/types'
 
-const { selectors, actions } = searchStore
+const { actions } = searchStore
 
 const getAllSquadsMeta = createMetaSelector(actions.squadList)
 const updateSquadsMeta = createMetaSelector(actions.updateSquad)
@@ -35,6 +38,7 @@ const useSquadDetail = (
   listMeta: Meta
   updateMeta: Meta
   createMeta: Meta
+  match: MatchItem
 } => {
   const dispatch = useDispatch()
   const updateResponse = useSelector(updateSquadResult)
@@ -43,10 +47,12 @@ const useSquadDetail = (
   const listMeta: Meta = useSelector(getAllSquadsMeta)
   const updateMeta: Meta = useSelector(updateSquadsMeta)
   const createMeta: Meta = useSelector(createSquadsMeta)
+  const match: MatchItem = useSelector(matchDetail)
 
   useEffect(() => {
     if (id) {
       dispatch(squadList(id))
+      dispatch(getMatch(id))
     }
   }, [id])
 
@@ -71,6 +77,7 @@ const useSquadDetail = (
     updateMeta,
     deleting,
     createMeta,
+    match,
   }
 }
 

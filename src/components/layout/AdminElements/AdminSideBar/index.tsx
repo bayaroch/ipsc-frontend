@@ -219,12 +219,15 @@ const useStyles = makeStyles(() => ({
   },
   link: {
     position: 'relative',
-    display: 'block',
     height: '70px',
     lineHeight: '70px',
     whiteSpace: 'nowrap',
     background: 'transparent',
     border: '0 none',
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'flex',
   },
   primaryLinks: {
     position: 'absolute',
@@ -236,6 +239,9 @@ const useStyles = makeStyles(() => ({
   },
   linkItem: {
     textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'flex',
   },
   linkItemInner: {
     position: 'relative',

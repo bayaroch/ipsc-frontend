@@ -3,7 +3,6 @@ import {
   makeStyles,
   Box,
   CircularProgress,
-  Button,
   Typography,
 } from '@material-ui/core/'
 import useSquadJoin from './useSquadJoin'

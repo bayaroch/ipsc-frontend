@@ -45,6 +45,6 @@ export default createReducer(initialState, (builder) => {
     })
   })
   builder.addCase(actions.squadJoin.fulfilled, (state, action) => {
-    state.joinSquad = action.payload
+    state.joinSquad = action.payload.data
   })
 })

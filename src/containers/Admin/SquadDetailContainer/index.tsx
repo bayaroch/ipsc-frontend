@@ -5,16 +5,14 @@ import {
   CircularProgress,
   Button,
   Typography,
+  Dialog,
+  DialogTitle,
+  List,
 } from '@material-ui/core/'
 import useSquadDetail from './useSquadDetail'
 import _, { isArray } from 'lodash'
 import SquadList from '@components/admin/SquadList'
-import {
-  SquadCreateParams,
-  SquadUpdateParams,
-  SquadListData,
-  SquadListMembers,
-} from '@services/squad.services'
+import { SquadListData, SquadListMembers } from '@services/squad.services'
 import { useConfirm } from 'material-ui-confirm'
 import SquadCreate from '@components/admin/SquadCreate'
 import { SquadCreateInputType } from '@components/admin/SquadCreate/useSquadCreate'
@@ -39,9 +37,8 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
     update,
     updateMeta,
     deleting,
+    match,
   } = useSquadDetail(id)
-
-  console.log(id)
 
   const renderLoader = () => {
     if (listMeta.pending && !listMeta.loaded && !listMeta.error) {
@@ -96,7 +93,9 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
             justifyContent="space-between"
             alignItems="center"
           >
-            <Typography variant="h3">Match Title</Typography>
+            <Box>
+              <Typography variant="h3">{_.get(match, 'name', '')}</Typography>
+            </Box>
             <Button
               onClick={() => {
                 setMode(!mode)

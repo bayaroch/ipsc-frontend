@@ -23,6 +23,7 @@ export type SquadListMembers = {
   user_id: number
   is_rm: boolean
   is_ro: boolean
+  name?: string
   notify_squad_id?: null | number
 }
 
@@ -106,6 +107,7 @@ export const squadServices = {
   },
 
   joinSquads: async (params: SquadJoinParams): Promise<SquadJoinResponse> => {
+    console.log('asdasdsadsadsad', params)
     const { data } = await api.post<SquadJoinResponse>(URI.SQUADSJOIN, params)
     return data
   },

@@ -23,6 +23,7 @@ import { Meta } from '@store/metadata/actions/types'
 import moment from 'moment'
 import Link from 'next/link'
 import { Colors } from '@theme/colors'
+import AssignmentIndIcon from '@material-ui/icons/AssignmentInd'
 
 export interface MatchListProps {
   getList: (params: MatchPageMeta) => void
@@ -132,12 +133,10 @@ const MatchList: React.FC<MatchListProps> = (props) => {
                     }
                   </TableCell>
                   <TableCell style={{ width: 60 }} align="right">
-                    <Box
-                      onClick={() => onEditSquad(row.id)}
+                    <AssignmentIndIcon
                       className={classes.editBtn}
-                    >
-                      Edit Squad
-                    </Box>
+                      onClick={() => onEditSquad(row.id)}
+                    />
                   </TableCell>
                   <TableCell style={{ width: 60 }} align="right">
                     <EditIcon

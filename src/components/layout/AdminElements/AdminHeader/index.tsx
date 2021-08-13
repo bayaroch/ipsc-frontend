@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
 import AddCircleOutline from '@material-ui/icons/AddCircleOutline'
 import { useRouter } from 'next/router'
+import { Hidden } from '@material-ui/core'
 
 import { Colors } from '@theme/colors'
 
@@ -39,16 +40,21 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({ open, setOpen, title }) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title}>{title}</Typography>
-          <Button
-            variant="contained"
-            size="small"
-            startIcon={<AddCircleOutline />}
-            color="secondary"
-            onClick={() => router.push('/admin/matches/create')}
-          >
-            Тэмцээн үүсгэх
-          </Button>
+          <Typography className={classes.title} noWrap={true}>
+            {title}
+          </Typography>
+          <Hidden smDown>
+            <Button
+              variant="contained"
+              size="small"
+              startIcon={<AddCircleOutline />}
+              color="secondary"
+              className={'hidden-sm'}
+              onClick={() => router.push('/admin/matches/create')}
+            >
+              Тэмцээн үүсгэх
+            </Button>
+          </Hidden>
         </Toolbar>
       </AppBar>
     </div>
