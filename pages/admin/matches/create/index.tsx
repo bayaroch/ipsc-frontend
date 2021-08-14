@@ -5,7 +5,7 @@ import MatchCreateContainer from '@containers/Admin/MatchCreateContainer'
 
 const MatchCreate: PageWithLayoutType = () => {
   return (
-    <AdminLayout title="Create Match">
+    <AdminLayout>
       <ContentBox>
         <MatchCreateContainer />
       </ContentBox>

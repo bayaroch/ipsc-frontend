@@ -10,6 +10,7 @@ import { useTheme } from '@material-ui/core/styles'
 
 interface MainLayoutProps {
   title?: string
+  children: any
 }
 
 const MainLayout: React.FC<MainLayoutProps> = ({ children, title }) => {
