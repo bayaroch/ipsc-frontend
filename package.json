@@ -14,7 +14,8 @@
     "prettier": "prettier  --write **/*.{ts,tsx,js}",
     "lint:ts": "npm run prettier && tslint -c tslint.json -t stylish --fix {pages,src,server}/**/*.{ts,tsx}",
     "lint:scss": "stylelint --fix {src,pages}/**/*.scss",
-    "lint:types": "tsc -p . --noEmit"
+    "lint:types": "tsc -p . --noEmit",
+    "pre-commit": "lint-staged"
   },
   "husky": {
     "hooks": {
