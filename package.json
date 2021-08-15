@@ -4,9 +4,10 @@
   "description": "NextJS boilerplate with TypeScript and Redux",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test jest",
+    "test": "",
+    "test-all": "yarn lint && yarn type-check && yarn test",
     "test:dev": "jest --watchAll",
-    "start": "NODE_ENV=production PORT=$PORT next start",
+    "start": "next start",
     "build": "rm -rf .next && next build",
     "dev": "next dev",
     "export": "yarn run build && next export",
@@ -17,16 +18,14 @@
   },
   "husky": {
     "hooks": {
-      "post-merge": "sh hooks/post-merge.sh",
-      "post-rewrite": "sh hooks/post-merge.sh"
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn run type-check"
     }
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "npm run lint:ts"
-    ],
-    "*.scss": [
-      "npm run lint:scss"
+      "yarn lint",
+      "yarn format"
     ]
   },
   "keywords": [
@@ -102,7 +101,7 @@
     "babel-plugin-styled-components": "^1.10.6",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.2",
-    "husky": "4.2.3",
+    "husky": "^7.0.0",
     "identity-obj-proxy": "3.0.0",
     "jest": "25.2.4",
     "jest-svg-transformer": "1.0.0",
