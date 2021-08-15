@@ -1,6 +1,4 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import _ from 'lodash'
 import List from '@material-ui/core/List'
 import { SquadListData, SquadListMembers } from '@services/squad.services'
 import ListItemSquad from './ListItemSquad'

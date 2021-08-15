@@ -3,9 +3,7 @@ import ImageThumb from '@components/elements/ImageThumb'
 import { featured } from '@constants/featured.menu'
 import Router from 'next/router'
 
-interface IntroProps {}
-
-const Featured: React.FC<IntroProps> = () => {
+const Featured: React.FC = () => {
   const listItems = featured.map((item, index) => (
     <div className="column" key={index.toString()}>
       <ImageThumb

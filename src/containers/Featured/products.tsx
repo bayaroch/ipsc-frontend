@@ -3,9 +3,7 @@ import Card from '@components/elements/Card'
 import { featuredproducts } from '@constants/featured.course'
 import Router from 'next/router'
 
-interface ProductsProps {}
-
-const Products: React.FC<ProductsProps> = () => {
+const Products: React.FC = () => {
   const listItems = featuredproducts.map((item, index) => (
     <div className="column" key={index.toString()}>
       <Card

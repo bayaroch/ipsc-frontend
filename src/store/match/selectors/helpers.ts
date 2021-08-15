@@ -9,7 +9,6 @@ export type ParticipantSortedItem = {
 export type ParticipantSortedList = Array<ParticipantSortedItem>
 
 export const groupByDivision = (items: ParticipantsItem[]) => {
-  console.log('items', items)
   const groupedItems = _.chain(items)
     .groupBy((item) => item.division_id)
     .map((groupItems, groupTitle) => {

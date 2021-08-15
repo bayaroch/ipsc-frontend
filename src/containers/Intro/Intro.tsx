@@ -1,14 +1,13 @@
 import IntroButton from '@components/common/IntroButton'
 import Slider from '@components/common/Slider'
 
-interface IntroProps {}
-
 const banners = [
   { url: '/images/intro/slide1.jpg' },
   { url: '/images/intro/slide2.jpg' },
 ]
 
-const Intro: React.FC<IntroProps> = () => {
+const Intro: React.FC = () => {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   const onIntroClick = () => {}
   return (
     <>

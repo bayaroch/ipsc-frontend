@@ -1,7 +1,6 @@
 import { AuthState } from '../actions/types'
 import { createReducer } from '@reduxjs/toolkit'
 import * as actions from '../actions'
-import _ from 'lodash'
 
 export const initialState: AuthState = {
   authenticated: false,

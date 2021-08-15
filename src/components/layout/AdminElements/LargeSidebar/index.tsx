@@ -14,9 +14,7 @@ import { memberType } from '@store/auth/selectors'
 import { useSelector } from 'react-redux'
 import { USER_TYPE } from '@constants/user.constants'
 
-interface AdminHeaderProps {}
-
-const LargeSideBar: React.FC<AdminHeaderProps> = () => {
+const LargeSideBar: React.FC = () => {
   const classes = useStyles()
   const router = useRouter()
   const userType = useSelector(memberType)

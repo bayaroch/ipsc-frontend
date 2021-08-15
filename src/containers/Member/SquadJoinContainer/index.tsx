@@ -22,13 +22,11 @@ interface SquadJoinContainerProps {
 const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
   const classes = useStyles()
   const confirm = useConfirm()
-  const [mode, setMode] = useState<boolean>(true)
+  const [mode] = useState<boolean>(true)
   const [selectedData, setSelectedData] = useState<SquadListData | undefined>(
     undefined
   )
   const { list, listMeta, join, userData } = useSquadJoin(id)
-
-  console.log(id)
 
   const renderLoader = () => {
     if (listMeta.pending && !listMeta.loaded && !listMeta.error) {
@@ -40,7 +38,8 @@ const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
     }
   }
 
-  const onExpandMembers = (members: SquadListMembers[]) => {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  const onExpandMembers = (_members: SquadListMembers[]) => {}
 
   const onSelectChange = (id: number) => {
     if (!_.isEmpty(list) && isArray(list)) {
@@ -67,8 +66,6 @@ const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
       .catch(() => {
         setSelectedData(undefined)
       })
-
-    console.log(list, id)
   }
 
   const renderList = () => {

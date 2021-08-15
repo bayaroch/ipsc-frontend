@@ -45,7 +45,7 @@ export const deleteSquads = createAsyncThunk<DeleteResponse, number>(
   SQUAD_ACTION_TYPE.DELETE_SQUAD,
   async (deleteParams, { rejectWithValue }) => {
     try {
-      const res = await squadServices.deleteSquads(deleteParams)
+      await squadServices.deleteSquads(deleteParams)
       const data = {
         data: deleteParams,
         status: 'success',

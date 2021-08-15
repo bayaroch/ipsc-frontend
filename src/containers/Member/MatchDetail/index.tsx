@@ -9,7 +9,6 @@ import {
   Paper,
   Button,
   CircularProgress,
-  ButtonGroup,
 } from '@material-ui/core/'
 import useMatchDetail from './useMatchDetail'
 import _ from 'lodash'
@@ -83,7 +82,6 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
 
   const handleUpdate = (division: number) => {
     setOpen(false)
-    console.log('im here')
     if (id && userData.class_id && isRegistered) {
       const params = {
         data: {
@@ -96,7 +94,6 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
         },
         id: isRegistered.id,
       }
-      console.log(params)
       update(params)
     }
   }

@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import { Box, CircularProgress, Typography } from '@material-ui/core'
+import React from 'react'
+import { Box, Typography } from '@material-ui/core'
 import _ from 'lodash'
 import MemberTable from './MemberTable'
 import { ParticipantSortedList } from '@store/match/selectors/helpers'
@@ -49,7 +48,5 @@ const ParticipantsTable: React.FC<MatchListProps> = (props) => {
     </>
   )
 }
-
-const useStyles = makeStyles({})
 
 export default ParticipantsTable

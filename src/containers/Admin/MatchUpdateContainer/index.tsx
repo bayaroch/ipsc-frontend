@@ -39,8 +39,6 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
     detail,
   } = useUpdateMatch(id)
 
-  console.log(id)
-
   const {
     control,
     handleSubmit,
@@ -69,7 +67,6 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
       id: id,
     }
     update(params)
-    console.log(params)
   }
 
   const renderLoader = () => {

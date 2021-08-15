@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { EffectFade, Pagination, Autoplay } from 'swiper'
@@ -29,7 +30,7 @@ const Slider: React.FC<SliderProps> = ({ images, fullSize }) => {
       scrollbar={{ draggable: true }}
       slidesPerView={1}
       onSlideChange={() => {}}
-      onSwiper={(swiper) => {}}
+      onSwiper={(_swiper) => {}}
       autoplay={{ delay: 5000 }}
     >
       {!!images &&

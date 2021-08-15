@@ -23,9 +23,7 @@ import {
 import { logOut } from '@store/auth/actions'
 import { useDispatch } from 'react-redux'
 
-interface AdminHeaderProps {}
-
-const AdminSideBar: React.FC<AdminHeaderProps> = () => {
+const AdminSideBar: React.FC = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const [userEl, setUserEl] = React.useState<null | HTMLElement>(null)
   const classes = useStyles()

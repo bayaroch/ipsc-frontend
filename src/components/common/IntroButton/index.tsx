@@ -1,7 +1,7 @@
 import React from 'react'
 import './introButton.scss'
 
-interface IntroButtonProps extends React.ComponentPropsWithoutRef<'button'> {}
+type IntroButtonProps = React.ComponentPropsWithoutRef<'button'>
 
 const IntroButton: React.FC<IntroButtonProps> = ({ children, ...rest }) => {
   return (

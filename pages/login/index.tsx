@@ -23,7 +23,7 @@ import { VerifiedUser, Lock } from '@material-ui/icons'
 import _ from 'lodash'
 import { Colors } from '@theme/colors'
 
-const LoginPage = () => {
+const LoginPage: React.FC = () => {
   const { methods, submitLogin, Controller, metadata } = useLoginForm()
   const {
     control,
@@ -41,7 +41,6 @@ const LoginPage = () => {
     if (isLoggedIn === true) {
       router.push('/admin/')
     }
-    return () => {}
   }, [isLoggedIn])
 
   const onSubmit = (data: LoginInput) => {
@@ -49,124 +48,130 @@ const LoginPage = () => {
   }
 
   return (
-    <>
-      <Box className={classes.container}>
-        <Paper className={classes.loginBox}>
-          <Grid container>
-            <Grid sm={12} item md={7}>
-              <Box className={classes.loginHeader}>
-                <Typography variant="h1">Нэвтрэх</Typography>
-              </Box>
-              <Box className={classes.loginInner}>
-                <form action="" onSubmit={handleSubmit(onSubmit)}>
-                  <Box>
-                    {isError ? (
-                      <Alert severity="warning" style={{ marginBottom: 10 }}>
-                        Нэвтэрч чадсангүй. Оруулсан мэдээллээ шалгана уу
-                      </Alert>
-                    ) : null}
-                  </Box>
-                  <Paper className={classes.root} elevation={1}>
-                    <IconButton
-                      className={classes.iconButton}
-                      aria-label="menu"
-                    >
-                      <VerifiedUser />
-                    </IconButton>
-                    <Controller
-                      name="usercode"
-                      control={control}
-                      render={({ field: { ref, ...rest } }) => (
-                        <InputBase
-                          {...rest}
-                          className={classes.input}
-                          placeholder="Гишүүнчлэлийн дугаар e.g. 077"
-                          inputProps={{ 'aria-label': 'search google maps' }}
-                          error={!!errors.usercode}
-                        />
-                      )}
-                    />
-                  </Paper>
-                  <p className={classes.helperText}>
-                    {errors.usercode
-                      ? _.get(errors.usercode, 'message', '')
-                      : ''}
-                  </p>
-                  <Paper className={classes.root} elevation={1}>
-                    <IconButton
-                      className={classes.iconButton}
-                      aria-label="menu"
-                    >
-                      <Lock />
-                    </IconButton>
-                    <Controller
-                      name="password"
-                      control={control}
-                      render={({ field: { ref, ...rest } }) => (
-                        <InputBase
-                          {...rest}
-                          inputRef={ref}
-                          placeholder={'Нууц үг'}
-                          type="password"
-                          error={!!errors.password}
-                        />
-                      )}
-                    />
-                  </Paper>
-                  <p className={classes.helperText}>
-                    {errors.password
-                      ? _.get(errors.password, 'message', '')
-                      : ''}
-                  </p>
-                  <div className="field">
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      size="large"
-                      type="submit"
-                      style={{ width: '100%', height: 48 }}
-                    >
-                      {isLoading ? (
-                        <CircularProgress
-                          style={{ height: 14, width: 14, color: Colors.white }}
-                        />
-                      ) : (
-                        <>Нэвтрэх</>
-                      )}
-                    </Button>
-                  </div>
-                </form>
-              </Box>
-              <Divider />
-              <Box className={classes.addInfo}>
-                <Typography className={classes.text}>
-                  Зөвхөн Клубын гишүүнчлэлтэй тамирчид нэвтрэх эрхтэй.
-                  Хэрэглэгчийн нэвтрэх мэдээлэллийг админтай холбогдож авна уу.
-                </Typography>
-              </Box>
-            </Grid>
-            <Hidden only={'sm'}>
-              <Grid className={classes.loginSide} item md={5}>
-                <Box className={classes.contentSide}>
-                  <Box className={classes.logoHolder}>
-                    <img src="images/logo-dvc.png" alt="dvc" />
-                  </Box>
-                  <Box className="intro-headline">
-                    <Box style={{ fontSize: 48 }}>IPSC</Box>
-                    <Box>Action Air</Box>
-                    <Box style={{ fontSize: 18 }}>Mongolia</Box>
-                  </Box>
+    <LoginLayout>
+      <>
+        <Box className={classes.container}>
+          <Paper className={classes.loginBox}>
+            <Grid container>
+              <Grid sm={12} item md={7}>
+                <Box className={classes.loginHeader}>
+                  <Typography variant="h1">Нэвтрэх</Typography>
+                </Box>
+                <Box className={classes.loginInner}>
+                  <form action="" onSubmit={handleSubmit(onSubmit)}>
+                    <Box>
+                      {isError ? (
+                        <Alert severity="warning" style={{ marginBottom: 10 }}>
+                          Нэвтэрч чадсангүй. Оруулсан мэдээллээ шалгана уу
+                        </Alert>
+                      ) : null}
+                    </Box>
+                    <Paper className={classes.root} elevation={1}>
+                      <IconButton
+                        className={classes.iconButton}
+                        aria-label="menu"
+                      >
+                        <VerifiedUser />
+                      </IconButton>
+                      <Controller
+                        name="usercode"
+                        control={control}
+                        render={({ field: { ref, ...rest } }) => (
+                          <InputBase
+                            inputRef={ref}
+                            {...rest}
+                            className={classes.input}
+                            placeholder="Гишүүнчлэлийн дугаар e.g. 077"
+                            inputProps={{ 'aria-label': 'search google maps' }}
+                            error={!!errors.usercode}
+                          />
+                        )}
+                      />
+                    </Paper>
+                    <p className={classes.helperText}>
+                      {errors.usercode
+                        ? _.get(errors.usercode, 'message', '')
+                        : ''}
+                    </p>
+                    <Paper className={classes.root} elevation={1}>
+                      <IconButton
+                        className={classes.iconButton}
+                        aria-label="menu"
+                      >
+                        <Lock />
+                      </IconButton>
+                      <Controller
+                        name="password"
+                        control={control}
+                        render={({ field: { ref, ...rest } }) => (
+                          <InputBase
+                            {...rest}
+                            inputRef={ref}
+                            placeholder={'Нууц үг'}
+                            type="password"
+                            error={!!errors.password}
+                          />
+                        )}
+                      />
+                    </Paper>
+                    <p className={classes.helperText}>
+                      {errors.password
+                        ? _.get(errors.password, 'message', '')
+                        : ''}
+                    </p>
+                    <div className="field">
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        size="large"
+                        type="submit"
+                        style={{ width: '100%', height: 48 }}
+                      >
+                        {isLoading ? (
+                          <CircularProgress
+                            style={{
+                              height: 14,
+                              width: 14,
+                              color: Colors.white,
+                            }}
+                          />
+                        ) : (
+                          <>Нэвтрэх</>
+                        )}
+                      </Button>
+                    </div>
+                  </form>
+                </Box>
+                <Divider />
+                <Box className={classes.addInfo}>
+                  <Typography className={classes.text}>
+                    Зөвхөн Клубын гишүүнчлэлтэй тамирчид нэвтрэх эрхтэй.
+                    Хэрэглэгчийн нэвтрэх мэдээлэллийг админтай холбогдож авна
+                    уу.
+                  </Typography>
                 </Box>
               </Grid>
-            </Hidden>
-          </Grid>
-        </Paper>
-      </Box>
-    </>
+              <Hidden only={'sm'}>
+                <Grid className={classes.loginSide} item md={5}>
+                  <Box className={classes.contentSide}>
+                    <Box className={classes.logoHolder}>
+                      <img src="images/logo-dvc.png" alt="dvc" />
+                    </Box>
+                    <Box className="intro-headline">
+                      <Box style={{ fontSize: 48 }}>IPSC</Box>
+                      <Box>Action Air</Box>
+                      <Box style={{ fontSize: 18 }}>Mongolia</Box>
+                    </Box>
+                  </Box>
+                </Grid>
+              </Hidden>
+            </Grid>
+          </Paper>
+        </Box>
+      </>
+    </LoginLayout>
   )
 }
-
-LoginPage.Layout = LoginLayout
 
 export default LoginPage
 

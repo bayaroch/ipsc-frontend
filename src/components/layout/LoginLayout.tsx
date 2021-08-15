@@ -1,9 +1,7 @@
 import React from 'react'
 import { Copyright } from '@components/layout/Copyright'
 
-interface LoginLayoutProps {}
-
-const LoginLayout: React.FC<LoginLayoutProps> = ({ children }) => {
+const LoginLayout: React.FC = ({ children }) => {
   return (
     <div className={'login-layout'}>
       <div className="main">
@@ -12,11 +10,6 @@ const LoginLayout: React.FC<LoginLayoutProps> = ({ children }) => {
       </div>
     </div>
   )
-}
-
-LoginLayout.defaultProps = {
-  isBanner: false,
-  darkMode: false,
 }
 
 export default LoginLayout

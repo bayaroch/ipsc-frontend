@@ -2,9 +2,7 @@ import NextDocument, { Html, Head, Main, NextScript } from 'next/document'
 import React, { ReactElement } from 'react'
 import { ServerStyleSheets } from '@material-ui/core/styles'
 
-type Props = {}
-
-class Document extends NextDocument<Props> {
+class Document extends NextDocument {
   render(): ReactElement {
     return (
       <Html>

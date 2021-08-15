@@ -1,6 +1,6 @@
 import React from 'react'
 
-interface ButtonProps extends HTMLSpanElement {
+interface ButtonProps {
   icon?: string
 }
 

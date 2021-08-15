@@ -102,12 +102,10 @@ export const squadServices = {
   },
   deleteSquads: async (id: number): Promise<DeleteResponse> => {
     const { data } = await api.delete<DeleteResponse>(`${URI.SQUADS}/${id}`)
-    console.log('at service', data)
     return data
   },
 
   joinSquads: async (params: SquadJoinParams): Promise<SquadJoinResponse> => {
-    console.log('asdasdsadsadsad', params)
     const { data } = await api.post<SquadJoinResponse>(URI.SQUADSJOIN, params)
     return data
   },

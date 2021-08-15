@@ -1,7 +1,6 @@
 import Icon from '@components/common/Icon'
-interface PreHeaderProps {}
 
-export const PreHeader: React.FC<PreHeaderProps> = () => {
+export const PreHeader: React.FC = () => {
   return (
     <div className="preheader">
       <div className="container" style={{ height: '100%' }}>

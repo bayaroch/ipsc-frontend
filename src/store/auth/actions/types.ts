@@ -26,5 +26,3 @@ export type AuthState = {
   token?: string | undefined
   category: number | undefined
 }
-
-export type UserProfile = {}

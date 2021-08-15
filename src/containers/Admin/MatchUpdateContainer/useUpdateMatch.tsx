@@ -80,7 +80,6 @@ const useUpdateMatch = (id: string) => {
           'YYYY-MM-DDTHH:mm'
         ),
       })
-      console.log(formValue)
       setDefaultValue(formValue)
     }
   }, [detail])

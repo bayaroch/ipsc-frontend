@@ -3,7 +3,6 @@ import { isAuth, memberType } from '@store/auth/selectors'
 import { useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import React, { useState, useEffect } from 'react'
-import _ from 'lodash'
 import { USER_TYPE } from '@constants/user.constants'
 
 export function withAuth(Component: any): React.FC {

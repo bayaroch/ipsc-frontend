@@ -17,7 +17,6 @@ const AdminLayout: React.FC<LayoutProps> = (props) => {
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.down('sm'))
 
-  console.log(matches)
   const setOpen = (val: boolean) => {
     letOpen(val)
   }

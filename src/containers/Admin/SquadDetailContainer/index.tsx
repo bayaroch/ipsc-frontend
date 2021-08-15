@@ -5,9 +5,6 @@ import {
   CircularProgress,
   Button,
   Typography,
-  Dialog,
-  DialogTitle,
-  List,
 } from '@material-ui/core/'
 import useSquadDetail from './useSquadDetail'
 import _, { isArray } from 'lodash'
@@ -65,7 +62,8 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
       })
   }
 
-  const onExpandMembers = (members: SquadListMembers[]) => {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  const onExpandMembers = (_members: SquadListMembers[]) => {}
 
   const onSelectChange = (id: number) => {
     if (!_.isEmpty(list) && isArray(list)) {
@@ -74,8 +72,6 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
       })
       setSelectedData(data)
     }
-
-    console.log(list, id)
   }
 
   const renderList = () => {

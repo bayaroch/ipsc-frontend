@@ -3,4 +3,5 @@ export enum SQUAD_ACTION_TYPE {
   CREATE_SQUAD = 'squad/createSquad',
   UPDATE_SQUAD = 'squad/updateSquad',
   DELETE_SQUAD = 'squad/deleteSquad',
+  JOIN_SQUAD = 'squad/joinSquad',
 }

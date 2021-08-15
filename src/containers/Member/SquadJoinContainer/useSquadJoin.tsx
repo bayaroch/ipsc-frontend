@@ -29,7 +29,6 @@ const useSquadJoin = (
   const listMeta: Meta = useSelector(getAllSquadsMeta)
   const joinMeta: Meta = useSelector(joinSquadMeta)
   const userData: UserData = useSelector(user)
-  const joinData: UserData = useSelector(user)
 
   useEffect(() => {
     if (id) {
