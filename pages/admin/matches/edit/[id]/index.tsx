@@ -8,7 +8,7 @@ const MatchEdit: PageWithLayoutType = () => {
   const router = useRouter()
   const { id } = router.query
   return (
-    <AdminLayout title={'Edit Match'}>
+    <AdminLayout>
       <ContentBox>
         <MatchUpdateContainer id={id as string} />
       </ContentBox>
