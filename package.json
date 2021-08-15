@@ -4,18 +4,15 @@
   "description": "NextJS boilerplate with TypeScript and Redux",
   "main": "index.js",
   "scripts": {
-    "test": "",
-    "test-all": "yarn lint && yarn type-check && yarn test",
-    "test:dev": "jest --watchAll",
-    "start": "next start",
-    "build": "rm -rf .next && next build",
     "dev": "next dev",
-    "export": "yarn run build && next export",
-    "prettier": "prettier  --write **/*.{ts,tsx,js}",
-    "lint:ts": "npm run prettier && tslint -c tslint.json -t stylish --fix {pages,src,server}/**/*.{ts,tsx}",
-    "lint:scss": "stylelint --fix {src,pages}/**/*.scss",
-    "lint:types": "tsc -p . --noEmit",
-    "pre-commit": "lint-staged"
+    "build": "next build",
+    "start": "next start",
+    "type-check": "tsc --pretty --noEmit",
+    "format": "prettier --write .",
+    "lint": "eslint . --ext ts --ext tsx --ext js",
+    "test": "jest -u",
+    "test-all": "yarn lint && yarn type-check && yarn test",
+    "prepare": "husky install"
   },
   "husky": {
     "hooks": {
