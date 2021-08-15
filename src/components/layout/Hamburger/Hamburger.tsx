@@ -17,7 +17,7 @@ const Hamburger: React.FC<HamburgerProps> = ({ open, setOpen }) => {
         onClick={() => setOpen(!open)}
       >
         <div className="hamburger-box">
-          <div className="hamburger-inner"/>
+          <div className="hamburger-inner" />
         </div>
       </div>
     </>
