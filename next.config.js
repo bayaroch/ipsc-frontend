@@ -26,7 +26,7 @@ const getBuildConfig = (...args) => {
 
   const nextConfig = {
     future: {
-      webpack5: true,
+      webpack5: false,
     },
   }
   return withPugins([[withSCSS, cssOptions]], nextConfig)(...args)
