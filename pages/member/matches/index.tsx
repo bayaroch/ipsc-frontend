@@ -5,7 +5,7 @@ import ContentBox from '@components/admin/ContentBox'
 
 const Matches: PageWithLayoutType = () => {
   return (
-    <AdminLayout title="Тэмцээний жагсаалт">
+    <AdminLayout>
       <ContentBox>
         <MatchMemberListContainer />
       </ContentBox>
