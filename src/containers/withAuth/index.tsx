@@ -5,7 +5,6 @@ import { useRouter } from 'next/router'
 import React, { useState, useEffect } from 'react'
 import _ from 'lodash'
 import { USER_TYPE } from '@constants/user.constants'
-import { UserData } from '@services/auth.services'
 
 export function withAuth(Component: any): React.FC {
   const AppWithAuth: React.FC<any> = (props) => {

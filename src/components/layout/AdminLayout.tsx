@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, ReactNode } from 'react'
 import AdminHeader from '@components/layout/AdminElements/AdminHeader'
 import AdminSideBar from '@components/layout/AdminElements/AdminSideBar'
 import LargeSideBar from '@components/layout/AdminElements/LargeSidebar'
 import useCommonData from '@utils/hooks/useCommonData'
-import { isMobile } from 'react-device-detect'
 import withAuth from '@containers/withAuth'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { useTheme } from '@material-ui/core/styles'
 
-interface MainLayoutProps {
+interface LayoutProps {
+  children: ReactNode
   title?: string
-  children: any
 }
 
-const MainLayout: React.FC<MainLayoutProps> = ({ children, title }) => {
+const AdminLayout: React.FC<LayoutProps> = (props) => {
   const [open, letOpen] = useState(false)
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.down('sm'))
@@ -40,11 +39,11 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, title }) => {
         <div className="page-wrapper">
           <div className="main-content">
             <AdminHeader
-              title={title ? title : ''}
+              title={props.title ? props.title : ''}
               open={open}
               setOpen={setOpen}
             />
-            {children}
+            {props.children}
           </div>
         </div>
       </div>
@@ -52,8 +51,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, title }) => {
   )
 }
 
-MainLayout.defaultProps = {
+AdminLayout.defaultProps = {
   title: 'IPSC admin',
 }
 
-export default withAuth(MainLayout)
+export default withAuth(AdminLayout)
