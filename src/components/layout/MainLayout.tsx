@@ -9,12 +9,14 @@ import useAuth from '@utils/hooks/useAuth'
 interface MainLayoutProps {
   isBanner?: boolean
   darkMode?: boolean
+  regular?: boolean
 }
 
 const MainLayout: React.FC<MainLayoutProps> = ({
   children,
   isBanner,
   darkMode,
+  regular,
 }) => {
   const [open, letOpen] = useState(false)
   const setOpen = (val: boolean) => {
@@ -30,6 +32,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
     >
       <div className="main">
         <Header
+          regular={regular ? regular : false}
           isLoggedIn={isLoggedIn}
           isBanner={isBanner ? isBanner : false}
           open={open}
@@ -47,6 +50,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
 MainLayout.defaultProps = {
   isBanner: false,
   darkMode: false,
+  regular: false,
 }
 
 export default MainLayout

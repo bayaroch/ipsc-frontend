@@ -6,7 +6,7 @@ import Intro from '@containers/Intro'
 /*
  * Homepage
  */
-const HomePage = () => {
+const HomePage: React.FC = () => {
   return (
     <MainLayout isBanner={true}>
       <Intro />

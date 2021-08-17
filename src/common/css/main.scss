@@ -72,6 +72,16 @@ body {
   font-weight: normal;
   letter-spacing: 0.015rem;
 }
+
+.header-container .navbar.is-regular {
+  top: 0;
+  position: absolute;
+}
+
+.content-wrapper p {
+  margin-bottom: 15px;
+  text-align: justify;
+}
 .wrapper {
   height: 100%;
   position: relative;
@@ -143,6 +153,7 @@ a:hover {
       text-transform: uppercase;
     }
   }
+
   .navbar-item:not(.has-dropdown) {
     padding: 0.5rem 1rem;
   }

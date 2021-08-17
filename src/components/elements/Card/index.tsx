@@ -3,21 +3,22 @@ import './card.scss'
 import ImageThumb from '@components/elements/ImageThumb'
 
 interface CardProps {
-  onClick: () => void
+  onClick?: () => void
   data: any
-  desc: any
+  desc: string
+  isDark?: boolean
 }
 
-const Card: React.FC<CardProps> = ({ data, onClick, desc }) => {
+const Card: React.FC<CardProps> = ({ data, onClick, desc, isDark }) => {
   return (
     <>
-      <div className="card dark">
+      <div className={`card ${isDark ? 'is-dark' : ''}`}>
         <div className="card-image">
           <ImageThumb
             desc={false}
             titleSize={14}
             data={data}
-            onClick={onClick}
+            onClick={() => onClick && onClick}
           />
         </div>
         <div className="card-content">
@@ -36,6 +37,8 @@ const Card: React.FC<CardProps> = ({ data, onClick, desc }) => {
   )
 }
 
-Card.defaultProps = {}
+Card.defaultProps = {
+  isDark: true,
+}
 
 export default Card

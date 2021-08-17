@@ -9,6 +9,7 @@ const Products: React.FC = () => {
       <Card
         desc={item.desc}
         data={item}
+        isDark={true}
         onClick={() => {
           Router.push(item.route)
         }}

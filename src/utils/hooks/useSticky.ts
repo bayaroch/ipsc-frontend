@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-const useSticky = (offset: number) => {
+const useSticky = (offset: number): boolean => {
   const [isSticky, setSticky] = useState(false)
   const handleScroll = () => {
     if (window.pageYOffset > offset) {

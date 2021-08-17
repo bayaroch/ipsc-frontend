@@ -11,6 +11,7 @@ interface HeaderProps {
   setOpen: (open: boolean) => void
   isBanner: boolean
   isLoggedIn: boolean
+  regular: boolean
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -18,10 +19,12 @@ export const Header: React.FC<HeaderProps> = ({
   setOpen,
   isBanner,
   isLoggedIn,
+  regular,
 }) => {
   const sticky = useSticky(30)
   const defaultClass = 'navbar header is-dark is-spacing '
-  const headerClass = sticky ? defaultClass + 'is-fixed-top' : defaultClass
+  const headerClass =
+    sticky || regular ? defaultClass + 'is-fixed-top' : defaultClass
   const router = useRouter()
   const containerClass = isBanner
     ? 'banner-page header-container'
@@ -39,7 +42,7 @@ export const Header: React.FC<HeaderProps> = ({
     <div className={containerClass}>
       <PreHeader />
       <nav
-        className={headerClass}
+        className={`${headerClass}`}
         role="navigation"
         aria-label="main navigation "
       >
@@ -75,6 +78,10 @@ export const Header: React.FC<HeaderProps> = ({
       </nav>
     </div>
   )
+}
+
+Header.defaultProps = {
+  regular: false,
 }
 
 export const LogoContainer = styled.div`

@@ -3,13 +3,13 @@ export const featured = [
     title: 'Гишүүнчлэл',
     desc: 'Дэлгэрэнгүй...',
     image: '/images/featured/image-1.jpg',
-    route: '/featured/membership',
+    route: '/membership',
   },
   {
     title: 'Сургалт',
     desc: 'Дэлгэрэнгүй...',
     image: '/images/featured/image-2.jpg',
-    route: '/featured/course',
+    route: '/course',
   },
   {
     title: 'Тэмцээн',

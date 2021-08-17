@@ -40,9 +40,13 @@ export default createMuiTheme({
       fontFamily: $titlefamily,
     },
     h3: {
-      fontSize: 16,
-      fontWeight: 600,
+      fontSize: 18,
       fontFamily: $titlefamily,
+      color: '#fff',
+      textShadow: '0px 0px 8px rgb(255 255 255 / 50%)',
+      letterSpacing: '3px',
+      fontWeight: 700,
+      textTransform: 'uppercase',
     },
     body1: {
       fontSize: 14,

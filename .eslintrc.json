@@ -2,7 +2,6 @@
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
   "extends": [
-    "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended"
     // Uncomment the following lines to enable eslint-config-prettier
@@ -31,6 +30,7 @@
     "@typescript-eslint/no-explicit-any": 0,
     "@typescript-eslint/no-var-requires": 0,
     "@typescript-eslint/no-use-before-define": 0,
+    "no-irregular-whitespace": 0,
     "@typescript-eslint/no-unused-vars": [
       2,
       {

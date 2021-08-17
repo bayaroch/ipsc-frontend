@@ -2,7 +2,11 @@ import React from 'react'
 
 interface ImageThumbProps {
   onClick: () => void
-  data: any
+  data: {
+    title?: string
+    desc?: string
+    image: string
+  }
   desc?: boolean
   titleSize?: number
 }
