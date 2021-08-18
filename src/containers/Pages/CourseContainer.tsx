@@ -7,7 +7,9 @@ const CourseContainer: React.FC = () => {
   const classes = useStyles()
 
   const rows = [...Array(Math.ceil(allproducts.length / 4))]
-  const productRows = rows.map((idx) => allproducts.slice(idx * 4, idx * 4 + 4))
+  const productRows = rows.map((_row, idx) =>
+    allproducts.slice(idx * 4, idx * 4 + 4)
+  )
   const content = productRows.map((row, idx) => (
     <div className="columns" key={idx}>
       {row.map((item, index) => (
