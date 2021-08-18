@@ -19,7 +19,7 @@ export const topmenu = [
   },
   {
     label: 'Cургалт',
-    route: '/courses',
+    route: '/course',
   },
   {
     label: 'Гишүүнчлэл',
