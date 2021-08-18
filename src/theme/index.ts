@@ -42,7 +42,7 @@ export default createMuiTheme({
     h3: {
       fontSize: 18,
       fontFamily: $titlefamily,
-      color: '#fff',
+      color: '#333',
       textShadow: '0px 0px 8px rgb(255 255 255 / 50%)',
       letterSpacing: '3px',
       fontWeight: 700,
