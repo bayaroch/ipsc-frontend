@@ -1,16 +1,20 @@
 import ContentWrapper from '@components/layout/ContentWrapper'
 import MainLayout from '@components/layout/MainLayout'
 import PageWithLayoutType from '@constants/page'
-import ClubContainer from '@containers/Pages/ClubContainer'
+import JuniorContainer from '@containers/Pages/JuniorContainer'
+import ContentHeader from '@components/elements/ContentHeader'
 
-const Club: PageWithLayoutType = () => {
+const Junior: PageWithLayoutType = () => {
   return (
     <MainLayout isBanner={true} regular={true}>
+      <ContentHeader title={'Жуниор хөтөлбөр'} />
       <ContentWrapper topSpace={true}>
-        <ClubContainer />
+        <>
+          <JuniorContainer />
+        </>
       </ContentWrapper>
     </MainLayout>
   )
 }
 
-export default Club
+export default Junior

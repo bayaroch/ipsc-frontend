@@ -1,4 +1,4 @@
-import { createMuiTheme } from '@material-ui/core/styles'
+import { createTheme } from '@material-ui/core/styles'
 import { Colors } from '@theme/colors'
 import { breakpointValues } from '@theme/variables'
 
@@ -10,7 +10,7 @@ const $titlefamily =
 
 export const userBreakpoints = breakpointValues
 
-export default createMuiTheme({
+export default createTheme({
   palette: {
     type: 'light',
     primary: {

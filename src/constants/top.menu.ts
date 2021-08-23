@@ -13,7 +13,7 @@ export const topmenu = [
       },
       {
         label: 'ACTION AIR SHOOTING CLUB',
-        route: '/club',
+        route: '/about_us',
       },
     ],
   },
