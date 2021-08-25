@@ -30,12 +30,13 @@ const SideBarMenu: React.FC<SideBarMenuProps> = ({ data, title }) => {
           {title}
         </Typography>
       ) : null}
-      <Paper>
+      <Paper className={classes.paper}>
         <List className={classes.menu}>
           {data &&
             data.map((item, i) => {
               return (
                 <ListItem
+                  selected={router.pathname === item.route ? true : false}
                   className={classes.menuItem}
                   onClick={() => item.route && router.push(item.route)}
                   key={i}
@@ -64,6 +65,10 @@ const useStyles = makeStyles(() => ({
   },
   title: {
     marginBottom: 20,
+  },
+  paper: {
+    marginBottom: 20,
+    width: '100%',
   },
 }))
 

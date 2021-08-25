@@ -10,7 +10,10 @@ const FooterMenu: React.FC = () => {
             <h6 className="has-text-white has-text-left mb-2">
               {item.sectionTitle}
             </h6>
-            <ul className="has-text-left">
+            <ul
+              style={{ listStyleType: 'none', marginLeft: 5 }}
+              className="has-text-left"
+            >
               {item.menu &&
                 item.menu.map(function (item, index) {
                   return (

@@ -1,6 +1,6 @@
 import { makeStyles, Box, Typography } from '@material-ui/core/'
 import { Colors } from '@theme/colors'
-import Card from '@components/elements/Card'
+import ProductCard from '@components/elements/ProductCard'
 import { allproducts } from '@constants/featured.course'
 
 const CourseContainer: React.FC = () => {
@@ -14,7 +14,7 @@ const CourseContainer: React.FC = () => {
     <div className="columns" key={idx}>
       {row.map((item, index) => (
         <div className="column" key={index.toString()}>
-          <Card isDark={false} desc={item.desc} data={item} />
+          <ProductCard isDark={false} desc={item.desc} data={item} />
         </div>
       ))}
     </div>

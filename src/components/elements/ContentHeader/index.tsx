@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles, Box, Typography } from '@material-ui/core/'
+import { makeStyles, Box, Typography, Theme } from '@material-ui/core/'
 import { Colors } from '@theme/colors'
 
 interface ContentBoxProps {
@@ -39,7 +39,7 @@ ContentHeader.defaultProps = {}
 
 export default ContentHeader
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: Theme) => ({
   header: {
     paddingTop: 100,
     paddingBottom: 20,
@@ -57,5 +57,10 @@ const useStyles = makeStyles(() => ({
     textTransform: 'uppercase',
     position: 'relative',
     background: Colors.primary,
+  },
+  [theme.breakpoints.down('sm')]: {
+    contentBox: {
+      textAlign: 'center',
+    },
   },
 }))

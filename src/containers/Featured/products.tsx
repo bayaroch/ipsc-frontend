@@ -1,17 +1,18 @@
 import './styles.scss'
-import Card from '@components/elements/Card'
+import ProductCard from '@components/elements/ProductCard'
 import { featuredproducts } from '@constants/featured.course'
-import Router from 'next/router'
+import { useRouter } from 'next/router'
 
 const Products: React.FC = () => {
+  const router = useRouter()
   const listItems = featuredproducts.map((item, index) => (
     <div className="column" key={index.toString()}>
-      <Card
+      <ProductCard
         desc={item.desc}
         data={item}
         isDark={true}
         onClick={() => {
-          Router.push(item.route)
+          router.push(item.route)
         }}
       />
     </div>

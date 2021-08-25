@@ -7,7 +7,7 @@ class Document extends NextDocument {
     return (
       <Html>
         <Head>
-          <link rel="shortcut icon" href="/favicon.png" key="shortcutIcon" />
+          <link rel="shortcut icon" href="/favicon.ico" key="shortcutIcon" />
           <link rel="manifest" href="/manifest.json" />
         </Head>
         <body>

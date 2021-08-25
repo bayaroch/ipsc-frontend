@@ -1,12 +1,16 @@
 import React from 'react'
 
+export type Product = {
+  title: string
+  desc: string
+  image?: string
+  route?: string
+  register?: string
+}
+
 interface ImageThumbProps {
   onClick: () => void
-  data: {
-    title?: string
-    desc?: string
-    image: string
-  }
+  data: Product
   desc?: boolean
   titleSize?: number
 }
@@ -19,7 +23,7 @@ const ImageThumb: React.FC<ImageThumbProps> = ({
 }) => {
   return (
     <div className="is-2by1 image">
-      <div className="thumb-inner" onClick={onClick}>
+      <div className="thumb-inner" onClick={() => onClick()}>
         <div className="tile-bgs" aria-hidden="true">
           <div
             className="bg-img"

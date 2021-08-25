@@ -1,5 +1,6 @@
 import IntroButton from '@components/common/IntroButton'
 import Slider from '@components/common/Slider'
+import Link from 'next/link'
 
 const banners = [
   { url: '/images/intro/slide1.jpg' },
@@ -7,8 +8,6 @@ const banners = [
 ]
 
 const Intro: React.FC = () => {
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const onIntroClick = () => {}
   return (
     <>
       <div className="intro-section">
@@ -25,7 +24,9 @@ const Intro: React.FC = () => {
                 IPSC Action Air <br />
                 практик буудлагын спорт
               </div>
-              <IntroButton onClick={onIntroClick}>Дэлгэрэнгүй</IntroButton>
+              <Link href="/about_aasc">
+                <IntroButton>Дэлгэрэнгүй</IntroButton>
+              </Link>
             </div>
           </div>
         </div>
