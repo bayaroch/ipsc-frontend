@@ -15,11 +15,11 @@ const ClubContainer: React.FC = () => {
               variant="h1"
               component="h1"
             >
-              IPSC Action Air
+              IPSC Экшн Эйр
             </Typography>
             <Typography className="intro-headline" variant="h3" component="h3">
-              Практик буудлагын спортын
-              <br /> эйкшн эйр төрөл
+              ПРАКТИК БУУДЛАГЫН СПОРТЫН <br />
+              ХИЙН ГАР БУУНЫ ТӨРӨЛ
             </Typography>
           </Box>
         </Grid>

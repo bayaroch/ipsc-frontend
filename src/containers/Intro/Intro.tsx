@@ -18,7 +18,7 @@ const Intro: React.FC = () => {
           <div className="intro-container container">
             <div className="intro-content">
               <div className="dvc-logo">
-                <img src="/images/logo-dvc.svg" />
+                <img src="/images/logo-dvc.png" />
               </div>
               <div className="intro-headline">
                 IPSC Action Air <br />
