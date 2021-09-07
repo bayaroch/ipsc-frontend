@@ -81,6 +81,7 @@ body {
 .content-wrapper p {
   margin-bottom: 15px;
   text-align: justify;
+  max-width: 100%;
 }
 .wrapper {
   height: 100%;
@@ -447,6 +448,19 @@ a:hover {
       font-weight: 400;
     }
   }
+}
+
+.content blockquote {
+  background-color: whitesmoke;
+  border-left: 5px solid #dbdbdb;
+  padding: 1em;
+}
+.content blockquote p {
+  margin: 0;
+}
+.content ul {
+  margin: 0;
+  padding: 0;
 }
 
 @media (max-width: 1024px) {

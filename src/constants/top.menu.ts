@@ -18,6 +18,10 @@ export const topmenu = [
     ],
   },
   {
+    label: 'Cпортын дүрэм',
+    route: '/rules',
+  },
+  {
     label: 'Cургалт',
     route: '/course',
   },
