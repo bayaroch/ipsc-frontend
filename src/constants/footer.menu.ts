@@ -3,7 +3,7 @@ import { allproducts } from './featured.course'
 
 export const footermenu = [
   {
-    sectionTitle: 'Action Air Shooting Club',
+    sectionTitle: 'Спортын дүрэм',
     menu: rulescontent,
   },
   {
