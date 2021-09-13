@@ -39,7 +39,7 @@ export const useRect = (ref: React.RefObject<any>): RectResult => {
         }
 
         resizeObserver.disconnect()
-        resizeObserver = null
+        resizeObserver = null as any
       }
     } else {
       // Browser support, remove freely
