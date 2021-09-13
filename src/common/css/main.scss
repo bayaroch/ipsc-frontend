@@ -206,7 +206,8 @@ a:hover {
     padding-top: 1px;
     padding-bottom: 1px;
     border-radius: 0;
-    width: 200px;
+    max-width: 320px;
+    width: 'auto';
   }
 }
 
@@ -458,6 +459,15 @@ a:hover {
 .content blockquote p {
   margin: 0;
 }
+
+.list {
+  margin-left: 10px;
+  list-style: disc;
+  li {
+    margin-bottom: 10px;
+  }
+}
+
 .content ul {
   margin: 0;
   padding: 0;

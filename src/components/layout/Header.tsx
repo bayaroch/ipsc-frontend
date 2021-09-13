@@ -59,7 +59,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           <div id="navbarBasicExample" className="navbar-menu">
             <div className="navbar-start">
-              <TopMenu />
+              <TopMenu isLoggedIn={isLoggedIn} />
             </div>
             <div className="navbar-end navbar-item">
               {isLoggedIn ? (

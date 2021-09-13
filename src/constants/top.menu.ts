@@ -29,4 +29,23 @@ export const topmenu = [
     label: 'Гишүүнчлэл',
     route: '/membership',
   },
+  {
+    label: 'Бусад',
+    isMember: true,
+    is_parent: true,
+    child_menu: [
+      {
+        label: 'ЧАНСАА ТОДОРХОЙЛОХ ЖУРАМ',
+        route: '/rules-rating',
+      },
+      {
+        label: 'МПБХ-ны тэмцээн явуулах журам',
+        route: '/rules-match',
+      },
+      {
+        label: 'Спортын цол, зэрэг олгох болзол',
+        route: '/rules-rank',
+      },
+    ],
+  },
 ]
