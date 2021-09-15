@@ -125,7 +125,7 @@ const AdminSideBar: React.FC = () => {
                 <ListItemIcon className={classes.menuIcon}>
                   <Language fontSize="small" />
                 </ListItemIcon>
-                Үнвсэн вэб хуудас
+                Үндсэн веб хуудас
               </MenuItem>
             </Link>
             <MenuItem onClick={handleClose}>
@@ -158,7 +158,7 @@ const AdminSideBar: React.FC = () => {
             handleClose={handleClose}
             anchorEl={userEl}
           >
-            <span className={classes.dropDownTitle}>Хэглэгчийн цэс</span>
+            <span className={classes.dropDownTitle}>Хэрэглэгчийн цэс</span>
             <MenuItem onClick={handleClose}>
               <ListItemIcon className={classes.menuIcon}>
                 <Person fontSize="small" />

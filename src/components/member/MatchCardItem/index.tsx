@@ -99,6 +99,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     bottom: 5,
     right: 5,
+    display: 'none', // temp hidden
   },
   actions: {
     justifyContent: 'space-between',
