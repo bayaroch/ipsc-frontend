@@ -11,4 +11,5 @@ export const URI = {
   CLASS: API_ROOT + 'classifications',
   SQUADS: API_ROOT + 'squads',
   SQUADSJOIN: API_ROOT + 'squad_members',
+  ACCOUNT: API_ROOT + 'users',
 }

@@ -3,7 +3,7 @@ import PageWithLayoutType from '@constants/page'
 import MemberListContainer from '@containers/Admin/MemberListContainer'
 import ContentBox from '@components/admin/ContentBox'
 
-const Matches: PageWithLayoutType = () => {
+const Members: PageWithLayoutType = () => {
   return (
     <AdminLayout>
       <ContentBox>
@@ -13,4 +13,4 @@ const Matches: PageWithLayoutType = () => {
   )
 }
 
-export default Matches
+export default Members

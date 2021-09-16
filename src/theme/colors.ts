@@ -23,6 +23,7 @@ export const Colors = {
   },
   yellow: '#F7F560',
   green: '#2CEBB0',
+  darkgreen: '#2E7D32',
   red: '#f44336',
   avatar: [
     '#8E47FF',

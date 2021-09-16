@@ -12,32 +12,47 @@ import {
   FormControl,
   CircularProgress,
   Typography,
+  Paper,
+  withStyles,
+  Theme,
+  createStyles,
 } from '@material-ui/core'
 import Pagination from '@material-ui/lab/Pagination'
-import { MatchPaginationMeta, MatchPageMeta } from '@services/match.services'
-import { MatchItem } from '@store/match/actions/types'
+import {
+  MemberPaginationMeta,
+  MemberPageMeta,
+  MemberItem,
+} from '@services/account.services'
 import _ from 'lodash'
-import EditIcon from '@material-ui/icons/Edit'
-import { MATCH_STATUS_TEXT } from '@constants/common.constants'
+import { CheckCircle, Schedule } from '@material-ui/icons'
 import { Meta } from '@store/metadata/actions/types'
 import moment from 'moment'
-import Link from 'next/link'
 import { Colors } from '@theme/colors'
-import AssignmentIndIcon from '@material-ui/icons/AssignmentInd'
+import { GENDER } from '@constants/user.constants'
 
 export interface MatchListProps {
-  getList: (params: MatchPageMeta) => void
-  list: MatchItem[]
-  pagination: MatchPaginationMeta
+  getList: (params: MemberPageMeta) => void
+  list: MemberItem[]
+  pagination: MemberPaginationMeta
   onEditClick: (id: number) => void
-  onEditSquad: (id: number) => void
+  onEditMember?: (id: number) => void
   meta: Meta
 }
 
-const defaultPerPage = 10
+const StyledTableRow = withStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      '&:nth-of-type(odd)': {
+        backgroundColor: theme.palette.action.hover,
+      },
+    },
+  })
+)(TableRow)
 
-const MatchList: React.FC<MatchListProps> = (props) => {
-  const { getList, list, pagination, onEditClick, meta, onEditSquad } = props
+const defaultPerPage = 20
+
+const MemberList: React.FC<MatchListProps> = (props) => {
+  const { getList, list, pagination, meta } = props
   const classes = useStyles()
   const [page, setPage] = useState<number>(1)
   const [rowsPerPage, setRowsPerPage] = useState<number>(defaultPerPage)
@@ -93,58 +108,50 @@ const MatchList: React.FC<MatchListProps> = (props) => {
   const renderList = () => {
     if (!_.isEmpty(list)) {
       return (
-        <TableContainer>
+        <TableContainer component={Paper}>
           <Table className={classes.table} aria-label="custom pagination table">
             <TableHead>
               <TableRow>
-                <TableCell>Нэр</TableCell>
-                <TableCell align="right">Эхлэх өдөр</TableCell>
-                <TableCell align="right">Түвшин</TableCell>
-                <TableCell align="right">Tax</TableCell>
+                <TableCell>#</TableCell>
+                <TableCell align="right">Овог Нэр</TableCell>
+                <TableCell align="right">И-мэйл</TableCell>
+                <TableCell align="right">Төрсөн өдөр</TableCell>
+                <TableCell align="right">Хүйс</TableCell>
                 <TableCell align="right">Төлөв</TableCell>
-                <TableCell align="right"></TableCell>
-                <TableCell align="right"></TableCell>
+                <TableCell align="right">Class</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {list.map((row) => (
-                <TableRow key={row.id}>
-                  <TableCell scope="row">
-                    <Link passHref href={`/member/matches/${row.id}`}>
-                      <a className={classes.link}>
-                        <Typography variant="h2">{row.name}</Typography>
-                      </a>
-                    </Link>
+                <StyledTableRow key={row.id}>
+                  <TableCell style={{ width: 60 }}>
+                    <Typography variant="h2">{row.usercode}</Typography>
                   </TableCell>
-                  <TableCell style={{ width: 200 }} align="right">
-                    {moment(row.match_start).format('YYYY-MM-DD HH:mm:ss')}
+                  <TableCell scope="row" align="right">
+                    {_.get(row, 'lastname', '')} {_.get(row, 'firstname', '')}
                   </TableCell>
-                  <TableCell style={{ width: 100 }} align="right">
-                    {row.lvl}
+                  <TableCell style={{ maxWidth: 100 }} align="right">
+                    <Typography component="p" noWrap>
+                      {row.email}
+                    </Typography>
                   </TableCell>
                   <TableCell style={{ width: 160 }} align="right">
-                    {row.tax}
+                    {moment(row.birthday).format('YYYY-MM-DD')}
                   </TableCell>
                   <TableCell style={{ width: 160 }} align="right">
-                    {
-                      _.filter(MATCH_STATUS_TEXT, function (o) {
-                        return o.id === row.status
-                      })[0].value
-                    }
+                    {row.gender === GENDER.MALE ? 'эр' : 'эм'}
                   </TableCell>
                   <TableCell style={{ width: 60 }} align="right">
-                    <AssignmentIndIcon
-                      className={classes.editBtn}
-                      onClick={() => onEditSquad(row.id)}
-                    />
+                    {row.enabled ? (
+                      <CheckCircle className={classes.active} />
+                    ) : (
+                      <Schedule />
+                    )}
                   </TableCell>
                   <TableCell style={{ width: 60 }} align="right">
-                    <EditIcon
-                      onClick={() => onEditClick(row.id)}
-                      className={classes.editBtn}
-                    />
+                    {row.class_id}
                   </TableCell>
-                </TableRow>
+                </StyledTableRow>
               ))}
 
               {emptyRows > 0 && (
@@ -190,6 +197,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
 }
 
 const useStyles = makeStyles({
+  active: { color: Colors.green },
   link: {
     color: Colors.grey[100],
     '&:hover': {
@@ -227,4 +235,4 @@ const useStyles = makeStyles({
   },
 })
 
-export default MatchList
+export default MemberList

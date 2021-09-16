@@ -1,4 +1,4 @@
-import { List, Add } from '@material-ui/icons'
+import { List, Add, People } from '@material-ui/icons'
 
 export const ADMIN_MENU_LARGE = [
   {
@@ -12,6 +12,12 @@ export const ADMIN_MENU_LARGE = [
     route: '/admin/matches/create',
     name: 'Тэмцээн үүсгэх',
     icon: Add,
+  },
+  {
+    id: 3,
+    route: '/admin/members',
+    name: 'Гишүүд',
+    icon: People,
   },
 ]
 
