@@ -9,11 +9,14 @@ import useSquadJoin from './useSquadJoin'
 import _, { isArray } from 'lodash'
 import SquadList from '@components/admin/SquadList'
 import {
+  SquadChangeParams,
   SquadJoinParams,
   SquadListData,
   SquadListMembers,
 } from '@services/squad.services'
 import { useConfirm } from 'material-ui-confirm'
+import SquadMemberList from '@components/member/SquadMemberList'
+import { SquadHelper } from '@store/squads/reducers/helpers'
 
 interface SquadJoinContainerProps {
   id: string
@@ -23,10 +26,11 @@ const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
   const classes = useStyles()
   const confirm = useConfirm()
   const [mode] = useState<boolean>(true)
+  const [memberList, setMemberList] = useState<null | SquadListMembers[]>(null)
   const [selectedData, setSelectedData] = useState<SquadListData | undefined>(
     undefined
   )
-  const { list, listMeta, join, userData } = useSquadJoin(id)
+  const { list, listMeta, join, userData, match, change } = useSquadJoin(id)
 
   const renderLoader = () => {
     if (listMeta.pending && !listMeta.loaded && !listMeta.error) {
@@ -39,7 +43,11 @@ const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const onExpandMembers = (_members: SquadListMembers[]) => {}
+  const onExpandMembers = (members: SquadListMembers[]) => {
+    !_.isEmpty(members) && setMemberList(members)
+  }
+
+  const existSquad = SquadHelper.isExist(list, userData.id)
 
   const onSelectChange = (id: number) => {
     if (!_.isEmpty(list) && isArray(list)) {
@@ -48,24 +56,45 @@ const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
       })
       setSelectedData(data)
     }
-    confirm({
-      title: 'Ээлж сонголт',
-      confirmationText: 'Тийм',
-      cancellationText: 'Үгүй',
-    })
-      .then(() => {
-        const params: SquadJoinParams = {
-          squad_id: id,
-          user_id: userData.id,
-          is_rm: false,
-          is_ro: false,
-          notify_squad_id: null,
-        }
-        join(params)
+    const existInThis = SquadHelper.isExistInThis(list, userData.id, id)
+
+    if (!existInThis) {
+      confirm({
+        title: 'Ээлж сонголт',
+        description: existSquad
+          ? 'Та ээлжээ өөрчлөх гэж байна.'
+          : 'Та шинээр ээлж сонгож байна',
+        confirmationText: 'Тийм',
+        cancellationText: 'Үгүй',
       })
-      .catch(() => {
-        setSelectedData(undefined)
-      })
+        .then(() => {
+          if (existSquad) {
+            const params: SquadChangeParams = {
+              data: {
+                squad_id: id,
+                user_id: userData.id,
+                is_rm: false,
+                is_ro: false,
+                notify_squad_id: null,
+              },
+              id: existSquad,
+            }
+            change(params)
+          } else {
+            const params: SquadJoinParams = {
+              squad_id: id,
+              user_id: userData.id,
+              is_rm: false,
+              is_ro: false,
+              notify_squad_id: null,
+            }
+            join(params)
+          }
+        })
+        .catch(() => {
+          setSelectedData(undefined)
+        })
+    }
   }
 
   const renderList = () => {
@@ -83,7 +112,9 @@ const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
             justifyContent="space-between"
             alignItems="center"
           >
-            <Typography variant="h3">Match Title</Typography>
+            <Typography variant="h3" className={classes.title}>
+              {_.get(match, 'name', '')}
+            </Typography>
           </Box>
           <SquadList
             isEdit={mode}
@@ -115,6 +146,11 @@ const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
       {renderLoader()}
       {renderList()}
       {renderPlaceholder()}
+      <SquadMemberList
+        handleClose={() => setMemberList(null)}
+        members={memberList !== null ? memberList : []}
+        open={!_.isEmpty(memberList)}
+      />
     </Box>
   )
 }
@@ -131,9 +167,12 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'space-between',
   },
   section: {
-    marginBottom: 20,
+    marginBottom: 24,
   },
   loader: {},
+  title: {
+    paddingLeft: 20,
+  },
   loaderBox: {
     background: 'rgba(255,255,255,0.8)',
     position: 'absolute',

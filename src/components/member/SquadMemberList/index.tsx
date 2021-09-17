@@ -60,7 +60,7 @@ const SquadMemberList: React.FC<PickerProps> = (props) => {
           members.map((item, i) => {
             return (
               <Box key={i}>
-                <ListItem button>
+                <ListItem>
                   <ListItemText
                     primary={_.defaultTo(item.user.firstname, '')}
                     secondary={_.defaultTo(item.user.usercode, '')}

@@ -6,6 +6,7 @@ import {
   SquadJoinData,
 } from '@services/squad.services'
 import _ from 'lodash'
+import { SquadHelper } from './helpers'
 
 export type MatchState = {
   squadList: SquadListData[] | undefined
@@ -13,6 +14,7 @@ export type MatchState = {
   updateSquad: SquadResponseData | undefined
   deleteStatus: string | undefined
   joinSquad: SquadJoinData | undefined
+  changeSquad: SquadJoinData | undefined
 }
 
 const initialState: MatchState = {
@@ -21,6 +23,7 @@ const initialState: MatchState = {
   updateSquad: undefined,
   deleteStatus: undefined,
   joinSquad: undefined,
+  changeSquad: undefined,
 }
 
 export default createReducer(initialState, (builder) => {
@@ -46,5 +49,16 @@ export default createReducer(initialState, (builder) => {
   })
   builder.addCase(actions.squadJoin.fulfilled, (state, action) => {
     state.joinSquad = action.payload.data
+    state.squadList = SquadHelper.joinMember(
+      state.squadList ? _.cloneDeep(state.squadList) : [],
+      action.payload.data
+    )
+  })
+  builder.addCase(actions.squadChange.fulfilled, (state, action) => {
+    state.joinSquad = action.payload.data
+    state.squadList = SquadHelper.changeMember(
+      state.squadList ? _.cloneDeep(state.squadList) : [],
+      action.payload.data
+    )
   })
 })

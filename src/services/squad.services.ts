@@ -67,13 +67,18 @@ export type SquadUpdateParams = {
   id: number
 }
 
+export type SquadChangeParams = {
+  data: SquadJoinParams
+  id: number
+}
+
 export type DeleteResponse = {
   status: string
   data: number
 }
 
 export type SquadJoinResponse = {
-  data: SquadJoinData
+  data: SquadListMembers
   status: string
   version: string
 }
@@ -118,6 +123,15 @@ export const squadServices = {
 
   joinSquads: async (params: SquadJoinParams): Promise<SquadJoinResponse> => {
     const { data } = await api.post<SquadJoinResponse>(URI.SQUADSJOIN, params)
+    return data
+  },
+  changeSquads: async (
+    params: SquadChangeParams
+  ): Promise<SquadJoinResponse> => {
+    const { data } = await api.patch<SquadJoinResponse>(
+      `${URI.SQUADSJOIN}/${params.id}`,
+      params.data
+    )
     return data
   },
 }

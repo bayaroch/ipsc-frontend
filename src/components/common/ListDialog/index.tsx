@@ -48,7 +48,7 @@ const ListDialog = (props: SimpleDialogProps) => {
                 <PersonIcon />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary={item.name} />
+            <ListItemText primary={item.user.firstname} />
           </ListItem>
         ))}
       </List>
