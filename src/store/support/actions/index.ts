@@ -1,6 +1,7 @@
-import { createAsyncThunk } from '@reduxjs/toolkit'
+import { createAsyncThunk, createAction } from '@reduxjs/toolkit'
 import { SUPPORT_ACTION_TYPE } from './types'
 import { SupportResponse, supportServices } from '@services/support.services'
+import { Color } from '@material-ui/lab/Alert'
 
 export const getBadges = createAsyncThunk<SupportResponse>(
   SUPPORT_ACTION_TYPE.GET_BADGES,
@@ -46,3 +47,12 @@ export const getClass = createAsyncThunk<SupportResponse>(
     }
   }
 )
+
+export type toastParams = {
+  message: string
+  severity?: Color
+}
+
+export const addToast = createAction<toastParams>('toast/addToast')
+export const removeToast = createAction<string>('toast/removeToast')
+export const cleanToasts = createAction('toast/cleanToasts')

@@ -15,6 +15,7 @@ import 'swiper/swiper.scss'
 import 'swiper/components/pagination/pagination.scss'
 import moment from 'moment'
 import { ConfirmProvider } from 'material-ui-confirm'
+import SnackBar from '@containers/Providers/SnackBar'
 
 /**
  * withRedux HOC
@@ -45,6 +46,7 @@ const CustomApp = ({ Component, pageProps }: Props) => {
     <PersistGate persistor={persistStore(store)} loading={<div>Loading</div>}>
       <MuiThemeProvider theme={theme}>
         <ThemeStyled theme={themeSass}>
+          <SnackBar />
           <ConfirmProvider>
             <Layout>
               <Component {...pageProps} />
