@@ -136,7 +136,7 @@ const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
       listMeta.loaded &&
       !listMeta.error
     ) {
-      return <Box>Empty</Box>
+      return <Box>Энэ тэмцээн дээр ээлж үүсээгүй байна</Box>
     }
     return null
   }
