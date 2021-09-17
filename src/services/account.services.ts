@@ -1,6 +1,6 @@
 import api from './api'
 import { URI } from '@constants/uri.constants'
-import { GENDER } from '@constants/user.constants'
+import { GENDER, USER_TYPE } from '@constants/user.constants'
 
 export type MemberPageMeta = {
   page: number
@@ -39,6 +39,25 @@ export type GetMemberResponse = {
   meta: MetaPagination
 }
 
+export type UserCreateParams = {
+  usercode: string
+  password: string
+  firstname: string
+  lastname: string
+  email: string
+  birthday?: string
+  usertype?: USER_TYPE
+  gender: GENDER
+  enabled: number
+  class_id: number
+}
+
+export type UserCreateResponse = {
+  data: MemberItem
+  status: string
+  version: string
+}
+
 export const accountServices = {
   allMembers: async (meta: MemberPageMeta): Promise<GetMemberResponse> => {
     const { data } = await api.get<GetMemberResponse>(
@@ -46,4 +65,17 @@ export const accountServices = {
     )
     return data
   },
+  createUser: async (params: UserCreateParams): Promise<UserCreateResponse> => {
+    const { data } = await api.post<UserCreateResponse>(URI.MATCH, params)
+    return data
+  },
+  // updateMatch: async (
+  //   params: UserUpdateParams
+  // ): Promise<UserUpdateResponse> => {
+  //   const { data } = await api.patch<UserUpdateResponse>(
+  //     `${URI.MATCH}/${params.id}`,
+  //     params.data
+  //   )
+  //   return data
+  // },
 }
