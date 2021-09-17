@@ -19,12 +19,23 @@ export type SquadListData = {
 
 export type SquadListMembers = {
   id: number
-  squad_id: number
-  user_id: number
   is_rm: boolean
   is_ro: boolean
-  name?: string
-  notify_squad_id?: null | number
+  notify_squad_id: null | number
+  squad_id: number
+  user: {
+    birthday: string
+    class_id: number
+    email: string
+    enabled: boolean
+    firstname: string
+    gender: number
+    id: number
+    lastname: string
+    mo_badge: null | string
+    usercode: string
+  }
+  user_id: number
 }
 
 export type SquadCreateParams = {

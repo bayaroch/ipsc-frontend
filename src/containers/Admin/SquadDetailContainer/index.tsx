@@ -14,6 +14,7 @@ import { useConfirm } from 'material-ui-confirm'
 import SquadCreate from '@components/admin/SquadCreate'
 import { SquadCreateInputType } from '@components/admin/SquadCreate/useSquadCreate'
 import { Edit, Close } from '@material-ui/icons'
+import SquadMemberList from '@components/member/SquadMemberList'
 
 interface SquadDetailContainerProps {
   id: string
@@ -23,6 +24,7 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
   const classes = useStyles()
   const confirm = useConfirm()
   const [mode, setMode] = useState<boolean>(false)
+  const [memberList, setMemberList] = useState<null | SquadListMembers[]>(null)
   const [selectedData, setSelectedData] = useState<SquadListData | undefined>(
     undefined
   )
@@ -63,7 +65,9 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const onExpandMembers = (_members: SquadListMembers[]) => {}
+  const onExpandMembers = (members: SquadListMembers[]) => {
+    !_.isEmpty(members) && setMemberList(members)
+  }
 
   const onSelectChange = (id: number) => {
     if (!_.isEmpty(list) && isArray(list)) {
@@ -161,6 +165,11 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
       {renderList()}
       {renderPlaceholder()}
       {renderSquadCreate()}
+      <SquadMemberList
+        handleClose={() => setMemberList(null)}
+        members={memberList !== null ? memberList : []}
+        open={!_.isEmpty(memberList)}
+      />
     </Box>
   )
 }
