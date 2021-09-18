@@ -56,7 +56,14 @@ const MatchListContainer: React.FC = () => {
   }
 
   const onSubmitUpdate = (data: UserCreateParams) => {
-    if (updateOpen && updateOpen.data && !_.isEqual(updateOpen.data, data))
+    if (
+      updateOpen &&
+      updateOpen.data &&
+      !_.isEqual(
+        _.omit(updateOpen.data, ['id', 'birthday']),
+        _.omit(data, 'birthday')
+      )
+    )
       if (_.isEmpty(data.password)) {
         confirm({
           title: 'Мэдээлэл шинэчлэх үү',
@@ -90,6 +97,7 @@ const MatchListContainer: React.FC = () => {
           })
           .catch(() => null)
       }
+    setUpdate(null)
   }
 
   return (
