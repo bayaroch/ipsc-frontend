@@ -75,6 +75,7 @@ const MatchCreateContainer: React.FC = () => {
               <CustomInput
                 {...rest}
                 inputRef={ref}
+                inputProps={{ max: '9999-12-31T23:59' }}
                 required={true}
                 labelPrimary="Match Name"
                 placeholder={'Тэмцээны нэр'}
@@ -99,6 +100,7 @@ const MatchCreateContainer: React.FC = () => {
                     inputRef={ref}
                     required={true}
                     labelPrimary="Match Start"
+                    inputProps={{ max: '9999-12-31T23:59' }}
                     fullWidth={true}
                     type="datetime-local"
                     placeholder={'Эхлэх огноо'}
@@ -123,6 +125,7 @@ const MatchCreateContainer: React.FC = () => {
                     required={true}
                     fullWidth={true}
                     labelPrimary="Match End"
+                    inputProps={{ max: '9999-12-31T23:59' }}
                     type="datetime-local"
                     placeholder={'Дуусах огноо'}
                     error={!!errors.match_end}
@@ -148,6 +151,7 @@ const MatchCreateContainer: React.FC = () => {
                   <CustomInput
                     {...rest}
                     inputRef={ref}
+                    inputProps={{ max: '9999-12-31T23:59' }}
                     fullWidth={true}
                     required={true}
                     labelPrimary="Registration Start"
@@ -174,6 +178,7 @@ const MatchCreateContainer: React.FC = () => {
                     inputRef={ref}
                     required={true}
                     labelPrimary="Registration End"
+                    inputProps={{ max: '9999-12-31T23:59' }}
                     type="datetime-local"
                     placeholder={'Бүртгэл хаагдах огноо'}
                     error={!!errors.registration_end}
