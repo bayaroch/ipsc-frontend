@@ -75,7 +75,6 @@ const MatchCreateContainer: React.FC = () => {
               <CustomInput
                 {...rest}
                 inputRef={ref}
-                inputProps={{ max: '9999-12-31T23:59' }}
                 required={true}
                 labelPrimary="Match Name"
                 placeholder={'Тэмцээны нэр'}

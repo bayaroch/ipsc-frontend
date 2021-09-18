@@ -4,6 +4,7 @@ import {
   GetMemberResponse,
   UserCreateResponse,
   UserCreateParams,
+  UserUpdateParams,
 } from '@services/account.services'
 import { createAsyncThunk, createAction } from '@reduxjs/toolkit'
 import { ACCOUNT_ACTION_TYPE, CLEAR_MEMBER_DATA } from './types'
@@ -29,6 +30,21 @@ export const createUser = createAsyncThunk<
 >(ACCOUNT_ACTION_TYPE.CREATE_USER, async (params, { rejectWithValue }) => {
   try {
     const res = await accountServices.createUser(params)
+    return res
+  } catch (error) {
+    if (!error) {
+      throw error
+    }
+    return rejectWithValue(error)
+  }
+})
+
+export const updateUser = createAsyncThunk<
+  UserCreateResponse,
+  UserUpdateParams
+>(ACCOUNT_ACTION_TYPE.UPDATE_USER, async (params, { rejectWithValue }) => {
+  try {
+    const res = await accountServices.updateUser(params)
     return res
   } catch (error) {
     if (!error) {

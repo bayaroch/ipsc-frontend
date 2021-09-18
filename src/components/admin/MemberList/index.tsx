@@ -15,6 +15,7 @@ import {
   Paper,
   withStyles,
   Theme,
+  IconButton,
   createStyles,
 } from '@material-ui/core'
 import Pagination from '@material-ui/lab/Pagination'
@@ -24,19 +25,21 @@ import {
   MemberItem,
 } from '@services/account.services'
 import _ from 'lodash'
-import { CheckCircle, Schedule } from '@material-ui/icons'
+import { CheckCircle, EditOutlined, Schedule } from '@material-ui/icons'
 import { Meta } from '@store/metadata/actions/types'
 import moment from 'moment'
 import { Colors } from '@theme/colors'
 import { GENDER } from '@constants/user.constants'
+import { helper } from '@utils/helpers/common.helper'
+import { SupportItem } from '@services/support.services'
 
 export interface MatchListProps {
   getList: (params: MemberPageMeta) => void
   list: MemberItem[]
   pagination: MemberPaginationMeta
-  onEditClick: (id: number) => void
-  onEditMember?: (id: number) => void
+  onEditMember?: (data: MemberItem) => void
   meta: Meta
+  classData: SupportItem[]
 }
 
 const StyledTableRow = withStyles((theme: Theme) =>
@@ -52,12 +55,11 @@ const StyledTableRow = withStyles((theme: Theme) =>
 const defaultPerPage = 20
 
 const MemberList: React.FC<MatchListProps> = (props) => {
-  const { getList, list, pagination, meta } = props
+  const { getList, list, pagination, meta, classData, onEditMember } = props
   const classes = useStyles()
   const [page, setPage] = useState<number>(1)
   const [rowsPerPage, setRowsPerPage] = useState<number>(defaultPerPage)
   const [selectRow, setSelectRow] = useState<string>(defaultPerPage.toString())
-
   useEffect(() => {
     getList({ page: page, per_page: rowsPerPage })
   }, [])
@@ -118,7 +120,8 @@ const MemberList: React.FC<MatchListProps> = (props) => {
                 <TableCell align="right">Төрсөн өдөр</TableCell>
                 <TableCell align="right">Хүйс</TableCell>
                 <TableCell align="right">Төлөв</TableCell>
-                <TableCell align="right">Class</TableCell>
+                <TableCell align="right">Класс</TableCell>
+                <TableCell align="right"></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -138,18 +141,30 @@ const MemberList: React.FC<MatchListProps> = (props) => {
                   <TableCell style={{ width: 160 }} align="right">
                     {moment(row.birthday).format('YYYY-MM-DD')}
                   </TableCell>
-                  <TableCell style={{ width: 160 }} align="right">
+                  <TableCell style={{ width: 50 }} align="right">
                     {row.gender === GENDER.MALE ? 'эр' : 'эм'}
                   </TableCell>
-                  <TableCell style={{ width: 60 }} align="right">
+                  <TableCell style={{ width: 50 }} align="right">
                     {row.enabled ? (
                       <CheckCircle className={classes.active} />
                     ) : (
                       <Schedule />
                     )}
                   </TableCell>
-                  <TableCell style={{ width: 60 }} align="right">
-                    {row.class_id}
+                  <TableCell style={{ width: 140 }} align="right">
+                    {_.get(
+                      helper.classTitleHelper(row.class_id, classData),
+                      'name',
+                      ''
+                    )}
+                  </TableCell>
+                  <TableCell style={{ width: 50 }} align="right">
+                    <IconButton
+                      onClick={() => onEditMember && onEditMember(row)}
+                      size="small"
+                    >
+                      <EditOutlined />
+                    </IconButton>
                   </TableCell>
                 </StyledTableRow>
               ))}

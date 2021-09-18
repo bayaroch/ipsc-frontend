@@ -21,4 +21,9 @@ export default createReducer(initialState, (builder) => {
   builder.addCase(actions.createUser.fulfilled, (state, action) => {
     state.memberList = _.unionBy(state.memberList, [action.payload.data], 'id')
   })
+  builder.addCase(actions.updateUser.fulfilled, (state, action) => {
+    state.memberList = _.map(_.cloneDeep(state.memberList), (m) => {
+      return m.id === action.payload.data.id ? action.payload.data : m
+    })
+  })
 })

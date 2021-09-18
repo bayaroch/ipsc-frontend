@@ -19,6 +19,17 @@ export enum GENDER {
   MALE = 0,
 }
 
+export const GENDER_DATA = [
+  {
+    id: GENDER.FEMALE,
+    value: 'Эр',
+  },
+  {
+    id: GENDER.MALE,
+    value: 'Эм',
+  },
+]
+
 export enum CATEGORY {
   UNCATEGORIZED = 1,
   SUPER_JUNIOR = 2,

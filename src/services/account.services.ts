@@ -41,14 +41,14 @@ export type GetMemberResponse = {
 
 export type UserCreateParams = {
   usercode: string
-  password: string
+  password?: string
   firstname: string
   lastname: string
   email: string
   birthday?: string
   usertype?: USER_TYPE
   gender: GENDER
-  enabled: number
+  enabled: boolean | number
   class_id: number
 }
 
@@ -56,6 +56,22 @@ export type UserCreateResponse = {
   data: MemberItem
   status: string
   version: string
+}
+
+export type UserUpdateParams = {
+  id: number
+  data: {
+    usercode: string
+    password?: string
+    firstname: string
+    lastname: string
+    email: string
+    birthday?: string
+    usertype?: USER_TYPE
+    gender: GENDER
+    enabled: boolean | number
+    class_id: number
+  }
 }
 
 export const accountServices = {
@@ -66,16 +82,14 @@ export const accountServices = {
     return data
   },
   createUser: async (params: UserCreateParams): Promise<UserCreateResponse> => {
-    const { data } = await api.post<UserCreateResponse>(URI.MATCH, params)
+    const { data } = await api.post<UserCreateResponse>(URI.ACCOUNT, params)
     return data
   },
-  // updateMatch: async (
-  //   params: UserUpdateParams
-  // ): Promise<UserUpdateResponse> => {
-  //   const { data } = await api.patch<UserUpdateResponse>(
-  //     `${URI.MATCH}/${params.id}`,
-  //     params.data
-  //   )
-  //   return data
-  // },
+  updateUser: async (params: UserUpdateParams): Promise<UserCreateResponse> => {
+    const { data } = await api.patch<UserCreateResponse>(
+      `${URI.ACCOUNT}/${params.id}`,
+      params.data
+    )
+    return data
+  },
 }

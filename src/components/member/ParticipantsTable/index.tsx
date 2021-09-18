@@ -3,6 +3,7 @@ import { Box, Typography } from '@material-ui/core'
 import _ from 'lodash'
 import MemberTable from './MemberTable'
 import { ParticipantSortedList } from '@store/match/selectors/helpers'
+import { helper } from '@utils/helpers/common.helper'
 import { SupportItem } from '@services/support.services'
 
 export interface MatchListProps {
@@ -13,11 +14,7 @@ export interface MatchListProps {
 
 const ParticipantsTable: React.FC<MatchListProps> = (props) => {
   const { data, divisions, classData } = props
-  const groupTitleHelper = (id: number | string) => {
-    const findId = Number(id)
-    const result = _.find(divisions, { id: findId })
-    return result
-  }
+
   return (
     <>
       {!_.isEmpty(data) &&
@@ -31,13 +28,18 @@ const ParticipantsTable: React.FC<MatchListProps> = (props) => {
               padding={3}
             >
               <Typography variant="h3">
-                {_.get(groupTitleHelper(row.groupTitle), 'name', '')}
+                {_.get(
+                  helper.groupTitleHelper(row.groupTitle, divisions),
+                  'name',
+                  ''
+                )}
               </Typography>
+              <details></details>
             </Box>
             <MemberTable
               data={row.data}
               groupTitle={_.get(
-                groupTitleHelper(row.groupTitle),
+                helper.groupTitleHelper(row.groupTitle, divisions),
                 'shorthand',
                 ''
               )}

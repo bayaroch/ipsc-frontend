@@ -10,8 +10,7 @@ import Paper from '@material-ui/core/Paper'
 import { ParticipantsItem } from '@services/match.services'
 import _ from 'lodash'
 import { SupportItem } from '@services/support.services'
-import { categoryCalc } from '@store/auth/selectors/helpers'
-import { CAT_DATA } from '@constants/user.constants'
+import { helper } from '@utils/helpers/common.helper'
 
 interface TableProps {
   data: ParticipantsItem[]
@@ -22,21 +21,6 @@ interface TableProps {
 const MemberTable: React.FC<TableProps> = (props) => {
   const { data, groupTitle, classData } = props
   const classes = useStyles()
-
-  const classTitleHelper = (id: number | undefined) => {
-    const findId = Number(id)
-    const result = _.find(classData, { id: findId })
-    return result
-  }
-
-  const categoryTitleHelper = (
-    birthday: string | undefined,
-    gender: number | undefined
-  ) => {
-    const catId = categoryCalc(birthday, gender)
-    const result = _.find(CAT_DATA, { id: catId })
-    return result
-  }
 
   return (
     <TableContainer component={Paper}>
@@ -61,14 +45,21 @@ const MemberTable: React.FC<TableProps> = (props) => {
               <TableCell align="right">{row.user.firstname}</TableCell>
               <TableCell align="right">{row.user.usercode}</TableCell>
               <TableCell align="right">
-                {_.get(classTitleHelper(row.user.class_id), 'shorthand', '')}
+                {_.get(
+                  helper.classTitleHelper(row.user.class_id, classData),
+                  'shorthand',
+                  ''
+                )}
               </TableCell>
               <TableCell align="right">{groupTitle && groupTitle}</TableCell>
               <TableCell align="right">MINOR</TableCell>
               <TableCell align="right">
                 {row.user.gender === 1 ? 'female' : ''}
                 {_.get(
-                  categoryTitleHelper(row.user.birthday, row.user.gender),
+                  helper.categoryTitleHelper(
+                    row.user.birthday,
+                    row.user.gender
+                  ),
                   'name',
                   ''
                 )}
