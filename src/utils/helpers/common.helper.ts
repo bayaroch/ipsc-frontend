@@ -24,6 +24,7 @@ const categoryCalc = (
   } else {
     category = CATEGORY.UNCATEGORIZED
   }
+
   return category
 }
 

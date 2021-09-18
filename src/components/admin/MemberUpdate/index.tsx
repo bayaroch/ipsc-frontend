@@ -376,7 +376,7 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
                         fullWidth={true}
                         labelPrimary="Төрсөн өдөр"
                         inputProps={{ max: '9999-12-31T23:59' }}
-                        type="datetime-local"
+                        type="date"
                         error={!!errors.birthday}
                         helperText={
                           errors.birthday

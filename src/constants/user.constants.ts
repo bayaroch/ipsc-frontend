@@ -22,11 +22,11 @@ export enum GENDER {
 export const GENDER_DATA = [
   {
     id: GENDER.FEMALE,
-    value: 'Эр',
+    value: 'Эм',
   },
   {
     id: GENDER.MALE,
-    value: 'Эм',
+    value: 'Эр',
   },
 ]
 
