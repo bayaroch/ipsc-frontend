@@ -31,6 +31,7 @@ import useUpdateForm from './useUpdateForm'
 import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import { LockOpen, Lock } from '@material-ui/icons'
+import { validation } from '@constants/text.constants'
 
 interface PickerProps {
   open: boolean
@@ -78,10 +79,9 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
   useEffect(() => {
     if (open && initData) {
       const formValue = Object.assign({}, initData, {
-        password: '',
         birthday: moment(initData.birthday).format('YYYY-MM-DDTHH:mm'),
       })
-      reset(formValue)
+      reset(_.omit(formValue, 'id'))
     }
   }, [open])
 
@@ -108,7 +108,7 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
       onClose={handleClose}
       TransitionComponent={Transition}
     >
-      <form id="user-create-update" onSubmit={handleSubmit(onSubmit)}>
+      <form id="user-update" onSubmit={handleSubmit(onSubmit)}>
         <ButtonGroup
           fullWidth
           size="large"
@@ -179,7 +179,7 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
                         fullWidth={true}
                         inputProps={{ autoComplete: 'off' }}
                         type="password"
-                        placeholder={'Нууц үг'}
+                        placeholder={'Нууц үг солих'}
                         error={!!errors.password}
                         helperText={
                           errors.password
@@ -213,6 +213,9 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
                       />
                     )}
                   />
+                  <p style={{ fontSize: 11, fontStyle: 'italic' }}>
+                    {validation.password}
+                  </p>
                 </Grid>
               </Grid>
             </section>

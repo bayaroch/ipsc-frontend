@@ -121,6 +121,7 @@ const MemberList: React.FC<MatchListProps> = (props) => {
                 <TableCell align="right">Хүйс</TableCell>
                 <TableCell align="right">Төлөв</TableCell>
                 <TableCell align="right">Класс</TableCell>
+                <TableCell align="right">Категори</TableCell>
                 <TableCell align="right"></TableCell>
               </TableRow>
             </TableHead>
@@ -154,6 +155,13 @@ const MemberList: React.FC<MatchListProps> = (props) => {
                   <TableCell style={{ width: 140 }} align="right">
                     {_.get(
                       helper.classTitleHelper(row.class_id, classData),
+                      'name',
+                      ''
+                    )}
+                  </TableCell>
+                  <TableCell style={{ width: 140 }} align="right">
+                    {_.get(
+                      helper.categoryTitleHelper(row.birthday, row.gender),
                       'name',
                       ''
                     )}

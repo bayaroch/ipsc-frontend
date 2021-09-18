@@ -7,6 +7,7 @@ import { PersonAdd } from '@material-ui/icons'
 import _ from 'lodash'
 import MemberCreate from '@components/admin/MemberCreate'
 import MemberUpdate from '@components/admin/MemberUpdate'
+import { useConfirm } from 'material-ui-confirm'
 
 interface UpsertDialog {
   open: boolean
@@ -22,6 +23,7 @@ const MatchListContainer: React.FC = () => {
   const classes = useStyles()
   const [open, setOpen] = useState<boolean>(false)
   const [updateOpen, setUpdate] = useState<UpsertDialog | null>(null)
+  const confirm = useConfirm()
   const {
     getList,
     list,
@@ -38,19 +40,56 @@ const MatchListContainer: React.FC = () => {
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   const onSubmit = (data: UserCreateParams) => {
-    create(data)
-    setOpen(false)
+    confirm({
+      title: 'Шинээр гишүүн үүсгэх гэж байна',
+      description: 'Мэдээлэл зөв эсэхийг нягтална уу',
+      confirmationText: 'Тийм',
+      cancellationText: 'Үгүй',
+    })
+      .then(() => {
+        create(data)
+        setOpen(false)
+      })
+      .catch(() => {
+        setOpen(false)
+      })
   }
 
   const onSubmitUpdate = (data: UserCreateParams) => {
     if (updateOpen && updateOpen.data && !_.isEqual(updateOpen.data, data))
       if (_.isEmpty(data.password)) {
-        update({ data: _.omit(data, 'password'), id: updateOpen?.data.id })
+        confirm({
+          title: 'Мэдээлэл шинэчлэх үү',
+          description: `${updateOpen.data.usercode} кодтой Гишүүний мэдээлэл өөрчлөх гэж байна`,
+          confirmationText: 'Тийм',
+          cancellationText: 'Үгүй',
+        })
+          .then(() => {
+            if (updateOpen && updateOpen.data)
+              update({
+                data: _.omit(data, 'password'),
+                id: updateOpen?.data.id,
+              })
+            setUpdate(null)
+          })
+          .catch(() => null)
       } else {
-        update({ data: data, id: updateOpen?.data.id })
+        confirm({
+          title: 'Мэдээлэл шинэчлэх үү',
+          description: `${updateOpen.data.usercode} кодтой Гишүүний мэдээлэл болон нууц үг өөрчлөх гэж байна`,
+          confirmationText: 'Тийм',
+          cancellationText: 'Үгүй',
+        })
+          .then(() => {
+            if (updateOpen && updateOpen.data)
+              update({
+                data: _.omit(data, 'password'),
+                id: updateOpen?.data.id,
+              })
+            setUpdate(null)
+          })
+          .catch(() => null)
       }
-
-    setUpdate(null)
   }
 
   return (

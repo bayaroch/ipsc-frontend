@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
 import { RootState } from '@store/reducers'
-import { categoryCalc } from './helpers'
+import { helper } from '@utils/helpers/common.helper'
 
 const authState = (state: RootState) => state.auth
 
@@ -12,5 +12,5 @@ export const memberType = createSelector(
   (state) => state.user?.usertype
 )
 export const category = createSelector(authState, (state) =>
-  categoryCalc(state.user.birthday, state.user.gender)
+  helper.categoryCalc(state.user.birthday, state.user.gender)
 )

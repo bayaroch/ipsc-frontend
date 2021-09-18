@@ -8,7 +8,6 @@ import { UserCreateParams } from '@services/account.services'
 
 export const initValues = {
   usercode: '',
-  password: '',
   firstname: '',
   lastname: '',
   email: '',
@@ -29,7 +28,7 @@ const useUpdateForm = () => {
           .string()
           .required(validation.required)
           .test(validation.digitsOnly, validation.digitsOnly, digitsOnly),
-        password: yup.string().nullable(true),
+        password: yup.string().notRequired(),
         firstname: yup.string().required(validation.required),
         email: yup
           .string()

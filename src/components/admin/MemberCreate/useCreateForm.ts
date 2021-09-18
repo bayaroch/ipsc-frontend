@@ -31,7 +31,7 @@ const useCreateForm = () => {
           .test(validation.digitsOnly, validation.digitsOnly, digitsOnly),
         password: yup
           .string()
-          .required()
+          .required(validation.required)
           .matches(
             /((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,}))/,
             '6 оронтой нэг тоо нэг том үсэг орсон байх'
