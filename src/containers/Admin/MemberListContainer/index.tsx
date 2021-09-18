@@ -8,7 +8,7 @@ import _ from 'lodash'
 import MemberCreate from '@components/admin/MemberCreate'
 import MemberUpdate from '@components/admin/MemberUpdate'
 import { useConfirm } from 'material-ui-confirm'
-
+import moment from 'moment'
 interface UpsertDialog {
   open: boolean
   data: MemberItem | null
@@ -57,12 +57,18 @@ const MatchListContainer: React.FC = () => {
 
   const onSubmitUpdate = (data: UserCreateParams) => {
     if (
-      updateOpen &&
-      updateOpen.data &&
-      !_.isEqual(
-        _.omit(updateOpen.data, ['id', 'birthday']),
-        _.omit(data, 'birthday')
-      )
+      (updateOpen &&
+        updateOpen.data &&
+        !_.isEqual(
+          _.omit(updateOpen.data, ['id', 'birthday']),
+          _.omit(data, 'birthday')
+        )) ||
+      (updateOpen &&
+        updateOpen.data &&
+        !_.isEqual(
+          moment(updateOpen.data.birthday).unix(),
+          moment(data.birthday).unix()
+        ))
     )
       if (_.isEmpty(data.password)) {
         confirm({
@@ -97,7 +103,9 @@ const MatchListContainer: React.FC = () => {
           })
           .catch(() => null)
       }
-    setUpdate(null)
+    else {
+      setUpdate(null)
+    }
   }
 
   return (
