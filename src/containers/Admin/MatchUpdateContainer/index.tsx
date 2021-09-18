@@ -423,7 +423,6 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
                       }
                     >
                       {MATCH_STATUS_TEXT.map((item, index) => {
-                        if (item.id === 3) return null
                         return (
                           <MenuItem value={item.id} key={index}>
                             {item.value}
