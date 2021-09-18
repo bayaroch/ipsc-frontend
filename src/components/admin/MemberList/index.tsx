@@ -52,7 +52,7 @@ const StyledTableRow = withStyles((theme: Theme) =>
   })
 )(TableRow)
 
-const defaultPerPage = 20
+const defaultPerPage = -1
 
 const MemberList: React.FC<MatchListProps> = (props) => {
   const { getList, list, pagination, meta, classData, onEditMember } = props
