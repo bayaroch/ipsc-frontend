@@ -124,6 +124,11 @@ export type ParticipantsItem = {
   user: UserData
 }
 
+export type MatchDeleteResponse = {
+  data: number
+  status: string
+}
+
 export const matchServices = {
   createMatch: async (params: MatchCreateParams): Promise<MatchResponse> => {
     const { data } = await api.post<MatchResponse>(URI.MATCH, params)
@@ -135,6 +140,11 @@ export const matchServices = {
       `${URI.MATCH}/${params.id}`,
       params.data
     )
+    return data
+  },
+
+  deleteMatch: async (id: number): Promise<MatchDeleteResponse> => {
+    const { data } = await api.delete<MatchDeleteResponse>(`${URI.MATCH}/${id}`)
     return data
   },
 

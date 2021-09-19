@@ -9,8 +9,8 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import { Avatar, Box, Divider, Chip } from '@material-ui/core'
 import { MatchItem } from '@store/match/actions/types'
-import moment from 'moment'
 import { red, green, orange, grey } from '@material-ui/core/colors'
+import { helper } from '@utils/helpers/common.helper'
 
 interface MatchCardItemProps {
   item: MatchItem
@@ -27,7 +27,7 @@ const MatchCardItem: React.FC<MatchCardItemProps> = ({ item, onClick }) => {
     <Card className={classes.root}>
       <CardHeader
         title="Эхлэх өдөр"
-        subheader={moment(item.match_start).format('YYYY-MM-DD HH:mm:ss')}
+        subheader={helper.matchDate(item.match_start, item.match_end)}
         avatar={
           <Avatar
             aria-label="recipe"

@@ -55,9 +55,36 @@ const groupTitleHelper = (
   return result
 }
 
+const matchDate = (start: string, end: string): string => {
+  const today = moment()
+  const isBefore = moment(end).isBefore(today, 'days')
+
+  if (today.isBetween(start, end, 'days', '[]')) {
+    return 'Яг одоо явагдаж байна'
+  } else if (isBefore) {
+    return `${moment(start).format('MMM DD, YYYY')}(Дууссан)`
+  } else {
+    return moment(start).format('ddd, MMM dd')
+  }
+}
+
+/**
+ * Returns the date of the next day. If today is friday and we are asking for next friday the friday of the next week is returned.
+ * @param dayOfWeek 0:Su,1:Mo,2:Tu,3:We,4:Th,5:Fr,6:Sa
+ */
+const getNextDayOfWeek = (date: Date, dayOfWeek: number): Date => {
+  const resultDate = new Date(date.getTime())
+  resultDate.setDate(
+    date.getDate() + ((7 + dayOfWeek - date.getDay() - 1) % 7) + 1
+  )
+  return resultDate
+}
+
 export const helper = {
   categoryTitleHelper,
   classTitleHelper,
   categoryCalc,
   groupTitleHelper,
+  matchDate,
+  getNextDayOfWeek,
 }

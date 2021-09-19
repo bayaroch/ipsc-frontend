@@ -34,7 +34,6 @@ const ParticipantsTable: React.FC<MatchListProps> = (props) => {
                   ''
                 )}
               </Typography>
-              <details></details>
             </Box>
             <MemberTable
               data={row.data}

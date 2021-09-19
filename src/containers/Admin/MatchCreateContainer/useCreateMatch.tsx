@@ -22,7 +22,7 @@ export interface MatchCreateInputType {
   lvl: number
   point_multiplier: number
   stage_number?: number | undefined
-  tax?: number
+  tax?: number | undefined | string
   tax_info?: string
   min_point?: string | undefined
   additional_info?: string
@@ -73,14 +73,14 @@ const useCreateMatch = () => {
       registration_start: '',
       registration_end: '',
       lvl: 1,
-      point_multiplier: 0,
+      point_multiplier: 1,
       is_public: false,
-      per_squad: undefined,
-      stage_number: undefined,
+      per_squad: 10,
+      stage_number: 4,
       status: 1,
       tax: 0,
       tax_info: '',
-      min_point: undefined,
+      min_point: '',
       additional_info: '',
       sponsor_info: '',
     },

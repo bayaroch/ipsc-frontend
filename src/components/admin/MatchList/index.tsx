@@ -24,6 +24,7 @@ import moment from 'moment'
 import Link from 'next/link'
 import { Colors } from '@theme/colors'
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd'
+import { Delete } from '@material-ui/icons'
 
 export interface MatchListProps {
   getList: (params: MatchPageMeta) => void
@@ -32,12 +33,21 @@ export interface MatchListProps {
   onEditClick: (id: number) => void
   onEditSquad: (id: number) => void
   meta: Meta
+  onDelete: (id: number) => void
 }
 
 const defaultPerPage = 10
 
 const MatchList: React.FC<MatchListProps> = (props) => {
-  const { getList, list, pagination, onEditClick, meta, onEditSquad } = props
+  const {
+    getList,
+    list,
+    pagination,
+    onEditClick,
+    meta,
+    onEditSquad,
+    onDelete,
+  } = props
   const classes = useStyles()
   const [page, setPage] = useState<number>(1)
   const [rowsPerPage, setRowsPerPage] = useState<number>(defaultPerPage)
@@ -104,6 +114,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
                 <TableCell align="right">Төлөв</TableCell>
                 <TableCell align="right"></TableCell>
                 <TableCell align="right"></TableCell>
+                <TableCell align="right"></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -141,6 +152,12 @@ const MatchList: React.FC<MatchListProps> = (props) => {
                   <TableCell style={{ width: 60 }} align="right">
                     <EditIcon
                       onClick={() => onEditClick(row.id)}
+                      className={classes.editBtn}
+                    />
+                  </TableCell>
+                  <TableCell style={{ width: 60 }} align="right">
+                    <Delete
+                      onClick={() => onDelete(row.id)}
                       className={classes.editBtn}
                     />
                   </TableCell>

@@ -5,6 +5,7 @@ import {
   MatchPaginationMeta,
   RegisterMatchData,
 } from '@services/match.services'
+import _ from 'lodash'
 
 export type MatchState = {
   matchList: MatchItem[] | undefined
@@ -47,5 +48,8 @@ export default createReducer(initialState, (builder) => {
   })
   builder.addCase(actions.updateRegisterMatch.fulfilled, (state, action) => {
     state.registerMatch = action.payload.data
+  })
+  builder.addCase(actions.deleteMatch.fulfilled, (state, action) => {
+    state.matchList = _.filter(state.matchList, (m) => m.id !== action.meta.arg)
   })
 })

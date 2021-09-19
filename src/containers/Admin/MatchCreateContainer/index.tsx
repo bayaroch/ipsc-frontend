@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 import {
   makeStyles,
@@ -11,6 +11,8 @@ import {
   CircularProgress,
   MenuItem,
   InputAdornment,
+  IconButton,
+  Menu,
 } from '@material-ui/core/'
 import CustomSwitch from '@components/common/CustomSwitch'
 import CustomInput from '@components/common/Input'
@@ -22,8 +24,20 @@ import { MatchCreateParams } from '@services/match.services'
 import _ from 'lodash'
 import moment from 'moment'
 import { MATCH_STATUS_TEXT } from '@constants/common.constants'
+import { weekly } from '@constants/match.constants'
+import MoreVertIcon from '@material-ui/icons/MoreVert'
 
 const MatchCreateContainer: React.FC = () => {
+  const [anchorEl, setAnchorEl] = useState(null)
+
+  const handleClick = (event: any) => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+
   const classes = useStyles()
   const router = useRouter()
   const { Controller, methods, create, metadata, response } = useCreateMatch()
@@ -63,10 +77,35 @@ const MatchCreateContainer: React.FC = () => {
     }
   }
 
+  const createTemplate = () => {
+    methods.reset(weekly)
+    handleClose()
+  }
+
   return (
     <Box className={classes.container}>
       {renderLoader()}
       <form onSubmit={handleSubmit(onSubmit)}>
+        <Box display="flex" justifyContent="flex-end" alignItems="center">
+          Загвар:
+          <IconButton
+            aria-label="more"
+            aria-controls="template-menu"
+            aria-haspopup="true"
+            onClick={handleClick}
+          >
+            <MoreVertIcon />
+          </IconButton>
+        </Box>
+        <Menu
+          id="template-menu"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <MenuItem onClick={createTemplate}>Weekly</MenuItem>
+        </Menu>
         <section className={classes.section}>
           <Controller
             name="name"
@@ -342,8 +381,8 @@ const MatchCreateContainer: React.FC = () => {
                 placeholder={'Хураамжын дэлгэрэнгүй'}
                 fullWidth={true}
                 multiline
-                rows={3}
-                rowsMax={10}
+                minRows={3}
+                maxRows={10}
               />
             )}
           />
@@ -360,8 +399,8 @@ const MatchCreateContainer: React.FC = () => {
                 labelPrimary="Additional Info"
                 placeholder={'Дэлгэрэнгүй мэдээлэл'}
                 multiline
-                rows={3}
-                rowsMax={10}
+                minRows={3}
+                maxRows={10}
                 fullWidth={true}
               />
             )}
@@ -380,8 +419,8 @@ const MatchCreateContainer: React.FC = () => {
                 placeholder={'Ивээн тэтгэгчийн мэдээлэл'}
                 fullWidth={true}
                 multiline
-                rows={3}
-                rowsMax={10}
+                minRows={3}
+                maxRows={10}
               />
             )}
           />

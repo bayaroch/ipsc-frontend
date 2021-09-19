@@ -13,6 +13,7 @@ const useMatch = (): {
   list: MatchItem[]
   getList: (params: MatchPageMeta) => void
   paginationMeta: MatchPaginationMeta
+  deleteMatch: (id: number) => void
 } => {
   const dispatch = useDispatch()
   const meta = useSelector(getAllMatchesMeta)
@@ -21,7 +22,9 @@ const useMatch = (): {
   const getList = (params: MatchPageMeta) =>
     dispatch(actions.getAllMatches(params))
 
-  return { meta, list, getList, paginationMeta }
+  const deleteMatch = (id: number) => dispatch(actions.deleteMatch(id))
+
+  return { meta, list, getList, paginationMeta, deleteMatch }
 }
 
 export default useMatch
