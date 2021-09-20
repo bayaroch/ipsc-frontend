@@ -120,7 +120,7 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
       listMeta.loaded &&
       !listMeta.error
     ) {
-      return <Box>Empty</Box>
+      return <Box></Box>
     }
     return null
   }

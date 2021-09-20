@@ -6,7 +6,7 @@ import { useConfirm } from 'material-ui-confirm'
 
 const MatchListContainer: React.FC = () => {
   const classes = useStyles()
-  const { getList, list, paginationMeta, meta, deleteMatch } = useMatch()
+  const { getList, groupedList, paginationMeta, meta, deleteMatch } = useMatch()
   const router = useRouter()
   const confirm = useConfirm()
 
@@ -37,7 +37,7 @@ const MatchListContainer: React.FC = () => {
         onEditClick={handleEdit}
         onEditSquad={handleEditSquad}
         meta={meta}
-        list={list}
+        list={groupedList}
         onDelete={onDelete}
         getList={getList}
         pagination={paginationMeta}
