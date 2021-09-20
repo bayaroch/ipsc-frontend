@@ -3,12 +3,17 @@ import { RootState } from '@store/reducers'
 import _ from 'lodash'
 import { MatchItem } from '../actions/types'
 import { MATCH_STATUS } from '@constants/common.constants'
-import { groupByDivision } from './helpers'
+import { groupByDivision, groupByIsBefore } from './helpers'
 
 const getState = (state: RootState) => state.match
 const detail = (state: RootState) => state.match.detail
 
 export const matches = createSelector(getState, (state) => state.matchList)
+
+export const matchGroupBy = createSelector(getState, (state) => {
+  return groupByIsBefore(state.matchList).reverse()
+})
+
 export const createResult = createSelector(
   getState,
   (state) => state.createMatch

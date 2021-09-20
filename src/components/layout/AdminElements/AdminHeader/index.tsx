@@ -52,7 +52,7 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({ open, setOpen, title }) => {
               className={'hidden-sm'}
               onClick={() => router.push('/admin/matches/create')}
             >
-              Тэмцээн үүсгэх
+              Тэмцээн
             </Button>
           </Hidden>
         </Toolbar>

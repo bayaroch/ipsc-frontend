@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Box, CircularProgress, Grid } from '@material-ui/core'
+import { Box, CircularProgress, Grid, Typography } from '@material-ui/core'
 import Pagination from '@material-ui/lab/Pagination'
 import { MatchPaginationMeta, MatchPageMeta } from '@services/match.services'
-import { MatchItem } from '@store/match/actions/types'
 import _ from 'lodash'
 import { Meta } from '@store/metadata/actions/types'
 import MatchCardItem from '../MatchCardItem'
 import { useRouter } from 'next/router'
+import { GroupedMatchListItem } from '@store/match/selectors/helpers'
 
 export interface MatchListProps {
   getList: (params: MatchPageMeta) => void
-  list: MatchItem[]
+  list: GroupedMatchListItem[]
   pagination: MatchPaginationMeta
   onEditClick: (id: number) => void
   meta: Meta
@@ -75,16 +75,33 @@ const MatchList: React.FC<MatchListProps> = (props) => {
   const renderList = () => {
     if (!_.isEmpty(list) && meta.loaded && !meta.error && !meta.pending) {
       return (
-        <Grid container spacing={3}>
-          {list.map((item, index) => {
+        <Box>
+          {list.map((g, i) => {
             return (
-              <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
-                <Box>
-                  <MatchCardItem onClick={handleDetail} item={item} />
-                </Box>
-              </Grid>
+              <Box key={i}>
+                <Typography
+                  className={classes.sectionTitle}
+                  variant="h2"
+                  component="h2"
+                  align="center"
+                >
+                  {g.groupTitle}
+                </Typography>
+                <Grid container spacing={3}>
+                  {g.data.map((item, index) => {
+                    return (
+                      <Grid key={index} item xs={12} sm={12} md={4} lg={3}>
+                        <Box>
+                          <MatchCardItem onClick={handleDetail} item={item} />
+                        </Box>
+                      </Grid>
+                    )
+                  })}
+                </Grid>
+              </Box>
             )
           })}
+
           {pagination ? (
             <Pagination
               count={pagination.total_pages}
@@ -93,7 +110,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
               onChange={handleChangePage}
             />
           ) : null}
-        </Grid>
+        </Box>
       )
     }
     return null
@@ -108,6 +125,9 @@ const MatchList: React.FC<MatchListProps> = (props) => {
 }
 
 const useStyles = makeStyles({
+  sectionTitle: {
+    padding: '20px 0 30px 0',
+  },
   loader: {
     fontSize: 12,
   },
