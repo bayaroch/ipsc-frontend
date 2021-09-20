@@ -64,7 +64,7 @@ const matchDate = (start: string, end: string): string => {
   } else if (isBefore) {
     return `${moment(start).format('MMM DD, YYYY')}(Дууссан)`
   } else {
-    return moment(start).format('ddd, MMM dd')
+    return moment(start).format('ddd, MMM DD')
   }
 }
 
