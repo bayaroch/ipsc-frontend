@@ -8,7 +8,6 @@ import {
   FormControl,
   FormGroup,
   Grid,
-  CircularProgress,
   MenuItem,
   InputAdornment,
 } from '@material-ui/core/'
@@ -73,7 +72,7 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
     if (metadata.pending && !metadata.loaded && !metadata.error) {
       return (
         <Box className={classes.loaderBox}>
-          <CircularProgress className={classes.loader} />
+          <Box className="dots-flashing" />
         </Box>
       )
     }

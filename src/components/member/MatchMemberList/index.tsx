@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Box, CircularProgress, Grid, Typography } from '@material-ui/core'
+import { Box, Grid, Typography } from '@material-ui/core'
 import Pagination from '@material-ui/lab/Pagination'
 import { MatchPaginationMeta, MatchPageMeta } from '@services/match.services'
 import _ from 'lodash'
@@ -61,7 +61,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
     if (!meta.loaded && meta.pending && !meta.error) {
       return (
         <Box className={classes.loaderBox}>
-          <CircularProgress className={classes.loader} />
+          <Box className="dots-flashing" />
         </Box>
       )
     }

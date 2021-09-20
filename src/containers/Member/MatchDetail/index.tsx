@@ -8,7 +8,6 @@ import {
   Divider,
   Paper,
   Button,
-  CircularProgress,
 } from '@material-ui/core/'
 import useMatchDetail from './useMatchDetail'
 import _ from 'lodash'
@@ -18,6 +17,7 @@ import moment from 'moment'
 import MatchDivisionPicker from '@components/member/MatchDivisionPicker'
 import ParticipantsTable from '@components/member/ParticipantsTable'
 import { useRouter } from 'next/router'
+import { helper } from '@utils/helpers/common.helper'
 
 interface MatchDetailProps {
   id: string
@@ -41,6 +41,16 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
   } = useMatchDetail()
 
   const isRegistered = participants.find((user) => user.user.id === userData.id)
+
+  const isRegisterActive = helper.isRegisterActive(
+    _.get(detail, 'registration_start', ''),
+    _.get(detail, 'registration_end', '')
+  )
+
+  const isSquadRegister = helper.isRegisterActive(
+    _.get(detail, 'registration_start', ''),
+    _.get(detail, 'match_start', '')
+  )
 
   const router = useRouter()
 
@@ -102,7 +112,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
     if (!meta.loaded && meta.pending && !meta.error) {
       return (
         <Box className={classes.loaderBox}>
-          <CircularProgress className={classes.loader} />
+          <Box className="dot-flashing" />
         </Box>
       )
     }
@@ -110,7 +120,10 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
   }
 
   const renderRegisterButton = () => {
-    if (_.isEmpty(participants) || !isRegistered) {
+    if (
+      (_.isEmpty(participants) && isRegisterActive) ||
+      (!isRegistered && isRegisterActive)
+    ) {
       return (
         <Button
           type="submit"
@@ -121,7 +134,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
           Бүртгүүлэх
         </Button>
       )
-    } else {
+    } else if (isRegistered && !_.isEmpty(participants) && isRegisterActive) {
       return (
         <Button
           type="submit"
@@ -133,10 +146,11 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
         </Button>
       )
     }
+    return <Box></Box>
   }
 
   const renderSquadButton = () => {
-    if (isRegistered) {
+    if (isRegistered && isSquadRegister) {
       return (
         <Button
           onClick={() => router.push(`/member/squad/${id}`)}

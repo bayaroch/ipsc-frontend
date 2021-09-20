@@ -10,7 +10,6 @@ import {
   Select,
   Box,
   FormControl,
-  CircularProgress,
   Typography,
   Paper,
   withStyles,
@@ -97,10 +96,10 @@ const MemberList: React.FC<MatchListProps> = (props) => {
   }
 
   const renderLoader = () => {
-    if (!meta.loaded && meta.pending && !meta.error && list === undefined) {
+    if (!meta.loaded && meta.pending && !meta.error && _.isEmpty(list)) {
       return (
         <Box className={classes.loaderBox}>
-          <CircularProgress className={classes.loader} />
+          <Box className="dot-flashing" />
         </Box>
       )
     }

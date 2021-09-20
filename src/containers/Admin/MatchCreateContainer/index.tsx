@@ -8,7 +8,6 @@ import {
   FormControl,
   FormGroup,
   Grid,
-  CircularProgress,
   MenuItem,
   InputAdornment,
   IconButton,
@@ -71,7 +70,7 @@ const MatchCreateContainer: React.FC = () => {
     if (metadata.pending && !metadata.loaded && !metadata.error) {
       return (
         <Box className={classes.loaderBox}>
-          <CircularProgress className={classes.loader} />
+          <Box className="dots-flashing" />
         </Box>
       )
     }

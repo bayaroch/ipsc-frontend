@@ -10,7 +10,6 @@ import {
   Select,
   Box,
   FormControl,
-  CircularProgress,
   Typography,
 } from '@material-ui/core'
 import Pagination from '@material-ui/lab/Pagination'
@@ -93,7 +92,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
     if (!meta.loaded && meta.pending && !meta.error && list === undefined) {
       return (
         <Box className={classes.loaderBox}>
-          <CircularProgress className={classes.loader} />
+          <Box className="dot-flashing" />
         </Box>
       )
     }
@@ -103,96 +102,101 @@ const MatchList: React.FC<MatchListProps> = (props) => {
   const renderList = () => {
     if (!_.isEmpty(list)) {
       return (
-        <TableContainer>
-          <Table className={classes.table} aria-label="custom pagination table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Нэр</TableCell>
-                <TableCell align="right">Эхлэх өдөр</TableCell>
-                <TableCell align="right">Түвшин</TableCell>
-                <TableCell align="right">Tax</TableCell>
-                <TableCell align="right">Төлөв</TableCell>
-                <TableCell align="right"></TableCell>
-                <TableCell align="right"></TableCell>
-                <TableCell align="right"></TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {list.map((row) => (
-                <TableRow key={row.id}>
-                  <TableCell scope="row">
-                    <Link passHref href={`/member/matches/${row.id}`}>
-                      <a className={classes.link}>
-                        <Typography variant="h2">{row.name}</Typography>
-                      </a>
-                    </Link>
-                  </TableCell>
-                  <TableCell style={{ width: 200 }} align="right">
-                    {moment(row.match_start).format('YYYY-MM-DD HH:mm:ss')}
-                  </TableCell>
-                  <TableCell style={{ width: 100 }} align="right">
-                    {row.lvl}
-                  </TableCell>
-                  <TableCell style={{ width: 160 }} align="right">
-                    {row.tax}
-                  </TableCell>
-                  <TableCell style={{ width: 160 }} align="right">
-                    {
-                      _.filter(MATCH_STATUS_TEXT, function (o) {
-                        return o.id === row.status
-                      })[0].value
-                    }
-                  </TableCell>
-                  <TableCell style={{ width: 60 }} align="right">
-                    <AssignmentIndIcon
-                      className={classes.editBtn}
-                      onClick={() => onEditSquad(row.id)}
-                    />
-                  </TableCell>
-                  <TableCell style={{ width: 60 }} align="right">
-                    <EditIcon
-                      onClick={() => onEditClick(row.id)}
-                      className={classes.editBtn}
-                    />
-                  </TableCell>
-                  <TableCell style={{ width: 60 }} align="right">
-                    <Delete
-                      onClick={() => onDelete(row.id)}
-                      className={classes.editBtn}
-                    />
-                  </TableCell>
+        <>
+          <TableContainer>
+            <Table
+              className={classes.table}
+              aria-label="custom pagination table"
+            >
+              <TableHead>
+                <TableRow>
+                  <TableCell>Нэр</TableCell>
+                  <TableCell align="right">Эхлэх өдөр</TableCell>
+                  <TableCell align="right">Түвшин</TableCell>
+                  <TableCell align="right">Tax</TableCell>
+                  <TableCell align="right">Төлөв</TableCell>
+                  <TableCell align="right"></TableCell>
+                  <TableCell align="right"></TableCell>
+                  <TableCell align="right"></TableCell>
                 </TableRow>
-              ))}
+              </TableHead>
+              <TableBody>
+                {list.map((row) => (
+                  <TableRow key={row.id}>
+                    <TableCell scope="row">
+                      <Link passHref href={`/member/matches/${row.id}`}>
+                        <a className={classes.link}>
+                          <Typography variant="h2">{row.name}</Typography>
+                        </a>
+                      </Link>
+                    </TableCell>
+                    <TableCell style={{ width: 200 }} align="right">
+                      {moment(row.match_start).format('YYYY-MM-DD HH:mm:ss')}
+                    </TableCell>
+                    <TableCell style={{ width: 100 }} align="right">
+                      {row.lvl}
+                    </TableCell>
+                    <TableCell style={{ width: 160 }} align="right">
+                      {row.tax}
+                    </TableCell>
+                    <TableCell style={{ width: 160 }} align="right">
+                      {
+                        _.filter(MATCH_STATUS_TEXT, function (o) {
+                          return o.id === row.status
+                        })[0].value
+                      }
+                    </TableCell>
+                    <TableCell style={{ width: 60 }} align="right">
+                      <AssignmentIndIcon
+                        className={classes.editBtn}
+                        onClick={() => onEditSquad(row.id)}
+                      />
+                    </TableCell>
+                    <TableCell style={{ width: 60 }} align="right">
+                      <EditIcon
+                        onClick={() => onEditClick(row.id)}
+                        className={classes.editBtn}
+                      />
+                    </TableCell>
+                    <TableCell style={{ width: 60 }} align="right">
+                      <Delete
+                        onClick={() => onDelete(row.id)}
+                        className={classes.editBtn}
+                      />
+                    </TableCell>
+                  </TableRow>
+                ))}
 
-              {emptyRows > 0 && (
-                <TableRow style={{ height: 53 * emptyRows }}>
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-          <Box display="flex" className={classes.pagination}>
-            <FormControl variant="outlined" className={classes.formControl}>
-              <Select
-                inputProps={{
-                  id: 'demo-customized-select-native',
-                }}
-                value={selectRow}
-                onChange={handleChangeRowsPerPage}
-              >
-                <option value={5}>5</option>
-                <option value={10}>10</option>
-                <option value={20}>20</option>
-                <option value={-1}>All</option>
-              </Select>
-            </FormControl>
-            <Pagination
-              count={pagination.total_pages}
-              page={page}
-              onChange={handleChangePage}
-            />
-          </Box>
-        </TableContainer>
+                {emptyRows > 0 && (
+                  <TableRow style={{ height: 53 * emptyRows }}>
+                    <TableCell colSpan={6} />
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+            <Box display="flex" className={classes.pagination}>
+              <FormControl variant="outlined" className={classes.formControl}>
+                <Select
+                  inputProps={{
+                    id: 'demo-customized-select-native',
+                  }}
+                  value={selectRow}
+                  onChange={handleChangeRowsPerPage}
+                >
+                  <option value={5}>5</option>
+                  <option value={10}>10</option>
+                  <option value={20}>20</option>
+                  <option value={-1}>All</option>
+                </Select>
+              </FormControl>
+              <Pagination
+                count={pagination.total_pages}
+                page={page}
+                onChange={handleChangePage}
+              />
+            </Box>
+          </TableContainer>
+        </>
       )
     }
     return null

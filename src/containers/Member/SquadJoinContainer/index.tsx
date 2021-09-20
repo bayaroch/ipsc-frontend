@@ -1,10 +1,5 @@
 import { useState } from 'react'
-import {
-  makeStyles,
-  Box,
-  CircularProgress,
-  Typography,
-} from '@material-ui/core/'
+import { makeStyles, Box, Typography } from '@material-ui/core/'
 import useSquadJoin from './useSquadJoin'
 import _, { isArray } from 'lodash'
 import SquadList from '@components/admin/SquadList'
@@ -36,7 +31,7 @@ const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
     if (listMeta.pending && !listMeta.loaded && !listMeta.error) {
       return (
         <Box className={classes.loaderBox}>
-          <CircularProgress className={classes.loader} />
+          <Box className="dots-flashing" />
         </Box>
       )
     }

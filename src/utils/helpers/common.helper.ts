@@ -68,6 +68,12 @@ const matchDate = (start: string, end: string): string => {
   }
 }
 
+const isRegisterActive = (start: string, end: string): boolean => {
+  const today = moment()
+  const isBetween = today.isBetween(start, end, 'days', '[]')
+  return isBetween
+}
+
 /**
  * Returns the date of the next day. If today is friday and we are asking for next friday the friday of the next week is returned.
  * @param dayOfWeek 0:Su,1:Mo,2:Tu,3:We,4:Th,5:Fr,6:Sa
@@ -87,4 +93,5 @@ export const helper = {
   groupTitleHelper,
   matchDate,
   getNextDayOfWeek,
+  isRegisterActive,
 }

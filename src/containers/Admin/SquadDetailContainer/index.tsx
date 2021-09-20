@@ -1,11 +1,5 @@
 import { useState } from 'react'
-import {
-  makeStyles,
-  Box,
-  CircularProgress,
-  Button,
-  Typography,
-} from '@material-ui/core/'
+import { makeStyles, Box, Button, Typography } from '@material-ui/core/'
 import useSquadDetail from './useSquadDetail'
 import _, { isArray } from 'lodash'
 import SquadList from '@components/admin/SquadList'
@@ -43,7 +37,7 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
     if (listMeta.pending && !listMeta.loaded && !listMeta.error) {
       return (
         <Box className={classes.loaderBox}>
-          <CircularProgress className={classes.loader} />
+          <Box className="dot-flashing" />
         </Box>
       )
     }
