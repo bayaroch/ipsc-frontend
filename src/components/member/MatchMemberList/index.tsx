@@ -61,7 +61,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
     if (!meta.loaded && meta.pending && !meta.error) {
       return (
         <Box className={classes.loaderBox}>
-          <Box className="dots-flashing" />
+          <Box className="dot-flashing" />
         </Box>
       )
     }
@@ -90,7 +90,15 @@ const MatchList: React.FC<MatchListProps> = (props) => {
                 <Grid container spacing={3}>
                   {g.data.map((item, index) => {
                     return (
-                      <Grid key={index} item xs={12} sm={12} md={4} lg={3}>
+                      <Grid
+                        key={index}
+                        item
+                        xs={12}
+                        sm={12}
+                        md={4}
+                        lg={4}
+                        xl={3}
+                      >
                         <Box>
                           <MatchCardItem onClick={handleDetail} item={item} />
                         </Box>
