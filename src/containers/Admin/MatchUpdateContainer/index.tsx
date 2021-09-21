@@ -460,7 +460,7 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
                 fullWidth
                 variant="contained"
               >
-                CANCEL
+                БУЦАХ
               </Button>
             </Grid>
             <Grid item xs={6}>
@@ -470,7 +470,7 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
                 variant="contained"
                 color="secondary"
               >
-                UPDATE
+                ШИНЭЧЛЭХ
               </Button>
             </Grid>
           </Grid>

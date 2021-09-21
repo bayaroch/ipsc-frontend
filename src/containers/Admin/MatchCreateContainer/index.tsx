@@ -486,12 +486,12 @@ const MatchCreateContainer: React.FC = () => {
               fullWidth
               variant="contained"
             >
-              CANCEL
+              Цуцлах
             </Button>
           </Grid>
           <Grid item xs={6}>
             <Button type="submit" fullWidth variant="contained" color="primary">
-              CREATE
+              Хадгалах
             </Button>
           </Grid>
         </Grid>
