@@ -187,6 +187,9 @@ const MatchList: React.FC<MatchListProps> = (props) => {
                               <Link passHref href={`/member/matches/${row.id}`}>
                                 <a className={classes.link}>{row.name}</a>
                               </Link>
+                              <Typography noWrap className={classes.desc}>
+                                {row.additional_info}
+                              </Typography>
                             </TableCell>
                             <TableCell align="right">
                               <Typography
@@ -283,6 +286,11 @@ const MatchList: React.FC<MatchListProps> = (props) => {
 const useStyles = makeStyles({
   statusIcon: {
     fontSize: 12,
+  },
+  desc: {
+    fontSize: 12,
+    maxWidth: 140,
+    color: '#999',
   },
   tabRoot: {
     '& .MuiTabs-flexContainer': { borderBottom: '1px solid #eee' },
