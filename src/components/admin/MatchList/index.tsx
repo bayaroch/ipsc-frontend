@@ -9,19 +9,29 @@ import {
   TableBody,
   Paper,
   Box,
+  Avatar,
   Tab,
   Tabs,
+  Typography,
 } from '@material-ui/core'
 import Pagination from '@material-ui/lab/Pagination'
 import { MatchPaginationMeta, MatchPageMeta } from '@services/match.services'
 import _ from 'lodash'
-import { MATCH_STATUS_TEXT } from '@constants/common.constants'
 import { Meta } from '@store/metadata/actions/types'
-import moment from 'moment'
 import Link from 'next/link'
 import { Colors } from '@theme/colors'
 import { GroupedMatchListItem } from '@store/match/selectors/helpers'
 import TableActions from './TableActions'
+import { colorConstants } from '@components/member/MatchCardItem'
+import { red } from '@material-ui/core/colors'
+import { helper } from '@utils/helpers/common.helper'
+import {
+  Visibility,
+  Block,
+  CheckCircleOutlined,
+  Restore,
+} from '@material-ui/icons'
+import { StyledTableRow } from '@components/admin/MemberList'
 
 export interface MatchListProps {
   getList: (params: MatchPageMeta) => void
@@ -41,6 +51,29 @@ interface TabPanelProps {
   value: any
 }
 
+export const MATCH_STATUS_TEXT_ICONS = [
+  {
+    id: 0,
+    value: 'Preview',
+    icon: <Visibility />,
+  },
+  {
+    id: 1,
+    value: 'Publish',
+    icon: <CheckCircleOutlined />,
+  },
+  {
+    id: 2,
+    value: 'Postpone',
+    icon: <Restore />,
+  },
+  {
+    id: 3,
+    value: 'Cancel',
+    icon: <Block />,
+  },
+]
+
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props
 
@@ -52,7 +85,7 @@ function TabPanel(props: TabPanelProps) {
       aria-labelledby={`scrollable-auto-tab-${index}`}
       {...other}
     >
-      {value === index && <Box component={Paper}>{children}</Box>}
+      {value === index && <Paper square>{children}</Paper>}
     </div>
   )
 }
@@ -115,19 +148,19 @@ const MatchList: React.FC<MatchListProps> = (props) => {
     if (!_.isEmpty(list)) {
       return (
         <Box>
-          <Tabs
-            value={value}
-            className={classes.tabRoot}
-            onChange={handleChange}
-            textColor="primary"
-            TabIndicatorProps={{
-              style: { display: 'none' },
-            }}
-          >
-            {list.map((g, i) => {
-              return <Tab disableRipple label={g.groupTitle} key={i} />
-            })}
-          </Tabs>
+          <Paper square>
+            <Tabs
+              value={value}
+              className={classes.tabRoot}
+              onChange={handleChange}
+              textColor="primary"
+              indicatorColor="primary"
+            >
+              {list.map((g, i) => {
+                return <Tab disableRipple label={g.groupTitle} key={i} />
+              })}
+            </Tabs>
+          </Paper>
           {list.map((g, i) => {
             return (
               <TabPanel value={value} index={i} key={i}>
@@ -149,25 +182,59 @@ const MatchList: React.FC<MatchListProps> = (props) => {
                       </TableHead>
                       <TableBody>
                         {g.data.map((row) => (
-                          <TableRow key={row.id}>
+                          <StyledTableRow key={row.id}>
                             <TableCell scope="row">
                               <Link passHref href={`/member/matches/${row.id}`}>
                                 <a className={classes.link}>{row.name}</a>
                               </Link>
                             </TableCell>
                             <TableCell align="right">
-                              {moment(row.match_start).format(
-                                'YYYY-MM-DD HH:mm:ss'
-                              )}
+                              <Typography
+                                className={classes.date}
+                                component={'body'}
+                              >
+                                {' '}
+                                {helper.matchDate(
+                                  row.match_start,
+                                  row.match_end
+                                )}{' '}
+                              </Typography>
                             </TableCell>
-                            <TableCell align="right">{row.lvl}</TableCell>
-                            <TableCell align="right">{row.tax}</TableCell>
                             <TableCell align="right">
-                              {
-                                _.filter(MATCH_STATUS_TEXT, function (o) {
-                                  return o.id === row.status
-                                })[0].value
-                              }
+                              <Avatar
+                                aria-label="recipe"
+                                className={classes.avatar}
+                                style={{ background: colorConstants[row.lvl] }}
+                              >
+                                <Box style={{ fontSize: 8, paddingBottom: 0 }}>
+                                  lvl
+                                </Box>
+                                <Typography
+                                  variant="h2"
+                                  className={classes.lvl}
+                                >
+                                  {row.lvl}
+                                </Typography>
+                              </Avatar>
+                            </TableCell>
+                            <TableCell align="right">
+                              <Typography
+                                className={classes.currency}
+                                component={'body'}
+                              >
+                                {helper.currency(row.tax)}
+                              </Typography>
+                            </TableCell>
+                            <TableCell align="right">
+                              <Box className={classes.statusIcon}>
+                                {
+                                  _.filter(MATCH_STATUS_TEXT_ICONS, function (
+                                    o
+                                  ) {
+                                    return o.id === row.status
+                                  })[0].icon
+                                }
+                              </Box>
                             </TableCell>
                             <TableCell align="right">
                               <TableActions
@@ -177,7 +244,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
                                 data={row.id}
                               />
                             </TableCell>
-                          </TableRow>
+                          </StyledTableRow>
                         ))}
 
                         {/* {emptyRows > 0 && (
@@ -214,27 +281,26 @@ const MatchList: React.FC<MatchListProps> = (props) => {
 }
 
 const useStyles = makeStyles({
+  statusIcon: {
+    fontSize: 12,
+  },
   tabRoot: {
-    // '& .MuiTab-textColorPrimary.Mui-selected': {
-    //   backgroundColor: '#fff',
-    //   borderTopLeftRadius: 6,
-    //   borderTopRightRadius: 6,
-    //   borderBottom: '0 none',
-    // },
-    // '& .MuiTabs-flexContainer': {},
-    // '& .MuiTab-textColorPrimary': {
-    //   borderTopLeftRadius: 6,
-    //   borderTopRightRadius: 6,
-    //   marginRight: 10,
-    //   background: '#eee',
-    //   position: 'relative',
-    //   bottom: -4,
-    //   boxShadow:
-    //     '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
-    // },
+    '& .MuiTabs-flexContainer': { borderBottom: '1px solid #eee' },
+    '& .MuiTab-textColorPrimary': {
+      fontSize: 12,
+      fontWeight: 500,
+    },
+  },
+  currency: {
+    fontWeight: 600,
+  },
+  date: {
+    fontWeight: 600,
+    fontSize: 12,
   },
   link: {
     color: Colors.grey[100],
+    fontWeight: 600,
     '&:hover': {
       color: Colors.primary,
       transition: 'all 0.3s ease',
@@ -264,6 +330,15 @@ const useStyles = makeStyles({
     justifyContent: 'center',
     padding: 20,
     width: '100%',
+  },
+  avatar: {
+    flexDirection: 'column',
+    background: red[100],
+    width: 30,
+    height: 30,
+  },
+  lvl: {
+    fontSize: 14,
   },
   editBtn: {
     cursor: 'pointer',

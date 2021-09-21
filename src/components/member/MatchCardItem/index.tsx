@@ -17,7 +17,12 @@ interface MatchCardItemProps {
   onClick: (id: number) => void
 }
 
-const colorConstants: string[] = [grey[500], green[500], orange[500], red[500]]
+export const colorConstants: string[] = [
+  grey[500],
+  green[500],
+  orange[500],
+  red[500],
+]
 
 const MatchCardItem: React.FC<MatchCardItemProps> = ({ item, onClick }) => {
   const classes = useStyles()

@@ -86,6 +86,17 @@ const getNextDayOfWeek = (date: Date, dayOfWeek: number): Date => {
   return resultDate
 }
 
+const currency = (data: number): string => {
+  const formatter = Number(data).toLocaleString('mn-MN', {
+    style: 'decimal',
+    minimumFractionDigits: 0,
+  })
+  if (data === 0) {
+    return 'FREE'
+  }
+  return `${formatter} ₮`
+}
+
 export const helper = {
   categoryTitleHelper,
   classTitleHelper,
@@ -94,4 +105,5 @@ export const helper = {
   matchDate,
   getNextDayOfWeek,
   isRegisterActive,
+  currency,
 }
