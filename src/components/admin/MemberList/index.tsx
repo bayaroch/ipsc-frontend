@@ -52,7 +52,7 @@ export const StyledTableRow = withStyles((theme: Theme) =>
   })
 )(TableRow)
 
-const defaultPerPage = -1
+const defaultPerPage = 100
 
 const MemberList: React.FC<MatchListProps> = (props) => {
   const { getList, list, pagination, meta, classData, onEditMember } = props
@@ -205,7 +205,7 @@ const MemberList: React.FC<MatchListProps> = (props) => {
                 <option value={5}>5</option>
                 <option value={10}>10</option>
                 <option value={20}>20</option>
-                <option value={-1}>All</option>
+                <option value={100}>All</option>
               </Select>
             </FormControl>
             <Pagination
