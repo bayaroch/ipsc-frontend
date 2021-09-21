@@ -31,6 +31,7 @@ export type MemberItem = {
   enabled: boolean
   class_id: number
   mo_badge?: null | string
+  img_url?: string
 }
 export type GetMemberResponse = {
   data: Array<MemberItem>
@@ -50,9 +51,16 @@ export type UserCreateParams = {
   gender: GENDER
   enabled: boolean | number
   class_id: number
+  img_url?: string
 }
 
 export type UserCreateResponse = {
+  data: MemberItem
+  status: string
+  version: string
+}
+
+export type ProfileResponse = {
   data: MemberItem
   status: string
   version: string
@@ -71,6 +79,7 @@ export type UserUpdateParams = {
     gender: GENDER
     enabled: boolean | number
     class_id: number
+    img_url?: string
   }
 }
 
@@ -90,6 +99,10 @@ export const accountServices = {
       `${URI.ACCOUNT}/${params.id}`,
       params.data
     )
+    return data
+  },
+  profile: async (params: number): Promise<ProfileResponse> => {
+    const { data } = await api.get<ProfileResponse>(`${URI.ACCOUNT}/${params}`)
     return data
   },
 }

@@ -5,10 +5,6 @@ import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import { makeStyles } from '@material-ui/core/styles'
-import { Button } from '@material-ui/core'
-import AddCircleOutline from '@material-ui/icons/AddCircleOutline'
-import { useRouter } from 'next/router'
-import { Hidden } from '@material-ui/core'
 
 import { Colors } from '@theme/colors'
 
@@ -20,7 +16,6 @@ export interface AdminHeaderProps {
 
 const AdminHeader: React.FC<AdminHeaderProps> = ({ open, setOpen, title }) => {
   const classes = useStyles({ open, setOpen })
-  const router = useRouter()
   return (
     <div className={`${classes.root}`}>
       <AppBar
@@ -43,18 +38,6 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({ open, setOpen, title }) => {
           <Typography className={classes.title} noWrap={true}>
             {title}
           </Typography>
-          <Hidden smDown>
-            <Button
-              variant="contained"
-              size="small"
-              startIcon={<AddCircleOutline />}
-              color="secondary"
-              className={'hidden-sm'}
-              onClick={() => router.push('/admin/matches/create')}
-            >
-              Тэмцээн
-            </Button>
-          </Hidden>
         </Toolbar>
       </AppBar>
     </div>

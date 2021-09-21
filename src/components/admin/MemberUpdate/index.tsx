@@ -425,6 +425,31 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
                     )}
                   />
                 </Grid>
+                <Grid item sm={12} md={3}>
+                  <Controller
+                    name="img_url"
+                    control={control}
+                    render={({ field: { ref, ...rest } }: FieldValues) => {
+                      return (
+                        <CustomInput
+                          {...rest}
+                          required={false}
+                          inputRef={ref}
+                          fullWidth={true}
+                          labelPrimary="Зураг холбоос"
+                          placeholder="https://example.com/someimage.jpg"
+                          type="text"
+                          error={!!errors.img_url}
+                          helperText={
+                            errors.img_url
+                              ? _.get(errors.img_url, 'message', '')
+                              : ''
+                          }
+                        />
+                      )
+                    }}
+                  />
+                </Grid>
                 <Grid item sm={12} md={6}>
                   <Controller
                     name="enabled"

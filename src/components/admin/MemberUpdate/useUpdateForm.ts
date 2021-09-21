@@ -16,6 +16,7 @@ export const initValues = {
   gender: GENDER.MALE,
   enabled: true,
   class_id: 1,
+  img_url: '',
 }
 
 const useUpdateForm = () => {
@@ -43,6 +44,7 @@ const useUpdateForm = () => {
         gender: yup.number().required(validation.required),
         enabled: yup.boolean().required(validation.required),
         class_id: yup.number().required(validation.required),
+        img_url: yup.string().notRequired(),
       }),
     []
   )

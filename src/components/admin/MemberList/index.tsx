@@ -31,6 +31,7 @@ import { Colors } from '@theme/colors'
 import { GENDER } from '@constants/user.constants'
 import { helper } from '@utils/helpers/common.helper'
 import { SupportItem } from '@services/support.services'
+import Avatar from '@components/common/Avatar'
 
 export interface MatchListProps {
   getList: (params: MemberPageMeta) => void
@@ -114,6 +115,7 @@ const MemberList: React.FC<MatchListProps> = (props) => {
             <TableHead>
               <TableRow>
                 <TableCell>#</TableCell>
+                <TableCell align="right"></TableCell>
                 <TableCell align="right">Овог Нэр</TableCell>
                 <TableCell align="right">И-мэйл</TableCell>
                 <TableCell align="right">Төрсөн өдөр</TableCell>
@@ -129,6 +131,14 @@ const MemberList: React.FC<MatchListProps> = (props) => {
                 <StyledTableRow key={row.id}>
                   <TableCell style={{ width: 60 }}>
                     <Typography variant="h2">{row.usercode}</Typography>
+                  </TableCell>
+                  <TableCell style={{ width: 60 }}>
+                    <Typography variant="h2">
+                      <Avatar
+                        alt={row.firstname}
+                        src={_.get(row, 'img_url', undefined)}
+                      />
+                    </Typography>
                   </TableCell>
                   <TableCell scope="row" align="right">
                     {_.get(row, 'lastname', '')} {_.get(row, 'firstname', '')}
