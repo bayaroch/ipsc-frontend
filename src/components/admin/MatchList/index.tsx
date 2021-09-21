@@ -134,7 +134,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
   }
 
   const renderLoader = () => {
-    if (!meta.loaded && meta.pending && !meta.error && list === undefined) {
+    if (!meta.loaded && meta.pending && !meta.error) {
       return (
         <Box className={classes.loaderBox}>
           <Box className="dot-flashing" />
@@ -145,7 +145,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
   }
 
   const renderList = () => {
-    if (!_.isEmpty(list)) {
+    if (!_.isEmpty(list) && meta.loaded && !meta.pending) {
       return (
         <Box>
           <Paper square>
