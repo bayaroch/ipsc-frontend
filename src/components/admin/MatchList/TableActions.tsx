@@ -43,7 +43,11 @@ const TableActions: React.FC<ActionProps> = (props) => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={() => onEditSquad(data)}>
+        <MenuItem
+          onClick={() => {
+            onEditSquad(data)
+          }}
+        >
           <GroupAdd fontSize="small" />
           <Typography style={{ marginLeft: 10 }}>Ээлж үүсгэх</Typography>
         </MenuItem>
@@ -51,7 +55,13 @@ const TableActions: React.FC<ActionProps> = (props) => {
           <Edit fontSize="small" />
           <Typography style={{ marginLeft: 10 }}>Засах</Typography>
         </MenuItem>
-        <MenuItem onClick={() => onDelete(data)}>
+
+        <MenuItem
+          onClick={() => {
+            onDelete(data)
+            setAnchorEl(null)
+          }}
+        >
           <DeleteOutlined fontSize="small" />
           <Typography style={{ marginLeft: 10 }}>Устгах</Typography>
         </MenuItem>
