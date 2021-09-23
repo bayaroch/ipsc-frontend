@@ -1,4 +1,3 @@
-import './styles.scss'
 import ProductCard from '@components/elements/ProductCard'
 import { featuredproducts } from '@constants/featured.course'
 import { useRouter } from 'next/router'

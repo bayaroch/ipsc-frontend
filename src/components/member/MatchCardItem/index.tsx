@@ -47,10 +47,10 @@ const MatchCardItem: React.FC<MatchCardItemProps> = ({ item, onClick }) => {
       <Box className={classes.mediaBox}>
         <Box className={classes.onMediaContent}>
           <Typography
-            className={'intro-headline'}
+            className={'glowing-title'}
             gutterBottom
-            variant="h2"
-            component="h2"
+            variant="h3"
+            component="h3"
           >
             {item.name}
           </Typography>

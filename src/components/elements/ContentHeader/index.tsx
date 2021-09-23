@@ -24,7 +24,10 @@ const ContentHeader: React.FC<ContentBoxProps> = ({
       <Box className="container">
         <Box className={classes.contentBox}>
           {title ? (
-            <Typography className={classes.title} variant="h3">
+            <Typography
+              className={`glowing-title ${classes.title} `}
+              variant="h3"
+            >
               {title}
             </Typography>
           ) : null}

@@ -1,4 +1,3 @@
-import './styles.scss'
 import ImageThumb from '@components/elements/ImageThumb'
 import { featured } from '@constants/featured.menu'
 import Router from 'next/router'

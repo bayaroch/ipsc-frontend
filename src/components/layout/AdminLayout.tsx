@@ -28,7 +28,7 @@ const AdminLayout: React.FC<LayoutProps> = (props) => {
     } else {
       letOpen(true)
     }
-  }, [matches])
+  }, [])
 
   return (
     <div>

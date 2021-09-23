@@ -1,5 +1,4 @@
 import React from 'react'
-import './introButton.scss'
 
 type IntroButtonProps = React.ComponentPropsWithoutRef<'button'>
 

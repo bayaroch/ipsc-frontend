@@ -296,7 +296,7 @@ const useStyles = makeStyles({
     '& .MuiTabs-flexContainer': { borderBottom: '1px solid #eee' },
     '& .MuiTab-textColorPrimary': {
       fontSize: 12,
-      fontWeight: 500,
+      fontWeight: 600,
     },
   },
   currency: {

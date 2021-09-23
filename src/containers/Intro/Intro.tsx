@@ -1,6 +1,6 @@
 import IntroButton from '@components/common/IntroButton'
 import Slider from '@components/common/Slider'
-import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 const banners = [
   { url: '/images/intro/slide1.jpg' },
@@ -8,6 +8,7 @@ const banners = [
 ]
 
 const Intro: React.FC = () => {
+  const router = useRouter()
   return (
     <>
       <div className="intro-section">
@@ -24,9 +25,10 @@ const Intro: React.FC = () => {
                 IPSC Action Air <br />
                 практик буудлагын спорт
               </div>
-              <Link href="/about_aasc">
-                <IntroButton>Дэлгэрэнгүй</IntroButton>
-              </Link>
+
+              <IntroButton onClick={() => router.push('/about_aasc')}>
+                Дэлгэрэнгүй
+              </IntroButton>
             </div>
           </div>
         </div>

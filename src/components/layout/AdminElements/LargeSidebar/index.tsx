@@ -92,7 +92,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     color: '#b6bfcc',
     fontSize: '11px',
-    fontWeight: 500,
+    fontWeight: 600,
     textTransform: 'uppercase',
     padding: '16px 50px 16px 24px',
   },
@@ -152,7 +152,7 @@ const useStyles = makeStyles((theme) => ({
   },
   text: {
     fontWeight: 500,
-    fontSize: 13,
+    fontSize: 14,
   },
 }))
 

@@ -2,52 +2,57 @@
 @import './adminlayout.scss';
 @import './theme.scss';
 @import './layout.scss';
-@font-face {
-  font-family: 'SF UI Display';
-  src: url('/fonts/SFUIDisplay-Black.woff2') format('woff2'),
-    url('/fonts/SFUIDisplay-Black.woff') format('woff');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
 
 @font-face {
-  font-family: 'SF UI Display';
-  src: url('/fonts/SFUIDisplay-Medium.woff2') format('woff2'),
-    url('/fonts/SFUIDisplay-Medium.woff') format('woff');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'SF UI Display';
-  src: url('/fonts/SFUIDisplay-Regular.woff2') format('woff2'),
-    url('/fonts/SFUIDisplay-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'SF UI Display';
-  src: url('/fonts/SFUIDisplay-Bold.woff2') format('woff2'),
-    url('/fonts/SFUIDisplay-Bold.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'SF UI Display';
-  src: url('/fonts/SFUIDisplay-Semibold.woff2') format('woff2'),
-    url('/fonts/SFUIDisplay-Semibold.woff') format('woff');
+  font-family: 'Averta CY';
+  src: url('/fonts/subset-AvertaCY-Semibold.eot');
+  src: local('Averta CY Semibold'), local('AvertaCY-Bold'),
+    url('/fonts/subset-AvertaCY-Semibold.eot?#iefix')
+      format('embedded-opentype'),
+    url('/fonts/subset-AvertaCY-Semibold.woff2') format('woff2'),
+    url('/fonts/subset-AvertaCY-Semibold.woff') format('woff'),
+    url('/fonts/subset-AvertaCY-Semibold.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
-  font-display: swap;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap');
+@font-face {
+  font-family: 'Averta CY';
+  src: url('/fonts/subset-AvertaCY-Extrabold.eot');
+  src: local('Averta CY Extrabold'), local('AvertaCY-Extrabold'),
+    url('/fonts/subset-AvertaCY-Extrabold.eot?#iefix')
+      format('embedded-opentype'),
+    url('/fonts/subset-AvertaCY-Extrabold.woff2') format('woff2'),
+    url('/fonts/subset-AvertaCY-Extrabold.woff') format('woff'),
+    url('/fonts/subset-AvertaCY-Extrabold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Averta CY';
+  src: url('/fonts/subset-AvertaCY-Regular.eot');
+  src: local('Averta CY Regular'), local('AvertaCY-Regular'),
+    url('/fonts/subset-AvertaCY-Regular.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/subset-AvertaCY-Regular.woff2') format('woff2'),
+    url('/fonts/subset-AvertaCY-Regular.woff') format('woff'),
+    url('/fonts/subset-AvertaCY-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Averta CY';
+  src: url('/fonts/subset-AvertaCY-RegularItalic.eot');
+  src: local('Averta CY Regular Italic'), local('AvertaCY-RegularItalic'),
+    url('/fonts/subset-AvertaCY-RegularItalic.eot?#iefix')
+      format('embedded-opentype'),
+    url('/fonts/subset-AvertaCY-RegularItalic.woff2') format('woff2'),
+    url('/fonts/subset-AvertaCY-RegularItalic.woff') format('woff'),
+    url('/fonts/subset-AvertaCY-RegularItalic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
 
 .main {
   transition: -webkit-transform 0.23s cubic-bezier(0.694, 0.0482, 0.335, 1);
@@ -70,7 +75,6 @@ body {
   font-family: $family-sans-serif;
   font-size: 15px;
   font-weight: normal;
-  letter-spacing: 0.015rem;
 }
 
 .header-container .navbar.is-regular {
@@ -139,15 +143,13 @@ a:hover {
 .header.is-dark.navbar {
   .navbar-item {
     color: $colormenu;
-    font-size: 0.9rem;
+    font-size: 0.79rem;
     font-weight: 600;
     letter-spacing: 0.045rem;
-    font-family: 'PT Sans Narrow', sans-serif;
     text-transform: uppercase;
     .navbar-link {
-      font-family: 'PT Sans Narrow', sans-serif;
       color: $colormenu;
-      font-size: 0.9rem;
+      font-size: 0.79rem;
       font-weight: 600;
       padding: 0.5rem 1rem;
       letter-spacing: 0.045rem;
@@ -238,7 +240,6 @@ a:hover {
   font-size: 0.9rem;
   white-space: nowrap;
   text-transform: uppercase;
-  font-family: 'PT Sans Narrow', sans-serif;
   font-weight: 600;
   border-radius: 1px;
 }
@@ -333,14 +334,11 @@ a:hover {
   pointer-events: all;
 }
 .intro-headline {
-  font-family: 'PT Sans Narrow', 'Open Sans', 'Helvetica Neue', 'Helvetica',
-    'Arial', sans-serif;
   color: #fff;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 1.8rem;
   margin-bottom: 2rem;
   line-height: 1.2;
-  letter-spacing: 0.025rem;
   text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -436,9 +434,9 @@ a:hover {
       h3 {
         color: #fff;
         text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
-        letter-spacing: 3px;
         font-size: 18px;
-        font-weight: 700;
+        font-weight: 600;
+        letter-spacing: 1px;
         font-family: $titlefamily;
         text-transform: uppercase;
       }
@@ -525,6 +523,28 @@ a:hover {
   }
 }
 
+.featured-section {
+  border-top: 2px solid #000;
+}
+.section-title {
+  color: #eee;
+  letter-spacing: 2px;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 2rem 0;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.glowing-title {
+  letter-spacing: 1px;
+  font-weight: 800;
+  color: #fff;
+  text-transform: uppercase;
+  text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
+}
+
 @media (max-width: 1024px) {
   .intro-content {
     padding: 1rem;
@@ -551,6 +571,247 @@ a:hover {
 }
 .swiper-pagination {
   z-index: 100;
+}
+
+.intro-button {
+  padding: 0.5rem;
+  border: 0 none;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  display: block;
+  font-size: 1rem;
+  text-transform: uppercase;
+  outline: 0 none;
+  color: #0f1923;
+  background: 0 none;
+}
+.intro-button:before {
+  content: '';
+  display: block;
+  position: absolute;
+  height: calc(50% - 0.4rem);
+  width: 100%;
+  top: 0;
+  border: 1px solid rgba(236, 232, 225, 0.5);
+  border-bottom: 0;
+  left: 0;
+  right: 0;
+}
+.intro-button:after {
+  content: '';
+  display: block;
+  position: absolute;
+  height: calc(50% - 0.4rem);
+  width: 100%;
+  bottom: 0;
+  border: 1px solid rgba(236, 232, 225, 0.5);
+  border-top: 0;
+  left: 0;
+  right: 0;
+}
+
+/* LABEL  */
+.label {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+}
+
+.label:before {
+  content: '';
+  height: 100%;
+  display: block;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+}
+
+/* Hover Effect */
+.hover-effect {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 120%;
+  top: 0;
+  left: -5%;
+  z-index: 1;
+  transform: translateX(-100%) skew(-10deg);
+  transition: -webkit-transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+}
+
+.intro-button:hover .hover-effect {
+  transform: translateX(0) skew(-10deg);
+}
+
+/* Label Text */
+.label-text {
+  padding: 0.8rem 4rem;
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+  font-weight: 600;
+  display: block;
+  z-index: 1;
+  color: #ece8e1;
+}
+
+//primary
+
+.primary .label-text {
+  color: #fff;
+}
+
+.primary:hover .label-text {
+  color: #000;
+}
+
+.primary .label::before {
+  background-color: #074ea0;
+}
+
+.primary .hover-effect {
+  background-color: #f9d314;
+}
+
+.intro-section {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  height: 0;
+  padding-bottom: 40%;
+  min-height: 500px;
+  background-size: cover;
+}
+.image-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+.image-container:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  content: '';
+  pointer-events: none;
+  right: 0;
+  background: url('/images/overlay.png') bottom left;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.dvc-logo {
+  width: 100px;
+}
+.intro-container {
+  flex: 1;
+  align-items: flex-end;
+  height: 100%;
+  display: flex;
+  position: relative;
+  z-index: 10;
+}
+.intro-content {
+  padding-bottom: 40px;
+  max-width: 400px;
+  pointer-events: all;
+}
+.intro-headline {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.68rem;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  letter-spacing: 0.025rem;
+  text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.intro-wrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  .intro-content {
+    padding: 1rem;
+    margin: 0 auto;
+    text-align: center;
+    .intro-button {
+      margin: 0 auto;
+    }
+  }
+  .dvc-logo {
+    margin: 0 auto;
+  }
+}
+
+.card {
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+.card {
+  .card-footer-item:hover {
+    color: #fff;
+    transition: all 0.2s ease-out;
+  }
+  .limit-3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
+    font-size: 13px;
+  }
+  .card-footer-item {
+    text-transform: uppercase;
+    font-size: 11px;
+    color: #333;
+  }
+}
+
+strong {
+  font-weight: 600;
+}
+
+.card.is-dark {
+  background-color: #191919;
+  .card-footer {
+    border-top: 1px solid #111;
+  }
+  .card-footer-item:not(:last-child) {
+    border-color: #111;
+  }
+  .limit-3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
+    font-size: 13px;
+    color: #aaa;
+  }
+  .card-footer-item {
+    text-transform: uppercase;
+    font-size: 11px;
+    color: #999;
+  }
+  .card-footer-item.no-content {
+    color: #333;
+  }
 }
 
 /**

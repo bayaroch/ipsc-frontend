@@ -1,5 +1,4 @@
 import React from 'react'
-import './card.scss'
 import ImageThumb from '@components/elements/ImageThumb'
 import Link from 'next/link'
 import _ from 'lodash'
@@ -26,7 +25,7 @@ const ProductCard: React.FC<CardProps> = ({ data, onClick, desc, isDark }) => {
         <div className="card-image">
           <ImageThumb
             desc={false}
-            titleSize={14}
+            titleSize={13}
             data={data}
             onClick={() => onClick && onClick()}
           />

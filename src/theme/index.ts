@@ -3,10 +3,10 @@ import { Colors } from '@theme/colors'
 import { breakpointValues } from '@theme/variables'
 
 const font =
-  "'SF UI Display', 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+  "'Averta CY', 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
 
 const $titlefamily =
-  "'PT Sans Narrow', 'Open Sans', 'Helvetica Neue', 'Helvetica','Arial', sans-serif"
+  "'Averta CY', 'Open Sans', 'Helvetica Neue', 'Helvetica','Arial', sans-serif"
 
 export const userBreakpoints = breakpointValues
 
@@ -30,23 +30,19 @@ export default createTheme({
   typography: {
     fontFamily: font,
     h1: {
-      fontSize: 20,
+      fontSize: 22,
       fontWeight: 600,
       fontFamily: $titlefamily,
-    },
+    }, // lets all big titles
     h2: {
       fontSize: 18,
       fontWeight: 600,
       fontFamily: $titlefamily,
     },
     h3: {
-      fontSize: 18,
+      fontSize: 16,
       fontFamily: $titlefamily,
-      color: '#333',
-      textShadow: '0px 0px 8px rgb(255 255 255 / 50%)',
-      letterSpacing: '3px',
-      fontWeight: 700,
-      textTransform: 'uppercase',
+      fontWeight: 600,
     },
     body1: {
       fontSize: 14,
