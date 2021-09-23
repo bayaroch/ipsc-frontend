@@ -16,7 +16,7 @@ const ClubMembersContainer: React.FC = () => {
   const [page, setPage] = useState<number>(1)
   const [rowsPerPage] = useState<number>(defaultPerPage)
   const classes = useStyles()
-  const { getList, groupList, paginationMeta, support } = useAccount()
+  const { getList, groupList, paginationMeta, support, meta } = useAccount()
 
   useEffect(() => {
     getList({ page: page, per_page: rowsPerPage })
@@ -27,6 +27,17 @@ const ClubMembersContainer: React.FC = () => {
     newPage: React.SetStateAction<number>
   ) => {
     setPage(newPage)
+  }
+
+  const renderLoader = () => {
+    if (!meta.loaded && meta.pending && !meta.error && _.isEmpty(groupList)) {
+      return (
+        <Box className={classes.loaderBox}>
+          <Box className="dot-flashing" />
+        </Box>
+      )
+    }
+    return null
   }
 
   const renderList = () => {
@@ -79,18 +90,31 @@ const ClubMembersContainer: React.FC = () => {
     return null
   }
 
-  return <Box>{renderList()}</Box>
+  return (
+    <Box>
+      {renderList()}
+      {renderLoader()}
+    </Box>
+  )
 }
 
 const useStyles = makeStyles(() => ({
-  root: {},
+  loaderBox: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: 300,
+  },
   section: { marginBottom: 20 },
   topControl: {
     paddingBottom: 10,
     justifyContent: 'flex-end',
     display: 'flex',
   },
-  sectionTitle: {},
+  sectionTitle: {
+    paddingBottom: 30,
+  },
   pagination: {
     position: 'relative',
     justifyContent: 'space-between',

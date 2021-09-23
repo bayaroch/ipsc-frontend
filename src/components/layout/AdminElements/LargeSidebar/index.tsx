@@ -31,7 +31,7 @@ const LargeSideBar: React.FC = () => {
               <ListItemIcon className={classes.iconItem}>
                 <Dashboard className={classes.icon} />
               </ListItemIcon>
-              <Typography className={classes.text}>DashBoard</Typography>
+              <Typography className={classes.text}>Эхлэл</Typography>
             </ListItem>
           </Link>
         </section>
