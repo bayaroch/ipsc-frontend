@@ -28,4 +28,10 @@ export const MEMBER_MENU_LARGE = [
     name: 'Тэмцээн',
     icon: List,
   },
+  {
+    id: 2,
+    route: '/member/list',
+    name: 'Клубын гишүүд',
+    icon: People,
+  },
 ]

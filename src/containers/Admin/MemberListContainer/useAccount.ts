@@ -12,6 +12,7 @@ import {
 
 import { support as sup } from '@store/support/selectors'
 import { SupportState } from '@store/support/reducers'
+import { GroupedMemberItem, membersGroupBy } from '@store/account/selectors'
 
 const { selectors, actions } = searchStore
 const getAllMemberMeta = createMetaSelector(actions.getAllMembers)
@@ -19,6 +20,7 @@ const getAllMemberMeta = createMetaSelector(actions.getAllMembers)
 const useAccount = (): {
   meta: Meta
   list: MemberItem[]
+  groupList: GroupedMemberItem[]
   getList: (params: MemberPageMeta) => void
   paginationMeta: MemberPaginationMeta
   create: (params: UserCreateParams) => void
@@ -28,6 +30,7 @@ const useAccount = (): {
   const dispatch = useDispatch()
   const meta = useSelector(getAllMemberMeta)
   const list = useSelector(selectors.members)
+  const groupList = useSelector(membersGroupBy)
   const paginationMeta = useSelector(selectors.paginationMeta)
   const getList = (params: MemberPageMeta) =>
     dispatch(actions.getAllMembers(params))
@@ -41,6 +44,7 @@ const useAccount = (): {
   return {
     meta,
     list,
+    groupList,
     getList,
     paginationMeta,
     create,
