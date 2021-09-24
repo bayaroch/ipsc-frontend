@@ -44,6 +44,18 @@ export default createTheme({
       fontFamily: $titlefamily,
       fontWeight: 600,
     },
+    h4: {
+      fontSize: 15,
+      fontFamily: $titlefamily,
+      fontWeight: 600,
+      textTransform: 'uppercase',
+    },
+    h5: {
+      fontSize: 14,
+      fontFamily: $titlefamily,
+      fontWeight: 600,
+      textTransform: 'uppercase',
+    },
     body1: {
       fontSize: 14,
       fontWeight: 400,

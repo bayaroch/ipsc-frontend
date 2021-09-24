@@ -19,7 +19,7 @@ export interface MatchItem {
   status: MATCH_STATUS
   last_modified_by: number
   stage_number?: number
-  practicipants: Array<ParticipantsItem>
+  participants: Array<ParticipantsItem>
 }
 
 export enum MATCH_ACTION_TYPE {

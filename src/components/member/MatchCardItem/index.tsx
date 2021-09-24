@@ -86,9 +86,6 @@ const MatchCardItem: React.FC<MatchCardItemProps> = ({ item, onClick }) => {
         <Button size="small" color="primary" onClick={() => onClick(item.id)}>
           Дэлгэрэнгүй
         </Button>
-        <Button size="small" color="primary">
-          Бүртгүүлэх
-        </Button>
       </CardActions>
     </Card>
   )

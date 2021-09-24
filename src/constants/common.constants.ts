@@ -30,6 +30,47 @@ export enum MEMBER_TYPE {
   USER_STUDENT = 0,
 }
 
+export enum MATCH_PROGRESS_STATUS {
+  READY = 1,
+  REGISTERING = 2,
+  REGISTERING_CLOSED = 3,
+  IN_PROGRESS = 4, //started
+  COMPLETED = 5, // finished
+  CANCELLED = 6,
+  UNKNOWN = 7,
+}
+
+export const MATCH_PROGRESS_STATUS_TITLE = [
+  {
+    id: MATCH_PROGRESS_STATUS.READY,
+    value: 'Идэвхитэй',
+  },
+  {
+    id: MATCH_PROGRESS_STATUS.REGISTERING,
+    value: 'Бүртгэл явагдаж байна',
+  },
+  {
+    id: MATCH_PROGRESS_STATUS.REGISTERING_CLOSED,
+    value: 'Бүртгэл хаагдсан',
+  },
+  {
+    id: MATCH_PROGRESS_STATUS.IN_PROGRESS,
+    value: 'Явагдаж байна',
+  },
+  {
+    id: MATCH_PROGRESS_STATUS.COMPLETED,
+    value: 'Явагдаж дууссан',
+  },
+  {
+    id: MATCH_PROGRESS_STATUS.COMPLETED,
+    value: 'Цуцлагдсан',
+  },
+  {
+    id: MATCH_PROGRESS_STATUS.UNKNOWN,
+    value: '',
+  },
+]
+
 export const MEMBER_TYPE_DATA = [
   {
     id: MEMBER_TYPE.USER_ADMIN,

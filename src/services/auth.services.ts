@@ -25,6 +25,7 @@ export type UserData = {
   enabled?: boolean
   class_id?: number
   mo_badge?: null | number
+  img_url?: string | null
 }
 
 export const authServices = {

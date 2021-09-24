@@ -8,6 +8,7 @@ import {
   Divider,
   Paper,
   Button,
+  Chip,
 } from '@material-ui/core/'
 import useMatchDetail from './useMatchDetail'
 import _ from 'lodash'
@@ -36,6 +37,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
     participantsFiltered,
     support,
     participants,
+    progress,
     update,
     registerState,
   } = useMatchDetail()
@@ -189,6 +191,12 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
             <Typography variant="h2" className={classes.title} align="center">
               {detail.name}
             </Typography>
+            <br />
+            {!_.isEmpty(progress.value) ? (
+              <Box>
+                <Chip label={progress.value} />
+              </Box>
+            ) : null}
           </Box>
           <ContentBox>
             <Paper className={classes.paper}>
@@ -330,7 +338,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
                       flexDirection="column"
                     >
                       <Typography variant="h2" className={classes.subtitle}>
-                        Спонсор
+                        mdi-chess-queen
                       </Typography>
                       <Typography variant="body2">
                         {detail.stage_number}
