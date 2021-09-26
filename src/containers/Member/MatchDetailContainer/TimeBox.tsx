@@ -1,12 +1,5 @@
 import React from 'react'
-import {
-  Box,
-  Card,
-  CardHeader,
-  CardContent,
-  Icon,
-  Divider,
-} from '@material-ui/core'
+import { Box, Card, CardContent, Icon, Divider } from '@material-ui/core'
 import { alpha, makeStyles } from '@material-ui/core/styles'
 
 import blue from '@material-ui/core/colors/blue'
@@ -55,7 +48,6 @@ const TimeBox: React.FC<MatchTimeBoxProps> = ({ detail }) => {
   const classes = useStyles()
   return (
     <Card>
-      <CardHeader title="Contact" />
       <CardContent>
         <Box display="flex" alignItems="center" mb={{ xs: 1, sm: '20px' }}>
           <Box className={`${classes.iconView} start`}>
