@@ -178,7 +178,7 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
                         labelPrimary="Нууц үг"
                         fullWidth={true}
                         inputProps={{ autoComplete: 'off' }}
-                        type="password"
+                        type={values.showPassword ? 'text' : 'password'}
                         placeholder={'Нууц үг солих'}
                         error={!!errors.password}
                         helperText={
