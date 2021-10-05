@@ -46,7 +46,7 @@ const useCreateForm = () => {
         gender: yup.number().required(validation.required),
         enabled: yup.boolean().required(validation.required),
         class_id: yup.number().required(validation.required),
-        img_url: yup.string().notRequired(),
+        img_url: yup.string().nullable().notRequired(),
       }),
     []
   )
