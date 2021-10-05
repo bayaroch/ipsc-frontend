@@ -146,8 +146,8 @@ const LoginPage: React.FC = () => {
                 <Box className={classes.addInfo}>
                   <Typography className={classes.text}>
                     Зөвхөн `Экшн Эйр Буудлагын Клуб`-ын гишүүд нэвтрэх эрхтэй.
-                    Хэрэглэгчийн нэвтрэх мэдээлэллийг А. Арслан холбогдож авна
-                    уу.
+                    Хэрэглэгчийн нэвтрэх мэдээлэллийг А. Арслантай холбогдож
+                    авна уу.
                   </Typography>
                 </Box>
               </Grid>
