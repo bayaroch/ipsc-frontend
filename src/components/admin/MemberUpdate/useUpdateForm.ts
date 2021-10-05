@@ -20,15 +20,10 @@ export const initValues = {
 }
 
 const useUpdateForm = () => {
-  const digitsOnly = (value: any) => /^\d+$/.test(value)
-
   const validationSchema = useMemo(
     () =>
       yup.object().shape({
-        usercode: yup
-          .string()
-          .required(validation.required)
-          .test(validation.digitsOnly, validation.digitsOnly, digitsOnly),
+        usercode: yup.string().required(validation.required),
         password: yup.string().notRequired(),
         firstname: yup.string().required(validation.required),
         email: yup
