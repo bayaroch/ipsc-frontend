@@ -5,6 +5,7 @@ import { LoginInput } from '@utils/hooks/useLoginForm'
 import { isAuth } from '@store/auth/selectors'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
+import Link from 'next/link'
 import {
   CircularProgress,
   Box,
@@ -22,6 +23,7 @@ import Alert from '@material-ui/lab/Alert'
 import { VerifiedUser, Lock } from '@material-ui/icons'
 import _ from 'lodash'
 import { Colors } from '@theme/colors'
+import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn'
 
 const LoginPage: React.FC = () => {
   const { methods, submitLogin, Controller, metadata } = useLoginForm()
@@ -150,12 +152,31 @@ const LoginPage: React.FC = () => {
                     авна уу.
                   </Typography>
                 </Box>
+                <Box
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                  pb={2}
+                >
+                  <Link href="/">
+                    <a style={{ color: '#333' }}>
+                      <KeyboardReturnIcon
+                        style={{
+                          position: 'relative',
+                          top: 10,
+                          marginRight: 5,
+                        }}
+                      />
+                      Буцах
+                    </a>
+                  </Link>
+                </Box>
               </Grid>
               <Hidden only={'sm'}>
                 <Grid className={classes.loginSide} item md={5}>
                   <Box className={classes.contentSide}>
                     <Box className={classes.logoHolder}>
-                      <img src="images/logo-dvc.png" alt="dvc" />
+                      <img src="images/logo.png" alt="dvc" />
                     </Box>
                     <Box className="intro-headline">
                       <Box style={{ fontSize: 48 }}>IPSC</Box>
