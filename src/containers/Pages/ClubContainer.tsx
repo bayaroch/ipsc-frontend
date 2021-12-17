@@ -9,8 +9,8 @@ const ClubContainer: React.FC = () => {
     <>
       <Box
         sx={{
-          paddingTop: 40,
-          paddingBottom: 40,
+          paddingTop: '40px',
+          paddingBottom: '40px',
           maxWidth: 600,
           margin: '0 auto',
         }}
@@ -19,8 +19,8 @@ const ClubContainer: React.FC = () => {
           sx={{
             color: Colors.black,
             textAlign: 'center',
-            paddingTop: 20,
-            paddingBottom: 30,
+            paddingTop: '20px',
+            paddingBottom: '30px',
           }}
           variant="h3"
           component="h3"
@@ -48,7 +48,7 @@ const ClubContainer: React.FC = () => {
           холбогдох утас: 8611-0200
         </Typography>
       </Box>
-      <Box sx={{ maxWidth: 800, margin: '0 auto', paddingBottom: 100 }}>
+      <Box sx={{ maxWidth: 800, margin: '0 auto', paddingBottom: '100px' }}>
         <ImageList rowHeight={240} cols={3}>
           {clubCollection.map((item) => (
             <ImageListItem key={item.img} cols={item.cols || 1}>

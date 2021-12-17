@@ -49,3 +49,30 @@ export const topmenu = [
     ],
   },
 ]
+
+export const mainmenu = [
+  {
+    label: 'IPSC Action Air',
+    route: '/about_aasc',
+  },
+  {
+    label: 'Action Air Shooting Club',
+    route: '/about_us',
+  },
+  {
+    label: 'Cпортын дүрэм',
+    route: '/rules',
+  },
+  {
+    label: 'Cургалт',
+    route: '/course',
+  },
+  {
+    label: 'Гишүүнчлэл',
+    route: '/membership',
+  },
+  {
+    label: 'Бусад',
+    route: '/rules-rating',
+  },
+]

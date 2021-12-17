@@ -17,9 +17,7 @@ const ContentWrapper: React.FC<ContentBoxProps> = ({
     <Box
       style={{ background: background, paddingTop: topSpace ? 63 : 0 }}
       sx={{
-        contentWrapper: {
-          minHeight: 'calc(100vh - 358px)',
-        },
+        minHeight: 'calc(100vh - 358px)',
       }}
     >
       <Container sx={{ maxWidth: { lg: 1400 }, width: '100%' }}>
