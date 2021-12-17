@@ -1,7 +1,7 @@
 import { createAsyncThunk, createAction } from '@reduxjs/toolkit'
 import { SUPPORT_ACTION_TYPE } from './types'
 import { SupportResponse, supportServices } from '@services/support.services'
-import { Color } from '@mui/material//Alert'
+import { AlertColor } from '@mui/material/Alert'
 
 export const getBadges = createAsyncThunk<SupportResponse>(
   SUPPORT_ACTION_TYPE.GET_BADGES,
@@ -50,7 +50,7 @@ export const getClass = createAsyncThunk<SupportResponse>(
 
 export type toastParams = {
   message: string
-  severity?: Color
+  severity?: AlertColor
 }
 
 export const addToast = createAction<toastParams>('toast/addToast')
