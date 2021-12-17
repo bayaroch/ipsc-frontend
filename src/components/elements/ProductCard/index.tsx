@@ -18,18 +18,15 @@ interface CardProps {
   isDark?: boolean
 }
 
-const ProductCard: React.FC<CardProps> = ({ data, onClick, desc, isDark }) => {
+const ProductCard: React.FC<CardProps> = ({ data, desc, isDark }) => {
   return (
     <>
       <div className={`card ${isDark ? 'is-dark' : ''}`}>
-        <div className="card-image">
-          <ImageThumb
-            desc={false}
-            titleSize={13}
-            data={data}
-            onClick={() => onClick && onClick()}
-          />
-        </div>
+        <Link href={data.route !== undefined ? data.route : '#'}>
+          <div className="card-image">
+            <ImageThumb desc={false} titleSize={13} data={data} />
+          </div>
+        </Link>
         <div className="card-content">
           <div className="content limit-3">{desc}</div>
         </div>

@@ -1,16 +1,13 @@
 import ImageThumb from '@components/elements/ImageThumb'
 import { featured } from '@constants/featured.menu'
-import Router from 'next/router'
+import Link from 'next/link'
 
 const Featured: React.FC = () => {
   const listItems = featured.map((item, index) => (
     <div className="column" key={index.toString()}>
-      <ImageThumb
-        data={item}
-        onClick={() => {
-          Router.push(item.route)
-        }}
-      />
+      <Link href={item.route}>
+        <ImageThumb data={item} />
+      </Link>
     </div>
   ))
 

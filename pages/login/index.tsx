@@ -50,12 +50,24 @@ const LoginPage: React.FC = () => {
   return (
     <LoginLayout>
       <>
-        <Box sx={{ padding: '0 15px', maxWidth: 800, width: '100%' }}>
+        <Box
+          sx={{
+            padding: '0 15px',
+            margin: {
+              lg: '0 auto',
+              xl: '0 auto',
+              md: '0 auto',
+              sm: '30px auto',
+              xs: '30px auto',
+            },
+            maxWidth: 800,
+            width: '100%',
+          }}
+        >
           <Paper
             sx={{
               boxShadow: '0 10px 30px 0 rgb(22 53 160 / 35%)',
               overflow: 'hidden',
-              margin: '0 auto',
               position: 'relative',
               borderRadius: 2,
               zIndex: 90,
@@ -262,19 +274,29 @@ const LoginPage: React.FC = () => {
                   }}
                   item
                   md={5}
+                  sm={12}
+                  xs={12}
                 >
                   <Box
                     sx={{
                       padding: '2rem',
                       position: 'relative',
                       textAlign: 'center',
+                      width: '100%',
                       zIndex: 10,
+                      display: {
+                        xl: 'block',
+                        lg: 'block',
+                        md: 'block',
+                        sm: 'none',
+                        xs: 'none',
+                      },
                     }}
                   >
                     <Box
                       sx={{
-                        marginTop: 80,
-                        maxWidth: 80,
+                        marginTop: '80px',
+                        maxWidth: '80px',
                         margin: '0 auto',
                         img: {
                           width: '100%',

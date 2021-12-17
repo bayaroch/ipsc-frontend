@@ -9,7 +9,6 @@ export type Product = {
 }
 
 interface ImageThumbProps {
-  onClick: () => void
   data: Product
   desc?: boolean
   titleSize?: number
@@ -17,13 +16,13 @@ interface ImageThumbProps {
 
 const ImageThumb: React.FC<ImageThumbProps> = ({
   data,
-  onClick,
+
   desc,
   titleSize,
 }) => {
   return (
     <div className="is-2by1 image">
-      <div className="thumb-inner" onClick={() => onClick()}>
+      <div className="thumb-inner">
         <div className="tile-bgs" aria-hidden="true">
           <div
             className="bg-img"

@@ -11,7 +11,7 @@ const IntroCourseContainer: React.FC = () => {
     <>
       <Grid container>
         <Grid md={9} sm={12} xs={12} item>
-          <Box sx={{ paddingRight: '50px', paddingBottom: '50px' }}>
+          <Box sx={{ paddingRight: { sm: 0, lg: '50px', md: '50px' } }}>
             <div className="content">
               <ul>
                 <li>Сургалтын нэр: Танилцах сургалт</li>
