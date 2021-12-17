@@ -65,6 +65,7 @@
   z-index: 3;
   min-height: 100vh;
   background-color: #000;
+  overflow: hidden;
 }
 .wrapper.open .main {
   -webkit-transform: translateX(-$off-canvas-width);
