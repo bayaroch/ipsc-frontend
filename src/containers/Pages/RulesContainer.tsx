@@ -7,7 +7,7 @@ const RulesContainer: React.FC = ({ children }) => {
     <>
       <Grid container>
         <Grid md={9} sm={12} xs={12} item>
-          <Box sx={{ paddingRight: '50px', paddingBottom: '100px' }}>
+          <Box sx={{ paddingRight: { sm: 0, lg: '50px', md: '50px' } }}>
             <div className="content">{children}</div>
           </Box>
         </Grid>
