@@ -9,7 +9,7 @@ const ClubContainer: React.FC = () => {
         sx={{
           height: 'auto',
           minHeight: { xl: '100vh', lg: 'auto', md: 'auto', sm: 'auto' },
-          paddingTop: 63,
+          paddingTop: '63px',
         }}
         spacing={0}
       >
@@ -20,7 +20,7 @@ const ClubContainer: React.FC = () => {
               width: '100%',
               background: "url('images/bg/shooter.jpg')",
               backgroundSize: 'Cover',
-              padding: 100,
+              padding: '100px',
             }}
           >
             <Typography

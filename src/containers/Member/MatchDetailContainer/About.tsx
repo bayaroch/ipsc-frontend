@@ -33,7 +33,7 @@ const About: React.FC<About> = ({ detail, progress }) => {
         title="Мэдээлэл"
       ></CardHeader>
       <CardContent>
-        <section style={{ paddingTop: 15, paddingBottom: 15 }}>
+        <section style={{ paddingTop: '15px', paddingBottom: '15px' }}>
           <Grid spacing={3} container>
             <Grid item sm={12} md={4}>
               <Box display="flex" flexDirection="row">
