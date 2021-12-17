@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { makeStyles, Box, Grid, Typography } from '@material-ui/core/'
+import { Box, Grid, Typography } from '@mui/material/'
 import useAccount from '@containers/Admin/MemberListContainer/useAccount'
 import MemberCard from '@components/member/MemberCard'
-import Pagination from '@material-ui/lab/Pagination'
+import Pagination from '@mui/material//Pagination'
 import _ from 'lodash'
 
 export enum FORM_ACTION_TYPE {
@@ -15,7 +15,6 @@ const defaultPerPage = 100
 const ClubMembersContainer: React.FC = () => {
   const [page, setPage] = useState<number>(1)
   const [rowsPerPage] = useState<number>(defaultPerPage)
-  const classes = useStyles()
   const { getList, groupList, paginationMeta, support, meta } = useAccount()
 
   useEffect(() => {
@@ -32,7 +31,15 @@ const ClubMembersContainer: React.FC = () => {
   const renderLoader = () => {
     if (!meta.loaded && meta.pending && !meta.error && _.isEmpty(groupList)) {
       return (
-        <Box className={classes.loaderBox}>
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            minHeight: 300,
+          }}
+        >
           <Box className="dot-flashing" />
         </Box>
       )
@@ -46,9 +53,9 @@ const ClubMembersContainer: React.FC = () => {
         <Box>
           {groupList.map((g, i) => {
             return (
-              <Box className={classes.section} key={i}>
+              <Box sx={{ marginBottom: '20px' }} key={i}>
                 <Typography
-                  className={classes.sectionTitle}
+                  sx={{ paddingBottom: '30px' }}
                   variant="h2"
                   component="h2"
                   align="center"
@@ -80,7 +87,16 @@ const ClubMembersContainer: React.FC = () => {
             <Pagination
               count={paginationMeta.total_pages}
               page={page}
-              className={classes.pagination}
+              sx={{
+                position: 'relative',
+                justifyContent: 'space-between',
+                padding: 1,
+                width: '100%',
+                '& .MuiPagination-ul': {
+                  width: '100%',
+                  justifyContent: 'center',
+                },
+              }}
               onChange={handleChangePage}
             />
           ) : null}
@@ -97,34 +113,5 @@ const ClubMembersContainer: React.FC = () => {
     </Box>
   )
 }
-
-const useStyles = makeStyles(() => ({
-  loaderBox: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    minHeight: 300,
-  },
-  section: { marginBottom: 20 },
-  topControl: {
-    paddingBottom: 10,
-    justifyContent: 'flex-end',
-    display: 'flex',
-  },
-  sectionTitle: {
-    paddingBottom: 30,
-  },
-  pagination: {
-    position: 'relative',
-    justifyContent: 'space-between',
-    padding: 5,
-    width: '100%',
-    '& .MuiPagination-ul': {
-      width: '100%',
-      justifyContent: 'center',
-    },
-  },
-}))
 
 export default ClubMembersContainer

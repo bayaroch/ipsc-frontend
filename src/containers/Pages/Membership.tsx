@@ -1,9 +1,8 @@
 /*eslint-disable no-irregular-whitespace*/
-import { makeStyles, Box, Typography } from '@material-ui/core/'
+import { Box, Typography } from '@mui/material/'
 const MembershipContainer: React.FC = () => {
-  const classes = useStyles()
   return (
-    <Box className={classes.content}>
+    <Box sx={{ paddingTop: '40px', paddingBottom: '40px' }}>
       <Typography variant={'body1'} component="p">
         {`ACTION AIR SHOOTING CLUB нь практик буудлагын спорт клуб бөгөөд ОУПБХ, МПБХ-ноос олгосон эрхийн дагуу IPSC Action Air төрлийн тамирчин бэлтгэл зорилгоор сургалт явуулах, тэмцээн уралдаан зохион байгуулах, ОУ-ын тэмцээнд тамирчдаа бэлтгэн оролцуулах үндсэн зорилготойгоор 2019 онд байгуулагдсан.`}
       </Typography>
@@ -19,15 +18,5 @@ const MembershipContainer: React.FC = () => {
     </Box>
   )
 }
-
-const useStyles = makeStyles(() => ({
-  paper: {
-    padding: 20,
-  },
-  content: {
-    paddingTop: 40,
-    paddingBottom: 40,
-  },
-}))
 
 export default MembershipContainer

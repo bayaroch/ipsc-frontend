@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { makeStyles, Box, Button } from '@material-ui/core/'
+import { Box, Button } from '@mui/material/'
 import useAccount from './useAccount'
 import MemberList from '@components/admin/MemberList'
 import { MemberItem, UserCreateParams } from '@services/account.services'
-import { PersonAdd } from '@material-ui/icons'
+import { PersonAdd } from '@mui/icons-material'
 import _ from 'lodash'
 import MemberCreate from '@components/admin/MemberCreate'
 import MemberUpdate from '@components/admin/MemberUpdate'
@@ -20,7 +20,6 @@ export enum FORM_ACTION_TYPE {
 }
 
 const MatchListContainer: React.FC = () => {
-  const classes = useStyles()
   const [open, setOpen] = useState<boolean>(false)
   const [updateOpen, setUpdate] = useState<UpsertDialog | null>(null)
   const confirm = useConfirm()
@@ -110,7 +109,13 @@ const MatchListContainer: React.FC = () => {
 
   return (
     <Box>
-      <Box className={classes.topControl}>
+      <Box
+        sx={{
+          paddingBottom: '10px',
+          justifyContent: 'flex-end',
+          display: 'flex',
+        }}
+      >
         <Button
           variant="contained"
           color={'primary'}
@@ -145,14 +150,5 @@ const MatchListContainer: React.FC = () => {
     </Box>
   )
 }
-
-const useStyles = makeStyles(() => ({
-  root: {},
-  topControl: {
-    paddingBottom: 10,
-    justifyContent: 'flex-end',
-    display: 'flex',
-  },
-}))
 
 export default MatchListContainer

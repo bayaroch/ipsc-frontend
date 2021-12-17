@@ -1,8 +1,8 @@
-import { Snackbar } from '@material-ui/core'
+import { Color, Snackbar } from '@mui/material/'
 import * as selectors from '@store/support/selectors'
 import * as actions from '@store/support/actions'
 import { useSelector, useDispatch } from 'react-redux'
-import MuiAlert, { AlertProps, Color } from '@material-ui/lab/Alert'
+import MuiAlert, { AlertProps } from '@mui/material//Alert'
 
 function Alert(props: JSX.IntrinsicAttributes & AlertProps) {
   return <MuiAlert elevation={6} variant="filled" {...props} />

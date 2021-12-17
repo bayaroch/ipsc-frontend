@@ -1,28 +1,7 @@
 import React from 'react'
 
-import clsx from 'clsx'
-
-import { Box, Button, CircularProgress } from '@material-ui/core'
-import { alpha, makeStyles } from '@material-ui/core/styles'
-
-const useStyles = makeStyles((theme) => ({
-  emptyListContainer: {
-    flexDirection: 'column',
-    minHeight: 250,
-    height: '100%',
-    display: 'flex',
-    padding: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: theme.palette.background.paper,
-    border: `1px solid ${alpha(theme.palette.common.black, 0.12)}`,
-    borderRadius: 4,
-    textAlign: 'center',
-  },
-  flexRow: {
-    flexDirection: 'row',
-  },
-}))
+import { Box, Button, CircularProgress } from '@mui/material/'
+import { alpha } from '@mui/material/styles'
 
 export interface ListEmptyResultProps {
   loader: any
@@ -45,29 +24,52 @@ const ListEmptyResult: React.FC<ListEmptyResultProps> = ({
   onClick,
   children,
 }) => {
-  const classes = useStyles()
   if (loading || loader) {
     return (
       <React.Fragment>
         {placeholder ? (
           placeholder
         ) : (
-          <div
-            className={clsx(
-              classes.emptyListContainer,
-              classes.flexRow,
-              'CmtList-EmptyResult'
-            )}
+          <Box
+            sx={{
+              minHeight: 250,
+              height: '100%',
+              display: 'flex',
+              padding: 20,
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: (theme) => theme.palette.background.paper,
+              border: `1px solid ${alpha('#000', 0.12)}`,
+              borderRadius: '4px',
+              textAlign: 'center',
+              flexDirection: 'row',
+            }}
+            className={'CmtList-EmptyResult'}
           >
             <CircularProgress size={16} />
             <span className="ml-2">Loading...</span>
-          </div>
+          </Box>
         )}
       </React.Fragment>
     )
   } else {
     return (
-      <div className={clsx(classes.emptyListContainer, 'CmtList-EmptyResult')}>
+      <Box
+        className={'CmtList-EmptyResult'}
+        sx={{
+          flexDirection: 'column',
+          minHeight: 250,
+          height: '100%',
+          display: 'flex',
+          padding: 20,
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: (theme) => theme.palette.background.paper,
+          border: `1px solid ${alpha('#000', 0.12)}`,
+          borderRadius: '4px',
+          textAlign: 'center',
+        }}
+      >
         {children ? (
           children
         ) : (
@@ -93,7 +95,7 @@ const ListEmptyResult: React.FC<ListEmptyResultProps> = ({
             )}
           </React.Fragment>
         )}
-      </div>
+      </Box>
     )
   }
 }

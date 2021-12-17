@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { makeStyles, Box, Typography } from '@material-ui/core/'
+import { Box, Typography } from '@mui/material/'
 import useSquadJoin from './useSquadJoin'
 import _, { isArray } from 'lodash'
 import SquadList from '@components/admin/SquadList'
@@ -18,7 +18,6 @@ interface SquadJoinContainerProps {
 }
 
 const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
-  const classes = useStyles()
   const confirm = useConfirm()
   const [mode] = useState<boolean>(true)
   const [memberList, setMemberList] = useState<null | SquadListMembers[]>(null)
@@ -30,7 +29,20 @@ const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
   const renderLoader = () => {
     if (listMeta.pending && !listMeta.loaded && !listMeta.error) {
       return (
-        <Box className={classes.loaderBox}>
+        <Box
+          sx={{
+            background: 'rgba(255,255,255,0.8)',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 1,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
           <Box className="dots-flashing" />
         </Box>
       )
@@ -107,7 +119,7 @@ const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
             justifyContent="space-between"
             alignItems="center"
           >
-            <Typography variant="h3" className={classes.title}>
+            <Typography variant="h3" sx={{ paddingLeft: '20px' }}>
               {_.get(match, 'name', '')}
             </Typography>
           </Box>
@@ -137,7 +149,7 @@ const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
   }
 
   return (
-    <Box className={classes.container}>
+    <Box sx={{ position: 'relative' }}>
       {renderLoader()}
       {renderList()}
       {renderPlaceholder()}
@@ -149,37 +161,5 @@ const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
     </Box>
   )
 }
-
-const useStyles = makeStyles(() => ({
-  container: {
-    position: 'relative',
-  },
-  divider: {
-    marginTop: 20,
-    marginBottom: 20,
-  },
-  group: {
-    justifyContent: 'space-between',
-  },
-  section: {
-    marginBottom: 24,
-  },
-  loader: {},
-  title: {
-    paddingLeft: 20,
-  },
-  loaderBox: {
-    background: 'rgba(255,255,255,0.8)',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 1,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-}))
 
 export default SquadJoinContainer

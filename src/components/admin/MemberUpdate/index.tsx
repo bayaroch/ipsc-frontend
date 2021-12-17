@@ -1,6 +1,5 @@
 import { forwardRef, useEffect, useState } from 'react'
 import {
-  makeStyles,
   Dialog,
   Button,
   ButtonGroup,
@@ -14,8 +13,8 @@ import {
   Typography,
   InputAdornment,
   IconButton,
-} from '@material-ui/core/'
-import { TransitionProps } from '@material-ui/core/transitions'
+  SlideProps,
+} from '@mui/material'
 import { Colors } from '@theme/colors'
 import { MemberItem, UserCreateParams } from '@services/account.services'
 import CustomInput from '@components/common/Input'
@@ -28,9 +27,9 @@ import { GENDER_DATA } from '@constants/user.constants'
 import CustomSwitch from '@components/common/CustomSwitch'
 import moment from 'moment'
 import useUpdateForm from './useUpdateForm'
-import Visibility from '@material-ui/icons/Visibility'
-import VisibilityOff from '@material-ui/icons/VisibilityOff'
-import { LockOpen, Lock } from '@material-ui/icons'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import { LockOpen, Lock } from '@mui/icons-material'
 import { validation } from '@constants/text.constants'
 
 interface PickerProps {
@@ -46,7 +45,7 @@ interface State {
 }
 
 const Transition = forwardRef(function Transition(
-  props: TransitionProps & { children?: React.ReactElement },
+  props: SlideProps & { children?: React.ReactElement },
   ref: React.Ref<unknown>
 ) {
   return <Slide direction="up" ref={ref} {...props} />
@@ -58,8 +57,6 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
     showPassword: false,
     disabled: true,
   })
-
-  const classes = useStyles()
 
   const { methods, Controller } = useUpdateForm()
 
@@ -130,7 +127,7 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
         </ButtonGroup>
         <Divider style={{ marginBottom: 40 }} />
         <DialogContent>
-          <Box className={classes.container}>
+          <Box sx={{ position: 'relative' }}>
             <Typography
               variant="h3"
               style={{ marginBottom: 40 }}
@@ -139,7 +136,7 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
             >
               {'Мэдээлэл шинэчлэх'}
             </Typography>
-            <section className={classes.section}>
+            <Box component="section" sx={{ marginBottom: '20px' }}>
               <Grid spacing={3} container>
                 <Grid item sm={12} md={6}>
                   <Controller
@@ -218,8 +215,8 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
                   </p>
                 </Grid>
               </Grid>
-            </section>
-            <section className={classes.section}>
+            </Box>
+            <Box component="section" sx={{ marginBottom: '20px' }}>
               <Grid spacing={3} container>
                 <Grid item sm={12} md={6}>
                   <Controller
@@ -268,8 +265,8 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
                   />
                 </Grid>
               </Grid>
-            </section>
-            <section className={classes.section}>
+            </Box>
+            <Box component="section" sx={{ marginBottom: '20px' }}>
               <Grid spacing={3} container>
                 <Grid item sm={12} md={6}>
                   <Controller
@@ -328,8 +325,8 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
                   />
                 </Grid>
               </Grid>
-            </section>
-            <section className={classes.section}>
+            </Box>
+            <Box component="section" sx={{ marginBottom: '20px' }}>
               <Grid spacing={3} container>
                 <Grid item sm={12} md={6}>
                   <Controller
@@ -388,9 +385,9 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
                   />
                 </Grid>
               </Grid>
-            </section>
+            </Box>
 
-            <section className={classes.section}>
+            <Box component="section" sx={{ marginBottom: '20px' }}>
               <Grid spacing={3} container>
                 <Grid item sm={12} md={6}>
                   <Controller
@@ -477,41 +474,12 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
                   />
                 </Grid>
               </Grid>
-            </section>
+            </Box>
           </Box>
         </DialogContent>
       </form>
     </Dialog>
   )
 }
-
-const useStyles = makeStyles(() => ({
-  container: {
-    position: 'relative',
-  },
-  divider: {
-    marginTop: 20,
-    marginBottom: 20,
-  },
-  group: {
-    justifyContent: 'space-between',
-  },
-  section: {
-    marginBottom: 20,
-  },
-  loader: {},
-  loaderBox: {
-    background: 'rgba(255,255,255,0.8)',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 1,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-}))
 
 export default MemberUpdate

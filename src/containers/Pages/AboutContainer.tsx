@@ -1,14 +1,28 @@
-import { makeStyles, Box, Typography, Grid, Theme } from '@material-ui/core/'
+import { Box, Typography, Grid } from '@mui/material/'
 import { Colors } from '@theme/colors'
 
 const ClubContainer: React.FC = () => {
-  const classes = useStyles()
-
   return (
     <>
-      <Grid container className={classes.container} spacing={0}>
+      <Grid
+        container
+        sx={{
+          height: 'auto',
+          minHeight: { xl: '100vh', lg: 'auto', md: 'auto', sm: 'auto' },
+          paddingTop: 63,
+        }}
+        spacing={0}
+      >
         <Grid xs={12} md={4} item>
-          <Box className={classes.contentImageBox}>
+          <Box
+            sx={{
+              height: '100%',
+              width: '100%',
+              background: "url('images/bg/shooter.jpg')",
+              backgroundSize: 'Cover',
+              padding: 100,
+            }}
+          >
             <Typography
               style={{ fontSize: 30 }}
               className="intro-headline"
@@ -24,7 +38,14 @@ const ClubContainer: React.FC = () => {
           </Box>
         </Grid>
         <Grid xs={12} md={8} item>
-          <Box className={classes.contentBox}>
+          <Box
+            sx={{
+              background: Colors.white,
+              height: '100%',
+              width: '100%',
+              padding: { xl: '140px', lg: '1rem', sm: '1rem', xs: '1rem' },
+            }}
+          >
             <Typography variant="body1" component="p">
               Практик буудлага нь галт зэвсэг ашиглан богино хугацаанд өгөгдсөн
               дасгалыг түргэн гүйцэтгэх буудлагын спортын нэг төрөл юм. Тийм ч
@@ -74,35 +95,5 @@ const ClubContainer: React.FC = () => {
     </>
   )
 }
-
-const useStyles = makeStyles((theme: Theme) => ({
-  container: {
-    height: 'auto',
-    minHeight: '100vh',
-    paddingTop: 63,
-  },
-  contentBox: {
-    background: Colors.white,
-    height: '100%',
-    width: '100%',
-    padding: 140,
-  },
-  contentImageBox: {
-    height: '100%',
-    width: '100%',
-    background: "url('images/bg/shooter.jpg')",
-    backgroundSize: 'Cover',
-    padding: 100,
-  },
-  [theme.breakpoints.down('lg')]: {
-    contentBox: {
-      padding: '1rem',
-    },
-    container: {
-      height: 'auto',
-      minHeight: 'auto',
-    },
-  },
-}))
 
 export default ClubContainer

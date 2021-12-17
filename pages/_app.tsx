@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { AppProps } from 'next/app'
 import { storeWrapper, StoreType } from '@store/store'
-import { MuiThemeProvider } from '@material-ui/core/styles'
+import { ThemeProvider } from '@mui/material//styles'
 import { ThemeProvider as ThemeStyled } from 'styled-components'
 import '@common/css/theme.scss'
 import '@common/css/main.scss'
@@ -16,15 +16,22 @@ import 'swiper/components/pagination/pagination.scss'
 import moment from 'moment'
 import { ConfirmProvider } from 'material-ui-confirm'
 import SnackBar from '@containers/Providers/SnackBar'
+import CssBaseline from '@mui/material//CssBaseline'
+import { CacheProvider, EmotionCache } from '@emotion/react'
+import createCache from '@emotion/cache'
+import { StylesProvider } from '@mui/styles'
 
 /**
  * withRedux HOC
  * NextJS wrapper for Redux
  */
 
+export const cache = createCache({ key: 'css', prepend: true })
+
 type Props = AppProps & {
   Component: PageWithLayoutType
   pageProps: any
+  emotionCache?: EmotionCache
 }
 
 const CustomApp = ({ Component, pageProps }: Props) => {
@@ -43,18 +50,26 @@ const CustomApp = ({ Component, pageProps }: Props) => {
   }, [])
 
   return (
-    <PersistGate persistor={persistStore(store)} loading={<div>Loading</div>}>
-      <MuiThemeProvider theme={theme}>
-        <ThemeStyled theme={themeSass}>
-          <SnackBar />
-          <ConfirmProvider>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </ConfirmProvider>
-        </ThemeStyled>
-      </MuiThemeProvider>
-    </PersistGate>
+    <StylesProvider injectFirst>
+      <CacheProvider value={cache}>
+        <PersistGate
+          persistor={persistStore(store)}
+          loading={<div>Loading</div>}
+        >
+          <ThemeProvider theme={theme}>
+            <ThemeStyled theme={themeSass}>
+              <CssBaseline />
+              <SnackBar />
+              <ConfirmProvider>
+                <Layout>
+                  <Component {...pageProps} />
+                </Layout>
+              </ConfirmProvider>
+            </ThemeStyled>
+          </ThemeProvider>
+        </PersistGate>
+      </CacheProvider>
+    </StylesProvider>
   )
 }
 

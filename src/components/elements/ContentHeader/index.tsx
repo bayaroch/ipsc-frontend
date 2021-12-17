@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles, Box, Typography, Theme } from '@material-ui/core/'
+import { Box, Typography } from '@mui/material/'
 import { Colors } from '@theme/colors'
 
 interface ContentBoxProps {
@@ -14,18 +14,34 @@ const ContentHeader: React.FC<ContentBoxProps> = ({
   desc,
   ...rest
 }) => {
-  const classes = useStyles()
   return (
     <Box
       style={{ backgroundImage: img ? `url(${img})` : 'none' }}
-      className={classes.header}
+      sx={{
+        paddingTop: '100px',
+        paddingBottom: '20px',
+        width: '100%',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center center',
+        backgroundColor: '#eee',
+      }}
       {...rest}
     >
-      <Box className="container">
-        <Box className={classes.contentBox}>
+      <Box className="container" sx={{ width: '100%', maxWidth: { lg: 1400 } }}>
+        <Box sx={{ textAlign: { lg: 'left', sm: 'center' } }}>
           {title ? (
             <Typography
-              className={`glowing-title ${classes.title} `}
+              className={`glowing-`}
+              sx={{
+                padding: '11px 15px 10px 15px',
+                display: 'inline-block',
+                width: 'auto',
+                color: '#fff',
+                textTransform: 'uppercase',
+                position: 'relative',
+                background: Colors.primary,
+                fontWeight: 600,
+              }}
               variant="h3"
             >
               {title}
@@ -38,32 +54,4 @@ const ContentHeader: React.FC<ContentBoxProps> = ({
   )
 }
 
-ContentHeader.defaultProps = {}
-
 export default ContentHeader
-
-const useStyles = makeStyles((theme: Theme) => ({
-  header: {
-    paddingTop: 100,
-    paddingBottom: 20,
-    width: '100%',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center center',
-    backgroundColor: '#eee',
-  },
-  contentBox: {},
-  title: {
-    padding: '11px 15px 10px 15px',
-    display: 'inline-block',
-    width: 'auto',
-    color: '#fff',
-    textTransform: 'uppercase',
-    position: 'relative',
-    background: Colors.primary,
-  },
-  [theme.breakpoints.down('sm')]: {
-    contentBox: {
-      textAlign: 'center',
-    },
-  },
-}))

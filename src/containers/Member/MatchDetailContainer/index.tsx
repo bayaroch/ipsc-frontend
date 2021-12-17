@@ -1,12 +1,5 @@
 import { useEffect, useState } from 'react'
-import {
-  makeStyles,
-  Box,
-  Typography,
-  Grid,
-  Paper,
-  Button,
-} from '@material-ui/core/'
+import { Box, Typography, Grid, Paper, Button } from '@mui/material/'
 import useMatchDetail from './useMatchDetail'
 import _ from 'lodash'
 import ContentBox from '@components/admin/ContentBox'
@@ -26,7 +19,6 @@ interface MatchDetailProps {
 
 const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
   const [open, setOpen] = useState<boolean>(false)
-  const classes = useStyles()
   const {
     detail,
     meta,
@@ -113,7 +105,15 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
   const renderLoader = () => {
     if (!meta.loaded && meta.pending && !meta.error) {
       return (
-        <Box className={classes.loaderBox}>
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            minHeight: 300,
+          }}
+        >
           <Box className="dot-flashing" />
         </Box>
       )
@@ -187,17 +187,54 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
             }
             handleClose={handleClose}
           />
-          <Box className={classes.header}>
-            <Typography variant="h2" className={classes.title} align="center">
+          <Box
+            sx={{
+              width: '100%',
+              position: 'relative',
+              zIndex: 100,
+              height: 120,
+              backgroundColor: '#eee',
+              background: "url('/images/placeholder.png')",
+              backgroundSize: 'cover',
+              justifyContent: 'center',
+              alignItems: 'center',
+              display: 'flex',
+              '&:after': {
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                content: "''",
+                position: 'absolute',
+                zIndex: 10,
+                backgroundColor: 'rgba(43, 80, 237, 0.5)',
+              },
+            }}
+          >
+            <Typography
+              variant="h2"
+              sx={{ color: Colors.white, position: 'relative', zIndex: 100 }}
+              align="center"
+            >
               {detail.name}
             </Typography>
             <br />
           </Box>
           <ContentBox>
-            <section className={classes.section}>
-              <Box className={classes.pageFull}>
+            <section style={{ paddingTop: 15, paddingBottom: 15 }}>
+              <Box sx={{ width: '100%' }}>
                 <Grid container spacing={6}>
-                  <Grid item xs={12} lg={4} className={classes.profileSidebar}>
+                  <Grid
+                    item
+                    xs={12}
+                    lg={4}
+                    sx={{
+                      '@media screen and (min-width: 1280px) and (max-width: 1499px)': {
+                        flexBasis: '100%',
+                        maxWidth: '100%',
+                      },
+                    }}
+                  >
                     <Box mb={6}>
                       <Paper>
                         <TimeBox detail={detail} />
@@ -211,7 +248,12 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
                     item
                     xs={12}
                     lg={8}
-                    className={classes.profileMainContent}
+                    sx={{
+                      '@media screen and (min-width: 1280px) and (max-width: 1499px)': {
+                        flexBasis: '100%',
+                        maxWidth: '100%',
+                      },
+                    }}
                   >
                     <Box mb={6}>
                       <About detail={detail} progress={progress} />
@@ -254,82 +296,5 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
     </Box>
   )
 }
-
-const useStyles = makeStyles(() => ({
-  pageFull: {
-    width: '100%',
-  },
-  profileSidebar: {
-    '@media screen and (min-width: 1280px) and (max-width: 1499px)': {
-      flexBasis: '100%',
-      maxWidth: '100%',
-    },
-  },
-  profileMainContent: {
-    '@media screen and (min-width: 1280px) and (max-width: 1499px)': {
-      flexBasis: '100%',
-      maxWidth: '100%',
-    },
-  },
-  //
-  paper: {
-    padding: 20,
-  },
-  divider: {
-    marginTop: 20,
-    marginBottom: 20,
-  },
-  icon: {
-    color: Colors.secondary,
-    marginRight: 20,
-    position: 'relative',
-    top: -2,
-  },
-  title: {
-    color: Colors.white,
-    position: 'relative',
-    zIndex: 100,
-  },
-  subtitle: {
-    paddingBottom: 10,
-    fontSize: 16,
-  },
-  header: {
-    width: '100%',
-    position: 'relative',
-    zIndex: 100,
-    height: 120,
-    backgroundColor: '#eee',
-    background: "url('/images/placeholder.png')",
-    backgroundSize: 'cover',
-    justifyContent: 'center',
-    alignItems: 'center',
-    display: 'flex',
-    '&:after': {
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      content: "''",
-      position: 'absolute',
-      zIndex: 10,
-      backgroundColor: 'rgba(43, 80, 237, 0.5)',
-    },
-  },
-  loader: {
-    fontSize: 12,
-  },
-  loaderBox: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    minHeight: 300,
-  },
-  section: {
-    paddingTop: 15,
-    paddingBottom: 15,
-  },
-}))
 
 export default MatchDetail

@@ -3,7 +3,7 @@ import MainLayout from '@components/layout/MainLayout'
 import PageWithLayoutType from '@constants/page'
 import RulesContainer from '@containers/Pages/RulesContainer'
 import ContentHeader from '@components/elements/ContentHeader'
-import { Divider } from '@material-ui/core'
+import { Divider } from '@mui/material/'
 
 const MatchRules: PageWithLayoutType = () => {
   return (

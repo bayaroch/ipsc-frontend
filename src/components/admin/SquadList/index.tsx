@@ -1,5 +1,5 @@
 import React from 'react'
-import List from '@material-ui/core/List'
+import List from '@mui/material/List'
 import { SquadListData, SquadListMembers } from '@services/squad.services'
 import ListItemSquad from './ListItemSquad'
 

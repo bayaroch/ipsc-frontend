@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
 import _ from 'lodash'
-import { Paper, Button, Box, Grid, CircularProgress } from '@material-ui/core'
+import { Paper, Button, Box, Grid, CircularProgress } from '@mui/material/'
 import DateFnsUtils from '@date-io/date-fns'
 import {
   MuiPickersUtilsProvider,
@@ -73,10 +72,8 @@ const SquadCreate: React.FC<SquadCreateProps> = (props) => {
     onSubmit(params)
   }
 
-  const classes = useStyles()
-
   return (
-    <Paper className={classes.formCard}>
+    <Paper sx={{ padding: '16px' }}>
       <form onSubmit={handleSubmit(_onSubmit)}>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container spacing={3}>
@@ -195,12 +192,6 @@ const SquadCreate: React.FC<SquadCreateProps> = (props) => {
     </Paper>
   )
 }
-
-const useStyles = makeStyles({
-  formCard: {
-    padding: 16,
-  },
-})
 
 SquadCreate.defaultProps = {
   isDisabled: false,

@@ -1,7 +1,7 @@
 import ContentWrapper from '@components/layout/ContentWrapper'
 import MainLayout from '@components/layout/MainLayout'
 import PageWithLayoutType from '@constants/page'
-import { Box, Typography } from '@material-ui/core'
+import { Box, Typography } from '@mui/material/'
 
 const RulesMatch: PageWithLayoutType = () => {
   return (

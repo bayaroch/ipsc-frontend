@@ -1,6 +1,5 @@
 import { forwardRef } from 'react'
 import {
-  makeStyles,
   Dialog,
   List,
   ListItem,
@@ -8,10 +7,10 @@ import {
   Button,
   ButtonGroup,
   Slide,
+  SlideProps,
   Divider,
   Box,
-} from '@material-ui/core/'
-import { TransitionProps } from '@material-ui/core/transitions'
+} from '@mui/material/'
 import { SquadListMembers } from '@services/squad.services'
 import { Colors } from '@theme/colors'
 import _ from 'lodash'
@@ -23,7 +22,7 @@ interface PickerProps {
 }
 
 const Transition = forwardRef(function Transition(
-  props: TransitionProps & { children?: React.ReactElement },
+  props: SlideProps & { children?: React.ReactElement },
   ref: React.Ref<unknown>
 ) {
   return <Slide direction="up" ref={ref} {...props} />
@@ -31,8 +30,6 @@ const Transition = forwardRef(function Transition(
 
 const SquadMemberList: React.FC<PickerProps> = (props) => {
   const { open, members, handleClose } = props
-
-  const classes = useStyles()
 
   return (
     <Dialog
@@ -55,7 +52,7 @@ const SquadMemberList: React.FC<PickerProps> = (props) => {
         </Button>
       </ButtonGroup>
       <Divider />
-      <List className={classes.container}>
+      <List sx={{ padding: 0 }}>
         {!_.isEmpty(members) &&
           members.map((item, i) => {
             return (
@@ -74,11 +71,5 @@ const SquadMemberList: React.FC<PickerProps> = (props) => {
     </Dialog>
   )
 }
-
-const useStyles = makeStyles(() => ({
-  container: {
-    padding: 0,
-  },
-}))
 
 export default SquadMemberList

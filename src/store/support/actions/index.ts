@@ -1,7 +1,7 @@
 import { createAsyncThunk, createAction } from '@reduxjs/toolkit'
 import { SUPPORT_ACTION_TYPE } from './types'
 import { SupportResponse, supportServices } from '@services/support.services'
-import { Color } from '@material-ui/lab/Alert'
+import { Color } from '@mui/material//Alert'
 
 export const getBadges = createAsyncThunk<SupportResponse>(
   SUPPORT_ACTION_TYPE.GET_BADGES,

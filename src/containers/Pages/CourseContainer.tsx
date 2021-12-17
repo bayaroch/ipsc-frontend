@@ -1,11 +1,9 @@
-import { makeStyles, Box, Typography } from '@material-ui/core/'
+import { Box, Typography } from '@mui/material/'
 import { Colors } from '@theme/colors'
 import ProductCard from '@components/elements/ProductCard'
 import { allproducts } from '@constants/featured.course'
 
 const CourseContainer: React.FC = () => {
-  const classes = useStyles()
-
   const rows = [...Array(Math.ceil(allproducts.length / 4))]
   const productRows = rows.map((_row, idx) =>
     allproducts.slice(idx * 4, idx * 4 + 4)
@@ -22,8 +20,24 @@ const CourseContainer: React.FC = () => {
 
   return (
     <>
-      <Box className={classes.content}>
-        <Typography className={classes.title} variant="h3" component="h3">
+      <Box
+        sx={{
+          paddingTop: '40px',
+          paddingBottom: '40px',
+          maxWidth: 600,
+          margin: '0 auto',
+        }}
+      >
+        <Typography
+          sx={{
+            color: Colors.black,
+            textAlign: 'center',
+            paddingTop: 20,
+            paddingBottom: 30,
+          }}
+          variant="h3"
+          component="h3"
+        >
           Сургалт
         </Typography>
         <Typography variant="body1" component="p">
@@ -32,30 +46,9 @@ const CourseContainer: React.FC = () => {
           явуулж, аюулгүй буудагч бэлтгэн тэмцээн уралдаанд оролцуулдаг.
         </Typography>
       </Box>
-      <Box className={classes.list}>{content}</Box>
+      <Box sx={{ paddingBottom: '100px' }}>{content}</Box>
     </>
   )
 }
-
-const useStyles = makeStyles(() => ({
-  paper: {
-    padding: 20,
-  },
-  content: {
-    paddingTop: 40,
-    paddingBottom: 40,
-    maxWidth: 600,
-    margin: '0 auto',
-  },
-  title: {
-    color: Colors.black,
-    textAlign: 'center',
-    paddingTop: 20,
-    paddingBottom: 30,
-  },
-  list: {
-    paddingBottom: 100,
-  },
-}))
 
 export default CourseContainer

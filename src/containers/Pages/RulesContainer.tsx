@@ -1,15 +1,13 @@
 import SideBarMenu from '@components/common/SideBarMenu'
 import { rulescontent } from '@constants/rules.constants'
-import { makeStyles, Grid, Box, Theme } from '@material-ui/core/'
+import { Grid, Box } from '@mui/material/'
 
 const RulesContainer: React.FC = ({ children }) => {
-  const classes = useStyles()
-
   return (
     <>
       <Grid container>
         <Grid md={9} sm={12} xs={12} item>
-          <Box className={classes.innerContent}>
+          <Box sx={{ paddingRight: '50px', paddingBottom: '100px' }}>
             <div className="content">{children}</div>
           </Box>
         </Grid>
@@ -20,27 +18,5 @@ const RulesContainer: React.FC = ({ children }) => {
     </>
   )
 }
-
-const useStyles = makeStyles((theme: Theme) => ({
-  innerContent: {
-    paddingRight: 50,
-    paddingBottom: 100,
-  },
-  root: {
-    width: '100%',
-  },
-  heading: {},
-  accordion: {
-    marginTop: 20,
-    marginBottom: 20,
-  },
-  [theme.breakpoints.down('sm')]: {
-    innerContent: {
-      paddingRight: 0,
-      paddingBottom: 20,
-      textAlign: 'justify',
-    },
-  },
-}))
 
 export default RulesContainer

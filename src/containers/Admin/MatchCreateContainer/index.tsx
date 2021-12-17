@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 
 import {
-  makeStyles,
   Box,
   Button,
   Divider,
@@ -12,7 +11,7 @@ import {
   InputAdornment,
   IconButton,
   Menu,
-} from '@material-ui/core/'
+} from '@mui/material/'
 import CustomSwitch from '@components/common/CustomSwitch'
 import CustomInput from '@components/common/Input'
 import { CustomLabel } from '@components/common/Input'
@@ -24,7 +23,7 @@ import _ from 'lodash'
 import moment from 'moment'
 import { MATCH_STATUS_TEXT } from '@constants/common.constants'
 import { weekly } from '@constants/match.constants'
-import MoreVertIcon from '@material-ui/icons/MoreVert'
+import MoreVertIcon from '@mui/icons-material/MoreVert'
 
 const MatchCreateContainer: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState(null)
@@ -37,7 +36,6 @@ const MatchCreateContainer: React.FC = () => {
     setAnchorEl(null)
   }
 
-  const classes = useStyles()
   const router = useRouter()
   const { Controller, methods, create, metadata, response } = useCreateMatch()
   const {
@@ -69,7 +67,20 @@ const MatchCreateContainer: React.FC = () => {
   const renderLoader = () => {
     if (metadata.pending && !metadata.loaded && !metadata.error) {
       return (
-        <Box className={classes.loaderBox}>
+        <Box
+          sx={{
+            background: 'rgba(255,255,255,0.8)',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 1,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
           <Box className="dots-flashing" />
         </Box>
       )
@@ -82,7 +93,7 @@ const MatchCreateContainer: React.FC = () => {
   }
 
   return (
-    <Box className={classes.container}>
+    <Box sx={{ position: 'relative' }}>
       {renderLoader()}
       <form onSubmit={handleSubmit(onSubmit)}>
         <Box display="flex" justifyContent="flex-end" alignItems="center">
@@ -105,7 +116,7 @@ const MatchCreateContainer: React.FC = () => {
         >
           <MenuItem onClick={createTemplate}>Weekly</MenuItem>
         </Menu>
-        <section className={classes.section}>
+        <section style={{ marginBottom: '20px' }}>
           <Controller
             name="name"
             control={control}
@@ -125,7 +136,7 @@ const MatchCreateContainer: React.FC = () => {
             )}
           />
         </section>
-        <section className={classes.section}>
+        <section style={{ marginBottom: '20px' }}>
           <Grid spacing={3} container>
             <Grid item sm={12} md={6}>
               <Controller
@@ -178,7 +189,7 @@ const MatchCreateContainer: React.FC = () => {
           </Grid>
         </section>
 
-        <section className={classes.section}>
+        <section style={{ marginBottom: '20px' }}>
           <Grid spacing={3} container>
             <Grid item sm={12} md={6}>
               <Controller
@@ -231,8 +242,8 @@ const MatchCreateContainer: React.FC = () => {
           </Grid>
         </section>
 
-        <section className={classes.section}>
-          <FormGroup row={true} className={classes.group}>
+        <section style={{ marginBottom: '20px' }}>
+          <FormGroup row={true}>
             <Grid spacing={3} container>
               <Grid item sm={12} md={4}>
                 <Controller
@@ -307,9 +318,9 @@ const MatchCreateContainer: React.FC = () => {
           </FormGroup>
         </section>
 
-        <Divider className={classes.divider} />
+        <Divider style={{ marginBottom: '20px 0' }} />
 
-        <section className={classes.section}>
+        <section style={{ marginBottom: '20px' }}>
           <Grid spacing={3} container>
             <Grid item sm={12} md={4}>
               <Controller
@@ -368,7 +379,7 @@ const MatchCreateContainer: React.FC = () => {
             </Grid>
           </Grid>
         </section>
-        <section className={classes.section}>
+        <section style={{ marginBottom: '20px' }}>
           <Controller
             name="tax_info"
             control={control}
@@ -387,7 +398,7 @@ const MatchCreateContainer: React.FC = () => {
           />
         </section>
 
-        <section className={classes.section}>
+        <section style={{ marginBottom: '20px' }}>
           <Controller
             name="additional_info"
             control={control}
@@ -406,7 +417,7 @@ const MatchCreateContainer: React.FC = () => {
           />
         </section>
 
-        <section className={classes.section}>
+        <section style={{ marginBottom: '20px' }}>
           <Controller
             name="sponsor_info"
             control={control}
@@ -425,9 +436,9 @@ const MatchCreateContainer: React.FC = () => {
           />
         </section>
 
-        <section className={classes.section}></section>
+        <section style={{ marginBottom: '20px' }}></section>
 
-        <section className={classes.section}>
+        <section style={{ marginBottom: '20px' }}>
           <Grid container spacing={3}>
             <Grid item sm={12} md={8}>
               <Controller
@@ -499,35 +510,6 @@ const MatchCreateContainer: React.FC = () => {
     </Box>
   )
 }
-
-const useStyles = makeStyles(() => ({
-  container: {
-    position: 'relative',
-  },
-  divider: {
-    marginTop: 20,
-    marginBottom: 20,
-  },
-  group: {
-    justifyContent: 'space-between',
-  },
-  section: {
-    marginBottom: 20,
-  },
-  loader: {},
-  loaderBox: {
-    background: 'rgba(255,255,255,0.8)',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 1,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-}))
 
 export default MatchCreateContainer
 

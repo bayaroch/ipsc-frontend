@@ -1,11 +1,10 @@
-import { makeStyles, Box } from '@material-ui/core/'
+import { Box } from '@mui/material/'
 import useMatch from './useMatch'
 import MatchList from '@components/admin/MatchList'
 import { useRouter } from 'next/router'
 import { useConfirm } from 'material-ui-confirm'
 
 const MatchListContainer: React.FC = () => {
-  const classes = useStyles()
   const { getList, groupedList, paginationMeta, meta, deleteMatch } = useMatch()
   const router = useRouter()
   const confirm = useConfirm()
@@ -32,7 +31,9 @@ const MatchListContainer: React.FC = () => {
   }
   return (
     <Box>
-      <Box className={classes.topControl}></Box>
+      <Box
+        sx={{ paddingBottom: 10, justifyContent: 'flex-end', display: 'flex' }}
+      ></Box>
       <MatchList
         onEditClick={handleEdit}
         onEditSquad={handleEditSquad}
@@ -45,14 +46,5 @@ const MatchListContainer: React.FC = () => {
     </Box>
   )
 }
-
-const useStyles = makeStyles(() => ({
-  root: {},
-  topControl: {
-    paddingBottom: 10,
-    justifyContent: 'flex-end',
-    display: 'flex',
-  },
-}))
 
 export default MatchListContainer

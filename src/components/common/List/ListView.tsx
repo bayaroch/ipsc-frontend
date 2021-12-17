@@ -1,7 +1,7 @@
 import React from 'react'
 import { useBottomScrollListener } from 'react-bottom-scroll-listener'
 
-import { Box } from '@material-ui/core'
+import { Box } from '@mui/material/'
 import { CustomListProps } from '.'
 
 const getEmptyContainer = (ListEmptyComponent: JSX.Element | undefined) => {

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import { Box, Grid, Typography } from '@material-ui/core'
-import Pagination from '@material-ui/lab/Pagination'
+import { Box, Grid, Typography } from '@mui/material/'
+import Pagination from '@mui/material//Pagination'
 import { MatchPaginationMeta, MatchPageMeta } from '@services/match.services'
 import _ from 'lodash'
 import { Meta } from '@store/metadata/actions/types'
@@ -21,7 +20,6 @@ const defaultPerPage = 100
 
 const MatchList: React.FC<MatchListProps> = (props) => {
   const { getList, list, pagination, meta } = props
-  const classes = useStyles()
   const [page, setPage] = useState<number>(1)
   const [rowsPerPage, setRowsPerPage] = useState<number>(defaultPerPage)
   const router = useRouter()
@@ -60,7 +58,15 @@ const MatchList: React.FC<MatchListProps> = (props) => {
   const renderLoader = () => {
     if (!meta.loaded && meta.pending && !meta.error) {
       return (
-        <Box className={classes.loaderBox}>
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            minHeight: 300,
+          }}
+        >
           <Box className="dot-flashing" />
         </Box>
       )
@@ -80,7 +86,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
             return (
               <Box key={i}>
                 <Typography
-                  className={classes.sectionTitle}
+                  sx={{ padding: '20px 0 30px 0' }}
                   variant="h2"
                   component="h2"
                   align="center"
@@ -114,7 +120,16 @@ const MatchList: React.FC<MatchListProps> = (props) => {
             <Pagination
               count={pagination.total_pages}
               page={page}
-              className={classes.pagination}
+              sx={{
+                position: 'relative',
+                justifyContent: 'space-between',
+                padding: 5,
+                width: '100%',
+                '& .MuiPagination-ul': {
+                  width: '100%',
+                  justifyContent: 'center',
+                },
+              }}
               onChange={handleChangePage}
             />
           ) : null}
@@ -131,31 +146,5 @@ const MatchList: React.FC<MatchListProps> = (props) => {
     </>
   )
 }
-
-const useStyles = makeStyles({
-  sectionTitle: {
-    padding: '20px 0 30px 0',
-  },
-  loader: {
-    fontSize: 12,
-  },
-  loaderBox: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    minHeight: 300,
-  },
-  pagination: {
-    position: 'relative',
-    justifyContent: 'space-between',
-    padding: 5,
-    width: '100%',
-    '& .MuiPagination-ul': {
-      width: '100%',
-      justifyContent: 'center',
-    },
-  },
-})
 
 export default MatchList

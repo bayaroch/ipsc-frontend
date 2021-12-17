@@ -1,5 +1,5 @@
 import React from 'react'
-import { Paper, makeStyles, Theme } from '@material-ui/core/'
+import { Paper } from '@mui/material/'
 
 interface ContentBoxProps {
   fullWidth?: boolean
@@ -11,11 +11,14 @@ const ContentBox: React.FC<ContentBoxProps> = ({
   children,
   maxWidth,
 }) => {
-  const classes = useStyles()
   return (
     <Paper
       elevation={0}
-      className={`${classes.root} ${fullWidth ? '' : classes.boxed}`}
+      sx={{
+        padding: { xl: '4rem', lg: '1rem', sm: '1rem' },
+        margin: '0 auto',
+        maxWidth: fullWidth ? '100%' : '800px',
+      }}
       style={{ maxWidth: maxWidth ? maxWidth : '' }}
     >
       {children}
@@ -28,18 +31,3 @@ ContentBox.defaultProps = {
 }
 
 export default ContentBox
-
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    padding: '4rem',
-    margin: '0 auto',
-  },
-  [theme.breakpoints.down('lg')]: {
-    root: {
-      padding: '1rem',
-    },
-  },
-  boxed: {
-    maxWidth: 800,
-  },
-}))

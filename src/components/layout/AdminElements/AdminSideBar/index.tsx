@@ -1,12 +1,5 @@
 import React from 'react'
-import {
-  makeStyles,
-  Box,
-  Tooltip,
-  MenuItem,
-  ListItemIcon,
-} from '@material-ui/core'
-import { useRouter } from 'next/router'
+import { Box, Tooltip, MenuItem, ListItemIcon } from '@mui/material/'
 import PopOverMenu from './PopOverMenu'
 import Link from 'next/link'
 import {
@@ -19,21 +12,19 @@ import {
   Help,
   Info,
   Layers,
-} from '@material-ui/icons'
+} from '@mui/icons-material'
 import { logOut } from '@store/auth/actions'
 import { useDispatch } from 'react-redux'
+import { useRouter } from 'next/router'
 
 const AdminSideBar: React.FC = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const [userEl, setUserEl] = React.useState<null | HTMLElement>(null)
-  const classes = useStyles()
+
   const router = useRouter()
   const dispatch = useDispatch()
 
-  const handleClick = (
-    event: React.MouseEvent<HTMLAnchorElement>,
-    type: string
-  ) => {
+  const handleClick = (event: React.MouseEvent<HTMLElement>, type: string) => {
     if (type === 'user') {
       setUserEl(event.currentTarget)
     } else {
@@ -58,115 +49,326 @@ const AdminSideBar: React.FC = () => {
   const userId = openUser ? 'user-menu' : ''
 
   return (
-    <Box className={classes.primaryMenu}>
-      <Box className={classes.primaryLogo}>
+    <Box
+      sx={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        display: 'inline-block',
+        width: '70px',
+        height: '100%',
+        verticalAlign: 'top',
+        willChange: 'transform',
+        zIndex: 1000,
+        transition: '-webkit-transform 0.6s',
+        background: '#2b50ed',
+      }}
+    >
+      <Box
+        sx={{
+          position: 'absolute',
+          marginTop: '8px',
+          top: '0',
+          right: '0',
+          left: '0',
+          display: 'inline-block',
+          height: '90px',
+          whiteSpace: 'nowrap',
+          padding: '10px',
+        }}
+      >
         <Link href={'/admin/'} passHref>
-          <a
-            className={`${classes.link} ${
-              router.pathname == '/admin' ? classes.activeLink : ''
-            }`}
+          <Box
+            component="a"
+            sx={{
+              position: 'relative',
+              height: '70px',
+              lineHeight: '70px',
+              whiteSpace: 'nowrap',
+              background: 'transparent',
+              border: '0 none',
+              textAlign: 'center',
+              justifyContent: 'center',
+              alignItems: 'center',
+              display: 'flex',
+            }}
+            // className={`${classes.link} ${
+            //   router.pathname == '/admin' ? classes.activeLink : ''
+            // }`}
           >
             <img src="/images/logo-dvc.png" />
-          </a>
+          </Box>
         </Link>
       </Box>
-      <Box className={classes.primaryLinks}>
-        <Box className={classes.linkItem}>
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '50%',
+          right: 0,
+          left: 0,
+          transform: 'translate3d(0, -50%, 0)',
+        }}
+      >
+        <Box
+          sx={{
+            textAlign: 'center',
+            justifyContent: 'center',
+            alignItems: 'center',
+            display: 'flex',
+          }}
+        >
           <Link href={'/admin/'} passHref>
-            <a
-              className={`${classes.link} ${
-                router.pathname == '/admin' ? classes.activeLink : ''
-              }`}
+            <Box
+              component="a"
+              sx={{
+                position: 'relative',
+                height: '70px',
+                lineHeight: '70px',
+                whiteSpace: 'nowrap',
+                background: 'transparent',
+                border: '0 none',
+                textAlign: 'center',
+                justifyContent: 'center',
+                alignItems: 'center',
+                display: 'flex',
+              }}
             >
               <Tooltip title={'Эхлэл'} placement={'right'}>
-                <Box className={classes.linkItemInner}>
-                  <Home className={classes.icon} />
+                <Box
+                  sx={{
+                    position: 'relative',
+                    display: 'flex',
+                    width: '40px',
+                    height: '40px',
+                    lineHeight: '40px',
+                    margin: '0 15px',
+                    color: '#fff',
+                    borderRadius: '12px',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                  style={{
+                    backgroundColor:
+                      router.pathname === '/admin'
+                        ? 'rgba(255, 255, 255, 0.1)'
+                        : 'transparent',
+                  }}
+                >
+                  <Home sx={{ fontSize: 20 }} />
                 </Box>
               </Tooltip>
-            </a>
+            </Box>
           </Link>
         </Box>
-        <Box className={classes.linkItem}>
+        <Box
+          sx={{
+            textAlign: 'center',
+            justifyContent: 'center',
+            alignItems: 'center',
+            display: 'flex',
+          }}
+        >
           <Link href={'/admin/matches'} passHref>
-            <a
-              className={`${classes.link} ${
-                router.pathname == '/admin/matches' ? classes.activeLink : ''
-              }`}
+            <Box
+              component="a"
+              sx={{
+                position: 'relative',
+                height: '70px',
+                lineHeight: '70px',
+                whiteSpace: 'nowrap',
+                background: 'transparent',
+                border: '0 none',
+                textAlign: 'center',
+                justifyContent: 'center',
+                alignItems: 'center',
+                display: 'flex',
+              }}
             >
               <Tooltip title={'Тэмцээн'} placement={'right'}>
-                <Box className={classes.linkItemInner}>
-                  <Layers className={classes.icon} />
+                <Box
+                  sx={{
+                    position: 'relative',
+                    display: 'flex',
+                    width: '40px',
+                    height: '40px',
+                    lineHeight: '40px',
+                    margin: '0 15px',
+                    color: '#fff',
+                    borderRadius: '12px',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                  style={{
+                    backgroundColor:
+                      router.pathname === '/admin/matches'
+                        ? 'rgba(255, 255, 255, 0.1)'
+                        : 'transparent',
+                  }}
+                >
+                  <Layers sx={{ fontSize: 20 }} />
                 </Box>
               </Tooltip>
-            </a>
+            </Box>
           </Link>
         </Box>
       </Box>
-      <Box className={classes.primaryFooter}>
-        <Box className={classes.linkItem}>
-          <a
-            className={`${classes.link}`}
+      <Box sx={{ position: 'absolute', right: '0', bottom: '0', left: '0' }}>
+        <Box
+          sx={{
+            textAlign: 'center',
+            justifyContent: 'center',
+            alignItems: 'center',
+            display: 'flex',
+          }}
+        >
+          <Box
+            component="a"
+            sx={{
+              position: 'relative',
+              height: '70px',
+              lineHeight: '70px',
+              whiteSpace: 'nowrap',
+              background: 'transparent',
+              border: '0 none',
+              textAlign: 'center',
+              justifyContent: 'center',
+              alignItems: 'center',
+              display: 'flex',
+            }}
             id={'settings-menu'}
-            onClick={(event) => handleClick(event, 'settings')}
+            onClick={(event: React.MouseEvent<HTMLElement>) =>
+              handleClick(event, 'settings')
+            }
           >
-            <Box className={classes.linkItemInner}>
-              <Settings className={classes.icon} />
+            <Box
+              sx={{
+                position: 'relative',
+                display: 'flex',
+                width: '40px',
+                height: '40px',
+                lineHeight: '40px',
+                margin: '0 15px',
+                color: '#fff',
+                borderRadius: '12px',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Settings sx={{ fontSize: 20 }} />
             </Box>
-          </a>
+          </Box>
           <PopOverMenu
             id={id}
             open={open}
             handleClose={handleClose}
             anchorEl={anchorEl}
           >
-            <span className={classes.dropDownTitle}>Туслах цэс</span>
+            <Box
+              component="span"
+              sx={{
+                display: 'block',
+                fontSize: '12px',
+                padding: '8px 18px',
+                color: '#999',
+                borderBottom: '1px solid #ececec',
+                lineHeight: '20px',
+              }}
+            >
+              Туслах цэс
+            </Box>
             <Link href={'/'} passHref>
               <MenuItem onClick={handleClose}>
-                <ListItemIcon className={classes.menuIcon}>
+                <ListItemIcon sx={{ minWidth: 26 }}>
                   <Language fontSize="small" />
                 </ListItemIcon>
                 Үндсэн веб хуудас
               </MenuItem>
             </Link>
             <MenuItem onClick={handleClose}>
-              <ListItemIcon className={classes.menuIcon}>
+              <ListItemIcon sx={{ minWidth: 26 }}>
                 <Help fontSize="small" />
               </ListItemIcon>
               Заавар
             </MenuItem>
             <MenuItem onClick={handleClose}>
-              <ListItemIcon className={classes.menuIcon}>
+              <ListItemIcon sx={{ minWidth: 26 }}>
                 <Info fontSize="small" />
               </ListItemIcon>
               Тухай
             </MenuItem>
           </PopOverMenu>
         </Box>
-        <Box className={classes.linkItem}>
-          <a
-            className={`${classes.link} `}
+        <Box
+          sx={{
+            textAlign: 'center',
+            justifyContent: 'center',
+            alignItems: 'center',
+            display: 'flex',
+          }}
+        >
+          <Box
+            component="a"
+            sx={{
+              position: 'relative',
+              height: '70px',
+              lineHeight: '70px',
+              whiteSpace: 'nowrap',
+              background: 'transparent',
+              border: '0 none',
+              textAlign: 'center',
+              justifyContent: 'center',
+              alignItems: 'center',
+              display: 'flex',
+            }}
             id={'user-menu'}
-            onClick={(event) => handleClick(event, 'user')}
+            onClick={(event: React.MouseEvent<HTMLElement>) =>
+              handleClick(event, 'user')
+            }
           >
-            <Box className={classes.linkItemInner}>
-              <AccountCircle className={classes.icon} />
+            <Box
+              sx={{
+                position: 'relative',
+                display: 'flex',
+                width: '40px',
+                height: '40px',
+                lineHeight: '40px',
+                margin: '0 15px',
+                color: '#fff',
+                borderRadius: '12px',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <AccountCircle sx={{ fontSize: 20 }} />
             </Box>
-          </a>
+          </Box>
           <PopOverMenu
             id={userId}
             open={openUser}
             handleClose={handleClose}
             anchorEl={userEl}
           >
-            <span className={classes.dropDownTitle}>Хэрэглэгчийн цэс</span>
+            <Box
+              component="span"
+              sx={{
+                display: 'block',
+                fontSize: '12px',
+                padding: '8px 18px',
+                color: '#999',
+                borderBottom: '1px solid #ececec',
+                lineHeight: '20px',
+              }}
+            >
+              Хэрэглэгчийн цэс
+            </Box>
             <MenuItem onClick={handleClose}>
-              <ListItemIcon className={classes.menuIcon}>
+              <ListItemIcon sx={{ minWidth: 26 }}>
                 <Person fontSize="small" />
               </ListItemIcon>
               Профайл
             </MenuItem>
             <MenuItem onClick={handleLogOut}>
-              <ListItemIcon className={classes.menuIcon}>
+              <ListItemIcon sx={{ minWidth: 26 }}>
                 <ExitToApp fontSize="small" />
               </ListItemIcon>
               Гарах
@@ -178,96 +380,96 @@ const AdminSideBar: React.FC = () => {
   )
 }
 
-const useStyles = makeStyles(() => ({
-  primaryLogo: {
-    position: 'absolute',
-    marginTop: '8px',
-    top: '0',
-    right: '0',
-    left: '0',
-    display: 'inline-block',
-    height: '90px',
-    whiteSpace: 'nowrap',
-    padding: '10px',
-  },
-  primaryMenu: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    display: 'inline-block',
-    width: '70px',
-    height: '100%',
-    verticalAlign: 'top',
-    willChange: 'transform',
-    zIndex: 1000,
-    webkitTransition: '-webkit-transform 0.6s',
-    transition: '-webkit-transform 0.6s',
-    background: '#2b50ed',
-  },
-  menuIcon: {
-    minWidth: 26,
-  },
-  dropDownTitle: {
-    display: 'block',
-    fontSize: '12px',
-    padding: '8px 18px',
-    color: '#999',
-    borderBottom: '1px solid #ececec',
-    lineHeight: '20px',
-  },
-  link: {
-    position: 'relative',
-    height: '70px',
-    lineHeight: '70px',
-    whiteSpace: 'nowrap',
-    background: 'transparent',
-    border: '0 none',
-    textAlign: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    display: 'flex',
-  },
-  primaryLinks: {
-    position: 'absolute',
-    top: '50%',
-    right: 0,
-    left: 0,
-    webkittransform: 'translate3d(0, -50%, 0)',
-    transform: 'translate3d(0, -50%, 0)',
-  },
-  linkItem: {
-    textAlign: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    display: 'flex',
-  },
-  linkItemInner: {
-    position: 'relative',
-    display: 'flex',
-    width: '40px',
-    height: '40px',
-    lineHeight: '40px',
-    margin: '0 15px',
-    color: '#fff',
-    borderRadius: '12px',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  icon: {
-    fontSize: 20,
-  },
-  activeLink: {
-    '& $linkItemInner': {
-      color: '#fff',
-      backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    },
-  },
-  primaryFooter: {
-    position: 'absolute',
-    right: '0',
-    bottom: '0',
-    left: '0',
-  },
-}))
+// const useStyles = makeStyles(() => ({
+//   primaryLogo: {
+//     position: 'absolute',
+//     marginTop: '8px',
+//     top: '0',
+//     right: '0',
+//     left: '0',
+//     display: 'inline-block',
+//     height: '90px',
+//     whiteSpace: 'nowrap',
+//     padding: '10px',
+//   },
+//   primaryMenu: {
+//     position: 'fixed',
+//     top: 0,
+//     left: 0,
+//     display: 'inline-block',
+//     width: '70px',
+//     height: '100%',
+//     verticalAlign: 'top',
+//     willChange: 'transform',
+//     zIndex: 1000,
+//     webkitTransition: '-webkit-transform 0.6s',
+//     transition: '-webkit-transform 0.6s',
+//     background: '#2b50ed',
+//   },
+//   menuIcon: {
+//     minWidth: 26,
+//   },
+//   dropDownTitle: {
+//     display: 'block',
+//     fontSize: '12px',
+//     padding: '8px 18px',
+//     color: '#999',
+//     borderBottom: '1px solid #ececec',
+//     lineHeight: '20px',
+//   },
+//   link: {
+//     position: 'relative',
+//     height: '70px',
+//     lineHeight: '70px',
+//     whiteSpace: 'nowrap',
+//     background: 'transparent',
+//     border: '0 none',
+//     textAlign: 'center',
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     display: 'flex',
+//   },
+//   primaryLinks: {
+//     position: 'absolute',
+//     top: '50%',
+//     right: 0,
+//     left: 0,
+//     webkittransform: 'translate3d(0, -50%, 0)',
+//     transform: 'translate3d(0, -50%, 0)',
+//   },
+//   linkItem: {
+//     textAlign: 'center',
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     display: 'flex',
+//   },
+//   linkItemInner: {
+//     position: 'relative',
+//     display: 'flex',
+//     width: '40px',
+//     height: '40px',
+//     lineHeight: '40px',
+//     margin: '0 15px',
+//     color: '#fff',
+//     borderRadius: '12px',
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//   },
+//   icon: {
+//     fontSize: 20,
+//   },
+//   activeLink: {
+//     '& $linkItemInner': {
+//       color: '#fff',
+//       backgroundColor: 'rgba(255, 255, 255, 0.1)',
+//     },
+//   },
+//   primaryFooter: {
+//     position: 'absolute',
+//     right: '0',
+//     bottom: '0',
+//     left: '0',
+//   },
+// }))
 
 export default AdminSideBar

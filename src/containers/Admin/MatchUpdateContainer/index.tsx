@@ -1,7 +1,5 @@
 import { useEffect } from 'react'
-
 import {
-  makeStyles,
   Box,
   Button,
   Divider,
@@ -10,7 +8,7 @@ import {
   Grid,
   MenuItem,
   InputAdornment,
-} from '@material-ui/core/'
+} from '@mui/material/'
 import CustomSwitch from '@components/common/CustomSwitch'
 import CustomInput from '@components/common/Input'
 import { CustomLabel } from '@components/common/Input'
@@ -27,7 +25,6 @@ interface MatchUpdateContainerProps {
 }
 
 const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
-  const classes = useStyles()
   const router = useRouter()
   const {
     Controller,
@@ -71,20 +68,31 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
   const renderLoader = () => {
     if (metadata.pending && !metadata.loaded && !metadata.error) {
       return (
-        <Box className={classes.loaderBox}>
+        <Box
+          sx={{
+            background: 'rgba(255,255,255,0.8)',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 1,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
           <Box className="dots-flashing" />
         </Box>
       )
     }
   }
 
-  console.warn(errors)
-
   const renderForm = () => {
     if (detail) {
       return (
         <form onSubmit={handleSubmit(onUpdate)}>
-          <section className={classes.section}>
+          <section style={{ marginBottom: '20px' }}>
             <Controller
               name="name"
               control={control}
@@ -104,7 +112,7 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
               )}
             />
           </section>
-          <section className={classes.section}>
+          <section style={{ marginBottom: '20px' }}>
             <Grid spacing={3} container>
               <Grid item sm={12} md={6}>
                 <Controller
@@ -155,7 +163,7 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
             </Grid>
           </section>
 
-          <section className={classes.section}>
+          <section style={{ marginBottom: '20px' }}>
             <Grid spacing={3} container>
               <Grid item sm={12} md={6}>
                 <Controller
@@ -206,8 +214,8 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
             </Grid>
           </section>
 
-          <section className={classes.section}>
-            <FormGroup row={true} className={classes.group}>
+          <section style={{ marginBottom: '20px' }}>
+            <FormGroup row={true}>
               <Grid spacing={3} container>
                 <Grid item sm={12} md={4}>
                   <Controller
@@ -282,9 +290,9 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
             </FormGroup>
           </section>
 
-          <Divider className={classes.divider} />
+          <Divider style={{ marginBottom: '20px 0px' }} />
 
-          <section className={classes.section}>
+          <section style={{ marginBottom: '20px' }}>
             <Grid spacing={3} container>
               <Grid item sm={12} md={4}>
                 <Controller
@@ -343,7 +351,7 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
               </Grid>
             </Grid>
           </section>
-          <section className={classes.section}>
+          <section style={{ marginBottom: '20px' }}>
             <Controller
               name="tax_info"
               control={control}
@@ -356,13 +364,12 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
                   fullWidth={true}
                   multiline
                   rows={3}
-                  rowsMax={10}
                 />
               )}
             />
           </section>
 
-          <section className={classes.section}>
+          <section style={{ marginBottom: '20px' }}>
             <Controller
               name="additional_info"
               control={control}
@@ -374,14 +381,13 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
                   placeholder={'Дэлгэрэнгүй мэдээлэл'}
                   multiline
                   rows={3}
-                  rowsMax={10}
                   fullWidth={true}
                 />
               )}
             />
           </section>
 
-          <section className={classes.section}>
+          <section style={{ marginBottom: '20px' }}>
             <Controller
               name="sponsor_info"
               control={control}
@@ -394,15 +400,14 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
                   fullWidth={true}
                   multiline
                   rows={3}
-                  rowsMax={10}
                 />
               )}
             />
           </section>
 
-          <section className={classes.section}></section>
+          <section style={{ marginBottom: '20px' }}></section>
 
-          <section className={classes.section}>
+          <section style={{ marginBottom: '20px' }}>
             <Grid container spacing={3}>
               <Grid item sm={12} md={8}>
                 <Controller
@@ -480,41 +485,12 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
   }
 
   return (
-    <Box className={classes.container}>
+    <Box sx={{ position: 'relative' }}>
       {renderLoader()}
       {renderForm()}
     </Box>
   )
 }
-
-const useStyles = makeStyles(() => ({
-  container: {
-    position: 'relative',
-  },
-  divider: {
-    marginTop: 20,
-    marginBottom: 20,
-  },
-  group: {
-    justifyContent: 'space-between',
-  },
-  section: {
-    marginBottom: 20,
-  },
-  loader: {},
-  loaderBox: {
-    background: 'rgba(255,255,255,0.8)',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 1,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-}))
 
 export default MatchUpdateContainer
 

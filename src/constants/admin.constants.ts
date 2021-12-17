@@ -1,4 +1,4 @@
-import { List, Add, People } from '@material-ui/icons'
+import { List, Add, People } from '@mui/icons-material'
 
 export const ADMIN_MENU_LARGE = [
   {

@@ -4,8 +4,8 @@ import AdminSideBar from '@components/layout/AdminElements/AdminSideBar'
 import LargeSideBar from '@components/layout/AdminElements/LargeSidebar'
 import useCommonData from '@utils/hooks/useCommonData'
 import withAuth from '@containers/withAuth'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
-import { useTheme } from '@material-ui/core/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import { useTheme } from '@mui/material/styles'
 
 interface LayoutProps {
   children: ReactNode
@@ -15,6 +15,7 @@ interface LayoutProps {
 const AdminLayout: React.FC<LayoutProps> = (props) => {
   const [open, letOpen] = useState(false)
   const theme = useTheme()
+
   const matches = useMediaQuery(theme.breakpoints.down('sm'))
 
   const setOpen = (val: boolean) => {

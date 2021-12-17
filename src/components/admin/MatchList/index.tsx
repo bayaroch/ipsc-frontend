@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
 import {
   Table,
   TableHead,
@@ -13,8 +12,8 @@ import {
   Tab,
   Tabs,
   Typography,
-} from '@material-ui/core'
-import Pagination from '@material-ui/lab/Pagination'
+} from '@mui/material/'
+import Pagination from '@mui/material//Pagination'
 import { MatchPaginationMeta, MatchPageMeta } from '@services/match.services'
 import _ from 'lodash'
 import { Meta } from '@store/metadata/actions/types'
@@ -23,15 +22,14 @@ import { Colors } from '@theme/colors'
 import { GroupedMatchListItem } from '@store/match/selectors/helpers'
 import TableActions from './TableActions'
 import { colorConstants } from '@components/member/MatchCardItem'
-import { red } from '@material-ui/core/colors'
+import { red } from '@mui/material/colors'
 import { helper } from '@utils/helpers/common.helper'
 import {
   Visibility,
   Block,
   CheckCircleOutlined,
   Restore,
-} from '@material-ui/icons'
-import { StyledTableRow } from '@components/admin/MemberList'
+} from '@mui/icons-material'
 
 export interface MatchListProps {
   getList: (params: MatchPageMeta) => void
@@ -100,7 +98,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
     onEditSquad,
     onDelete,
   } = props
-  const classes = useStyles()
+
   const [page, setPage] = useState<number>(1)
   const [rowsPerPage, setRowsPerPage] = useState<number>(defaultPerPage)
 
@@ -136,7 +134,15 @@ const MatchList: React.FC<MatchListProps> = (props) => {
   const renderLoader = () => {
     if (!meta.loaded && meta.pending && !meta.error) {
       return (
-        <Box className={classes.loaderBox}>
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            minHeight: 300,
+          }}
+        >
           <Box className="dot-flashing" />
         </Box>
       )
@@ -151,7 +157,13 @@ const MatchList: React.FC<MatchListProps> = (props) => {
           <Paper square>
             <Tabs
               value={value}
-              className={classes.tabRoot}
+              sx={{
+                '& .MuiTabs-flexContainer': { borderBottom: '1px solid #eee' },
+                '& .MuiTab-textColorPrimary': {
+                  fontSize: 12,
+                  fontWeight: 600,
+                },
+              }}
               onChange={handleChange}
               textColor="primary"
               indicatorColor="primary"
@@ -167,7 +179,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
                 <Box>
                   <TableContainer>
                     <Table
-                      className={classes.table}
+                      sx={{ minWidth: 500 }}
                       aria-label="custom pagination table"
                     >
                       <TableHead>
@@ -182,19 +194,38 @@ const MatchList: React.FC<MatchListProps> = (props) => {
                       </TableHead>
                       <TableBody>
                         {g.data.map((row) => (
-                          <StyledTableRow key={row.id}>
+                          <TableRow key={row.id}>
                             <TableCell scope="row">
                               <Link passHref href={`/member/matches/${row.id}`}>
-                                <a className={classes.link}>{row.name}</a>
+                                <Box
+                                  component="a"
+                                  sx={{
+                                    color: Colors.grey[100],
+                                    fontWeight: 600,
+                                    '&:hover': {
+                                      color: Colors.primary,
+                                      transition: 'all 0.3s ease',
+                                    },
+                                  }}
+                                >
+                                  {row.name}
+                                </Box>
                               </Link>
-                              <Typography noWrap className={classes.desc}>
+                              <Typography
+                                noWrap
+                                sx={{
+                                  fontSize: 12,
+                                  maxWidth: 140,
+                                  color: '#999',
+                                }}
+                              >
                                 {row.additional_info}
                               </Typography>
                             </TableCell>
                             <TableCell align="right">
                               <Typography
-                                className={classes.date}
-                                component={'body'}
+                                sx={{ fontWeight: 600, fontSize: 12 }}
+                                variant="body1"
                               >
                                 {' '}
                                 {helper.matchDate(
@@ -206,30 +237,32 @@ const MatchList: React.FC<MatchListProps> = (props) => {
                             <TableCell align="right">
                               <Avatar
                                 aria-label="recipe"
-                                className={classes.avatar}
+                                sx={{
+                                  flexDirection: 'column',
+                                  background: red[100],
+                                  width: 30,
+                                  height: 30,
+                                }}
                                 style={{ background: colorConstants[row.lvl] }}
                               >
                                 <Box style={{ fontSize: 8, paddingBottom: 0 }}>
                                   lvl
                                 </Box>
-                                <Typography
-                                  variant="h2"
-                                  className={classes.lvl}
-                                >
+                                <Typography variant="h2" sx={{ fontSize: 14 }}>
                                   {row.lvl}
                                 </Typography>
                               </Avatar>
                             </TableCell>
                             <TableCell align="right">
                               <Typography
-                                className={classes.currency}
-                                component={'body'}
+                                sx={{ fontWeight: 600 }}
+                                variant="body1"
                               >
                                 {helper.currency(row.tax)}
                               </Typography>
                             </TableCell>
                             <TableCell align="right">
-                              <Box className={classes.statusIcon}>
+                              <Box sx={{ fontSize: 12 }}>
                                 {
                                   _.filter(MATCH_STATUS_TEXT_ICONS, function (
                                     o
@@ -247,7 +280,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
                                 data={row.id}
                               />
                             </TableCell>
-                          </StyledTableRow>
+                          </TableRow>
                         ))}
 
                         {/* {emptyRows > 0 && (
@@ -262,7 +295,15 @@ const MatchList: React.FC<MatchListProps> = (props) => {
               </TabPanel>
             )
           })}
-          <Box display="flex" className={classes.pagination}>
+          <Box
+            display="flex"
+            sx={{
+              position: 'relative',
+              justifyContent: 'center',
+              padding: 20,
+              width: '100%',
+            }}
+          >
             <Pagination
               count={pagination.total_pages}
               page={page}
@@ -282,75 +323,5 @@ const MatchList: React.FC<MatchListProps> = (props) => {
     </>
   )
 }
-
-const useStyles = makeStyles({
-  statusIcon: {
-    fontSize: 12,
-  },
-  desc: {
-    fontSize: 12,
-    maxWidth: 140,
-    color: '#999',
-  },
-  tabRoot: {
-    '& .MuiTabs-flexContainer': { borderBottom: '1px solid #eee' },
-    '& .MuiTab-textColorPrimary': {
-      fontSize: 12,
-      fontWeight: 600,
-    },
-  },
-  currency: {
-    fontWeight: 600,
-  },
-  date: {
-    fontWeight: 600,
-    fontSize: 12,
-  },
-  link: {
-    color: Colors.grey[100],
-    fontWeight: 600,
-    '&:hover': {
-      color: Colors.primary,
-      transition: 'all 0.3s ease',
-    },
-  },
-  table: {
-    minWidth: 500,
-  },
-  formControl: {
-    '& .MuiInputBase-root .MuiOutlinedInput-input': {
-      paddingTop: 10,
-      paddingBottom: 10,
-    },
-  },
-  loader: {
-    fontSize: 12,
-  },
-  loaderBox: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    minHeight: 300,
-  },
-  pagination: {
-    position: 'relative',
-    justifyContent: 'center',
-    padding: 20,
-    width: '100%',
-  },
-  avatar: {
-    flexDirection: 'column',
-    background: red[100],
-    width: 30,
-    height: 30,
-  },
-  lvl: {
-    fontSize: 14,
-  },
-  editBtn: {
-    cursor: 'pointer',
-  },
-})
 
 export default MatchList

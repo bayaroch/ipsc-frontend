@@ -1,22 +1,14 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Avatar from '@material-ui/core/Avatar'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemAvatar from '@material-ui/core/ListItemAvatar'
-import ListItemText from '@material-ui/core/ListItemText'
-import DialogTitle from '@material-ui/core/DialogTitle'
-import Dialog from '@material-ui/core/Dialog'
-import PersonIcon from '@material-ui/icons/Person'
-import { blue } from '@material-ui/core/colors'
+import Avatar from '@mui/material/Avatar'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemAvatar from '@mui/material/ListItemAvatar'
+import ListItemText from '@mui/material/ListItemText'
+import DialogTitle from '@mui/material/DialogTitle'
+import Dialog from '@mui/material/Dialog'
+import PersonIcon from '@mui/icons-material/Person'
+import { blue } from '@mui/material/colors'
 import { SquadListMembers } from '@services/squad.services'
-
-const useStyles = makeStyles({
-  avatar: {
-    backgroundColor: blue[100],
-    color: blue[600],
-  },
-})
 
 export interface SimpleDialogProps {
   open: boolean
@@ -26,7 +18,6 @@ export interface SimpleDialogProps {
 }
 
 const ListDialog = (props: SimpleDialogProps) => {
-  const classes = useStyles()
   const { onClose, members, open, title } = props
 
   const handleClose = () => {
@@ -44,7 +35,12 @@ const ListDialog = (props: SimpleDialogProps) => {
         {members.map((item) => (
           <ListItem button key={item.id}>
             <ListItemAvatar>
-              <Avatar className={classes.avatar}>
+              <Avatar
+                sx={{
+                  backgroundColor: blue[100],
+                  color: blue[600],
+                }}
+              >
                 <PersonIcon />
               </Avatar>
             </ListItemAvatar>

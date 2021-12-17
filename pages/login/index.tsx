@@ -10,7 +10,6 @@ import {
   CircularProgress,
   Box,
   Paper,
-  makeStyles,
   Grid,
   Button,
   Hidden,
@@ -18,12 +17,12 @@ import {
   InputBase,
   Typography,
   Divider,
-} from '@material-ui/core'
-import Alert from '@material-ui/lab/Alert'
-import { VerifiedUser, Lock } from '@material-ui/icons'
+} from '@mui/material/'
+import Alert from '@mui/material//Alert'
+import { VerifiedUser, Lock } from '@mui/icons-material'
 import _ from 'lodash'
 import { Colors } from '@theme/colors'
-import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn'
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
 
 const LoginPage: React.FC = () => {
   const { methods, submitLogin, Controller, metadata } = useLoginForm()
@@ -37,7 +36,6 @@ const LoginPage: React.FC = () => {
   const isLoggedIn = useSelector(isAuth)
   const isLoading = metadata.pending && !metadata.error && !metadata.loaded
   const isError = metadata.error && !metadata.pending
-  const classes = useStyles()
 
   useEffect(() => {
     if (isLoggedIn === true) {
@@ -52,14 +50,31 @@ const LoginPage: React.FC = () => {
   return (
     <LoginLayout>
       <>
-        <Box className={classes.container}>
-          <Paper className={classes.loginBox}>
+        <Box sx={{ padding: '0 15px', maxWidth: 800, width: '100%' }}>
+          <Paper
+            sx={{
+              boxShadow: '0 10px 30px 0 rgb(22 53 160 / 35%)',
+              overflow: 'hidden',
+              margin: '0 auto',
+              position: 'relative',
+              borderRadius: 2,
+              zIndex: 90,
+              width: '100%',
+            }}
+          >
             <Grid container>
               <Grid sm={12} item md={7}>
-                <Box className={classes.loginHeader}>
+                <Box sx={{ textAlign: 'center', padding: '2em 0 0 0' }}>
                   <Typography variant="h1">Нэвтрэх</Typography>
                 </Box>
-                <Box className={classes.loginInner}>
+                <Box
+                  sx={{
+                    padding: '1.5rem',
+                    paddingBottom: '2em',
+                    position: 'relative',
+                    zIndex: 91,
+                  }}
+                >
                   <form action="" onSubmit={handleSubmit(onSubmit)}>
                     <Box>
                       {isError ? (
@@ -68,11 +83,18 @@ const LoginPage: React.FC = () => {
                         </Alert>
                       ) : null}
                     </Box>
-                    <Paper className={classes.root} elevation={1}>
-                      <IconButton
-                        className={classes.iconButton}
-                        aria-label="menu"
-                      >
+                    <Paper
+                      sx={{
+                        padding: '2px 4px',
+                        paddingRight: '20px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        width: '100%',
+                        boxShadow: '0 1px 2px 0 rgb(6 12 46 / 80%)',
+                      }}
+                      elevation={1}
+                    >
+                      <IconButton sx={{ padding: '10px' }} aria-label="menu">
                         <VerifiedUser />
                       </IconButton>
                       <Controller
@@ -82,7 +104,16 @@ const LoginPage: React.FC = () => {
                           <InputBase
                             inputRef={ref}
                             {...rest}
-                            className={classes.input}
+                            sx={{
+                              marginLeft: (theme) => theme.spacing(1),
+                              flex: 1,
+                              '&:-internal-autofill-previewed': {
+                                backgroundColor: 'transparent !important',
+                              },
+                              '&:-internal-autofill-selected': {
+                                backgroundColor: 'transparent !important',
+                              },
+                            }}
                             placeholder="Гишүүнчлэлийн дугаар e.g. 077"
                             inputProps={{ 'aria-label': 'search google maps' }}
                             error={!!errors.usercode}
@@ -90,16 +121,32 @@ const LoginPage: React.FC = () => {
                         )}
                       />
                     </Paper>
-                    <p className={classes.helperText}>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        height: 14,
+                        fontSize: 12,
+                        color: Colors.red,
+                        marginBottom: 3,
+                        paddingTop: 1,
+                      }}
+                    >
                       {errors.usercode
                         ? _.get(errors.usercode, 'message', '')
                         : ''}
-                    </p>
-                    <Paper className={classes.root} elevation={1}>
-                      <IconButton
-                        className={classes.iconButton}
-                        aria-label="menu"
-                      >
+                    </Typography>
+                    <Paper
+                      sx={{
+                        padding: '2px 4px',
+                        paddingRight: '20px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        width: '100%',
+                        boxShadow: '0 1px 2px 0 rgb(6 12 46 / 80%)',
+                      }}
+                      elevation={1}
+                    >
+                      <IconButton sx={{ padding: '10px' }} aria-label="menu">
                         <Lock />
                       </IconButton>
                       <Controller
@@ -116,12 +163,21 @@ const LoginPage: React.FC = () => {
                         )}
                       />
                     </Paper>
-                    <p className={classes.helperText}>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        height: 14,
+                        fontSize: 12,
+                        color: Colors.red,
+                        marginBottom: 3,
+                        paddingTop: 1,
+                      }}
+                    >
                       {errors.password
                         ? _.get(errors.password, 'message', '')
                         : ''}
-                    </p>
-                    <div className="field">
+                    </Typography>
+                    <Box className="field">
                       <Button
                         variant="contained"
                         color="primary"
@@ -141,12 +197,27 @@ const LoginPage: React.FC = () => {
                           <>Нэвтрэх</>
                         )}
                       </Button>
-                    </div>
+                    </Box>
                   </form>
                 </Box>
                 <Divider />
-                <Box className={classes.addInfo}>
-                  <Typography className={classes.text}>
+                <Box
+                  sx={{
+                    padding: '1rem 1.5rem',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontStyle: 'italic',
+                      lineHeight: 1.3,
+                      color: Colors.grey[200],
+                      fontSize: 12,
+                      textAlign: 'center',
+                    }}
+                  >
                     Зөвхөн `Экшн Эйр Буудлагын Клуб`-ын гишүүд нэвтрэх эрхтэй.
                     Хэрэглэгчийн нэвтрэх мэдээлэллийг А. Арслантай холбогдож
                     авна уу.
@@ -173,9 +244,44 @@ const LoginPage: React.FC = () => {
                 </Box>
               </Grid>
               <Hidden only={'sm'}>
-                <Grid className={classes.loginSide} item md={5}>
-                  <Box className={classes.contentSide}>
-                    <Box className={classes.logoHolder}>
+                <Grid
+                  sx={{
+                    position: 'relative',
+                    '&:after': {
+                      background:
+                        "url('images/login-side.jpg') no-repeat center center",
+                      backgroundSize: 'cover',
+                      position: 'absolute',
+                      top: 0,
+                      right: -1,
+                      bottom: 0,
+                      content: '""',
+                      display: 'block',
+                      left: 1,
+                    },
+                  }}
+                  item
+                  md={5}
+                >
+                  <Box
+                    sx={{
+                      padding: '2rem',
+                      position: 'relative',
+                      textAlign: 'center',
+                      zIndex: 10,
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        marginTop: 80,
+                        maxWidth: 80,
+                        margin: '0 auto',
+                        img: {
+                          width: '100%',
+                          height: 'auto',
+                        },
+                      }}
+                    >
                       <img src="images/logo.png" alt="dvc" />
                     </Box>
                     <Box className="intro-headline">
@@ -196,106 +302,106 @@ const LoginPage: React.FC = () => {
 
 export default LoginPage
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    padding: '0 15px',
-    maxWidth: 800,
-    width: '100%',
-  },
-  loginBox: {
-    webKitBoxShadow: '0 10px 30px 0 rgb(22 53 160 / 35%)',
-    boxShadow: '0 10px 30px 0 rgb(22 53 160 / 35%)',
-    overflow: 'hidden',
-    margin: '0 auto',
-    position: 'relative',
-    borderRadius: 12,
-    zIndex: 90,
-    width: '100%',
-  },
-  text: {
-    fontStyle: 'italic',
-    lineHeight: 1.3,
-    color: Colors.grey[200],
-    fontSize: 12,
-    textAlign: 'center',
-  },
-  loginHeader: {
-    textAlign: 'center',
-    padding: '2em 0 0 0',
-  },
-  loginInner: {
-    padding: '1.5rem',
-    paddingBottom: '2em',
-    position: 'relative',
-    zIndex: 91,
-  },
-  addInfo: {
-    padding: '1rem 1.5rem',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  loginButton: {},
-  root: {
-    padding: '2px 4px',
-    paddingRight: '20px',
-    display: 'flex',
-    alignItems: 'center',
-    width: '100%',
-    webKitBoxShadow: '0 1px 2px 0 rgb(6 12 46 / 80%)',
-    boxShadow: '0 1px 2px 0 rgb(6 12 46 / 80%)',
-  },
-  input: {
-    marginLeft: theme.spacing(1),
-    flex: 1,
-    '&:-internal-autofill-previewed': {
-      backgroundColor: 'transparent !important',
-    },
-    '&:-internal-autofill-selected': {
-      backgroundColor: 'transparent !important',
-    },
-  },
-  iconButton: {
-    padding: 10,
-  },
-  divider: {
-    height: 28,
-    margin: 4,
-  },
-  helperText: {
-    height: 14,
-    fontSize: 12,
-    color: Colors.red,
-    marginBottom: theme.spacing(3),
-    paddingTop: theme.spacing(1),
-  },
-  loginSide: {
-    position: 'relative',
-    '&:after': {
-      background: "url('images/login-side.jpg') no-repeat center center",
-      backgroundSize: 'cover',
-      position: 'absolute',
-      top: 0,
-      right: -1,
-      bottom: 0,
-      content: '""',
-      display: 'block',
-      left: 1,
-    },
-  },
-  contentSide: {
-    padding: '2rem',
-    position: 'relative',
-    textAlign: 'center',
-    zIndex: 10,
-  },
-  logoHolder: {
-    marginTop: 80,
-    maxWidth: 80,
-    margin: '0 auto',
-    img: {
-      width: '100%',
-      height: 'auto',
-    },
-  },
-}))
+// const useStyles = makeStyles((theme) => ({
+//   // container: {
+//   //   padding: '0 15px',
+//   //   maxWidth: 800,
+//   //   width: '100%',
+//   // },
+//   // loginBox: {
+//   //   webKitBoxShadow: '0 10px 30px 0 rgb(22 53 160 / 35%)',
+//   //   boxShadow: '0 10px 30px 0 rgb(22 53 160 / 35%)',
+//   //   overflow: 'hidden',
+//   //   margin: '0 auto',
+//   //   position: 'relative',
+//   //   borderRadius: 12,
+//   //   zIndex: 90,
+//   //   width: '100%',
+//   // },
+//   // text: {
+//   //   fontStyle: 'italic',
+//   //   lineHeight: 1.3,
+//   //   color: Colors.grey[200],
+//   //   fontSize: 12,
+//   //   textAlign: 'center',
+//   // },
+//   // loginHeader: {
+//   //   textAlign: 'center',
+//   //   padding: '2em 0 0 0',
+//   // },
+//   // loginInner: {
+//   //   padding: '1.5rem',
+//   //   paddingBottom: '2em',
+//   //   position: 'relative',
+//   //   zIndex: 91,
+//   // },
+//   // addInfo: {
+//   //   padding: '1rem 1.5rem',
+//   //   display: 'flex',
+//   //   justifyContent: 'center',
+//   //   alignItems: 'center',
+//   // },
+//   // loginButton: {},
+//   // root: {
+//   //   padding: '2px 4px',
+//   //   paddingRight: '20px',
+//   //   display: 'flex',
+//   //   alignItems: 'center',
+//   //   width: '100%',
+//   //   webKitBoxShadow: '0 1px 2px 0 rgb(6 12 46 / 80%)',
+//   //   boxShadow: '0 1px 2px 0 rgb(6 12 46 / 80%)',
+//   // },
+//   // input: {
+//   //   marginLeft: theme.spacing(1),
+//   //   flex: 1,
+//   //   '&:-internal-autofill-previewed': {
+//   //     backgroundColor: 'transparent !important',
+//   //   },
+//   //   '&:-internal-autofill-selected': {
+//   //     backgroundColor: 'transparent !important',
+//   //   },
+//   // },
+//   iconButton: {
+//     padding: 10,
+//   },
+//   divider: {
+//     height: 28,
+//     margin: 4,
+//   },
+//   helperText: {
+//     height: 14,
+//     fontSize: 12,
+//     color: Colors.red,
+//     marginBottom: theme.spacing(3),
+//     paddingTop: theme.spacing(1),
+//   },
+//   loginSide: {
+//     position: 'relative',
+//     '&:after': {
+//       background: "url('images/login-side.jpg') no-repeat center center",
+//       backgroundSize: 'cover',
+//       position: 'absolute',
+//       top: 0,
+//       right: -1,
+//       bottom: 0,
+//       content: '""',
+//       display: 'block',
+//       left: 1,
+//     },
+//   },
+//   contentSide: {
+//     padding: '2rem',
+//     position: 'relative',
+//     textAlign: 'center',
+//     zIndex: 10,
+//   },
+//   logoHolder: {
+//     marginTop: 80,
+//     maxWidth: 80,
+//     margin: '0 auto',
+//     img: {
+//       width: '100%',
+//       height: 'auto',
+//     },
+//   },
+// }))
