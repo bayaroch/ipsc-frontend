@@ -32,8 +32,8 @@ const CourseContainer: React.FC = () => {
           sx={{
             color: Colors.black,
             textAlign: 'center',
-            paddingTop: 20,
-            paddingBottom: 30,
+            paddingTop: '20px',
+            paddingBottom: '30px',
           }}
           variant="h3"
           component="h3"
