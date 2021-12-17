@@ -31,8 +31,8 @@ export const Footer: React.FC = () => {
             <div className="column">
               <div>
                 <iframe
-                  src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FIPSCAA&tabs&width=340&height=130&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=false&appId=338495889641646"
-                  width="340"
+                  src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FIPSCAA&tabs&width=260&height=130&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=false&appId=338495889641646"
+                  width="260"
                   height="130"
                   style={{ border: '0 none' }}
                   scrolling="no"

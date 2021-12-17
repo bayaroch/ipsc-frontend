@@ -11,7 +11,12 @@ const BeginnerCourseContainer: React.FC = () => {
     <>
       <Grid container>
         <Grid md={9} sm={12} xs={12} item>
-          <Box sx={{ paddingRight: '50px', paddingBottom: '100px' }}>
+          <Box
+            sx={{
+              paddingRight: { sm: 0, lg: '50px', md: '50px' },
+              paddingBottom: '100px',
+            }}
+          >
             <div className="content">
               <p>
                 <span>Сургалтын нэр: </span>

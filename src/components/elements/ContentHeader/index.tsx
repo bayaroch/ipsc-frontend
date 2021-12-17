@@ -28,7 +28,7 @@ const ContentHeader: React.FC<ContentBoxProps> = ({
       {...rest}
     >
       <Box className="container" sx={{ width: '100%', maxWidth: { lg: 1400 } }}>
-        <Box sx={{ textAlign: { lg: 'left', sm: 'center' } }}>
+        <Box sx={{ textAlign: { lg: 'left', sm: 'center', xs: 'center' } }}>
           {title ? (
             <Typography
               className={`glowing-`}
