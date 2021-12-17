@@ -3,16 +3,15 @@ import MainLayout from '@components/layout/MainLayout'
 import PageWithLayoutType from '@constants/page'
 import RulesContainer from '@containers/Pages/RulesContainer'
 import ContentHeader from '@components/elements/ContentHeader'
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import { useState } from 'react'
-import Accordion from '@material-ui/core/Accordion'
-import AccordionDetails from '@material-ui/core/AccordionDetails'
-import AccordionSummary from '@material-ui/core/AccordionSummary'
-import Typography from '@material-ui/core/Typography'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import Accordion from '@mui/material/Accordion'
+import AccordionDetails from '@mui/material/AccordionDetails'
+import AccordionSummary from '@mui/material/AccordionSummary'
+import Typography from '@mui/material/Typography'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import { Box } from '@mui/material/'
 
 const Divisions: PageWithLayoutType = () => {
-  const classes = useStyles()
   const [expanded, setExpanded] = useState<string | false>(false)
   const handleChange = (panel: string) => (
     _event: React.ChangeEvent<any>,
@@ -37,22 +36,52 @@ const Divisions: PageWithLayoutType = () => {
               шаардлага болон зөвлөгөөг дараах линкээр орж үзнэ үү.
             </div>
             <br />
-            <div className={classes.root}>
+            <Box
+              sx={{
+                root: {
+                  width: '100%',
+                },
+              }}
+            >
               <Accordion
                 expanded={expanded === 'panel1'}
                 onChange={handleChange('panel1')}
               >
                 <AccordionSummary
-                  className={`${classes.accordion} ${classes.open}`}
+                  sx={{
+                    borderBottom: '1px solid #eee',
+                    position: 'relative',
+                    '&:after': {
+                      position: 'absolute',
+                      top: 0,
+                      left: 140,
+                      right: 100,
+                      content: "''",
+                      height: '100%',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition: 'top center',
+                      backgroundSize: 'fill',
+                      bottom: 0,
+                      backgroundImage: 'url(/images/divisions/open.jpg)',
+                    },
+                  }}
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1bh-content"
                   id="panel1bh-header"
                 >
-                  <Typography className={classes.heading}>
+                  <Typography
+                    sx={{
+                      fontSize: (theme) => theme.typography.pxToRem(15),
+                      flexBasis: '33.33%',
+                      flexShrink: 0,
+                      marginBottom: '0 !important',
+                      fontWeight: 700,
+                    }}
+                  >
                     Open Division
                   </Typography>
                 </AccordionSummary>
-                <AccordionDetails className={classes.detail}>
+                <AccordionDetails sx={{ display: 'block' }}>
                   <p>
                     Опен буюу чөлөөт ангилал нь зэвсгийн хэмжээг
                     хязгаарладаггүй. Зөвхөн дайзны хэмжээг хязгаарлах бөгөөд
@@ -151,13 +180,37 @@ const Divisions: PageWithLayoutType = () => {
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel2bh-content"
                   id="panel2bh-header"
-                  className={`${classes.accordion} ${classes.standard}`}
+                  sx={{
+                    borderBottom: '1px solid #eee',
+                    position: 'relative',
+                    '&:after': {
+                      position: 'absolute',
+                      top: 0,
+                      right: 100,
+                      content: "''",
+                      height: '100%',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition: 'top center',
+                      backgroundSize: 'fill',
+                      bottom: 0,
+                      backgroundImage: 'url(/images/divisions/standard.jpg)',
+                      left: 160,
+                    },
+                  }}
                 >
-                  <Typography className={classes.heading}>
+                  <Typography
+                    sx={{
+                      fontSize: (theme) => theme.typography.pxToRem(15),
+                      flexBasis: '33.33%',
+                      flexShrink: 0,
+                      marginBottom: '0 !important',
+                      fontWeight: 700,
+                    }}
+                  >
                     Standard Division
                   </Typography>
                 </AccordionSummary>
-                <AccordionDetails className={classes.detail}>
+                <AccordionDetails sx={{ display: 'block' }}>
                   <div>
                     <p style={{ textAlign: 'justify' }}>
                       Стандарт ангилал нь зэвсгийн хэмжээг IPSC box-д таарч
@@ -269,13 +322,37 @@ const Divisions: PageWithLayoutType = () => {
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel3bh-content"
                   id="panel3bh-header"
-                  className={`${classes.accordion} ${classes.classic}`}
+                  sx={{
+                    borderBottom: '1px solid #eee',
+                    position: 'relative',
+                    '&:after': {
+                      position: 'absolute',
+                      top: 0,
+                      right: 100,
+                      content: "''",
+                      height: '100%',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition: 'top center',
+                      backgroundSize: 'fill',
+                      bottom: 0,
+                      backgroundImage: 'url(/images/divisions/classic.jpg)',
+                      left: 180,
+                    },
+                  }}
                 >
-                  <Typography className={classes.heading}>
+                  <Typography
+                    sx={{
+                      fontSize: (theme) => theme.typography.pxToRem(15),
+                      flexBasis: '33.33%',
+                      flexShrink: 0,
+                      marginBottom: '0 !important',
+                      fontWeight: 700,
+                    }}
+                  >
                     Classic Division
                   </Typography>
                 </AccordionSummary>
-                <AccordionDetails className={classes.detail}>
+                <AccordionDetails sx={{ display: 'block' }}>
                   <p>
                     Классик ангилал нь зэвсгийн хэмжээг IPSC box-д таарч байхаар
                     хязгаарладаг бөгөөд зөвхөн 1911 загварын гар буунд зориулсан
@@ -385,13 +462,37 @@ const Divisions: PageWithLayoutType = () => {
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel4bh-content"
                   id="panel4bh-header"
-                  className={`${classes.accordion} ${classes.production}`}
+                  sx={{
+                    borderBottom: '1px solid #eee',
+                    position: 'relative',
+                    '&:after': {
+                      position: 'absolute',
+                      top: 0,
+                      right: 100,
+                      content: "''",
+                      height: '100%',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition: 'top center',
+                      backgroundSize: 'fill',
+                      bottom: 0,
+                      backgroundImage: 'url(/images/divisions/production.jpg)',
+                      left: 200,
+                    },
+                  }}
                 >
-                  <Typography className={classes.heading}>
+                  <Typography
+                    sx={{
+                      fontSize: (theme) => theme.typography.pxToRem(15),
+                      flexBasis: '33.33%',
+                      flexShrink: 0,
+                      marginBottom: '0 !important',
+                      fontWeight: 700,
+                    }}
+                  >
                     Production Division
                   </Typography>
                 </AccordionSummary>
-                <AccordionDetails className={classes.detail}>
+                <AccordionDetails sx={{ display: 'block' }}>
                   <p>
                     Зөвхөн{' '}
                     <a
@@ -508,13 +609,37 @@ const Divisions: PageWithLayoutType = () => {
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel5bh-content"
                   id="panel5bh-header"
-                  className={`${classes.accordion} ${classes.optics}`}
+                  sx={{
+                    borderBottom: '1px solid #eee',
+                    position: 'relative',
+                    '&:after': {
+                      position: 'absolute',
+                      top: 0,
+                      right: 100,
+                      content: "''",
+                      height: '100%',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition: 'top center',
+                      backgroundSize: 'fill',
+                      bottom: 0,
+                      left: 220,
+                      backgroundImage: 'url(/images/divisions/optics.jpg)',
+                    },
+                  }}
                 >
-                  <Typography className={classes.heading}>
+                  <Typography
+                    sx={{
+                      fontSize: (theme) => theme.typography.pxToRem(15),
+                      flexBasis: '33.33%',
+                      flexShrink: 0,
+                      marginBottom: '0 !important',
+                      fontWeight: 700,
+                    }}
+                  >
                     Production Optics Divison
                   </Typography>
                 </AccordionSummary>
-                <AccordionDetails className={classes.detail}>
+                <AccordionDetails sx={{ display: 'block' }}>
                   {' '}
                   <p>Тун удахгүй...</p>
                 </AccordionDetails>
@@ -527,101 +652,46 @@ const Divisions: PageWithLayoutType = () => {
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel6bh-content"
                   id="panel6bh-header"
-                  className={`${classes.accordion} ${classes.light}`}
+                  sx={{
+                    borderBottom: '1px solid #eee',
+                    position: 'relative',
+                    '&:after': {
+                      position: 'absolute',
+                      top: 0,
+                      left: 140,
+                      right: 100,
+                      content: "''",
+                      height: '100%',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition: 'top center',
+                      backgroundSize: 'fill',
+                      bottom: 0,
+                      backgroundImage: 'url(/images/divisions/light.jpg)',
+                    },
+                  }}
                 >
-                  <Typography className={classes.heading}>
+                  <Typography
+                    sx={{
+                      fontSize: (theme) => theme.typography.pxToRem(15),
+                      flexBasis: '33.33%',
+                      flexShrink: 0,
+                      marginBottom: '0 !important',
+                      fontWeight: 700,
+                    }}
+                  >
                     Production Optics Light Divison
                   </Typography>
                 </AccordionSummary>
-                <AccordionDetails className={classes.detail}>
+                <AccordionDetails sx={{ display: 'block' }}>
                   <p>Тун удахгүй...</p>
                 </AccordionDetails>
               </Accordion>
-            </div>
+            </Box>
           </RulesContainer>
         </>
       </ContentWrapper>
     </MainLayout>
   )
 }
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    accordion: {
-      borderBottom: '1px solid #eee',
-      position: 'relative',
-      '&:after': {
-        position: 'absolute',
-        top: 0,
-        left: 140,
-        right: 100,
-        content: "''",
-        height: '100%',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'top center',
-        backgroundSize: 'fill',
-        bottom: 0,
-      },
-    },
-    open: {
-      '&:after': {
-        backgroundImage: 'url(/images/divisions/open.jpg)',
-      },
-    },
-    standard: {
-      '&:after': {
-        backgroundImage: 'url(/images/divisions/standard.jpg)',
-        left: 160,
-      },
-    },
-    classic: {
-      '&:after': {
-        backgroundImage: 'url(/images/divisions/classic.jpg)',
-        left: 180,
-      },
-    },
-    production: {
-      '&:after': {
-        backgroundImage: 'url(/images/divisions/production.jpg)',
-        left: 200,
-      },
-    },
-    optics: {
-      '&:after': {
-        left: 220,
-        backgroundImage: 'url(/images/divisions/optics.jpg)',
-      },
-    },
-    light: {
-      '&:after': {
-        backgroundImage: 'url(/images/divisions/light.jpg)',
-      },
-    },
-    root: {
-      width: '100%',
-    },
-    detail: {
-      display: 'block',
-    },
-    heading: {
-      fontSize: theme.typography.pxToRem(15),
-      flexBasis: '33.33%',
-      flexShrink: 0,
-      marginBottom: '0 !important',
-      fontWeight: 700,
-    },
-    secondaryHeading: {
-      marginBottom: '0 !important',
-      fontSize: theme.typography.pxToRem(15),
-      color: theme.palette.text.secondary,
-    },
-    headingImage: {
-      background: 'red',
-      maxWidth: 150,
-      height: '100%',
-      display: 'block',
-    },
-  })
-)
 
 export default Divisions

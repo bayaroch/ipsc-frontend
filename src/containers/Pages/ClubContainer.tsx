@@ -1,16 +1,30 @@
-import { makeStyles, Box, Typography } from '@material-ui/core/'
+import { Box, Typography } from '@mui/material/'
 import { Colors } from '@theme/colors'
-import ImageList from '@material-ui/core/ImageList'
-import ImageListItem from '@material-ui/core/ImageListItem'
+import ImageList from '@mui/material/ImageList'
+import ImageListItem from '@mui/material/ImageListItem'
 import { clubCollection } from '@constants/image.constants'
 
 const ClubContainer: React.FC = () => {
-  const classes = useStyles()
-
   return (
     <>
-      <Box className={classes.content}>
-        <Typography className={classes.title} variant="h3" component="h3">
+      <Box
+        sx={{
+          paddingTop: '40px',
+          paddingBottom: '40px',
+          maxWidth: 600,
+          margin: '0 auto',
+        }}
+      >
+        <Typography
+          sx={{
+            color: Colors.black,
+            textAlign: 'center',
+            paddingTop: '20px',
+            paddingBottom: '30px',
+          }}
+          variant="h3"
+          component="h3"
+        >
           IPSC Action Air Club
         </Typography>
         <Typography variant="body1" component="p">
@@ -34,11 +48,15 @@ const ClubContainer: React.FC = () => {
           холбогдох утас: 8611-0200
         </Typography>
       </Box>
-      <Box className={classes.imageList}>
+      <Box sx={{ maxWidth: 800, margin: '0 auto', paddingBottom: '100px' }}>
         <ImageList rowHeight={240} cols={3}>
           {clubCollection.map((item) => (
             <ImageListItem key={item.img} cols={item.cols || 1}>
-              <img src={item.img} className={classes.img} alt={item.title} />
+              <img
+                src={item.img}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                alt={item.title}
+              />
             </ImageListItem>
           ))}
         </ImageList>
@@ -46,36 +64,5 @@ const ClubContainer: React.FC = () => {
     </>
   )
 }
-
-const useStyles = makeStyles(() => ({
-  paper: {
-    padding: 20,
-  },
-  content: {
-    paddingTop: 40,
-    paddingBottom: 40,
-    maxWidth: 600,
-    margin: '0 auto',
-  },
-  title: {
-    color: Colors.black,
-    textAlign: 'center',
-    paddingTop: 20,
-    paddingBottom: 30,
-  },
-  list: {
-    paddingBottom: 100,
-  },
-  imageList: {
-    maxWidth: 800,
-    margin: '0 auto',
-    paddingBottom: 100,
-  },
-  img: {
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-  },
-}))
 
 export default ClubContainer

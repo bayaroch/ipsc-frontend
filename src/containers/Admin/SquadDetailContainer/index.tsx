@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { makeStyles, Box, Button, Typography } from '@material-ui/core/'
+import { Box, Button, Typography } from '@mui/material/'
 import useSquadDetail from './useSquadDetail'
 import _, { isArray } from 'lodash'
 import SquadList from '@components/admin/SquadList'
@@ -7,7 +7,7 @@ import { SquadListData, SquadListMembers } from '@services/squad.services'
 import { useConfirm } from 'material-ui-confirm'
 import SquadCreate from '@components/admin/SquadCreate'
 import { SquadCreateInputType } from '@components/admin/SquadCreate/useSquadCreate'
-import { Edit, Close } from '@material-ui/icons'
+import { Edit, Close } from '@mui/icons-material'
 import SquadMemberList from '@components/member/SquadMemberList'
 
 interface SquadDetailContainerProps {
@@ -15,7 +15,6 @@ interface SquadDetailContainerProps {
 }
 
 const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
-  const classes = useStyles()
   const confirm = useConfirm()
   const [mode, setMode] = useState<boolean>(false)
   const [memberList, setMemberList] = useState<null | SquadListMembers[]>(null)
@@ -36,7 +35,20 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
   const renderLoader = () => {
     if (listMeta.pending && !listMeta.loaded && !listMeta.error) {
       return (
-        <Box className={classes.loaderBox}>
+        <Box
+          sx={{
+            background: 'rgba(255,255,255,0.8)',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 1,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
           <Box className="dot-flashing" />
         </Box>
       )
@@ -154,7 +166,7 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
   }
 
   return (
-    <Box className={classes.container}>
+    <Box sx={{ position: 'relative' }}>
       {renderLoader()}
       {renderList()}
       {renderPlaceholder()}
@@ -167,34 +179,5 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
     </Box>
   )
 }
-
-const useStyles = makeStyles(() => ({
-  container: {
-    position: 'relative',
-  },
-  divider: {
-    marginTop: 20,
-    marginBottom: 20,
-  },
-  group: {
-    justifyContent: 'space-between',
-  },
-  section: {
-    marginBottom: 20,
-  },
-  loader: {},
-  loaderBox: {
-    background: 'rgba(255,255,255,0.8)',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 1,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-}))
 
 export default SquadDetailContainer

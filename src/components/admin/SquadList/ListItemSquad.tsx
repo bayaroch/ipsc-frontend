@@ -1,18 +1,17 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
 import _ from 'lodash'
 import { SquadListData, SquadListMembers } from '@services/squad.services'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemAvatar from '@material-ui/core/ListItemAvatar'
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
-import ListItemText from '@material-ui/core/ListItemText'
-import IconButton from '@material-ui/core/IconButton'
-import DeleteIcon from '@material-ui/icons/Delete'
-import Box from '@material-ui/core/Box'
+import ListItem from '@mui/material/ListItem'
+import ListItemAvatar from '@mui/material/ListItemAvatar'
+import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction'
+import ListItemText from '@mui/material/ListItemText'
+import IconButton from '@mui/material/IconButton'
+import DeleteIcon from '@mui/icons-material/Delete'
+import Box from '@mui/material/Box'
 import TimeRange from '@components/common/TimeRange'
-import Badge from '@material-ui/core/Badge'
-import People from '@material-ui/icons/People'
-import Radio from '@material-ui/core/Radio'
+import Badge from '@mui/material/Badge'
+import People from '@mui/icons-material/People'
+import Radio from '@mui/material/Radio'
 
 export interface SquadListProps {
   data: SquadListData
@@ -32,7 +31,6 @@ const ListItemSquad: React.FC<SquadListProps> = (props) => {
     isEdit,
     onSelectChange,
   } = props
-  const classes = useStyles()
 
   return (
     <ListItem>
@@ -65,7 +63,7 @@ const ListItemSquad: React.FC<SquadListProps> = (props) => {
         primary={data.name}
         secondary={data.remark ? data.remark : null}
       />
-      <Box className={classes.time}>
+      <Box sx={{ paddingRight: 1 }}>
         <TimeRange timeStart={data.time_start} timeEnd={data.time_end} />
       </Box>
       {onDelete ? (
@@ -82,12 +80,6 @@ const ListItemSquad: React.FC<SquadListProps> = (props) => {
     </ListItem>
   )
 }
-
-const useStyles = makeStyles({
-  time: {
-    paddingRight: 10,
-  },
-})
 
 ListItemSquad.defaultProps = {
   isEdit: false,

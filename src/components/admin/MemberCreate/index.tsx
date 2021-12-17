@@ -1,10 +1,8 @@
-import { forwardRef, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
-  makeStyles,
   Dialog,
   Button,
   ButtonGroup,
-  Slide,
   Divider,
   Box,
   Grid,
@@ -14,8 +12,7 @@ import {
   InputAdornment,
   IconButton,
   Typography,
-} from '@material-ui/core/'
-import { TransitionProps } from '@material-ui/core/transitions'
+} from '@mui/material/'
 import { Colors } from '@theme/colors'
 import { UserCreateParams } from '@services/account.services'
 import CustomInput from '@components/common/Input'
@@ -27,8 +24,8 @@ import { CLASS_TYPE_DATA, MEMBER_TYPE_DATA } from '@constants/common.constants'
 import { GENDER_DATA } from '@constants/user.constants'
 import CustomSwitch from '@components/common/CustomSwitch'
 import useCreateForm from './useCreateForm'
-import Visibility from '@material-ui/icons/Visibility'
-import VisibilityOff from '@material-ui/icons/VisibilityOff'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
 
 interface PickerProps {
   open: boolean
@@ -40,21 +37,12 @@ interface State {
   showPassword: boolean
 }
 
-const Transition = forwardRef(function Transition(
-  props: TransitionProps & { children?: React.ReactElement },
-  ref: React.Ref<unknown>
-) {
-  return <Slide direction="up" ref={ref} {...props} />
-})
-
 const MemberCreate: React.FC<PickerProps> = (props) => {
   const { open, handleClose, submit } = props
   const { methods, Controller, initValues } = useCreateForm()
   const [values, setValues] = useState<State>({
     showPassword: false,
   })
-
-  const classes = useStyles()
 
   const {
     control,
@@ -87,12 +75,7 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
   }
 
   return (
-    <Dialog
-      fullScreen
-      open={open}
-      onClose={handleClose}
-      TransitionComponent={Transition}
-    >
+    <Dialog fullScreen open={open} onClose={handleClose}>
       <form id="user-create-update" onSubmit={handleSubmit(onSubmit)}>
         <ButtonGroup
           fullWidth
@@ -115,7 +98,7 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
         </ButtonGroup>
         <Divider style={{ marginBottom: 40 }} />
         <DialogContent>
-          <Box className={classes.container}>
+          <Box sx={{ position: 'relative' }}>
             <Typography
               variant="h3"
               style={{ marginBottom: 40 }}
@@ -124,7 +107,7 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
             >
               Хэрэглэгч Нэмэх
             </Typography>
-            <section className={classes.section}>
+            <section style={{ marginBottom: 20 }}>
               <Grid spacing={3} container>
                 <Grid item sm={12} md={6}>
                   <Controller
@@ -190,7 +173,7 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
                 </Grid>
               </Grid>
             </section>
-            <section className={classes.section}>
+            <section style={{ marginBottom: 20 }}>
               <Grid spacing={3} container>
                 <Grid item sm={12} md={6}>
                   <Controller
@@ -240,7 +223,7 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
                 </Grid>
               </Grid>
             </section>
-            <section className={classes.section}>
+            <section style={{ marginBottom: 20 }}>
               <Grid spacing={3} container>
                 <Grid item sm={12} md={6}>
                   <Controller
@@ -300,7 +283,7 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
                 </Grid>
               </Grid>
             </section>
-            <section className={classes.section}>
+            <section style={{ marginBottom: 20 }}>
               <Grid spacing={3} container>
                 <Grid item sm={12} md={6}>
                   <Controller
@@ -361,7 +344,7 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
               </Grid>
             </section>
 
-            <section className={classes.section}>
+            <section style={{ marginBottom: 20 }}>
               <Grid spacing={3} container>
                 <Grid item sm={12} md={6}>
                   <Controller
@@ -455,34 +438,5 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
     </Dialog>
   )
 }
-
-const useStyles = makeStyles(() => ({
-  container: {
-    position: 'relative',
-  },
-  divider: {
-    marginTop: 20,
-    marginBottom: 20,
-  },
-  group: {
-    justifyContent: 'space-between',
-  },
-  section: {
-    marginBottom: 20,
-  },
-  loader: {},
-  loaderBox: {
-    background: 'rgba(255,255,255,0.8)',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 1,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-}))
 
 export default MemberCreate

@@ -1,4 +1,4 @@
-import { createTheme } from '@material-ui/core/styles'
+import { createTheme } from '@mui/material//styles'
 import { Colors } from '@theme/colors'
 import { breakpointValues } from '@theme/variables'
 
@@ -12,7 +12,6 @@ export const userBreakpoints = breakpointValues
 
 export default createTheme({
   palette: {
-    type: 'light',
     primary: {
       main: Colors.primary,
     },
@@ -71,82 +70,99 @@ export default createTheme({
       fontSize: 10,
     },
   },
-  overrides: {
+  components: {
     MuiTableCell: {
-      root: {
-        padding: 10,
+      styleOverrides: {
+        root: {
+          padding: 10,
+        },
       },
     },
     MuiButton: {
-      root: {
-        padding: '7px 16px',
-      },
-      containedSizeLarge: {
-        padding: '12px 22px',
-      },
-      outlinedSizeLarge: {
-        padding: '12px 22px',
-      },
-      outlined: {
-        padding: '6px 15px',
+      styleOverrides: {
+        root: {
+          padding: '7px 16px',
+        },
+        containedSizeLarge: {
+          padding: '12px 22px',
+        },
+        outlinedSizeLarge: {
+          padding: '12px 22px',
+        },
+        outlined: {
+          padding: '6px 15px',
+        },
       },
     },
     MuiButtonBase: {
-      root: {
-        '&.button-primary.primary-small': {
-          fontWeight: 400,
+      styleOverrides: {
+        root: {
+          '&.button-primary.primary-small': {
+            fontWeight: 400,
+          },
         },
       },
     },
     MuiIcon: {
-      root: {
-        overflow: 'inherit',
-      },
-      fontSizeSmall: {
-        fontSize: '0.92rem',
-      },
-    },
-    MuiTypography: {
-      h1: {
-        fontSize: '1.5em',
-        marginBottom: '0.5em',
-      },
-      gutterBottom: {
-        marginBottom: '1em',
-      },
-    },
-    MuiBadge: {
-      badge: {
-        fontSize: 8,
-        padding: 2,
-      },
-    },
-    MuiSnackbar: {
-      root: {
-        left: 0,
-      },
-    },
-    MuiCardContent: {
-      root: {
-        padding: '8px 12px 12px 12px',
-        '&:last-child': {
-          paddingBottom: '12px',
+      styleOverrides: {
+        root: {
+          overflow: 'inherit',
+        },
+        fontSizeSmall: {
+          fontSize: '0.92rem',
         },
       },
     },
-    MuiCardMedia: {
-      root: {},
+    MuiTypography: {
+      styleOverrides: {
+        h1: {
+          fontSize: '1.5em',
+          marginBottom: '0.5em',
+        },
+        gutterBottom: {
+          marginBottom: '1em',
+        },
+      },
+    },
+    MuiBadge: {
+      styleOverrides: {
+        badge: {
+          fontSize: 8,
+          padding: 2,
+        },
+      },
+    },
+    MuiSnackbar: {
+      styleOverrides: {
+        root: {
+          left: 0,
+        },
+      },
+    },
+    MuiCardContent: {
+      styleOverrides: {
+        root: {
+          padding: '8px 12px 12px 12px',
+          '&:last-child': {
+            paddingBottom: '12px',
+          },
+        },
+      },
     },
     MuiContainer: {
-      root: {
-        paddingLeft: 24,
-        paddingRight: 24,
+      styleOverrides: {
+        root: {
+          paddingLeft: 24,
+          paddingRight: 24,
+        },
       },
     },
     MuiDialogContent: {
-      root: {
-        '&:first-child': {
-          paddingTop: 0,
+      styleOverrides: {
+        root: {
+          '&:first-child': {
+            paddingTop: 0,
+          },
         },
       },
     },

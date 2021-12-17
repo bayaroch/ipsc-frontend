@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
 import {
   Table,
   TableHead,
@@ -12,19 +11,16 @@ import {
   FormControl,
   Typography,
   Paper,
-  withStyles,
-  Theme,
   IconButton,
-  createStyles,
-} from '@material-ui/core'
-import Pagination from '@material-ui/lab/Pagination'
+} from '@mui/material/'
+import Pagination from '@mui/material//Pagination'
 import {
   MemberPaginationMeta,
   MemberPageMeta,
   MemberItem,
 } from '@services/account.services'
 import _ from 'lodash'
-import { CheckCircle, EditOutlined, Schedule } from '@material-ui/icons'
+import { CheckCircle, EditOutlined, Schedule } from '@mui/icons-material'
 import { Meta } from '@store/metadata/actions/types'
 import moment from 'moment'
 import { Colors } from '@theme/colors'
@@ -42,21 +38,10 @@ export interface MatchListProps {
   classData: SupportItem[]
 }
 
-export const StyledTableRow = withStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '&:nth-of-type(odd)': {
-        backgroundColor: theme.palette.action.hover,
-      },
-    },
-  })
-)(TableRow)
-
 const defaultPerPage = 100
 
 const MemberList: React.FC<MatchListProps> = (props) => {
   const { getList, list, pagination, meta, classData, onEditMember } = props
-  const classes = useStyles()
   const [page, setPage] = useState<number>(1)
   const [rowsPerPage, setRowsPerPage] = useState<number>(defaultPerPage)
   const [selectRow, setSelectRow] = useState<string>(defaultPerPage.toString())
@@ -83,9 +68,7 @@ const MemberList: React.FC<MatchListProps> = (props) => {
     setPage(newPage)
   }
 
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<{ name?: string; value: any }>
-  ) => {
+  const handleChangeRowsPerPage = (event: any) => {
     setSelectRow(event.target.value)
     if (pagination && pagination.total_objects < Number(event.target.value)) {
       setRowsPerPage(pagination.total_objects)
@@ -99,7 +82,15 @@ const MemberList: React.FC<MatchListProps> = (props) => {
   const renderLoader = () => {
     if (!meta.loaded && meta.pending && !meta.error && _.isEmpty(list)) {
       return (
-        <Box className={classes.loaderBox}>
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            minHeight: 300,
+          }}
+        >
           <Box className="dot-flashing" />
         </Box>
       )
@@ -111,7 +102,7 @@ const MemberList: React.FC<MatchListProps> = (props) => {
     if (!_.isEmpty(list)) {
       return (
         <TableContainer component={Paper}>
-          <Table className={classes.table} aria-label="custom pagination table">
+          <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
             <TableHead>
               <TableRow>
                 <TableCell>#</TableCell>
@@ -128,7 +119,7 @@ const MemberList: React.FC<MatchListProps> = (props) => {
             </TableHead>
             <TableBody>
               {list.map((row) => (
-                <StyledTableRow key={row.id}>
+                <TableRow key={row.id}>
                   <TableCell style={{ width: 60 }}>
                     <Typography variant="h2">{row.usercode}</Typography>
                   </TableCell>
@@ -156,7 +147,7 @@ const MemberList: React.FC<MatchListProps> = (props) => {
                   </TableCell>
                   <TableCell style={{ width: 50 }} align="right">
                     {row.enabled ? (
-                      <CheckCircle className={classes.active} />
+                      <CheckCircle sx={{ active: { color: Colors.green } }} />
                     ) : (
                       <Schedule />
                     )}
@@ -183,7 +174,7 @@ const MemberList: React.FC<MatchListProps> = (props) => {
                       <EditOutlined />
                     </IconButton>
                   </TableCell>
-                </StyledTableRow>
+                </TableRow>
               ))}
 
               {emptyRows > 0 && (
@@ -193,8 +184,24 @@ const MemberList: React.FC<MatchListProps> = (props) => {
               )}
             </TableBody>
           </Table>
-          <Box display="flex" className={classes.pagination}>
-            <FormControl variant="outlined" className={classes.formControl}>
+          <Box
+            display="flex"
+            sx={{
+              position: 'relative',
+              justifyContent: 'space-between',
+              padding: '5px',
+              width: '100%',
+            }}
+          >
+            <FormControl
+              variant="outlined"
+              sx={{
+                '& .MuiInputBase-root .MuiOutlinedInput-input': {
+                  paddingTop: '10px',
+                  paddingBottom: '10px',
+                },
+              }}
+            >
               <Select
                 inputProps={{
                   id: 'demo-customized-select-native',
@@ -227,44 +234,5 @@ const MemberList: React.FC<MatchListProps> = (props) => {
     </>
   )
 }
-
-const useStyles = makeStyles({
-  active: { color: Colors.green },
-  link: {
-    color: Colors.grey[100],
-    '&:hover': {
-      color: Colors.primary,
-      transition: 'all 0.3s ease',
-    },
-  },
-  table: {
-    minWidth: 500,
-  },
-  formControl: {
-    '& .MuiInputBase-root .MuiOutlinedInput-input': {
-      paddingTop: 10,
-      paddingBottom: 10,
-    },
-  },
-  loader: {
-    fontSize: 12,
-  },
-  loaderBox: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    minHeight: 300,
-  },
-  pagination: {
-    position: 'relative',
-    justifyContent: 'space-between',
-    padding: 5,
-    width: '100%',
-  },
-  editBtn: {
-    cursor: 'pointer',
-  },
-})
 
 export default MemberList

@@ -1,8 +1,8 @@
-import { Snackbar } from '@material-ui/core'
+import { Snackbar } from '@mui/material/'
 import * as selectors from '@store/support/selectors'
 import * as actions from '@store/support/actions'
 import { useSelector, useDispatch } from 'react-redux'
-import MuiAlert, { AlertProps, Color } from '@material-ui/lab/Alert'
+import MuiAlert, { AlertColor, AlertProps } from '@mui/material/Alert'
 
 function Alert(props: JSX.IntrinsicAttributes & AlertProps) {
   return <MuiAlert elevation={6} variant="filled" {...props} />
@@ -10,7 +10,7 @@ function Alert(props: JSX.IntrinsicAttributes & AlertProps) {
 
 export type toastProps = {
   message: string
-  severity: Color | undefined
+  severity: AlertColor | undefined
   uuid: string
 }
 

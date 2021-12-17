@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import {
-  makeStyles,
   Box,
   Typography,
   Grid,
@@ -9,7 +8,7 @@ import {
   Paper,
   Button,
   Chip,
-} from '@material-ui/core/'
+} from '@mui/material/'
 import useMatchDetail from './useMatchDetail'
 import _ from 'lodash'
 import ContentBox from '@components/admin/ContentBox'
@@ -26,7 +25,6 @@ interface MatchDetailProps {
 
 const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
   const [open, setOpen] = useState<boolean>(false)
-  const classes = useStyles()
   const {
     detail,
     meta,
@@ -113,7 +111,15 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
   const renderLoader = () => {
     if (!meta.loaded && meta.pending && !meta.error) {
       return (
-        <Box className={classes.loaderBox}>
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            minHeight: 300,
+          }}
+        >
           <Box className="dot-flashing" />
         </Box>
       )
@@ -187,8 +193,35 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
             }
             handleClose={handleClose}
           />
-          <Box className={classes.header}>
-            <Typography variant="h2" className={classes.title} align="center">
+          <Box
+            sx={{
+              width: '100%',
+              position: 'relative',
+              zIndex: 100,
+              height: 120,
+              backgroundColor: '#eee',
+              background: "url('/images/placeholder.png')",
+              backgroundSize: 'cover',
+              justifyContent: 'center',
+              alignItems: 'center',
+              display: 'flex',
+              '&:after': {
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                content: "''",
+                position: 'absolute',
+                zIndex: 10,
+                backgroundColor: 'rgba(43, 80, 237, 0.5)',
+              },
+            }}
+          >
+            <Typography
+              variant="h2"
+              sx={{ color: Colors.white, position: 'relative', zIndex: 100 }}
+              align="center"
+            >
               {detail.name}
             </Typography>
             <br />
@@ -199,25 +232,34 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
             ) : null}
           </Box>
           <ContentBox>
-            <Paper className={classes.paper}>
+            <Paper sx={{ padding: 20 }}>
               {!_.isEmpty(detail.additional_info) ? (
                 <>
-                  <section className={classes.section}>
+                  <section style={{ paddingTop: 15, paddingBottom: 15 }}>
                     <Typography align="center" variant="body1">
                       {detail.additional_info}
                     </Typography>
                   </section>
                 </>
               ) : null}
-              <section className={classes.section}>
+              <section style={{ paddingTop: 15, paddingBottom: 15 }}>
                 <Grid spacing={3} container>
                   <Grid item sm={12} md={6}>
                     <Box display="flex" flexDirection="row">
                       <Icon
-                        className={`mdi mdi-calendar-month ${classes.icon}`}
+                        className={`mdi mdi-calendar-month`}
+                        sx={{
+                          color: Colors.secondary,
+                          marginRight: 20,
+                          position: 'relative',
+                          top: -2,
+                        }}
                       />
                       <Box>
-                        <Typography variant="h2" className={classes.subtitle}>
+                        <Typography
+                          variant="h2"
+                          sx={{ paddingBottom: '10px', fontSize: 16 }}
+                        >
                           Эхлэх
                         </Typography>
                         <Typography variant="body2">
@@ -231,10 +273,19 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
                   <Grid item sm={12} md={6}>
                     <Box display="flex" flexDirection="row">
                       <Icon
-                        className={`mdi mdi-calendar-month ${classes.icon}`}
+                        className={`mdi mdi-calendar-month`}
+                        sx={{
+                          color: Colors.secondary,
+                          marginRight: 20,
+                          position: 'relative',
+                          top: -2,
+                        }}
                       />
                       <Box>
-                        <Typography variant="h2" className={classes.subtitle}>
+                        <Typography
+                          variant="h2"
+                          sx={{ paddingBottom: '10px', fontSize: 16 }}
+                        >
                           Дуусах
                         </Typography>
                         <Typography variant="body2">
@@ -248,10 +299,19 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
                   <Grid item sm={12} md={6}>
                     <Box display="flex" flexDirection="row">
                       <Icon
-                        className={`mdi mdi-calendar-edit ${classes.icon}`}
+                        className={`mdi mdi-calendar-edit`}
+                        sx={{
+                          color: Colors.secondary,
+                          marginRight: 20,
+                          position: 'relative',
+                          top: -2,
+                        }}
                       />
                       <Box>
-                        <Typography variant="h2" className={classes.subtitle}>
+                        <Typography
+                          variant="h2"
+                          sx={{ paddingBottom: '10px', fontSize: 16 }}
+                        >
                           Бүртгэл эхлэх
                         </Typography>
                         <Typography variant="body2">
@@ -265,10 +325,19 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
                   <Grid item sm={12} md={6}>
                     <Box display="flex" flexDirection="row">
                       <Icon
-                        className={`mdi mdi-calendar-edit ${classes.icon}`}
+                        className={`mdi mdi-calendar-edit`}
+                        sx={{
+                          color: Colors.secondary,
+                          marginRight: 20,
+                          position: 'relative',
+                          top: -2,
+                        }}
                       />
                       <Box>
-                        <Typography variant="h2" className={classes.subtitle}>
+                        <Typography
+                          variant="h2"
+                          sx={{ paddingBottom: '10px', fontSize: 16 }}
+                        >
                           Бүртгэл хаагдах
                         </Typography>
                         <Typography variant="body2">
@@ -281,16 +350,25 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
                   </Grid>
                 </Grid>
               </section>
-              <Divider className={classes.divider} />
-              <section className={classes.section}>
+              <Divider style={{ marginTop: 20, marginBottom: 20 }} />
+              <section style={{ paddingTop: 15, paddingBottom: 15 }}>
                 <Grid spacing={3} container>
                   <Grid item sm={12} md={4}>
                     <Box display="flex" flexDirection="row">
                       <Icon
-                        className={`mdi mdi-trophy-award ${classes.icon}`}
+                        className={`mdi mdi-trophy-award`}
+                        sx={{
+                          color: Colors.secondary,
+                          marginRight: 20,
+                          position: 'relative',
+                          top: -2,
+                        }}
                       />
                       <Box>
-                        <Typography variant="h2" className={classes.subtitle}>
+                        <Typography
+                          variant="h2"
+                          sx={{ paddingBottom: 10, fontSize: 16 }}
+                        >
                           Түвшин
                         </Typography>
                         <Typography variant="body2">{detail.lvl}</Typography>
@@ -300,10 +378,19 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
                   <Grid item sm={12} md={4}>
                     <Box display="flex" flexDirection="row">
                       <Icon
-                        className={`mdi mdi-currency-usd ${classes.icon}`}
+                        className={`mdi mdi-currency-usd`}
+                        sx={{
+                          color: Colors.secondary,
+                          marginRight: 20,
+                          position: 'relative',
+                          top: -2,
+                        }}
                       />
                       <Box>
-                        <Typography variant="h2" className={classes.subtitle}>
+                        <Typography
+                          variant="h2"
+                          sx={{ paddingBottom: '10px', fontSize: 16 }}
+                        >
                           Хураамж
                         </Typography>
                         <Typography variant="body2">
@@ -314,9 +401,20 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
                   </Grid>
                   <Grid item sm={12} md={4}>
                     <Box display="flex" flexDirection="row">
-                      <Icon className={`mdi mdi-target ${classes.icon}`} />
+                      <Icon
+                        className={`mdi mdi-target`}
+                        sx={{
+                          color: Colors.secondary,
+                          marginRight: 20,
+                          position: 'relative',
+                          top: -2,
+                        }}
+                      />
                       <Box>
-                        <Typography variant="h2" className={classes.subtitle}>
+                        <Typography
+                          variant="h2"
+                          sx={{ paddingBottom: '10px', fontSize: 16 }}
+                        >
                           Стэйжийн тоо
                         </Typography>
                         <Typography variant="body2">
@@ -329,7 +427,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
               </section>
               {!_.isEmpty(detail.sponsor_info) ? (
                 <>
-                  <Divider className={classes.divider} />
+                  <Divider style={{ marginTop: 20, marginBottom: 20 }} />
                   <section>
                     <Box
                       display="flex"
@@ -337,7 +435,10 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
                       alignItems="center"
                       flexDirection="column"
                     >
-                      <Typography variant="h2" className={classes.subtitle}>
+                      <Typography
+                        variant="h2"
+                        sx={{ paddingBottom: '10px', fontSize: 16 }}
+                      >
                         mdi-chess-queen
                       </Typography>
                       <Typography variant="body2">
@@ -376,66 +477,5 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
     </Box>
   )
 }
-
-const useStyles = makeStyles(() => ({
-  paper: {
-    padding: 20,
-  },
-  divider: {
-    marginTop: 20,
-    marginBottom: 20,
-  },
-  icon: {
-    color: Colors.secondary,
-    marginRight: 20,
-    position: 'relative',
-    top: -2,
-  },
-  title: {
-    color: Colors.white,
-    position: 'relative',
-    zIndex: 100,
-  },
-  subtitle: {
-    paddingBottom: 10,
-    fontSize: 16,
-  },
-  header: {
-    width: '100%',
-    position: 'relative',
-    zIndex: 100,
-    height: 120,
-    backgroundColor: '#eee',
-    background: "url('/images/placeholder.png')",
-    backgroundSize: 'cover',
-    justifyContent: 'center',
-    alignItems: 'center',
-    display: 'flex',
-    '&:after': {
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      content: "''",
-      position: 'absolute',
-      zIndex: 10,
-      backgroundColor: 'rgba(43, 80, 237, 0.5)',
-    },
-  },
-  loader: {
-    fontSize: 12,
-  },
-  loaderBox: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    minHeight: 300,
-  },
-  section: {
-    paddingTop: 15,
-    paddingBottom: 15,
-  },
-}))
 
 export default MatchDetail

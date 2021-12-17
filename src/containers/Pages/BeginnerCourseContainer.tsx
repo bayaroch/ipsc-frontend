@@ -1,19 +1,28 @@
 import SideBarMenu from '@components/common/SideBarMenu'
 import { allproducts } from '@constants/featured.course'
-import { makeStyles, Grid, Box, Typography, Theme } from '@material-ui/core/'
-import Accordion from '@material-ui/core/Accordion'
-import AccordionSummary from '@material-ui/core/AccordionSummary'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import AccordionDetails from '@material-ui/core/AccordionDetails'
+import { Grid, Box, Typography } from '@mui/material/'
+import Accordion from '@mui/material/Accordion'
+import AccordionSummary from '@mui/material/AccordionSummary'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import AccordionDetails from '@mui/material/AccordionDetails'
 
 const BeginnerCourseContainer: React.FC = () => {
-  const classes = useStyles()
-
   return (
     <>
-      <Grid container>
+      <Grid container maxWidth={'xl'}>
         <Grid md={9} sm={12} xs={12} item>
-          <Box className={classes.innerContent}>
+          <Box
+            sx={{
+              paddingRight: { lg: '50px', md: '50px', sm: 0, xs: 0 },
+              paddingBottom: {
+                lg: '100px',
+                md: '100px',
+                sm: '20px',
+                xs: '20px',
+              },
+              textAlign: { sm: 'justify', xs: 'justify' },
+            }}
+          >
             <div className="content">
               <p>
                 <span>Сургалтын нэр: </span>
@@ -205,17 +214,13 @@ const BeginnerCourseContainer: React.FC = () => {
                 </tbody>
               </table>
 
-              <Accordion className={classes.accordion}>
+              <Accordion sx={{ marginTop: '20px', marginBottom: '20px' }}>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
-                  <Typography
-                    className={classes.heading}
-                    variant="h3"
-                    component="div"
-                  >
+                  <Typography variant="h3" component="div">
                     Бүртгүүлэх
                   </Typography>
                 </AccordionSummary>
@@ -241,27 +246,5 @@ const BeginnerCourseContainer: React.FC = () => {
     </>
   )
 }
-
-const useStyles = makeStyles((theme: Theme) => ({
-  innerContent: {
-    paddingRight: 50,
-    paddingBottom: 100,
-  },
-  root: {
-    width: '100%',
-  },
-  heading: {},
-  accordion: {
-    marginTop: 20,
-    marginBottom: 20,
-  },
-  [theme.breakpoints.down('sm')]: {
-    innerContent: {
-      paddingRight: 0,
-      paddingBottom: 20,
-      textAlign: 'justify',
-    },
-  },
-}))
 
 export default BeginnerCourseContainer

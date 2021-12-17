@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import Menu from '@material-ui/core/Menu'
-import MenuItem from '@material-ui/core/MenuItem'
-import MoreVertIcon from '@material-ui/icons/MoreVert'
-import IconButton from '@material-ui/core/IconButton'
-import Typography from '@material-ui/core/Typography'
-import { DeleteOutlined, Edit, GroupAdd } from '@material-ui/icons'
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
+import MoreVertIcon from '@mui/icons-material/MoreVert'
+import IconButton from '@mui/material/IconButton'
+import Typography from '@mui/material/Typography'
+import { DeleteOutlined, Edit, GroupAdd } from '@mui/icons-material'
 
 interface ActionProps {
   data: number

@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles, Popover } from '@material-ui/core'
+import { Popover } from '@mui/material/'
 
 export interface PopOverMenuProps {
   id: string
@@ -15,15 +15,22 @@ const PopOverMenu: React.FC<PopOverMenuProps> = ({
   handleClose,
   children,
 }) => {
-  const classes = useStyles()
-
   return (
     <Popover
       id={id}
       open={open}
       anchorEl={anchorEl}
       onClose={handleClose}
-      classes={{ paper: classes.popoverPaper }}
+      sx={{
+        paper: {
+          background: '#fff',
+          WebkitBoxShadow: '0 20px 60px 0 rgb(0 0 0 / 15%)',
+          boxShadow: '0 20px 60px 0 rgb(0 0 0 / 15%)',
+          border: '0 none',
+          borderRadius: '12px',
+          padding: '0',
+        },
+      }}
       anchorOrigin={{
         vertical: 'top',
         horizontal: 'center',
@@ -38,15 +45,15 @@ const PopOverMenu: React.FC<PopOverMenuProps> = ({
   )
 }
 
-const useStyles = makeStyles(() => ({
-  popoverPaper: {
-    background: '#fff',
-    WebkitBoxShadow: '0 20px 60px 0 rgb(0 0 0 / 15%)',
-    boxShadow: '0 20px 60px 0 rgb(0 0 0 / 15%)',
-    border: '0 none',
-    borderRadius: '12px',
-    padding: '0',
-  },
-}))
+// const useStyles = makeStyles(() => ({
+//   popoverPaper: {
+//     background: '#fff',
+//     WebkitBoxShadow: '0 20px 60px 0 rgb(0 0 0 / 15%)',
+//     boxShadow: '0 20px 60px 0 rgb(0 0 0 / 15%)',
+//     border: '0 none',
+//     borderRadius: '12px',
+//     padding: '0',
+//   },
+// }))
 
 export default PopOverMenu

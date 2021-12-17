@@ -1,6 +1,5 @@
 import { forwardRef, useState } from 'react'
 import {
-  makeStyles,
   Dialog,
   List,
   ListItem,
@@ -9,9 +8,9 @@ import {
   ButtonGroup,
   Slide,
   Divider,
+  SlideProps,
   Box,
-} from '@material-ui/core/'
-import { TransitionProps } from '@material-ui/core/transitions'
+} from '@mui/material/'
 import { SupportItem } from '@services/support.services'
 import { Colors } from '@theme/colors'
 
@@ -23,7 +22,7 @@ interface PickerProps {
 }
 
 const Transition = forwardRef(function Transition(
-  props: TransitionProps & { children?: React.ReactElement },
+  props: SlideProps & { children?: React.ReactElement },
   ref: React.Ref<unknown>
 ) {
   return <Slide direction="up" ref={ref} {...props} />
@@ -32,8 +31,6 @@ const Transition = forwardRef(function Transition(
 const MatchDivisionPicker: React.FC<PickerProps> = (props) => {
   const { open, divisions, handleClose, onSubmit } = props
   const [selected, choose] = useState<number>(-1)
-
-  const classes = useStyles()
 
   return (
     <Dialog
@@ -62,7 +59,7 @@ const MatchDivisionPicker: React.FC<PickerProps> = (props) => {
         </Button>
       </ButtonGroup>
       <Divider />
-      <List className={classes.container}>
+      <List>
         {divisions.map((item, i) => {
           return (
             <Box key={i}>
@@ -83,11 +80,5 @@ const MatchDivisionPicker: React.FC<PickerProps> = (props) => {
     </Dialog>
   )
 }
-
-const useStyles = makeStyles(() => ({
-  container: {
-    padding: 0,
-  },
-}))
 
 export default MatchDivisionPicker

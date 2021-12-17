@@ -5,8 +5,7 @@ import {
   FormControl,
   Box,
   Typography,
-} from '@material-ui/core'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+} from '@mui/material/'
 import { Colors } from '@theme/colors'
 import { ReactElement } from 'react'
 
@@ -18,10 +17,11 @@ export type InputProps = {
 }
 
 export const CustomLabel = ({ text, id }: { text: string; id: string }) => {
-  const classes = useStyles2()
-
   return (
-    <label htmlFor={id} className={classes.label}>
+    <label
+      htmlFor={id}
+      style={{ fontSize: 14, paddingBottom: 3, color: '#555' }}
+    >
       {text}
     </label>
   )
@@ -34,11 +34,9 @@ const CustomInput: React.FC<OutlinedInputProps & InputProps> = ({
   required = false,
   ...rest
 }) => {
-  const classes = useStyles()
-
   return (
     <FormControl
-      className={classes.formControl}
+      sx={{ paddingBottom: '5px', marginBottom: '5px' }}
       fullWidth={rest.fullWidth ? rest.fullWidth : false}
     >
       {(labelPrimary || labelSecondary) && (
@@ -46,19 +44,25 @@ const CustomInput: React.FC<OutlinedInputProps & InputProps> = ({
           display="flex"
           justifyContent="space-between"
           alignItems="center"
-          className={classes.labelBox}
+          sx={{ paddingBottom: 0 }}
         >
-          <Box
-            className={classes.labelPrimaryContainer}
-            display="flex"
-            alignItems="center"
-          >
+          <Box sx={{ padding: 0 }} display="flex" alignItems="center">
             <CustomLabel
               id={rest.id ? rest.id : ''}
               text={labelPrimary ? labelPrimary : ''}
             />
             {required && (
-              <Typography component="span" className={classes.required}>
+              <Typography
+                component="span"
+                sx={{
+                  paddingLeft: (theme) => theme.spacing(1 / 2),
+                  paddingRight: (theme) => theme.spacing(1 / 2),
+                  height: 16,
+                  fontSize: 10,
+                  marginLeft: 5,
+                  color: Colors.red,
+                }}
+              >
                 *
               </Typography>
             )}
@@ -67,83 +71,45 @@ const CustomInput: React.FC<OutlinedInputProps & InputProps> = ({
         </Box>
       )}
       <OutlinedInput
-        classes={{ root: classes.root, adornedEnd: classes.end }}
+        sx={{
+          border: '0 none',
+          padding: '2px 4px',
+          borderColor: 'transparent',
+          backgroundColor: 'rgb(242, 245, 250)',
+          '& .MuiOutlinedInput-inputMultiline': {
+            padding: '2px 14px',
+          },
+          '& .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'transparent',
+          },
+          '&.Mui-error .MuiOutlinedInput-notchedOutline': {
+            background: 'transparent',
+            borderColor: Colors.red,
+          },
+          '&.Mui-disabled': {
+            backgroundColor: 'transparent',
+            '& .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'transparent',
+            },
+          },
+        }}
         margin="dense"
         {...rest}
       />
       {helperText && (
-        <FormHelperText className={classes.errorText} error>
+        <FormHelperText
+          sx={{
+            '&.Mui-error': {
+              color: Colors.red,
+            },
+          }}
+          error
+        >
           {helperText}
         </FormHelperText>
       )}
     </FormControl>
   )
 }
-
-const useStyles = makeStyles((theme: Theme) => ({
-  formControl: {
-    paddingBottom: 5,
-    marginBottom: 5,
-  },
-  labelBox: {
-    paddingBottom: 0,
-  },
-  errorText: {
-    '&.Mui-error': {
-      color: Colors.red,
-    },
-  },
-  root: {
-    border: '0 none',
-    padding: '4px 4px',
-    borderColor: 'transparent',
-    backgroundColor: 'rgb(242, 245, 250)',
-    '& .MuiOutlinedInput-inputMultiline': {
-      padding: '4.5px 14px',
-    },
-    '& .MuiOutlinedInput-notchedOutline': {
-      borderColor: 'transparent',
-    },
-    '&.Mui-error .MuiOutlinedInput-notchedOutline': {
-      background: 'transparent',
-      borderColor: Colors.red,
-    },
-    '&.Mui-disabled': {
-      backgroundColor: 'transparent',
-      '& .MuiOutlinedInput-notchedOutline': {
-        borderColor: 'transparent',
-      },
-    },
-  },
-  numberAlign: {},
-  labelMargin: {
-    marginBottom: 5,
-  },
-  labelPrimaryContainer: {
-    padding: 0,
-  },
-  required: {
-    paddingLeft: theme.spacing(1 / 2),
-    paddingRight: theme.spacing(1 / 2),
-    height: 16,
-    fontSize: 10,
-    marginLeft: 5,
-    color: Colors.red,
-  },
-  end: {
-    paddingRight: theme.spacing(1),
-  },
-}))
-
-const useStyles2 = makeStyles(() => ({
-  label: {
-    fontSize: 14,
-    paddingBottom: 3,
-    color: '#555',
-  },
-  labelPrimaryContainer: {
-    padding: 0,
-  },
-}))
 
 export default CustomInput

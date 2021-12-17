@@ -7,43 +7,11 @@ import {
   Grid,
   Box,
   Icon,
-} from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+} from '@mui/material/'
 import { MatchItem } from '@store/match/actions/types'
-import { Colors } from '@theme/colors'
 import _ from 'lodash'
 import { MatchProgressType } from '@utils/helpers/common.helper'
 import StatusChip from '@components/member/StatusChip'
-
-const useStyles = makeStyles(() => ({
-  cardRoot: {
-    '& .Cmt-header-root': {
-      paddingTop: 3,
-      paddingBottom: 0,
-    },
-  },
-  header: {
-    borderBottom: '1px solid #eee',
-  },
-  title: {
-    color: Colors.white,
-    position: 'relative',
-    zIndex: 100,
-  },
-  subtitle: {
-    paddingBottom: 10,
-    fontSize: 16,
-  },
-  icon: {
-    marginRight: 20,
-    position: 'relative',
-    top: -2,
-  },
-  section: {
-    paddingTop: 15,
-    paddingBottom: 15,
-  },
-}))
 
 interface About {
   detail: MatchItem
@@ -51,19 +19,33 @@ interface About {
 }
 
 const About: React.FC<About> = ({ detail, progress }) => {
-  const classes = useStyles()
-
   return (
-    <Card className={classes.cardRoot}>
-      <CardHeader className={classes.header} title="Мэдээлэл"></CardHeader>
+    <Card
+      sx={{
+        '& .Cmt-header-root': {
+          paddingTop: 3,
+          paddingBottom: 0,
+        },
+      }}
+    >
+      <CardHeader
+        sx={{ borderBottom: '1px solid #eee' }}
+        title="Мэдээлэл"
+      ></CardHeader>
       <CardContent>
-        <section className={classes.section}>
+        <section style={{ paddingTop: 15, paddingBottom: 15 }}>
           <Grid spacing={3} container>
             <Grid item sm={12} md={4}>
               <Box display="flex" flexDirection="row">
-                <Icon className={`mdi mdi-trophy-award ${classes.icon}`} />
+                <Icon
+                  className={`mdi mdi-trophy-award`}
+                  sx={{ marginRight: '20px', position: 'relative', top: -2 }}
+                />
                 <Box>
-                  <Typography variant="h2" className={classes.subtitle}>
+                  <Typography
+                    variant="h2"
+                    sx={{ paddingBottom: '10px', fontSize: 16 }}
+                  >
                     Түвшин
                   </Typography>
                   <Typography variant="body2">{detail.lvl}</Typography>
@@ -72,9 +54,15 @@ const About: React.FC<About> = ({ detail, progress }) => {
             </Grid>
             <Grid item sm={12} md={4}>
               <Box display="flex" flexDirection="row">
-                <Icon className={`mdi mdi-currency-usd ${classes.icon}`} />
+                <Icon
+                  className={`mdi mdi-currency-usd`}
+                  sx={{ marginRight: '20px', position: 'relative', top: -2 }}
+                />
                 <Box>
-                  <Typography variant="h2" className={classes.subtitle}>
+                  <Typography
+                    variant="h2"
+                    sx={{ paddingBottom: '10px', fontSize: 16 }}
+                  >
                     Хураамж
                   </Typography>
                   <Typography variant="body2">
@@ -85,9 +73,15 @@ const About: React.FC<About> = ({ detail, progress }) => {
             </Grid>
             <Grid item sm={12} md={4}>
               <Box display="flex" flexDirection="row">
-                <Icon className={`mdi mdi-target ${classes.icon}`} />
+                <Icon
+                  className={`mdi mdi-target`}
+                  sx={{ marginRight: '20px', position: 'relative', top: -2 }}
+                />
                 <Box>
-                  <Typography variant="h2" className={classes.subtitle}>
+                  <Typography
+                    variant="h2"
+                    sx={{ paddingBottom: '10px', fontSize: 16 }}
+                  >
                     Стэйжийн тоо
                   </Typography>
                   <Typography variant="body2">{detail.stage_number}</Typography>
@@ -102,11 +96,15 @@ const About: React.FC<About> = ({ detail, progress }) => {
               <Grid item sm={12} md={4}>
                 <Box display="flex" flexDirection="row">
                   <Icon
-                    className={`mdi mdi-progress-check ${classes.icon}`}
+                    className={`mdi mdi-progress-check`}
+                    sx={{ marginRight: '20px', position: 'relative', top: -2 }}
                     style={{ fontSize: 16, paddingLeft: 3 }}
                   />
                   <Box display="flex" flexDirection="column">
-                    <Typography variant="h2" className={classes.subtitle}>
+                    <Typography
+                      variant="h2"
+                      sx={{ paddingBottom: '10px', fontSize: 16 }}
+                    >
                       Тэмцээний төлөв
                     </Typography>
                     <StatusChip status={progress} label={progress.value} />
@@ -117,11 +115,19 @@ const About: React.FC<About> = ({ detail, progress }) => {
                 {!_.isEmpty(detail.sponsor_info) ? (
                   <Box display="flex" flexDirection="row">
                     <Icon
-                      className={`mdi mdi-chess-queen ${classes.icon}`}
+                      className={`mdi mdi-chess-queen`}
+                      sx={{
+                        marginRight: '20px',
+                        position: 'relative',
+                        top: -2,
+                      }}
                       style={{ fontSize: 16, paddingLeft: 3 }}
                     />
                     <Box display="flex" flexDirection="column">
-                      <Typography variant="h2" className={classes.subtitle}>
+                      <Typography
+                        variant="h2"
+                        sx={{ paddingBottom: '10px', fontSize: 16 }}
+                      >
                         Спонсор
                       </Typography>
                       <Typography variant="body2">

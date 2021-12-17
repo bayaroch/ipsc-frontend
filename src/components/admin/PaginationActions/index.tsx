@@ -1,8 +1,7 @@
-import IconButton from '@material-ui/core/IconButton'
-import { makeStyles } from '@material-ui/core/styles'
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
-import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight'
-import { useTheme } from '@material-ui/core'
+import IconButton from '@mui/material/IconButton'
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
+import { useTheme, Box } from '@mui/material/'
 
 interface TablePaginationActionsProps {
   count: number
@@ -15,7 +14,6 @@ interface TablePaginationActionsProps {
 }
 
 const PaginationActions = (props: TablePaginationActionsProps) => {
-  const classes = useStyles()
   const theme = useTheme()
   const { count, page, rowsPerPage, onChangePage } = props
 
@@ -32,7 +30,12 @@ const PaginationActions = (props: TablePaginationActionsProps) => {
   }
 
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        flexShrink: 0,
+        marginLeft: 2.5,
+      }}
+    >
       <IconButton
         onClick={handleBackButtonClick}
         disabled={page === 1}
@@ -55,15 +58,8 @@ const PaginationActions = (props: TablePaginationActionsProps) => {
           <KeyboardArrowRight />
         )}
       </IconButton>
-    </div>
+    </Box>
   )
 }
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexShrink: 0,
-    marginLeft: theme.spacing(2.5),
-  },
-}))
 
 export default PaginationActions

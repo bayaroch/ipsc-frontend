@@ -1,4 +1,4 @@
-import { Avatar, AvatarProps } from '@material-ui/core'
+import { Avatar, AvatarProps } from '@mui/material/'
 import { Colors } from '@theme/colors'
 import _ from 'lodash'
 

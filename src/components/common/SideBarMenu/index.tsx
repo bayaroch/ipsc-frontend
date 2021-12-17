@@ -1,12 +1,5 @@
 import React from 'react'
-import {
-  Box,
-  Paper,
-  List,
-  ListItem,
-  makeStyles,
-  Typography,
-} from '@material-ui/core'
+import { Box, Paper, List, ListItem, Typography } from '@mui/material/'
 import { useRouter } from 'next/router'
 import _ from 'lodash'
 
@@ -22,22 +15,28 @@ interface SideBarMenuProps {
 
 const SideBarMenu: React.FC<SideBarMenuProps> = ({ data, title }) => {
   const router = useRouter()
-  const classes = useStyles()
+
   return (
     <Box>
       {!_.isEmpty(title) ? (
-        <Typography className={classes.title} variant="h3" component="h3">
+        <Typography sx={{ marginBottom: '20px' }} variant="h3" component="h3">
           {title}
         </Typography>
       ) : null}
-      <Paper className={classes.paper}>
-        <List className={classes.menu}>
+      <Paper sx={{ marginBottom: '20px', width: '100%' }}>
+        <List sx={{ padding: 0 }}>
           {data &&
             data.map((item, i) => {
               return (
                 <ListItem
                   selected={router.pathname === item.route ? true : false}
-                  className={classes.menuItem}
+                  sx={{
+                    fontSize: 14,
+                    borderBottom: '1px solid #eee',
+                    '&:last-child': {
+                      borderBottom: '0 none',
+                    },
+                  }}
                   onClick={() => item.route && router.push(item.route)}
                   key={i}
                   button
@@ -51,26 +50,6 @@ const SideBarMenu: React.FC<SideBarMenuProps> = ({ data, title }) => {
     </Box>
   )
 }
-
-const useStyles = makeStyles(() => ({
-  menuItem: {
-    fontSize: 14,
-    borderBottom: '1px solid #eee',
-    '&:last-child': {
-      borderBottom: '0 none',
-    },
-  },
-  menu: {
-    padding: 0,
-  },
-  title: {
-    marginBottom: 20,
-  },
-  paper: {
-    marginBottom: 20,
-    width: '100%',
-  },
-}))
 
 SideBarMenu.defaultProps = {
   data: [],

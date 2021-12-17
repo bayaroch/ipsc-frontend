@@ -1,10 +1,10 @@
 import React from 'react'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import IconButton from '@material-ui/core/IconButton'
-import MenuIcon from '@material-ui/icons/Menu'
-import { makeStyles } from '@material-ui/core/styles'
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import IconButton from '@mui/material/IconButton'
+import MenuIcon from '@mui/icons-material/Menu'
+import Box from '@mui/material/Box'
 
 import { Colors } from '@theme/colors'
 
@@ -15,11 +15,25 @@ export interface AdminHeaderProps {
 }
 
 const AdminHeader: React.FC<AdminHeaderProps> = ({ open, setOpen, title }) => {
-  const classes = useStyles({ open, setOpen })
   return (
-    <div className={`${classes.root}`}>
+    <Box
+      sx={{
+        transition: 'all 0.24s ease-in-out',
+        background: '#fff',
+        flexGrow: 1,
+        '& .MuiAppBar-root': {
+          zIndex: 80,
+          background: Colors.white,
+          paddingLeft: 0,
+          borderBottom: '1px solid #eee',
+        },
+        '& .MuiToolbar-regular': {
+          minHeight: 50,
+        },
+      }}
+    >
       <AppBar
-        className={`${open ? classes.open : ''}`}
+        sx={open ? {} : {}}
         elevation={0}
         position="relative"
         color="default"
@@ -29,44 +43,44 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({ open, setOpen, title }) => {
             disableRipple
             onClick={() => setOpen(!open)}
             edge="start"
-            className={classes.menuButton}
+            sx={{ marginRight: 2 }}
             color="inherit"
             aria-label="menu"
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} noWrap={true}>
+          <Typography sx={{ fontWeight: 600, flexGrow: 1 }} noWrap={true}>
             {title}
           </Typography>
         </Toolbar>
       </AppBar>
-    </div>
+    </Box>
   )
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    transition: 'all 0.24s ease-in-out',
-    background: '#fff',
-    flexGrow: 1,
-    '& .MuiAppBar-root': {
-      zIndex: 80,
-      background: Colors.white,
-      paddingLeft: 0,
-      borderBottom: '1px solid #eee',
-    },
-    '& .MuiToolbar-regular': {
-      minHeight: 50,
-    },
-  },
-  open: {},
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    fontWeight: 600,
-    flexGrow: 1,
-  },
-}))
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     transition: 'all 0.24s ease-in-out',
+//     background: '#fff',
+//     flexGrow: 1,
+//     '& .MuiAppBar-root': {
+//       zIndex: 80,
+//       background: Colors.white,
+//       paddingLeft: 0,
+//       borderBottom: '1px solid #eee',
+//     },
+//     '& .MuiToolbar-regular': {
+//       minHeight: 50,
+//     },
+//   },
+//   open: {},
+//   menuButton: {
+//     marginRight: theme.spacing(2),
+//   },
+//   title: {
+//     fontWeight: 600,
+//     flexGrow: 1,
+//   },
+// }))
 
 export default AdminHeader

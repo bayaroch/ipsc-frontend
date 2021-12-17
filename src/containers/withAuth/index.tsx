@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import React, { useState, useEffect } from 'react'
 import { USER_TYPE } from '@constants/user.constants'
 
-export function withAuth(Component: any): React.FC {
+export function withAuth<T>(Component: React.ComponentType<T>): React.FC {
   const AppWithAuth: React.FC<any> = (props) => {
     const isLoggedIn = useSelector(isAuth)
     const userType: USER_TYPE = useSelector(memberType)

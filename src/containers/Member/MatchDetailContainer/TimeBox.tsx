@@ -1,39 +1,36 @@
 import React from 'react'
-import { Box, Card, CardContent, Icon, Divider } from '@material-ui/core'
-import { alpha, makeStyles } from '@material-ui/core/styles'
-
-import blue from '@material-ui/core/colors/blue'
+import { Box, Card, CardContent, Icon, Divider } from '@mui/material/'
 import { helper } from '@utils/helpers/common.helper'
 import { MatchItem } from '@store/match/actions/types'
 import _ from 'lodash'
 
-const useStyles = makeStyles((theme) => ({
-  iconView: {
-    backgroundColor: alpha(blue['500'], 0.1),
-    color: blue['500'],
-    padding: 8,
-    width: 40,
-    height: 40,
-    textAlign: 'center',
-    borderRadius: 4,
-    '&.end': {
-      backgroundColor: alpha(theme.palette.warning.main, 0.1),
-      color: theme.palette.warning.main,
-    },
-    '&.start': {
-      backgroundColor: alpha(theme.palette.success.main, 0.15),
-      color: theme.palette.success.dark,
-    },
-  },
-  wordAddress: {
-    wordBreak: 'break-all',
-    cursor: 'pointer',
-  },
-  icon: {
-    position: 'relative',
-    top: -4,
-  },
-}))
+// const useStyles = makeStyles((theme) => ({
+//   iconView: {
+//     backgroundColor: alpha(blue['500'], 0.1),
+//     color: blue['500'],
+//     padding: 8,
+//     width: 40,
+//     height: 40,
+//     textAlign: 'center',
+//     borderRadius: 4,
+//     '&.end': {
+//       backgroundColor: alpha(theme.palette.warning.main, 0.1),
+//       color: theme.palette.warning.main,
+//     },
+//     '&.start': {
+//       backgroundColor: alpha(theme.palette.success.main, 0.15),
+//       color: theme.palette.success.dark,
+//     },
+//   },
+//   wordAddress: {
+//     wordBreak: 'break-all',
+//     cursor: 'pointer',
+//   },
+//   icon: {
+//     position: 'relative',
+//     top: -4,
+//   },
+// }))
 
 interface MatchTimeBoxProps {
   detail: MatchItem
@@ -45,13 +42,26 @@ const TimeBox: React.FC<MatchTimeBoxProps> = ({ detail }) => {
   const registration_start = _.get(detail, 'registration_start', '')
   const registration_end = _.get(detail, 'registration_end', '')
 
-  const classes = useStyles()
   return (
     <Card>
       <CardContent>
         <Box display="flex" alignItems="center" mb={{ xs: 1, sm: '20px' }}>
-          <Box className={`${classes.iconView} start`}>
-            <Icon className={`mdi mdi-calendar-month  ${classes.icon}`} />
+          <Box
+            sx={{
+              padding: '8px',
+              width: 40,
+              height: 40,
+              textAlign: 'center',
+              borderRadius: 1,
+              color: ' #388e3c',
+              backgroundColor: 'rgba(76, 175, 80, 0.15)',
+            }}
+            className={`start`}
+          >
+            <Icon
+              sx={{ position: 'relative', top: -4 }}
+              className={`mdi mdi-calendar-month`}
+            />
           </Box>
           <Box ml={5}>
             <Box component="span" fontSize={13} color="text.secondary">
@@ -59,7 +69,7 @@ const TimeBox: React.FC<MatchTimeBoxProps> = ({ detail }) => {
             </Box>
             <Box
               component="p"
-              className={classes.wordAddress}
+              sx={{ wordBreak: 'break-all', cursor: 'pointer' }}
               fontSize={16}
               color="text.primary"
             >
@@ -68,8 +78,22 @@ const TimeBox: React.FC<MatchTimeBoxProps> = ({ detail }) => {
           </Box>
         </Box>
         <Box display="flex" alignItems="center" mb={{ xs: 1, sm: '10px' }}>
-          <Box className={`${classes.iconView} end`}>
-            <Icon className={`mdi mdi-calendar-month  ${classes.icon}`} />
+          <Box
+            sx={{
+              padding: '8px',
+              width: 40,
+              height: 40,
+              textAlign: 'center',
+              borderRadius: 1,
+              color: '#ff9800',
+              backgroundColor: 'rgba(255, 152, 0, 0.1)',
+            }}
+            className={` end`}
+          >
+            <Icon
+              sx={{ position: 'relative', top: -4 }}
+              className={`mdi mdi-calendar-month`}
+            />
           </Box>
           <Box ml={5}>
             <Box component="span" fontSize={13} color="text.secondary">
@@ -77,7 +101,7 @@ const TimeBox: React.FC<MatchTimeBoxProps> = ({ detail }) => {
             </Box>
             <Box
               component="p"
-              className={classes.wordAddress}
+              sx={{ wordBreak: 'break-all', cursor: 'pointer' }}
               fontSize={16}
               color="text.primary"
             >
@@ -89,8 +113,30 @@ const TimeBox: React.FC<MatchTimeBoxProps> = ({ detail }) => {
         <Box mb={{ xs: 1, sm: '10px' }} />
 
         <Box display="flex" alignItems="center" mb={{ xs: 1, sm: '20px' }}>
-          <Box className={`${classes.iconView} start`}>
-            <Icon className={`mdi mdi-calendar-edit ${classes.icon}`} />
+          <Box
+            sx={{
+              color: ' #388e3c',
+              backgroundColor: 'rgba(76, 175, 80, 0.15)',
+              padding: '8px',
+              width: 40,
+              height: 40,
+              textAlign: 'center',
+              borderRadius: 1,
+              // '&.end': {
+              //   backgroundColor: alpha('warning.main', 0.1),
+              //   color: 'warning.main',
+              // },
+              // '&.start': {
+              //   backgroundColor: alpha('success.main', 0.15),
+              //   color: 'success.dark',
+              // },
+            }}
+            className={`start`}
+          >
+            <Icon
+              sx={{ position: 'relative', top: -4 }}
+              className={`mdi mdi-calendar-edit`}
+            />
           </Box>
           <Box ml={5}>
             <Box component="span" fontSize={13} color="text.secondary">
@@ -98,7 +144,7 @@ const TimeBox: React.FC<MatchTimeBoxProps> = ({ detail }) => {
             </Box>
             <Box
               component="p"
-              className={classes.wordAddress}
+              sx={{ wordBreak: 'break-all', cursor: 'pointer' }}
               fontSize={16}
               color="text.primary"
             >
@@ -111,8 +157,30 @@ const TimeBox: React.FC<MatchTimeBoxProps> = ({ detail }) => {
           </Box>
         </Box>
         <Box display="flex" alignItems="center">
-          <Box className={`${classes.iconView} end`}>
-            <Icon className={`mdi mdi-calendar-edit ${classes.icon}`} />
+          <Box
+            sx={{
+              color: '#ff9800',
+              backgroundColor: 'rgba(255, 152, 0, 0.1)',
+              padding: '8px',
+              width: 40,
+              height: 40,
+              textAlign: 'center',
+              borderRadius: 1,
+              // '&.end': {
+              //   backgroundColor: alpha('warning.main', 0.1),
+              //   color: 'warning.main',
+              // },
+              // '&.start': {
+              //   backgroundColor: alpha('success.main', 0.15),
+              //   color: 'success.dark',
+              // },
+            }}
+            className={`end`}
+          >
+            <Icon
+              sx={{ position: 'relative', top: -4 }}
+              className={`mdi mdi-calendar-edit`}
+            />
           </Box>
           <Box ml={5}>
             <Box component="span" fontSize={13} color="text.secondary">
@@ -120,7 +188,7 @@ const TimeBox: React.FC<MatchTimeBoxProps> = ({ detail }) => {
             </Box>
             <Box
               component="p"
-              className={classes.wordAddress}
+              sx={{ wordBreak: 'break-all', cursor: 'pointer' }}
               fontSize={16}
               color="text.primary"
             >

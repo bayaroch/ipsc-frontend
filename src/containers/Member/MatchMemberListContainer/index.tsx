@@ -1,4 +1,4 @@
-import { Box } from '@material-ui/core/'
+import { Box } from '@mui/material/'
 import useMemberMatch from './useMemberMatch'
 import MatchMemberList from '@components/member/MatchMemberList'
 import { useRouter } from 'next/router'
