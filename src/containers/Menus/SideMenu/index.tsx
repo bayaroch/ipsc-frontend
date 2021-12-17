@@ -1,5 +1,6 @@
 import { mainmenu } from '@constants/top.menu'
 import { Box } from '@mui/material'
+import Link from 'next/link'
 import Router from 'next/router'
 
 interface DrawerProps {
@@ -13,13 +14,9 @@ const SideMenu: React.FC<DrawerProps> = ({ isLoggedIn, exit }) => {
       return (
         <>
           <li className="custom-menu-list">
-            <a>Тэмцээн</a>
-          </li>
-          <li className="custom-menu-list">
-            <a>Гишүүдийн булан</a>
-          </li>
-          <li className="custom-menu-list">
-            <a>Нэвтрэх</a>
+            <Link href="/login" passHref>
+              <a>Нэвтрэх</a>
+            </Link>
           </li>
         </>
       )
@@ -30,7 +27,9 @@ const SideMenu: React.FC<DrawerProps> = ({ isLoggedIn, exit }) => {
       return (
         <>
           <li className="custom-menu-list">
-            <a>Тэмцээн</a>
+            <Link passHref href={'/member/matches'}>
+              <a>Тэмцээн</a>
+            </Link>
           </li>
           <li className="custom-menu-list">
             <a onClick={() => exit && exit()}>Гарах</a>
