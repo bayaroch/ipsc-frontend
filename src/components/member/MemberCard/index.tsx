@@ -49,7 +49,7 @@ const MemberCard: React.FC<MemberCardProps> = ({ item, onClick, support }) => {
           sx={{
             color: 'common.black',
             letterSpacing: 0.25,
-            marginBottom: 6,
+            marginBottom: '6px',
             fontSize: 13,
           }}
         >
@@ -64,7 +64,7 @@ const MemberCard: React.FC<MemberCardProps> = ({ item, onClick, support }) => {
               sx={{
                 color: 'warning.main',
                 fontSize: 20,
-                marginRight: 3,
+                marginRight: '3px',
               }}
             />
           ) : null}
