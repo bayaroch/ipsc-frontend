@@ -15,6 +15,6 @@ export const featured = [
     title: 'Тэмцээн',
     desc: 'Дэлгэрэнгүй...',
     image: '/images/featured/image-3.jpg',
-    route: '/matches/',
+    route: '/matches',
   },
 ]
