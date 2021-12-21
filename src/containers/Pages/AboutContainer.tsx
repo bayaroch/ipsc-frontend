@@ -20,7 +20,13 @@ const ClubContainer: React.FC = () => {
               width: '100%',
               background: "url('images/bg/shooter.jpg')",
               backgroundSize: 'Cover',
-              padding: '100px',
+              padding: {
+                xl: '100px',
+                lg: '100px',
+                md: '40px',
+                sm: '20px',
+                xs: '20px',
+              },
             }}
           >
             <Typography

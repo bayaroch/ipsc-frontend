@@ -73,14 +73,16 @@ const CustomInput: React.FC<OutlinedInputProps & InputProps> = ({
       <OutlinedInput
         sx={{
           border: '0 none',
-          padding: '2px 4px',
           borderColor: 'transparent',
           backgroundColor: 'rgb(242, 245, 250)',
           '& .MuiOutlinedInput-inputMultiline': {
-            padding: '2px 14px',
+            padding: '7px 7px',
           },
           '& .MuiOutlinedInput-notchedOutline': {
             borderColor: 'transparent',
+          },
+          '& .MuiOutlinedInput-input': {
+            padding: '7px 7px',
           },
           '&.Mui-error .MuiOutlinedInput-notchedOutline': {
             background: 'transparent',

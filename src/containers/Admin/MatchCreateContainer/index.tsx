@@ -496,6 +496,7 @@ const MatchCreateContainer: React.FC = () => {
               onClick={() => router.push('/admin/matches')}
               fullWidth
               variant="contained"
+              color="secondary"
             >
               Цуцлах
             </Button>

@@ -5,16 +5,41 @@ import {
   FormHelperText,
   Box,
   Typography,
-  OutlinedInput,
 } from '@mui/material/'
 import { Colors } from '@theme/colors'
 import { CustomLabel } from '@components/common/Input'
+import InputBase from '@mui/material/InputBase'
+import { styled } from '@mui/material/styles'
 
 type Props = {
   helperText?: string
   label?: string
   required?: boolean
 }
+
+const BootstrapInput = styled(InputBase)(({ theme }) => ({
+  'label + &': {
+    marginTop: theme.spacing(3),
+  },
+  '&.MuiInputBase-root': {
+    padding: 0,
+  },
+  '& .MuiInputBase-input': {
+    borderRadius: 2,
+    position: 'relative',
+    backgroundColor: 'rgb(242, 245, 250)',
+    border: '0 none',
+    fontSize: 16,
+    padding: '10px 26px 10px 14px',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    // Use the system font instead of the default Roboto font.
+    '&:focus': {
+      borderRadius: 4,
+      borderColor: '#80bdff',
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+    },
+  },
+}))
 
 const ESSelect: React.FC<SelectProps & Props> = ({
   helperText,
@@ -52,24 +77,7 @@ const ESSelect: React.FC<SelectProps & Props> = ({
         sx={{ border: '0 none' }}
         inputProps={{ 'aria-label': 'Without label' }}
         {...rest}
-        input={
-          <OutlinedInput
-            sx={{
-              root: {
-                padding: '4px 4px',
-                borderColor: 'transparent',
-                backgroundColor: 'rgb(242, 245, 250)',
-                '& .MuiOutlinedInput-notchedOutline': {
-                  border: '0 none',
-                },
-                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                  borderWidth: 1,
-                  borderColor: Colors.white,
-                },
-              },
-            }}
-          />
-        }
+        input={<BootstrapInput />}
       />
       {helperText && <FormHelperText error>{helperText}</FormHelperText>}
     </FormControl>

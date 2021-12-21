@@ -125,7 +125,7 @@ const SquadCreate: React.FC<SquadCreateProps> = (props) => {
               />
             </Grid>
           </Grid>
-          <Grid container spacing={3}>
+          <Grid container spacing={3} mt={1}>
             <Grid item sm={12} md={5}>
               <Controller
                 name="name"
@@ -168,11 +168,12 @@ const SquadCreate: React.FC<SquadCreateProps> = (props) => {
               />
             </Grid>
             <Grid item sm={12} md={2}>
-              <Box display="flex" mt={'5px'}>
+              <Box display="flex">
                 <Button
                   variant="contained"
                   disabled={props.isDisabled}
                   fullWidth
+                  sx={{ height: 38 }}
                   color={isEdit ? 'secondary' : 'primary'}
                   type="submit"
                 >

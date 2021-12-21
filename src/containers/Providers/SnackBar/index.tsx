@@ -1,12 +1,8 @@
-import { Snackbar } from '@mui/material/'
+import { Snackbar, Alert } from '@mui/material'
 import * as selectors from '@store/support/selectors'
 import * as actions from '@store/support/actions'
 import { useSelector, useDispatch } from 'react-redux'
-import MuiAlert, { AlertColor, AlertProps } from '@mui/material/Alert'
-
-function Alert(props: JSX.IntrinsicAttributes & AlertProps) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />
-}
+import { AlertColor } from '@mui/material/Alert'
 
 export type toastProps = {
   message: string
@@ -28,7 +24,12 @@ const ToastContainer: React.FC = () => {
             autoHideDuration={6000}
             onClose={() => removeToast(t.uuid)}
           >
-            <Alert onClose={() => removeToast(t.uuid)} severity={t.severity}>
+            <Alert
+              elevation={6}
+              variant="filled"
+              onClose={() => removeToast(t.uuid)}
+              severity={t.severity}
+            >
               {t.message}
             </Alert>
           </Snackbar>

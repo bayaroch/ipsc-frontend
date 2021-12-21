@@ -78,28 +78,18 @@ export default createTheme({
         },
       },
     },
-    MuiButton: {
+    // MuiButton: {
+    //   styleOverrides: {
+    //     root: {
+    //       padding: '7px 16px',
+    //     },
+    //   },
+    // },
+    MuiInputBase: {
       styleOverrides: {
         root: {
-          padding: '7px 16px',
-        },
-        containedSizeLarge: {
-          padding: '12px 22px',
-        },
-        outlinedSizeLarge: {
-          padding: '12px 22px',
-        },
-        outlined: {
-          padding: '6px 15px',
-        },
-      },
-    },
-    MuiButtonBase: {
-      styleOverrides: {
-        root: {
-          '&.button-primary.primary-small': {
-            fontWeight: 400,
-          },
+          fontSize: 14,
+          padding: '4px 8px',
         },
       },
     },

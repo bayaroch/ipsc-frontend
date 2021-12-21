@@ -46,12 +46,18 @@ const TableActions: React.FC<ActionProps> = (props) => {
         <MenuItem
           onClick={() => {
             onEditSquad(data)
+            setAnchorEl(null)
           }}
         >
           <GroupAdd fontSize="small" />
           <Typography style={{ marginLeft: 10 }}>Ээлж үүсгэх</Typography>
         </MenuItem>
-        <MenuItem onClick={() => onEdit(data)}>
+        <MenuItem
+          onClick={() => {
+            onEdit(data)
+            setAnchorEl(null)
+          }}
+        >
           <Edit fontSize="small" />
           <Typography style={{ marginLeft: 10 }}>Засах</Typography>
         </MenuItem>
