@@ -7,7 +7,10 @@ import ContentHeader from '@components/elements/ContentHeader'
 const Course0: PageWithLayoutType = () => {
   return (
     <MainLayout isBanner={true} regular={true}>
-      <ContentHeader title={'Танилцах сургалт'} />
+      <ContentHeader
+        img={'/images/bg/header_training.jpg'}
+        title={'Танилцах сургалт'}
+      />
       <ContentWrapper topSpace={true}>
         <>
           <IntroCourseContainer />
