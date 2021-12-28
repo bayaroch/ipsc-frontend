@@ -7,6 +7,7 @@ const banners = [
   { url: '/images/intro/slide2.jpg' },
   { url: '/images/intro/slide3.jpg' },
   { url: '/images/intro/slide4.jpg' },
+  { url: '/images/intro/slide5.jpg' },
 ]
 
 const Intro: React.FC = () => {
