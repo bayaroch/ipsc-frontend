@@ -5,6 +5,8 @@ import { useRouter } from 'next/router'
 const banners = [
   { url: '/images/intro/slide1.jpg' },
   { url: '/images/intro/slide2.jpg' },
+  { url: '/images/intro/slide3.jpg' },
+  { url: '/images/intro/slide4.jpg' },
 ]
 
 const Intro: React.FC = () => {
@@ -23,9 +25,10 @@ const Intro: React.FC = () => {
               </div>
               <div className="intro-headline">
                 IPSC Action Air <br />
+              </div>
+              <div className="intro-headline intro-headline-small">
                 практик буудлагын спорт
               </div>
-
               <IntroButton onClick={() => router.push('/about_aasc')}>
                 Дэлгэрэнгүй
               </IntroButton>

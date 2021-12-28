@@ -20,28 +20,11 @@ const ClubContainer: React.FC = () => {
               width: '100%',
               background: "url('images/bg/shooter.jpg')",
               backgroundSize: 'Cover',
-              padding: {
-                xl: '100px',
-                lg: '100px',
-                md: '40px',
-                sm: '20px',
-                xs: '20px',
-              },
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
             }}
-          >
-            <Typography
-              style={{ fontSize: 30 }}
-              className="intro-headline"
-              variant="h1"
-              component="h1"
-            >
-              IPSC Экшн Эйр
-            </Typography>
-            <Typography className="intro-headline" variant="h3" component="h3">
-              ПРАКТИК БУУДЛАГЫН СПОРТЫН <br />
-              ХИЙН ГАР БУУНЫ ТӨРӨЛ
-            </Typography>
-          </Box>
+          ></Box>
         </Grid>
         <Grid xs={12} md={8} item>
           <Box
@@ -52,6 +35,16 @@ const ClubContainer: React.FC = () => {
               padding: { xl: '140px', lg: '1rem', sm: '1rem', xs: '1rem' },
             }}
           >
+            <Typography
+              sx={{ fontSize: 30, display: 'block' }}
+              variant="h1"
+              component="h1"
+            >
+              IPSC Экшн Эйр
+            </Typography>
+            <Typography variant="h3" sx={{ mb: 2 }} component="h4">
+              ПРАКТИК БУУДЛАГЫН СПОРТЫН ХИЙН ГАР БУУНЫ ТӨРӨЛ
+            </Typography>
             <Typography variant="body1" component="p">
               Практик буудлага нь галт зэвсэг ашиглан богино хугацаанд өгөгдсөн
               дасгалыг түргэн гүйцэтгэх буудлагын спортын нэг төрөл юм. Тийм ч

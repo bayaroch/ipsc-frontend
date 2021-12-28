@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react'
 import { AppProps } from 'next/app'
 import { storeWrapper, StoreType } from '@store/store'
-import { ThemeProvider } from '@mui/material//styles'
+import { ThemeProvider } from '@mui/material/styles'
 import { ThemeProvider as ThemeStyled } from 'styled-components'
-import '@common/css/theme.scss'
-import '@common/css/main.scss'
 import PageWithLayoutType from '@constants/page'
 import theme from '@theme/index'
 import { PersistGate } from 'redux-persist/integration/react'
@@ -16,11 +14,11 @@ import 'swiper/components/pagination/pagination.scss'
 import moment from 'moment'
 import { ConfirmProvider } from 'material-ui-confirm'
 import SnackBar from '@containers/Providers/SnackBar'
-import CssBaseline from '@mui/material//CssBaseline'
+import CssBaseline from '@mui/material/CssBaseline'
 import { CacheProvider, EmotionCache } from '@emotion/react'
 import createCache from '@emotion/cache'
 import { StylesProvider } from '@mui/styles'
-
+import '@common/css/main.scss'
 /**
  * withRedux HOC
  * NextJS wrapper for Redux

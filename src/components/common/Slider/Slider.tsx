@@ -31,7 +31,7 @@ const Slider: React.FC<SliderProps> = ({ images, fullSize }) => {
       slidesPerView={1}
       onSlideChange={() => {}}
       onSwiper={(_swiper) => {}}
-      autoplay={{ delay: 5000 }}
+      autoplay={{ delay: 4000 }}
     >
       {!!images &&
         images.map((img, index) => {
