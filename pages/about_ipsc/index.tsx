@@ -31,7 +31,7 @@ const AboutUs: PageWithLayoutType = () => {
               IPSC гэж юу вэ?
             </Typography>
             <Typography variant="body1" component="p">
-              PSC нь International Practical Shooting Confederation (IPSC)
+              IPSC нь International Practical Shooting Confederation (IPSC)
               товчлол бөгөөд мөн практик буудлагын спортыг илэрхийлсэн нэршил
               юм.
             </Typography>
