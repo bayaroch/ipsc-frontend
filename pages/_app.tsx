@@ -19,6 +19,7 @@ import { CacheProvider, EmotionCache } from '@emotion/react'
 import createCache from '@emotion/cache'
 import { StylesProvider } from '@mui/styles'
 import '@common/css/main.scss'
+import Seo from '@components/common/Seo'
 /**
  * withRedux HOC
  * NextJS wrapper for Redux
@@ -50,6 +51,10 @@ const CustomApp = ({ Component, pageProps }: Props) => {
   return (
     <StylesProvider injectFirst>
       <CacheProvider value={cache}>
+        <Seo
+          title="IPSC Action Air Mongolia"
+          description="Практик буудлагын спортын экшн эйр төрлөөр хичээллэх, олон улс, тив, дэлхийн тэмцээнд тамирчдаа бэлтгэх зорилготой спорт клуб юм."
+        />
         <PersistGate
           persistor={persistStore(store)}
           loading={<div>Loading</div>}
