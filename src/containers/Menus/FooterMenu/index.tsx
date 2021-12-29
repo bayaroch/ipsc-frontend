@@ -1,5 +1,5 @@
-import Router from 'next/router'
 import { footermenu } from '@constants/footer.menu'
+import Link from 'next/link'
 
 const FooterMenu: React.FC = () => {
   return (
@@ -17,14 +17,11 @@ const FooterMenu: React.FC = () => {
               {item.menu &&
                 item.menu.map(function (item, index) {
                   return (
-                    <li key={index.toString()}>
-                      <a
-                        className="footer-item"
-                        onClick={() => Router.push(item.route)}
-                      >
-                        {item.title}
-                      </a>
-                    </li>
+                    <Link key={index.toString()} href={item.route} passHref>
+                      <li>
+                        <a className="footer-item">{item.title}</a>
+                      </li>
+                    </Link>
                   )
                 })}
             </ul>
