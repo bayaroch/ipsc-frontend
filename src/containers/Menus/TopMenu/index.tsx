@@ -1,5 +1,5 @@
-import Router from 'next/router'
 import { topmenu } from '@constants/top.menu'
+import Link from 'next/link'
 
 interface TopMenuProps {
   isLoggedIn: boolean
@@ -18,13 +18,9 @@ const TopMenu: React.FC<TopMenuProps> = ({ isLoggedIn }) => {
             <div className="navbar-dropdown">
               {item.child_menu.map(function (item, index) {
                 return (
-                  <a
-                    className="navbar-item"
-                    onClick={() => Router.push(item.route)}
-                    key={index.toString()}
-                  >
-                    {item.label}
-                  </a>
+                  <Link key={index.toString()} href={item.route} passHref>
+                    <a className="navbar-item">{item.label}</a>
+                  </Link>
                 )
               })}
             </div>
@@ -42,13 +38,9 @@ const TopMenu: React.FC<TopMenuProps> = ({ isLoggedIn }) => {
             <div className="navbar-dropdown">
               {item.child_menu.map(function (item, index) {
                 return (
-                  <a
-                    className="navbar-item"
-                    onClick={() => Router.push(item.route)}
-                    key={index.toString()}
-                  >
-                    {item.label}
-                  </a>
+                  <Link key={index.toString()} href={item.route} passHref>
+                    <a className="navbar-item">{item.label}</a>
+                  </Link>
                 )
               })}
             </div>
@@ -57,17 +49,13 @@ const TopMenu: React.FC<TopMenuProps> = ({ isLoggedIn }) => {
       }
     } else {
       return (
-        <a
-          className="navbar-item"
-          onClick={() => {
-            if (item.route) {
-              Router.push(item.route)
-            }
-          }}
+        <Link
           key={index.toString()}
+          href={item.route ? item.route : 'javascript:void(0)'}
+          passHref
         >
-          {item.label}
-        </a>
+          <a className="navbar-item">{item.label}</a>
+        </Link>
       )
     }
   })
