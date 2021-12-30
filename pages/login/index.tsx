@@ -300,7 +300,7 @@ const LoginPage: React.FC = () => {
                     <Box
                       sx={{
                         marginTop: '80px',
-                        maxWidth: '80px',
+                        maxWidth: '160px',
                         margin: '0 auto',
                         img: {
                           width: '100%',
@@ -308,13 +308,13 @@ const LoginPage: React.FC = () => {
                         },
                       }}
                     >
-                      <img src="images/logo.png" alt="dvc" />
+                      <img src="images/logo-login.png" alt="dvc" />
                     </Box>
-                    <Box className="intro-headline">
+                    {/* <Box className="intro-headline">
                       <Box style={{ fontSize: 48 }}>IPSC</Box>
                       <Box>Action Air</Box>
                       <Box style={{ fontSize: 18 }}>Mongolia</Box>
-                    </Box>
+                    </Box> */}
                   </Box>
                 </Grid>
               </Hidden>
