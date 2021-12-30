@@ -19,7 +19,7 @@ const ContentHeader: React.FC<ContentBoxProps> = ({
       style={{ backgroundImage: img ? `url(${img})` : 'none' }}
       sx={{
         paddingTop: '60px',
-        marginTop: '62px',
+        marginTop: '52px',
         paddingBottom: '20px',
         width: '100%',
         backgroundSize: 'cover',
