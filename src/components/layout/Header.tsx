@@ -51,7 +51,7 @@ export const Header: React.FC<HeaderProps> = ({
             <LogoContainer className="logo-brand">
               <LogoBox>
                 <a href="/" style={{ display: 'block', lineHeight: 1 }}>
-                  <img src="/images/logo.png" alt="logo" />
+                  <img src="/images/logo-club.png" alt="logo" />
                 </a>
               </LogoBox>
             </LogoContainer>
@@ -86,10 +86,10 @@ Header.defaultProps = {
 
 export const LogoContainer = styled.div`
   margin:5px;
-  width:80px;
+  width:123px;
   margin-right:20px;
   @media(max-width:1024px) {
-    width:50px;
+    width:123px;
     margin:5px auto
   }
 }

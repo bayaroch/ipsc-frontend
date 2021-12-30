@@ -32,9 +32,15 @@
   backdrop-filter: blur(10px);
 }
 
+.logo-brand {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 .navbar.header.is-fixed-top .logo-brand {
   transition: all 0.1s ease-out;
-  width: 50px;
+  width: 123px;
+  padding: 0;
 }
 
 .header-container .navbar.header.is-fixed-top {
