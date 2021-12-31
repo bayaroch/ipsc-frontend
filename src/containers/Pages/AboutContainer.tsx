@@ -9,7 +9,7 @@ const ClubContainer: React.FC = () => {
         sx={{
           height: 'auto',
           minHeight: { xl: '100vh', lg: 'auto', md: 'auto', sm: 'auto' },
-          paddingTop: '63px',
+          paddingTop: '52px',
         }}
         spacing={0}
       >
