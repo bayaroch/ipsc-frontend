@@ -162,7 +162,7 @@ const JuniorContainer: React.FC = () => {
                 </tbody>
               </table>
             </div>
-            <p>JR1A Class – Даваа, Лхагва, Баасан 08:00 – 11:00</p>
+            {/* <p>JR1A Class – Даваа, Лхагва, Баасан 08:00 – 11:00</p>
             <p>JR1B Class – Даваа, Лхагва, Баасан 11:30 – 14:30 </p>
             <p>JR1C Class – Даваа, Лхагва, Баасан 15:00 – 18:00 </p>
             <p>
@@ -177,7 +177,7 @@ const JuniorContainer: React.FC = () => {
               JR2C Class – Мягмар, Пүрэв 15:00 – 18:00 + Амралтын өдрүүдэд Lv1
               түвшний тэмцээн{' '}
             </p>
-            <p>JR3 Class – Бүх түвшний тэмцээн + Хувийн бэлтгэл</p>
+            <p>JR3 Class – Бүх түвшний тэмцээн + Хувийн бэлтгэл</p> */}
 
             <Accordion sx={{ marginTop: '20px', marginBottom: '20px' }}>
               <AccordionSummary
