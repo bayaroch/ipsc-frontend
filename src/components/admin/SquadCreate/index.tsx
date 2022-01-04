@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import _ from 'lodash'
-import { Paper, Button, Box, Grid, CircularProgress } from '@mui/material/'
-import DateFnsUtils from '@date-io/date-fns'
 import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
-} from '@material-ui/pickers'
+  Paper,
+  Button,
+  Box,
+  Grid,
+  CircularProgress,
+  TextField,
+} from '@mui/material/'
+import { TimePicker, DatePicker } from '@mui/lab'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
+import LocalizationProvider from '@mui/lab/LocalizationProvider'
 import TimeRange from '@components/common/TimeRange'
 import CustomInput from '@components/common/Input'
 import useSquadCreate, {
   SquadCreateInputType,
   SquadValidateType,
 } from './useSquadCreate'
-import moment from 'moment'
 import { Colors } from '@theme/colors'
 import { SquadCreateParams } from '@services/squad.services'
 
@@ -65,17 +68,18 @@ const SquadCreate: React.FC<SquadCreateProps> = (props) => {
   }, [isEdit, editData])
 
   const _onSubmit = (data: SquadValidateType) => {
-    const params: SquadCreateInputType = Object.assign({}, data, {
-      time_start: moment(timeStart).format('YYYY-MM-DD HH:mm'),
-      time_end: moment(timeEnd).format('YYYY-MM-DD HH:mm'),
-    })
+    const params: SquadCreateInputType = {
+      ...data,
+      time_start: timeStart as string,
+      time_end: timeEnd as string,
+    }
     onSubmit(params)
   }
 
   return (
     <Paper sx={{ padding: '16px' }}>
       <form onSubmit={handleSubmit(_onSubmit)}>
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
           <Grid container spacing={3}>
             <Grid sm={6} md={2} item>
               <Box display="flex" alignItems="center" flex={1} height={'100%'}>
@@ -83,45 +87,27 @@ const SquadCreate: React.FC<SquadCreateProps> = (props) => {
               </Box>
             </Grid>
             <Grid sm={6} md={4} item>
-              <KeyboardDatePicker
-                margin="normal"
-                id="date-picker-dialog"
+              <DatePicker
                 label="Өдөр"
-                fullWidth
-                format="MM/dd/yyyy"
                 value={timeStart}
+                renderInput={(props) => <TextField fullWidth {...props} />}
                 onChange={handleDateChange}
-                KeyboardButtonProps={{
-                  'aria-label': 'change date',
-                }}
               />
             </Grid>
             <Grid sm={6} md={3} item>
-              <KeyboardTimePicker
-                margin="normal"
-                id="time_start"
-                name="time_start"
-                fullWidth
+              <TimePicker
                 label="Эхлэх цаг"
                 value={timeStart}
+                renderInput={(props) => <TextField fullWidth {...props} />}
                 onChange={handleDateChangeStart}
-                KeyboardButtonProps={{
-                  'aria-label': 'change time',
-                }}
               />
             </Grid>
             <Grid sm={6} md={3} item>
-              <KeyboardTimePicker
-                margin="normal"
-                id="time_end"
+              <TimePicker
                 label="Дуусах цаг"
-                fullWidth
-                name="time_end"
                 value={timeEnd}
+                renderInput={(props) => <TextField fullWidth {...props} />}
                 onChange={handleDateChangeEnd}
-                KeyboardButtonProps={{
-                  'aria-label': 'change time',
-                }}
               />
             </Grid>
           </Grid>
@@ -188,7 +174,7 @@ const SquadCreate: React.FC<SquadCreateProps> = (props) => {
               </Box>
             </Grid>
           </Grid>
-        </MuiPickersUtilsProvider>
+        </LocalizationProvider>
       </form>
     </Paper>
   )
