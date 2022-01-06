@@ -98,6 +98,7 @@ const SquadCreate: React.FC<SquadCreateProps> = (props) => {
               <TimePicker
                 label="Эхлэх цаг"
                 value={timeStart}
+                ampm={false}
                 renderInput={(props) => <TextField fullWidth {...props} />}
                 onChange={handleDateChangeStart}
               />
@@ -105,6 +106,7 @@ const SquadCreate: React.FC<SquadCreateProps> = (props) => {
             <Grid sm={6} md={3} item>
               <TimePicker
                 label="Дуусах цаг"
+                ampm={false}
                 value={timeEnd}
                 renderInput={(props) => <TextField fullWidth {...props} />}
                 onChange={handleDateChangeEnd}
