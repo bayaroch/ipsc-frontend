@@ -58,8 +58,8 @@ const useCreateMatch = () => {
         tax: yup.number().notRequired(),
         tax_info: yup.string().notRequired(),
         min_point: yup.number().notRequired(),
-        additional_info: yup.string().max(400).notRequired(),
-        sponsor_info: yup.string().max(400).notRequired(),
+        additional_info: yup.string().max(10000).notRequired(),
+        sponsor_info: yup.string().max(10000).notRequired(),
       }),
     []
   )

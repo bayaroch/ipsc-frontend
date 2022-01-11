@@ -23,7 +23,7 @@ const Info: React.FC<About> = ({ detail }) => {
       ></CardHeader>
       <CardContent>
         <section style={{ paddingTop: 15, paddingBottom: 15 }}>
-          <Typography align="center" variant="body1">
+          <Typography variant="body1" sx={{ whiteSpace: 'pre-wrap' }}>
             {detail.additional_info}
           </Typography>
         </section>
