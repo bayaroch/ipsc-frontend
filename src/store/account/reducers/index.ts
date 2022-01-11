@@ -6,11 +6,13 @@ import _ from 'lodash'
 export type MatchState = {
   memberList: MemberItem[] | undefined
   memberMeta: MemberPaginationMeta | undefined
+  profile: MemberItem | undefined
 }
 
 const initialState: MatchState = {
   memberList: undefined,
   memberMeta: undefined,
+  profile: undefined,
 }
 
 export default createReducer(initialState, (builder) => {
@@ -25,5 +27,8 @@ export default createReducer(initialState, (builder) => {
     state.memberList = _.map(_.cloneDeep(state.memberList), (m) => {
       return m.id === action.payload.data.id ? action.payload.data : m
     })
+  })
+  builder.addCase(actions.profile.fulfilled, (state, action) => {
+    state.profile = action.payload.data
   })
 })

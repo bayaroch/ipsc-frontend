@@ -380,7 +380,8 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
                   labelPrimary="Additional Info"
                   placeholder={'Дэлгэрэнгүй мэдээлэл'}
                   multiline
-                  rows={3}
+                  minRows={5}
+                  maxRows={15}
                   fullWidth={true}
                 />
               )}
@@ -399,7 +400,8 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
                   placeholder={'Ивээн тэтгэгчийн мэдээлэл'}
                   fullWidth={true}
                   multiline
-                  rows={3}
+                  minRows={3}
+                  maxRows={10}
                 />
               )}
             />

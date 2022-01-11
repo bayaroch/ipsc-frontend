@@ -409,8 +409,8 @@ const MatchCreateContainer: React.FC = () => {
                 labelPrimary="Additional Info"
                 placeholder={'Дэлгэрэнгүй мэдээлэл'}
                 multiline
-                minRows={3}
-                maxRows={10}
+                minRows={5}
+                maxRows={15}
                 fullWidth={true}
               />
             )}

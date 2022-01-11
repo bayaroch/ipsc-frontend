@@ -25,3 +25,5 @@ export const paginationMeta = createSelector(
   getState,
   (state) => state.memberMeta
 )
+
+export const getProfile = createSelector(getState, (state) => state.profile)
