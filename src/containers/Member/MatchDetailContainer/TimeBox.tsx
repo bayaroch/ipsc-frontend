@@ -73,7 +73,9 @@ const TimeBox: React.FC<MatchTimeBoxProps> = ({ detail }) => {
               fontSize={16}
               color="text.primary"
             >
-              <Box>{helper.matchDate(match_start, match_end)}</Box>
+              <Box component="span">
+                {helper.matchDate(match_start, match_end)}
+              </Box>
             </Box>
           </Box>
         </Box>
@@ -88,7 +90,7 @@ const TimeBox: React.FC<MatchTimeBoxProps> = ({ detail }) => {
               color: '#ff9800',
               backgroundColor: 'rgba(255, 152, 0, 0.1)',
             }}
-            className={` end`}
+            className={'end'}
           >
             <Icon
               sx={{ position: 'relative', top: -4 }}
@@ -105,7 +107,9 @@ const TimeBox: React.FC<MatchTimeBoxProps> = ({ detail }) => {
               fontSize={16}
               color="text.primary"
             >
-              <Box>{helper.matchDate(match_end, match_end)}</Box>
+              <Box component="span">
+                {helper.matchDate(match_end, match_end)}
+              </Box>
             </Box>
           </Box>
         </Box>

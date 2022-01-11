@@ -164,7 +164,7 @@ const matchStatus = (data: MatchItem): MATCH_PROGRESS_STATUS => {
 
   if (isBetweenMatch && !isAfterEnd && !isCanceled) {
     return MATCH_PROGRESS_STATUS.IN_PROGRESS
-  } else if (isBetweenRegister && isBeforeRegister && !isCanceled) {
+  } else if (isBetweenRegister && !isCanceled) {
     return MATCH_PROGRESS_STATUS.REGISTERING
   } else if (!isAfterEnd && !isCanceled) {
     return MATCH_PROGRESS_STATUS.COMPLETED
