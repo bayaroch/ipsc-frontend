@@ -243,8 +243,8 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
                 </>
               ) : null}
               <section style={{ paddingTop: 15, paddingBottom: 15 }}>
-                <Grid spacing={3} container>
-                  <Grid item sm={12} md={6}>
+                <Grid spacing={2} container>
+                  <Grid item sm={12} xs={12} md={6} lg={6}>
                     <Box display="flex" flexDirection="row">
                       <Icon
                         className={`mdi mdi-calendar-month`}
@@ -270,7 +270,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
                       </Box>
                     </Box>
                   </Grid>
-                  <Grid item sm={12} md={6}>
+                  <Grid item sm={12} xs={12} md={6} lg={6}>
                     <Box display="flex" flexDirection="row">
                       <Icon
                         className={`mdi mdi-calendar-month`}
@@ -295,8 +295,8 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
                     </Box>
                   </Grid>
                 </Grid>
-                <Grid spacing={3} container>
-                  <Grid item sm={12} md={6}>
+                <Grid spacing={2} container>
+                  <Grid item sm={12} md={6} lg={6}>
                     <Box display="flex" flexDirection="row">
                       <Icon
                         className={`mdi mdi-calendar-edit`}
@@ -322,7 +322,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
                       </Box>
                     </Box>
                   </Grid>
-                  <Grid item sm={12} md={6}>
+                  <Grid item sm={12} md={6} lg={6}>
                     <Box display="flex" flexDirection="row">
                       <Icon
                         className={`mdi mdi-calendar-edit`}
@@ -353,7 +353,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
               <Divider style={{ marginTop: 20, marginBottom: 20 }} />
               <section style={{ paddingTop: 15, paddingBottom: 15 }}>
                 <Grid spacing={3} container>
-                  <Grid item sm={12} md={4}>
+                  <Grid item sm={12} md={4} lg={4}>
                     <Box display="flex" flexDirection="row">
                       <Icon
                         className={`mdi mdi-trophy-award`}
@@ -399,7 +399,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
                       </Box>
                     </Box>
                   </Grid>
-                  <Grid item sm={12} md={4}>
+                  <Grid item sm={12} md={4} lg={4}>
                     <Box display="flex" flexDirection="row">
                       <Icon
                         className={`mdi mdi-target`}

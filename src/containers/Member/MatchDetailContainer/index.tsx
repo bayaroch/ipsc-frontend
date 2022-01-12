@@ -223,18 +223,8 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
           <ContentBox>
             <section style={{ paddingTop: 15, paddingBottom: 15 }}>
               <Box sx={{ width: '100%' }}>
-                <Grid container spacing={6}>
-                  <Grid
-                    item
-                    xs={12}
-                    lg={4}
-                    sx={{
-                      '@media screen and (min-width: 1280px) and (max-width: 1499px)': {
-                        flexBasis: '100%',
-                        maxWidth: '100%',
-                      },
-                    }}
-                  >
+                <Grid container spacing={{ xs: 1, sm: 1, md: 2, lg: 3, xl: 3 }}>
+                  <Grid item xs={12} lg={4}>
                     <Box mb={6}>
                       <Paper>
                         <TimeBox detail={detail} />
@@ -244,17 +234,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
                       <Participants detail={detail} />
                     </Box>
                   </Grid>
-                  <Grid
-                    item
-                    xs={12}
-                    lg={8}
-                    sx={{
-                      '@media screen and (min-width: 1280px) and (max-width: 1499px)': {
-                        flexBasis: '100%',
-                        maxWidth: '100%',
-                      },
-                    }}
-                  >
+                  <Grid item xs={12} lg={8}>
                     <Box mb={6}>
                       <About detail={detail} progress={progress} />
                     </Box>
