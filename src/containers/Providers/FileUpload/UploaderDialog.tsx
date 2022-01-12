@@ -75,22 +75,21 @@ const UploadDialog = ({
 
   const thumbs = () => {
     return (
-      file && (
-        <Box
-          sx={{
-            display: 'inline-flex',
-            borderRadius: 1,
-            border: '1px solid #eaeaea',
-            marginBottom: 1,
-            marginRight: 1,
-            width: 100,
-            height: 100,
-            padding: 0.5,
-            boxSizing: 'border-box',
-          }}
-          key={file.name}
-        >
-          <Box sx={{ display: 'flex', minWidth: 0, overflow: 'hidden' }}>
+      <Box
+        sx={{
+          display: 'inline-flex',
+          borderRadius: 1,
+          border: '1px solid #eaeaea',
+          marginBottom: 1,
+          marginRight: 1,
+          width: 100,
+          height: 100,
+          padding: 0.5,
+          boxSizing: 'border-box',
+        }}
+      >
+        <Box sx={{ display: 'flex', minWidth: 0, overflow: 'hidden' }}>
+          {file && (
             <img
               src={file.preview}
               style={{
@@ -100,20 +99,25 @@ const UploadDialog = ({
                 objectFit: 'cover',
               }}
             />
-          </Box>
+          )}
         </Box>
-      )
+      </Box>
     )
   }
 
   return (
     <Dialog fullWidth {...dialogProps} open={dialogOpen} onClose={onClose}>
       <Container maxWidth={false}>
-        {title && <DialogTitle>{title}</DialogTitle>}
+        {title && (
+          <DialogTitle sx={{ padding: 0, mt: 2, mb: 2, textAlign: 'center' }}>
+            {title}
+          </DialogTitle>
+        )}
         <DialogContent sx={{ padding: 0 }}>
           <Box
             display="flex"
             mb={1}
+            mt={1}
             sx={{ height: 100, width: '100%' }}
             alignItems="center"
             justifyContent="center"
@@ -139,7 +143,7 @@ const UploadDialog = ({
             }}
           >
             <input {...getInputProps()} />
-            <p>Drag drop some files here, or click to select files</p>
+            <p>Чирэх эсвэл дарж зургаа сонгоно уу</p>
             <Button variant="outlined" color={'success'} onClick={open}>
               Сонгох
             </Button>
