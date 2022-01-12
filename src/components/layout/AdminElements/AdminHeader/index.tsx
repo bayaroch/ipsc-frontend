@@ -7,7 +7,6 @@ import MenuIcon from '@mui/icons-material/Menu'
 import Box from '@mui/material/Box'
 import { Colors } from '@theme/colors'
 import { UserData } from '@services/auth.services'
-import CustomAvatar from '@components/common/Avatar'
 import Link from 'next/link'
 
 export interface AdminHeaderProps {
@@ -67,24 +66,18 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({
               justifyContent="center"
               alignItems="center"
             >
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                color="inherit"
-              >
-                <Link href={`/member/profile/${currentUser.id}`}>
-                  <CustomAvatar
-                    src={currentUser.img_url}
-                    sx={{ width: 30, height: 30 }}
-                    alt={currentUser.firstname}
-                  />
-                </Link>
-              </IconButton>
-              <Typography variant="body2" sx={{ fontWeight: 600 }}>
-                {currentUser.firstname}
-              </Typography>
+              <Link href={`/member/profile/${currentUser.id}`} passHref>
+                <Typography variant="body2" sx={{ cursor: 'pointer' }}>
+                  Сайна уу!
+                  <Typography
+                    component="span"
+                    variant="body2"
+                    sx={{ color: Colors.primary, fontWeight: 600, ml: 1 }}
+                  >
+                    {currentUser.firstname}
+                  </Typography>
+                </Typography>
+              </Link>
             </Box>
           )}
         </Toolbar>

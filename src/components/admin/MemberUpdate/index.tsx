@@ -29,8 +29,9 @@ import moment from 'moment'
 import useUpdateForm from './useUpdateForm'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
-import { LockOpen, Lock } from '@mui/icons-material'
+import { LockOpen, Lock, Backup } from '@mui/icons-material'
 import { validation } from '@constants/text.constants'
+import { useUpload } from '@containers/Providers/FileUpload'
 
 interface PickerProps {
   open: boolean
@@ -58,12 +59,15 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
     disabled: true,
   })
 
+  const upload = useUpload()
+
   const { methods, Controller } = useUpdateForm()
 
   const {
     control,
     reset,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = methods
 
@@ -81,6 +85,14 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
       reset(_.omit(formValue, 'id'))
     }
   }, [open])
+
+  const handleUpload = () => {
+    upload()
+      .then((url: string) => {
+        setValue('img_url', url)
+      })
+      .catch(() => null)
+  }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   const onSubmit = (data: UserCreateParams) => {
@@ -437,6 +449,11 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
                           placeholder="https://example.com/someimage.jpg"
                           type="text"
                           error={!!errors.img_url}
+                          endAdornment={
+                            <IconButton onClick={handleUpload}>
+                              <Backup />
+                            </IconButton>
+                          }
                           helperText={
                             errors.img_url
                               ? _.get(errors.img_url, 'message', '')
