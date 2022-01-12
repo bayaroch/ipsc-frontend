@@ -5,7 +5,7 @@ import UploadDialog from './UploaderDialog'
 import { UploadOptions } from './types'
 
 const DEFAULT_OPTIONS: UploadOptions = {
-  title: 'Are you sure?',
+  title: 'Зураг Хуулах',
   dialogProps: {},
 }
 
@@ -52,12 +52,15 @@ const UploaderProvider = ({ children, defaultOptions = {} }: any) => {
     }
   }, [reject, handleClose])
 
-  const handleConfirm = useCallback(() => {
-    if (resolve) {
-      resolve()
-      handleClose()
-    }
-  }, [resolve, handleClose])
+  const handleConfirm = useCallback(
+    (url: string) => {
+      if (resolve) {
+        resolve(url)
+        handleClose()
+      }
+    },
+    [resolve, handleClose]
+  )
 
   return (
     <Fragment>

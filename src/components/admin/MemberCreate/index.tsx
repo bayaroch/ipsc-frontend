@@ -26,6 +26,8 @@ import CustomSwitch from '@components/common/CustomSwitch'
 import useCreateForm from './useCreateForm'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import { Backup } from '@mui/icons-material'
+import { useUpload } from '@containers/Providers/FileUpload'
 
 interface PickerProps {
   open: boolean
@@ -44,10 +46,13 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
     showPassword: false,
   })
 
+  const upload = useUpload()
+
   const {
     control,
     reset,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = methods
 
@@ -72,6 +77,14 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
 
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword })
+  }
+
+  const handleUpload = () => {
+    upload()
+      .then((url: string) => {
+        setValue('img_url', url)
+      })
+      .catch(() => null)
   }
 
   return (
@@ -394,6 +407,11 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
                           placeholder="https://example.com/someimage.jpg"
                           type="text"
                           error={!!errors.img_url}
+                          endAdornment={
+                            <IconButton onClick={handleUpload}>
+                              <Backup />
+                            </IconButton>
+                          }
                           helperText={
                             errors.img_url
                               ? _.get(errors.img_url, 'message', '')
