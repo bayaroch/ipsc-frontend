@@ -1,4 +1,4 @@
-import { CAT_DATA, GENDER } from '@constants/user.constants'
+import { CAT_DATA, GENDER, USER_TYPE } from '@constants/user.constants'
 import { SupportItem } from '@services/support.services'
 import _ from 'lodash'
 import moment from 'moment'
@@ -59,6 +59,14 @@ const groupTitleHelper = (
   const findId = Number(id)
   const result = _.find(divisions, { id: findId })
   return result
+}
+
+const memberTypeTitleHelper = (id: USER_TYPE) => {
+  if (id === USER_TYPE.USER_STUDENT) {
+    return 'Сурагч'
+  } else {
+    return 'Гишүүн'
+  }
 }
 
 const matchDate = (start: string, end: string): string => {
@@ -186,6 +194,7 @@ export const helper = {
   groupTitleHelper,
   matchDate,
   getNextDayOfWeek,
+  memberTypeTitleHelper,
   isRegisterActive,
   currency,
   matchStatusTitle,

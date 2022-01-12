@@ -4,19 +4,26 @@ import AdminSideBar from '@components/layout/AdminElements/AdminSideBar'
 import LargeSideBar from '@components/layout/AdminElements/LargeSidebar'
 import useCommonData from '@utils/hooks/useCommonData'
 import withAuth from '@containers/withAuth'
-import useMediaQuery from '@mui/material/useMediaQuery'
 import { useTheme } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import { UserData } from '@services/auth.services'
 
 interface LayoutProps {
   children: ReactNode
   title?: string
+  currentUser: UserData
 }
 
-const AdminLayout: React.FC<LayoutProps> = (props) => {
+const AdminLayout: React.FC<LayoutProps> = ({
+  children,
+  currentUser,
+  title,
+}) => {
   const [open, letOpen] = useState(false)
   const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
-  const matches = useMediaQuery(theme.breakpoints.down('sm'))
+  const openClass = open === true ? 'sidenav-open' : ''
 
   const setOpen = (val: boolean) => {
     letOpen(val)
@@ -24,26 +31,27 @@ const AdminLayout: React.FC<LayoutProps> = (props) => {
   useCommonData()
 
   useEffect(() => {
-    if (matches) {
+    if (isMobile) {
       letOpen(false)
     } else {
       letOpen(true)
     }
-  }, [])
+  }, [isMobile])
 
   return (
     <div>
-      <div className={`main-content-wrap ${open ? 'sidenav-open' : ''}`}>
+      <div className={`main-content-wrap ${openClass}`}>
         <AdminSideBar />
         <LargeSideBar />
         <div className="page-wrapper">
           <div className="main-content">
             <AdminHeader
-              title={props.title ? props.title : ''}
+              currentUser={currentUser}
+              title={title ? title : ''}
               open={open}
               setOpen={setOpen}
             />
-            {props.children}
+            {children}
           </div>
         </div>
       </div>

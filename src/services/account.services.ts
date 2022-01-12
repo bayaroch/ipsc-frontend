@@ -101,7 +101,7 @@ export const accountServices = {
     )
     return data
   },
-  profile: async (params: number): Promise<ProfileResponse> => {
+  profile: async (params: string): Promise<ProfileResponse> => {
     const { data } = await api.get<ProfileResponse>(`${URI.ACCOUNT}/${params}`)
     return data
   },

@@ -8,7 +8,11 @@ import {
   ProfileResponse,
 } from '@services/account.services'
 import { createAsyncThunk, createAction } from '@reduxjs/toolkit'
-import { ACCOUNT_ACTION_TYPE, CLEAR_MEMBER_DATA } from './types'
+import {
+  ACCOUNT_ACTION_TYPE,
+  CLEAR_MEMBER_DATA,
+  CLEAR_PROFILE_DATA,
+} from './types'
 
 export const getAllMembers = createAsyncThunk<
   GetMemberResponse,
@@ -55,7 +59,7 @@ export const updateUser = createAsyncThunk<
   }
 })
 
-export const profile = createAsyncThunk<ProfileResponse, number>(
+export const profile = createAsyncThunk<ProfileResponse, string>(
   ACCOUNT_ACTION_TYPE.GET_PROFILE,
   async (params, { rejectWithValue }) => {
     try {
@@ -71,3 +75,13 @@ export const profile = createAsyncThunk<ProfileResponse, number>(
 )
 
 export const clearMemberData = createAction(CLEAR_MEMBER_DATA)
+export const clearProfileData = createAction(CLEAR_PROFILE_DATA)
+
+export const initProfile = (params: string) => async (
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  dispatch: any
+): Promise<any> => {
+  Promise.resolve(dispatch(clearProfileData())).then(() => {
+    dispatch(profile(params))
+  })
+}

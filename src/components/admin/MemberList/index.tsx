@@ -9,6 +9,7 @@ import {
   Select,
   Box,
   FormControl,
+  alpha,
   Typography,
   Paper,
   IconButton,
@@ -28,6 +29,7 @@ import { GENDER } from '@constants/user.constants'
 import { helper } from '@utils/helpers/common.helper'
 import { SupportItem } from '@services/support.services'
 import Avatar from '@components/common/Avatar'
+import Link from 'next/link'
 
 export interface MatchListProps {
   getList: (params: MemberPageMeta) => void
@@ -132,7 +134,21 @@ const MemberList: React.FC<MatchListProps> = (props) => {
                     </Typography>
                   </TableCell>
                   <TableCell scope="row" align="right">
-                    {_.get(row, 'lastname', '')} {_.get(row, 'firstname', '')}
+                    <Link href={`/member/profile/${row.id}`} passHref>
+                      <Typography
+                        component="a"
+                        sx={{
+                          color: Colors.primary,
+                          '&:hover': {
+                            color: alpha(Colors.primary, 0.9),
+                          },
+                        }}
+                        noWrap
+                      >
+                        {_.get(row, 'lastname', '')}{' '}
+                        {_.get(row, 'firstname', '')}
+                      </Typography>
+                    </Link>
                   </TableCell>
                   <TableCell style={{ maxWidth: 100 }} align="right">
                     <Typography component="p" noWrap>

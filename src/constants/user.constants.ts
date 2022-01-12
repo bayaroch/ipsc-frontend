@@ -42,7 +42,7 @@ export enum CATEGORY {
 export const CAT_DATA = [
   {
     id: 1,
-    name: '',
+    name: 'Overall',
   },
   {
     id: 2,

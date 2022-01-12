@@ -31,4 +31,7 @@ export default createReducer(initialState, (builder) => {
   builder.addCase(actions.profile.fulfilled, (state, action) => {
     state.profile = action.payload.data
   })
+  builder.addCase(actions.clearProfileData, (state) => {
+    state.profile = undefined
+  })
 })

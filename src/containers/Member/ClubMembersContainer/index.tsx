@@ -4,6 +4,7 @@ import useAccount from '@containers/Admin/MemberListContainer/useAccount'
 import MemberCard from '@components/member/MemberCard'
 import Pagination from '@mui/material//Pagination'
 import _ from 'lodash'
+import Link from 'next/link'
 
 export enum FORM_ACTION_TYPE {
   CREATE = 1,
@@ -75,7 +76,11 @@ const ClubMembersContainer: React.FC = () => {
                           lg={3}
                           xl={3}
                         >
-                          <MemberCard support={support} item={item} />
+                          <Link href={`/member/profile/${item.id}`} passHref>
+                            <Box sx={{ cursor: 'pointer' }}>
+                              <MemberCard support={support} item={item} />
+                            </Box>
+                          </Link>
                         </Grid>
                       )
                     })}

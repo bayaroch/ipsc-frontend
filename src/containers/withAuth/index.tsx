@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { isAuth, memberType } from '@store/auth/selectors'
+import { isAuth, memberType, user } from '@store/auth/selectors'
 import { useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import React, { useState, useEffect } from 'react'
@@ -12,6 +12,7 @@ export function withAuth<T>(Component: React.ComponentType<T>): React.FC {
     const router = useRouter()
     const [render, setRender] = useState(false)
     const url = router.pathname
+    const currentUser = useSelector(user)
 
     useEffect(() => {
       if (isLoggedIn) {
@@ -28,7 +29,7 @@ export function withAuth<T>(Component: React.ComponentType<T>): React.FC {
     if (!render) {
       return <></>
     }
-    return <Component {...props} />
+    return <Component currentUser={currentUser} {...props} />
   }
 
   return AppWithAuth

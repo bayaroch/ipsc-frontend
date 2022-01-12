@@ -6,3 +6,4 @@ export enum ACCOUNT_ACTION_TYPE {
 }
 
 export const CLEAR_MEMBER_DATA = 'member/clearMemberData'
+export const CLEAR_PROFILE_DATA = 'member/clearProfileData'

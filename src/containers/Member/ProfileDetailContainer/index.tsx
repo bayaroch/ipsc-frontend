@@ -1,6 +1,7 @@
 import { BasicLoader } from '@components/common/Loader'
-import { Box, Grid } from '@mui/material/'
-import ProfileHeader from './Elements/ProfileHeader'
+import { Grid } from '@mui/material/'
+import GeneralInfo from './Elements/GeneralInfo'
+import UserContent from './Elements/UserContent'
 import useProfileDetail from './useProfileDetail'
 
 interface ProfileDetailProps {
@@ -8,31 +9,27 @@ interface ProfileDetailProps {
 }
 
 const ProfileDetailContainer: React.FC<ProfileDetailProps> = ({ id }) => {
-  const { meta, detail } = useProfileDetail(id)
+  const { meta, detail, support } = useProfileDetail(id)
 
   return (
     <>
       {detail && (
-        <Box sx={{ width: '100%' }}>
-          <ProfileHeader userDetail={detail} />
-          <Grid container>
-            <Grid
-              item
-              xs={12}
-              lg={4}
-              sx={{
-                '@media screen and (min-width: 1280px) and (max-width: 1499px)': {
-                  flexBasis: '100%',
-                  maxWidth: '100%',
-                },
-              }}
-            >
-              <Box mb={6}>detail</Box>
-              <Box mb={6}>asdasd</Box>
-              <Box mb={6}>asd</Box>
-            </Grid>
+        <Grid container spacing={0}>
+          <Grid
+            item
+            xs={12}
+            sm={12}
+            md={6}
+            pr={{ lg: 4, md: 2, sm: 1, xs: 0 }}
+            lg={5}
+            xl={4}
+          >
+            <GeneralInfo support={support} userDetail={detail} />
           </Grid>
-        </Box>
+          <Grid item xs={12} sm={12} md={6} lg={7} xl={8}>
+            <UserContent />
+          </Grid>
+        </Grid>
       )}
       <BasicLoader meta={meta} />
     </>
