@@ -1,17 +1,15 @@
 import React from 'react'
 import { CardHeader, Card, CardContent } from '@mui/material/'
-// import CustomList from '@components/common/List'
-// import Avatar from '@components/common/Avatar'
-// import { ParticipantsItem } from '@services/match.services'
 import { AvatarGroup } from '@mui/material/'
 import { MatchItem } from '@store/match/actions/types'
-// import _ from 'lodash'
+import CustomAvatar from '@components/common/Avatar'
 
-interface About {
+interface Participants {
   detail: MatchItem
+  openList?: () => void
 }
 
-const Participants: React.FC<About> = ({}) => {
+const Participants: React.FC<Participants> = ({ detail, openList }) => {
   return (
     <Card
       sx={{
@@ -25,21 +23,19 @@ const Participants: React.FC<About> = ({}) => {
         sx={{ borderBottom: '1px solid #eee' }}
         title="Оролцогчид"
       ></CardHeader>
-      <CardContent>
-        <AvatarGroup max={6}>
-          {/* <CustomList
-            data={detail.participants}
-            renderRow={(item: ParticipantsItem, index: number) => {
+      <CardContent sx={{ display: 'flex', alignItems: 'flex-start' }}>
+        <AvatarGroup max={10} onClick={() => openList && openList()}>
+          {detail &&
+            detail.participants.map((item, index) => {
               return (
-                <Avatar
+                <CustomAvatar
                   key={index}
-                  className={`${classes.avatarRoot} MuiAvatarGroup-avatar`}
-                  src={_.defaultTo(item.user.img_url, undefined)}
+                  src={item.user.img_url}
                   alt={item.user.firstname}
                 />
               )
-            }}
-          /> */}
+            })}
+          )
         </AvatarGroup>
       </CardContent>
     </Card>

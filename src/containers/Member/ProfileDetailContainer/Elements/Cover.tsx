@@ -54,7 +54,8 @@ const Cover: React.FC<GeneralInfoProps> = ({ userDetail }) => {
             xl: '18px 20px',
             lg: '10px',
             md: '10px',
-            sm: '5px',
+            sm: '10px',
+            xs: '10px',
           },
         }}
       >

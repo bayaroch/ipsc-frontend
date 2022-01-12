@@ -1,6 +1,5 @@
 import React from 'react'
 import { Typography, CardHeader, Card, CardContent } from '@mui/material/'
-
 import { MatchItem } from '@store/match/actions/types'
 
 interface About {
