@@ -95,7 +95,7 @@ const MatchListContainer: React.FC = () => {
           .then(() => {
             if (updateOpen && updateOpen.data)
               update({
-                data: _.omit(data, 'password'),
+                data: data,
                 id: updateOpen?.data.id,
               })
             setUpdate(null)
