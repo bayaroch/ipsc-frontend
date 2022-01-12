@@ -38,8 +38,9 @@ const useAccount = (): {
     dispatch(actions.createUser(params))
   const support = useSelector(sup)
 
-  const update = (params: UserUpdateParams) =>
+  const update = (params: UserUpdateParams) => {
     dispatch(actions.updateUser(params))
+  }
 
   return {
     meta,

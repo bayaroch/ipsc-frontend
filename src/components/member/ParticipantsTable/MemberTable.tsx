@@ -45,7 +45,7 @@ const MemberTable: React.FC<TableProps> = (props) => {
               <TableCell align="right">
                 {_.get(
                   helper.classTitleHelper(row.user.class_id, classData),
-                  'shorthand',
+                  'name',
                   ''
                 )}
               </TableCell>

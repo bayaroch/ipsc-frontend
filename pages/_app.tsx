@@ -20,6 +20,7 @@ import createCache from '@emotion/cache'
 import { StylesProvider } from '@mui/styles'
 import '@common/css/main.scss'
 import Seo from '@components/common/Seo'
+import { UploaderProvider } from '@containers/Providers/FileUpload'
 /**
  * withRedux HOC
  * NextJS wrapper for Redux
@@ -64,9 +65,11 @@ const CustomApp = ({ Component, pageProps }: Props) => {
               <CssBaseline />
               <SnackBar />
               <ConfirmProvider>
-                <Layout>
-                  <Component {...pageProps} />
-                </Layout>
+                <UploaderProvider>
+                  <Layout>
+                    <Component {...pageProps} />
+                  </Layout>
+                </UploaderProvider>
               </ConfirmProvider>
             </ThemeStyled>
           </ThemeProvider>
