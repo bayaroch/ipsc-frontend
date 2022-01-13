@@ -36,8 +36,14 @@ const MemberInfo: React.FC<GeneralInfoProps> = ({ userDetail, support }) => {
       }}
     >
       <StatItem>
-        <Typography component="div" variant="h3" sx={{ minHeight: 20 }}>
-          {_.get(helper.categoryTitleHelper(birthday, gender), 'name', '')}
+        <Typography
+          component="div"
+          variant="h3"
+          sx={{ minHeight: 20, fontSize: 14 }}
+        >
+          {helper.categoryTitleHelper(birthday, gender).map((c, index) => {
+            return `${index === 1 ? ' | ' : ''}${c.name}`
+          })}
         </Typography>
         <Box component="span" color="text.secondary" fontSize={12}>
           Категори
@@ -56,7 +62,11 @@ const MemberInfo: React.FC<GeneralInfoProps> = ({ userDetail, support }) => {
         </Box>
       </StatItem>
       <StatItem>
-        <Typography component="div" variant="h3">
+        <Typography
+          sx={{ minHeight: 20, fontSize: 14 }}
+          component="div"
+          variant="h3"
+        >
           {helper.memberTypeTitleHelper(usertype)}
         </Typography>
         <Box component="span" color="text.secondary" fontSize={12}>

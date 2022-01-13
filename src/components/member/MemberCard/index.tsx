@@ -79,11 +79,11 @@ const MemberCard: React.FC<MemberCardProps> = ({ item, onClick, support }) => {
               ''
             )}
             {' | '}
-            {_.get(
-              helper.categoryTitleHelper(item.birthday, item.gender),
-              'name',
-              ''
-            )}
+            {helper
+              .categoryTitleHelper(item.birthday, item.gender)
+              .map((c, index) => {
+                return `${index === 1 ? ' | ' : ''}${c.name}`
+              })}
           </Box>
         </Box>
       </Box>

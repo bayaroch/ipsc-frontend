@@ -176,11 +176,11 @@ const MemberList: React.FC<MatchListProps> = (props) => {
                     )}
                   </TableCell>
                   <TableCell style={{ width: 140 }} align="right">
-                    {_.get(
-                      helper.categoryTitleHelper(row.birthday, row.gender),
-                      'name',
-                      ''
-                    )}
+                    {helper
+                      .categoryTitleHelper(row.birthday, row.gender)
+                      .map((c, index) => {
+                        return `${index === 1 ? ' | ' : ''}${c.name}`
+                      })}
                   </TableCell>
                   <TableCell style={{ width: 50 }} align="right">
                     <IconButton

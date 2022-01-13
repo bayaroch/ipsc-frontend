@@ -13,10 +13,13 @@ import {
 const categoryCalc = (
   date: string | undefined,
   gender: number | undefined
-): CATEGORY => {
-  if (date === undefined || gender === undefined) return CATEGORY.UNCATEGORIZED
+): CATEGORY[] => {
+  if (date === undefined || gender === undefined)
+    return [CATEGORY.UNCATEGORIZED]
   const age = moment().diff(date, 'years')
-  let category
+  let category = null
+  const isLady = gender === GENDER.FEMALE
+
   if (age < 16) {
     category = CATEGORY.SUPER_JUNIOR
   } else if (age > 16 && age < 21) {
@@ -25,13 +28,19 @@ const categoryCalc = (
     category = CATEGORY.SENIOR
   } else if (age > 60) {
     category = CATEGORY.SUPER_SENIOR
-  } else if (gender === GENDER.FEMALE) {
-    category = CATEGORY.LADY
   } else {
     category = CATEGORY.UNCATEGORIZED
   }
 
-  return category
+  if (isLady && category === CATEGORY.UNCATEGORIZED) {
+    return [CATEGORY.LADY]
+  } else if (!isLady && category === CATEGORY.UNCATEGORIZED) {
+    return [CATEGORY.UNCATEGORIZED]
+  } else if (isLady && category !== CATEGORY.UNCATEGORIZED) {
+    return [CATEGORY.LADY, category]
+  } else {
+    return [category]
+  }
 }
 
 const classTitleHelper = (
@@ -46,9 +55,9 @@ const classTitleHelper = (
 const categoryTitleHelper = (
   birthday: string | undefined,
   gender: number | undefined
-): { id: number; name: string } | undefined => {
-  const catId = categoryCalc(birthday, gender)
-  const result = _.find(CAT_DATA, { id: catId })
+): { id: number; name: string }[] => {
+  const catIdArray = categoryCalc(birthday, gender)
+  const result = _.filter(CAT_DATA, (c) => catIdArray.includes(c.id))
   return result
 }
 

@@ -52,15 +52,11 @@ const MemberTable: React.FC<TableProps> = (props) => {
               <TableCell align="right">{groupTitle && groupTitle}</TableCell>
               <TableCell align="right">MINOR</TableCell>
               <TableCell align="right">
-                {row.user.gender === 1 ? 'Lady ' : ''}
-                {_.get(
-                  helper.categoryTitleHelper(
-                    row.user.birthday,
-                    row.user.gender
-                  ),
-                  'name',
-                  ''
-                )}
+                {helper
+                  .categoryTitleHelper(row.user.birthday, row.user.gender)
+                  .map((c, index) => {
+                    return `${index === 1 ? ' | ' : ''}${c.name}`
+                  })}
               </TableCell>
             </TableRow>
           ))}
