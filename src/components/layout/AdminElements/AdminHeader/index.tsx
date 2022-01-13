@@ -68,7 +68,7 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({
             >
               <Link href={`/member/profile/${currentUser.id}`} passHref>
                 <Typography variant="body2" sx={{ cursor: 'pointer' }}>
-                  Сайна уу!
+                  Сайн уу!
                   <Typography
                     component="span"
                     variant="body2"
