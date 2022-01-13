@@ -14,6 +14,9 @@ import {
   InputAdornment,
   IconButton,
   SlideProps,
+  Checkbox,
+  ListItemText,
+  OutlinedInput,
 } from '@mui/material'
 import { Colors } from '@theme/colors'
 import { MemberItem, UserCreateParams } from '@services/account.services'
@@ -85,7 +88,14 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
         birthday: moment(initData.birthday).format('YYYY-MM-DDTHH:mm'),
       })
       const newData = _.omit(formValue, 'id')
-      reset(newData)
+      reset({
+        ...newData,
+        mo_badge: newData.mo_badge
+          ? newData.mo_badge.split(',').filter(function (e) {
+              return e
+            })
+          : [],
+      })
     }
   }, [open])
 
@@ -100,7 +110,10 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   const onSubmit = (data: UserCreateParams) => {
     if (data) {
-      submit(data)
+      submit({
+        ...data,
+        mo_badge: data.mo_badge ? data.mo_badge.toString() : '',
+      })
     }
   }
 
@@ -111,6 +124,25 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
   const handleClickUnlock = () => {
     setValues({ ...values, disabled: !values.disabled })
     if (!values.disabled) methods.setValue('password', '')
+  }
+
+  const handleMulti = (event: any) => {
+    const {
+      target: { value },
+    } = event
+    setValue('mo_badge', typeof value === 'string' ? value.split(',') : value)
+  }
+
+  const renderValue = (selected: any) => {
+    return (
+      <>
+        {selected &&
+          selected.map((s: string) => {
+            const name = _.find(badges, { id: Number(s) })?.shorthand
+            return name ? `${name} | ` : ''
+          })}
+      </>
+    )
   }
 
   return (
@@ -499,28 +531,31 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
                 <Controller
                   name="mo_badge"
                   control={control}
-                  render={({
-                    field: { ref, onChange, value },
-                  }: FieldValues) => (
+                  render={({ field: { ref, value } }: FieldValues) => (
                     <Select
                       inputRef={ref}
-                      onChange={onChange}
+                      onChange={(e) => handleMulti(e)}
                       fullWidth={true}
                       value={value}
-                      defaultValue={0}
+                      input={<OutlinedInput label="Tag" />}
                       label="Mo Badge"
+                      multiple
                       placeholder={'Төрөл'}
                       error={!!errors.mo_badge}
+                      renderValue={renderValue}
                       helperText={
                         errors.mo_badge
                           ? _.get(errors.mo_badge, 'message', '')
                           : ''
                       }
                     >
-                      {badges.map((item, index) => {
+                      {badges.map((item) => {
                         return (
-                          <MenuItem value={item.id} key={index}>
-                            {item.name}
+                          <MenuItem value={item.id.toString()} key={item.id}>
+                            <Checkbox
+                              checked={value.includes(item.id.toString())}
+                            />
+                            <ListItemText primary={item.name} />
                           </MenuItem>
                         )
                       })}

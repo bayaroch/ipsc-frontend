@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Dialog,
   Button,
@@ -10,8 +10,11 @@ import {
   FormControl,
   DialogContent,
   InputAdornment,
+  OutlinedInput,
   IconButton,
   Typography,
+  Checkbox,
+  ListItemText,
 } from '@mui/material/'
 import { Colors } from '@theme/colors'
 import { UserCreateParams } from '@services/account.services'
@@ -73,7 +76,10 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   const onSubmit = (data: UserCreateParams) => {
     if (data) {
-      submit(data)
+      submit({
+        ...data,
+        mo_badge: data.mo_badge ? data.mo_badge.toString() : '',
+      })
     }
   }
 
@@ -87,6 +93,29 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
         setValue('img_url', url)
       })
       .catch(() => null)
+  }
+
+  const handleMulti = (event: any) => {
+    const {
+      target: { value },
+    } = event
+    setValue(
+      'mo_badge',
+      // On autofill we get a stringified value.
+      typeof value === 'string' ? value.split(',') : value
+    )
+  }
+
+  const renderValue = (selected: any) => {
+    return (
+      <>
+        {selected &&
+          selected.map((s: string) => {
+            const name = _.find(badges, { id: Number(s) })?.shorthand
+            return name ? `${name} | ` : ''
+          })}
+      </>
+    )
   }
 
   return (
@@ -275,7 +304,6 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
                         required={true}
                         fullWidth={true}
                         value={value}
-                        defaultValue={0}
                         inputRef={ref}
                         label="Хэрэглэгчийн төрөл"
                         placeholder={'Төлөв'}
@@ -455,27 +483,31 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
                   <Controller
                     name="mo_badge"
                     control={control}
-                    render={({
-                      field: { ref, onChange, value },
-                    }: FieldValues) => (
+                    render={({ field: { ref, value } }: FieldValues) => (
                       <Select
                         inputRef={ref}
-                        onChange={onChange}
+                        onChange={(e) => handleMulti(e)}
                         fullWidth={true}
                         value={value}
+                        input={<OutlinedInput label="Tag" />}
                         label="Mo Badge"
+                        multiple
                         placeholder={'Төрөл'}
                         error={!!errors.mo_badge}
+                        renderValue={renderValue}
                         helperText={
                           errors.mo_badge
                             ? _.get(errors.mo_badge, 'message', '')
                             : ''
                         }
                       >
-                        {badges.map((item, index) => {
+                        {badges.map((item) => {
                           return (
-                            <MenuItem value={item.id} key={index}>
-                              {item.name}
+                            <MenuItem value={item.id.toString()} key={item.id}>
+                              <Checkbox
+                                checked={value.includes(item.id.toString())}
+                              />
+                              <ListItemText primary={item.name} />
                             </MenuItem>
                           )
                         })}

@@ -37,17 +37,7 @@ const MatchListContainer: React.FC = () => {
     setUpdate({ data: data, open: true })
   }
 
-  const badges =
-    support && support.badges
-      ? support.badges?.concat([
-          {
-            id: 0,
-            shorthand: 'None',
-            name: 'None',
-            remark: '',
-          },
-        ])
-      : []
+  const badges = support && support.badges ? support.badges : []
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   const onSubmit = (data: UserCreateParams) => {

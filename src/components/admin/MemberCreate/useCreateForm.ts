@@ -4,7 +4,6 @@ import { useMemo } from 'react'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { validation } from '@constants/text.constants'
-import { UserCreateParams } from '@services/account.services'
 
 export const initValues = {
   usercode: '',
@@ -18,7 +17,22 @@ export const initValues = {
   enabled: true,
   class_id: 1,
   img_url: '',
-  mo_badge: 0,
+  mo_badge: [],
+}
+
+export type InitValueType = {
+  usercode: string
+  password?: string
+  firstname: string
+  lastname: string
+  email: string
+  birthday?: string
+  usertype?: USER_TYPE
+  gender: GENDER
+  enabled: boolean | number
+  class_id: number
+  img_url?: string
+  mo_badge?: string[]
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -49,12 +63,11 @@ const useCreateForm = () => {
         enabled: yup.boolean().required(validation.required),
         class_id: yup.number().required(validation.required),
         img_url: yup.string().nullable().notRequired(),
-        mo_badge: yup.number().nullable().notRequired(),
       }),
     []
   )
 
-  const methods = useForm<UserCreateParams>({
+  const methods = useForm<InitValueType>({
     resolver: yupResolver(validationSchema),
     defaultValues: initValues,
   })

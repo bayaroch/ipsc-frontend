@@ -30,7 +30,7 @@ export type MemberItem = {
   gender: GENDER
   enabled: boolean
   class_id: number
-  mo_badge?: null | number
+  mo_badge?: null | string
   img_url?: string
 }
 export type GetMemberResponse = {
@@ -52,7 +52,7 @@ export type UserCreateParams = {
   enabled: boolean | number
   class_id: number
   img_url?: string
-  mo_badge?: null | number
+  mo_badge?: null | string
 }
 
 export type UserCreateResponse = {
