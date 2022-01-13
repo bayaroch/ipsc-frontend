@@ -28,11 +28,13 @@ import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { Backup } from '@mui/icons-material'
 import { useUpload } from '@containers/Providers/FileUpload'
+import { SupportItem } from '@services/support.services'
 
 interface PickerProps {
   open: boolean
   handleClose: () => void
   submit: (data: UserCreateParams) => void
+  badges: SupportItem[]
 }
 
 interface State {
@@ -40,7 +42,7 @@ interface State {
 }
 
 const MemberCreate: React.FC<PickerProps> = (props) => {
-  const { open, handleClose, submit } = props
+  const { open, handleClose, submit, badges } = props
   const { methods, Controller, initValues } = useCreateForm()
   const [values, setValues] = useState<State>({
     showPassword: false,
@@ -273,6 +275,7 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
                         required={true}
                         fullWidth={true}
                         value={value}
+                        defaultValue={0}
                         inputRef={ref}
                         label="Хэрэглэгчийн төрөл"
                         placeholder={'Төлөв'}
@@ -446,6 +449,38 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
                         </FormControl>
                       )
                     }}
+                  />
+                </Grid>
+                <Grid item sm={12} md={6}>
+                  <Controller
+                    name="mo_badge"
+                    control={control}
+                    render={({
+                      field: { ref, onChange, value },
+                    }: FieldValues) => (
+                      <Select
+                        inputRef={ref}
+                        onChange={onChange}
+                        fullWidth={true}
+                        value={value}
+                        label="Mo Badge"
+                        placeholder={'Төрөл'}
+                        error={!!errors.mo_badge}
+                        helperText={
+                          errors.mo_badge
+                            ? _.get(errors.mo_badge, 'message', '')
+                            : ''
+                        }
+                      >
+                        {badges.map((item, index) => {
+                          return (
+                            <MenuItem value={item.id} key={index}>
+                              {item.name}
+                            </MenuItem>
+                          )
+                        })}
+                      </Select>
+                    )}
                   />
                 </Grid>
               </Grid>

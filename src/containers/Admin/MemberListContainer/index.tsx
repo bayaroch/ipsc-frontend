@@ -37,6 +37,18 @@ const MatchListContainer: React.FC = () => {
     setUpdate({ data: data, open: true })
   }
 
+  const badges =
+    support && support.badges
+      ? support.badges?.concat([
+          {
+            id: 0,
+            shorthand: 'None',
+            name: 'None',
+            remark: '',
+          },
+        ])
+      : []
+
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   const onSubmit = (data: UserCreateParams) => {
     confirm({
@@ -137,11 +149,13 @@ const MatchListContainer: React.FC = () => {
         pagination={paginationMeta}
       />
       <MemberCreate
+        badges={badges}
         submit={onSubmit}
         open={open}
         handleClose={() => setOpen(false)}
       />
       <MemberUpdate
+        badges={badges}
         submit={onSubmitUpdate}
         open={updateOpen !== null ? updateOpen.open : false}
         initData={updateOpen && updateOpen.data}

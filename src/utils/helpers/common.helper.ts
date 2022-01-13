@@ -70,6 +70,7 @@ const groupTitleHelper = (
   return result
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const memberTypeTitleHelper = (id: USER_TYPE) => {
   if (id === USER_TYPE.USER_STUDENT) {
     return 'Сурагч'

@@ -32,12 +32,14 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { LockOpen, Lock, Backup } from '@mui/icons-material'
 import { validation } from '@constants/text.constants'
 import { useUpload } from '@containers/Providers/FileUpload'
+import { SupportItem } from '@services/support.services'
 
 interface PickerProps {
   open: boolean
   initData?: MemberItem | null
   handleClose: () => void
   submit: (data: UserCreateParams) => void
+  badges: SupportItem[]
 }
 
 interface State {
@@ -53,7 +55,7 @@ const Transition = forwardRef(function Transition(
 })
 
 const MemberUpdate: React.FC<PickerProps> = (props) => {
-  const { open, handleClose, submit, initData } = props
+  const { open, handleClose, submit, initData, badges } = props
   const [values, setValues] = useState<State>({
     showPassword: false,
     disabled: true,
@@ -82,7 +84,8 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
       const formValue = Object.assign({}, initData, {
         birthday: moment(initData.birthday).format('YYYY-MM-DDTHH:mm'),
       })
-      reset(_.omit(formValue, 'id'))
+      const newData = _.omit(formValue, 'id')
+      reset(newData)
     }
   }, [open])
 
@@ -434,6 +437,7 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
                     )}
                   />
                 </Grid>
+
                 <Grid item sm={12} md={3}>
                   <Controller
                     name="img_url"
@@ -464,7 +468,7 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
                     }}
                   />
                 </Grid>
-                <Grid item sm={12} md={6}>
+                <Grid item sm={12} md={3}>
                   <Controller
                     name="enabled"
                     control={control}
@@ -490,6 +494,39 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
                     }}
                   />
                 </Grid>
+              </Grid>
+              <Grid item sm={12} md={6}>
+                <Controller
+                  name="mo_badge"
+                  control={control}
+                  render={({
+                    field: { ref, onChange, value },
+                  }: FieldValues) => (
+                    <Select
+                      inputRef={ref}
+                      onChange={onChange}
+                      fullWidth={true}
+                      value={value}
+                      defaultValue={0}
+                      label="Mo Badge"
+                      placeholder={'Төрөл'}
+                      error={!!errors.mo_badge}
+                      helperText={
+                        errors.mo_badge
+                          ? _.get(errors.mo_badge, 'message', '')
+                          : ''
+                      }
+                    >
+                      {badges.map((item, index) => {
+                        return (
+                          <MenuItem value={item.id} key={index}>
+                            {item.name}
+                          </MenuItem>
+                        )
+                      })}
+                    </Select>
+                  )}
+                />
               </Grid>
             </Box>
           </Box>

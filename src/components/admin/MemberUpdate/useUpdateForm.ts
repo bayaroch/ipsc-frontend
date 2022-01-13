@@ -17,8 +17,10 @@ export const initValues = {
   enabled: true,
   class_id: 1,
   img_url: '',
+  mo_badge: 0,
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const useUpdateForm = () => {
   const validationSchema = useMemo(
     () =>
@@ -40,11 +42,12 @@ const useUpdateForm = () => {
         enabled: yup.boolean().required(validation.required),
         class_id: yup.number().required(validation.required),
         img_url: yup.string().nullable().notRequired(),
+        mo_badge: yup.number().nullable().notRequired(),
       }),
     []
   )
 
-  const methods = useForm<UserCreateParams>({
+  const methods = useForm<Omit<UserCreateParams, 'id'>>({
     resolver: yupResolver(validationSchema),
     defaultValues: initValues,
   })

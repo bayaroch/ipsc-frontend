@@ -31,7 +31,7 @@ import { SupportItem } from '@services/support.services'
 import Avatar from '@components/common/Avatar'
 import Link from 'next/link'
 
-export interface MatchListProps {
+export interface MemberListProps {
   getList: (params: MemberPageMeta) => void
   list: MemberItem[]
   pagination: MemberPaginationMeta
@@ -42,7 +42,7 @@ export interface MatchListProps {
 
 const defaultPerPage = 100
 
-const MemberList: React.FC<MatchListProps> = (props) => {
+const MemberList: React.FC<MemberListProps> = (props) => {
   const { getList, list, pagination, meta, classData, onEditMember } = props
   const [page, setPage] = useState<number>(1)
   const [rowsPerPage, setRowsPerPage] = useState<number>(defaultPerPage)
