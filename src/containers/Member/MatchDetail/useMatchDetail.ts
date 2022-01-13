@@ -31,7 +31,7 @@ const useMatchDetail = (): {
   register: (params: RegisterMatchParams) => void
   update: (params: UpdateMatchParams) => void
   userData: UserData
-  category: CATEGORY
+  category: CATEGORY[]
   support: SupportState
   participantsFiltered: ParticipantSortedList
   participants: ParticipantsItem[]
