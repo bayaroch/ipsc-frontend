@@ -134,6 +134,7 @@ const MatchListContainer: React.FC = () => {
         classData={support && support.class ? support.class : []}
         onEditMember={handleEdit}
         meta={meta}
+        badgeData={badges}
         list={list}
         getList={getList}
         pagination={paginationMeta}

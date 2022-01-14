@@ -30,6 +30,7 @@ import { helper } from '@utils/helpers/common.helper'
 import { SupportItem } from '@services/support.services'
 import Avatar from '@components/common/Avatar'
 import Link from 'next/link'
+import BadgeChips from '@components/member/BadgeChips'
 
 export interface MemberListProps {
   getList: (params: MemberPageMeta) => void
@@ -38,12 +39,21 @@ export interface MemberListProps {
   onEditMember?: (data: MemberItem) => void
   meta: Meta
   classData: SupportItem[]
+  badgeData: SupportItem[]
 }
 
 const defaultPerPage = 100
 
 const MemberList: React.FC<MemberListProps> = (props) => {
-  const { getList, list, pagination, meta, classData, onEditMember } = props
+  const {
+    getList,
+    list,
+    pagination,
+    meta,
+    classData,
+    onEditMember,
+    badgeData,
+  } = props
   const [page, setPage] = useState<number>(1)
   const [rowsPerPage, setRowsPerPage] = useState<number>(defaultPerPage)
   const [selectRow, setSelectRow] = useState<string>(defaultPerPage.toString())
@@ -139,6 +149,7 @@ const MemberList: React.FC<MemberListProps> = (props) => {
                         component="a"
                         sx={{
                           color: Colors.primary,
+                          pb: 1,
                           '&:hover': {
                             color: alpha(Colors.primary, 0.9),
                           },
@@ -149,6 +160,12 @@ const MemberList: React.FC<MemberListProps> = (props) => {
                         {_.get(row, 'firstname', '')}
                       </Typography>
                     </Link>
+
+                    <BadgeChips
+                      size="small"
+                      data={row}
+                      badgesData={badgeData}
+                    />
                   </TableCell>
                   <TableCell style={{ maxWidth: 100 }} align="right">
                     <Typography component="p" noWrap>

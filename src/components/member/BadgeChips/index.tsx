@@ -10,8 +10,7 @@ import { badgeColor } from '@constants/user.constants'
 const Item = styled(Chip)(() => ({
   textAlign: 'center',
   color: '#fff',
-  fontSize: 11,
-  padding: '3px 6px',
+
   height: 'auto',
   fontWeight: 600,
 }))
@@ -20,12 +19,14 @@ interface BadgeChipsProps {
   data: MemberItem
   badgesData: SupportItem[]
   stackProps?: StackProps
+  size?: 'small' | 'normal'
 }
 
 const BadgeChips: React.FC<BadgeChipsProps> = ({
   data,
   badgesData,
   stackProps,
+  size,
 }) => {
   const { mo_badge } = data
   const badge = mo_badge ? mo_badge.split(',') : []
@@ -40,6 +41,9 @@ const BadgeChips: React.FC<BadgeChipsProps> = ({
           backgroundColor: badgeColor[Number(item)]
             ? badgeColor[Number(item)]
             : '#eee',
+
+          padding: size === 'normal' ? '3px 6px' : '2px 0px',
+          fontSize: size === 'normal' ? 11 : 9,
         }}
       />
     )
@@ -57,6 +61,10 @@ const BadgeChips: React.FC<BadgeChipsProps> = ({
       </Stack>
     </Box>
   )
+}
+
+BadgeChips.defaultProps = {
+  size: 'normal',
 }
 
 export default BadgeChips
