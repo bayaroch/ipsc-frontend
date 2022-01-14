@@ -36,6 +36,7 @@ import { LockOpen, Lock, Backup } from '@mui/icons-material'
 import { validation } from '@constants/text.constants'
 import { useUpload } from '@containers/Providers/FileUpload'
 import { SupportItem } from '@services/support.services'
+import Avatar from '@components/common/Avatar'
 
 interface PickerProps {
   open: boolean
@@ -474,11 +475,20 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
                   <Controller
                     name="img_url"
                     control={control}
-                    render={({ field: { ref, ...rest } }: FieldValues) => {
+                    render={({
+                      field: { ref, value, ...rest },
+                    }: FieldValues) => {
                       return (
                         <CustomInput
                           {...rest}
                           required={false}
+                          startAdornment={
+                            <Avatar
+                              src={value}
+                              sx={{ width: 30, height: 30, borderRadius: 1 }}
+                            />
+                          }
+                          value={value}
                           inputRef={ref}
                           fullWidth={true}
                           labelPrimary="Зураг холбоос"

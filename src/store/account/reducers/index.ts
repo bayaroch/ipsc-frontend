@@ -27,6 +27,10 @@ export default createReducer(initialState, (builder) => {
     state.memberList = _.map(_.cloneDeep(state.memberList), (m) => {
       return m.id === action.payload.data.id ? action.payload.data : m
     })
+    state.profile =
+      state.profile !== undefined && state.profile.id === action.payload.data.id
+        ? action.payload.data
+        : state.profile
   })
   builder.addCase(actions.profile.fulfilled, (state, action) => {
     state.profile = action.payload.data

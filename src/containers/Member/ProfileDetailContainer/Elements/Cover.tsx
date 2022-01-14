@@ -19,7 +19,7 @@ const Cover: React.FC<CoverProps> = ({ userDetail }) => {
         overflow: 'hidden',
         borderRadius: 1,
         position: 'relative',
-        minHeight: '300px',
+        paddingTop: '100%',
       }}
     >
       <Box
@@ -31,15 +31,30 @@ const Cover: React.FC<CoverProps> = ({ userDetail }) => {
           left: 0,
           right: 0,
           bottom: 0,
-          background: 'url("/images/intro/slide5.jpg") no-repeat top center',
-          backgroundSize: 'cover',
+          backgroundColor: '#f2f2f2',
+          opacity: 1,
+          // filter: 'grayscale(90%)',
         }}
       >
-        {/* <img
-          src="/images/og-image.jpg"
-          style={{ objectFit: 'cover', width: '100%', height: '100%' }}
-          alt="aaa"
-        /> */}
+        <object
+          style={{
+            objectFit: 'cover',
+            width: '100%',
+            height: '100%',
+            mixBlendMode: 'multiply',
+            opacity: 1,
+          }}
+        >
+          <img
+            src={img_url}
+            style={{
+              objectFit: 'cover',
+              width: '100%',
+              height: '100%',
+              opacity: 1,
+            }}
+          />
+        </object>
       </Box>
       <Box
         sx={{
@@ -51,19 +66,19 @@ const Cover: React.FC<CoverProps> = ({ userDetail }) => {
           bottom: 0,
           zIndex: 1,
           backgroundImage:
-            'linear-gradient(180deg,rgba(0,0,0,.01) 0,rgba(0,0,0,.65))',
+            'linear-gradient(180deg,rgba(0,0,0,.01) 0,rgba(0,0,0,.75))',
           padding: {
-            xl: '18px 20px',
-            lg: '10px',
-            md: '10px',
-            sm: '10px',
-            xs: '10px',
+            xl: '22px 20px',
+            lg: '12px',
+            md: '12px',
+            sm: '12px',
+            xs: '12px',
           },
         }}
       >
         <Box mr={3}>
           <CustomAvatar
-            sx={{ width: 56, height: 56 }}
+            sx={{ width: 56, height: 56, boxShadow: 2 }}
             src={img_url}
             alt={firstname}
           />

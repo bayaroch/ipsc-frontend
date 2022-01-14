@@ -7,6 +7,7 @@ import moment from 'moment'
 import { Colors } from '@theme/colors'
 import BadgeChips from '@components/member/BadgeChips'
 import { SupportState } from '@store/support/reducers'
+import _ from 'lodash'
 
 interface OtherInfoProps {
   userDetail: MemberItem
@@ -58,7 +59,7 @@ const OtherInfo: React.FC<OtherInfoProps> = ({ userDetail, support }) => {
   const { birthday, email } = userDetail
   return (
     <Paper sx={{ padding: 2 }}>
-      {userDetail && support ? (
+      {userDetail && support && !_.isEmpty(userDetail.mo_badge) ? (
         <InfoItem
           title=""
           icon={<LocalPolice />}

@@ -32,7 +32,11 @@ const BadgeChips: React.FC<BadgeChipsProps> = ({
   const badge = mo_badge ? mo_badge.split(',') : []
 
   const renderRow = (item: string) => {
-    const { shorthand } = _.filter(badgesData, { id: Number(item) })[0]
+    const shorthand = _.get(
+      _.filter(badgesData, { id: Number(item) })[0],
+      'shorthand',
+      ''
+    )
     return (
       <Item
         key={item}

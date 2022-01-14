@@ -1,5 +1,9 @@
 import { Box, Paper, Tabs, Tab, BoxProps } from '@mui/material'
+import { MemberItem, UserCreateParams } from '@services/account.services'
+import { UserData } from '@services/auth.services'
+import { SupportState } from '@store/support/reducers'
 import { useState } from 'react'
+import EditInfo from './EditInfo'
 
 interface TabPanelProps extends BoxProps {
   value: number
@@ -27,7 +31,19 @@ function a11yProps(index: number) {
   }
 }
 
-const UserContent: React.FC = () => {
+interface UserContentProps {
+  current: UserData
+  detail: MemberItem
+  support: SupportState
+  onUpdate: (data: UserCreateParams) => void
+}
+
+const UserContent: React.FC<UserContentProps> = ({
+  current,
+  detail,
+  support,
+  onUpdate,
+}) => {
   const [value, setValue] = useState<number>(0)
 
   const handleChange = (_event: React.SyntheticEvent, newValue: any) => {
@@ -43,7 +59,9 @@ const UserContent: React.FC = () => {
           aria-label="basic tabs example"
         >
           <Tab label="Үзүүлэлт" {...a11yProps(0)} />
-          <Tab label="Тэмцээнүүд" {...a11yProps(1)} />
+          {current.id === detail.id ? (
+            <Tab label="Профайл шинэчлэх" {...a11yProps(1)} />
+          ) : null}
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
@@ -56,9 +74,18 @@ const UserContent: React.FC = () => {
           No Data
         </Box>
       </TabPanel>
-      <TabPanel value={value} index={1}>
-        No Data
-      </TabPanel>
+      {current.id === detail.id ? (
+        <TabPanel value={value} index={1}>
+          <EditInfo
+            userDetail={detail}
+            current={current}
+            support={support}
+            onUpdate={onUpdate}
+          />
+        </TabPanel>
+      ) : (
+        <></>
+      )}
     </Paper>
   )
 }
