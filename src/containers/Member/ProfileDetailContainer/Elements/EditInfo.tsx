@@ -72,7 +72,7 @@ const EditInfo: React.FC<EditInfoProps> = ({
   return (
     <Box>
       <Alert severity="info">
-        Бусад мэлээллийн зөвхөн Арслантай холгогдож шинэчлүүлэх боломжтой
+        Бусад мэлээллийг зөвхөн Арслантай холгогдож шинэчлүүлэх боломжтой
       </Alert>
       <form id="user-update" onSubmit={handleSubmit(onSubmit)}>
         <Box mt={3}>
