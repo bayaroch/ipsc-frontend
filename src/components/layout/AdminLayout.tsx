@@ -41,7 +41,7 @@ const AdminLayout: React.FC<LayoutProps> = ({
   return (
     <div>
       <div className={`main-content-wrap ${openClass}`}>
-        <AdminSideBar />
+        <AdminSideBar currentUser={currentUser} />
         <LargeSideBar />
         <div className="page-wrapper">
           <div className="main-content">

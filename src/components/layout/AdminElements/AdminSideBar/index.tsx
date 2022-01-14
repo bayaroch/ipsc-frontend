@@ -16,8 +16,13 @@ import {
 import { logOut } from '@store/auth/actions'
 import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
+import { UserData } from '@services/auth.services'
 
-const AdminSideBar: React.FC = () => {
+interface AdminSideBarProps {
+  currentUser: UserData
+}
+
+const AdminSideBar: React.FC<AdminSideBarProps> = ({ currentUser }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const [userEl, setUserEl] = React.useState<null | HTMLElement>(null)
 
@@ -361,14 +366,14 @@ const AdminSideBar: React.FC = () => {
             >
               Хэрэглэгчийн цэс
             </Box>
-            <MenuItem onClick={handleClose}>
-              <Link href={`/member/profile/${id}`}>
+            <Link href={`/member/profile/${currentUser?.id}`} passHref>
+              <MenuItem onClick={handleClose}>
                 <ListItemIcon sx={{ minWidth: 26 }}>
                   <Person fontSize="small" />
                 </ListItemIcon>
                 Профайл
-              </Link>
-            </MenuItem>
+              </MenuItem>
+            </Link>
             <MenuItem onClick={handleLogOut}>
               <ListItemIcon sx={{ minWidth: 26 }}>
                 <ExitToApp fontSize="small" />
