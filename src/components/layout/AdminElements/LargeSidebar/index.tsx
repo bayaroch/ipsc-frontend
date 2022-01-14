@@ -1,14 +1,24 @@
 import React from 'react'
-import { Box, ListItemIcon, ListItem, Typography } from '@mui/material/'
+import {
+  Box,
+  ListItemIcon,
+  ListItem,
+  Typography,
+  IconButton,
+} from '@mui/material/'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { Dashboard } from '@mui/icons-material'
+import { Close, Dashboard } from '@mui/icons-material'
 import { ADMIN_MENU_LARGE, MEMBER_MENU_LARGE } from '@constants/admin.constants'
 import { memberType } from '@store/auth/selectors'
 import { useSelector } from 'react-redux'
 import { USER_TYPE } from '@constants/user.constants'
 
-const LargeSideBar: React.FC = () => {
+interface LargeSideBarProps {
+  onCloseClick?: () => void
+}
+
+const LargeSideBar: React.FC<LargeSideBarProps> = ({ onCloseClick }) => {
   const router = useRouter()
   const userType = useSelector(memberType)
 
@@ -50,6 +60,24 @@ const LargeSideBar: React.FC = () => {
         }}
         className={`navigation-content`}
       >
+        <Box
+          sx={{
+            display: { sm: 'block', xs: 'block', md: 'none', lg: 'none' },
+            position: 'absolute',
+            right: 5,
+            top: 5,
+            zIndex: 100,
+          }}
+        >
+          <IconButton
+            onClick={(e) => {
+              e.stopPropagation()
+              onCloseClick && onCloseClick()
+            }}
+          >
+            <Close />
+          </IconButton>
+        </Box>
         <Box sx={{ position: 'relative', margin: '20px 15px' }}>
           <Link href={'/admin'} passHref>
             <ListItem

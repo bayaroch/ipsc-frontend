@@ -37,11 +37,13 @@ const AdminLayout: React.FC<LayoutProps> = ({
     }
   }, [isMobile])
 
+  const onCloseClick = () => setOpen(false)
+
   return (
     <div>
       <div className={`main-content-wrap ${openClass}`}>
         <AdminSideBar currentUser={currentUser} />
-        <LargeSideBar />
+        <LargeSideBar onCloseClick={onCloseClick} />
         <div className="page-wrapper">
           <div className="main-content">
             <AdminHeader
