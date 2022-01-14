@@ -31,30 +31,40 @@ const Cover: React.FC<CoverProps> = ({ userDetail }) => {
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundColor: '#f2f2f2',
-          opacity: 1,
-          // filter: 'grayscale(90%)',
+          background: `url("${img_url}") no-repeat top center`,
+          backgroundSize: 'cover',
+          zIndex: 1,
+          // '&:before': {
+          //   backgroundColor: Colors.primary,
+          //   content: "''",
+          //   display: 'block',
+          //   width: '100%',
+          //   height: '100%',
+          //   mixBlendMode: 'darken',p
+          //   position: 'absolute',
+          //   top: '0',
+          //   left: '0',
+          //   zIndex: 2,
+          // },
+          // '&:after': {
+          //   backgroundColor: Colors.secondary,
+          //   content: "''",
+          //   display: 'block',
+          //   width: '100%',
+          //   height: '100%',
+          //   mixBlendMode: 'lighten',
+          //   position: 'absolute',
+          //   top: '0',
+          //   left: '0',
+          //   zIndex: 3,
+          // },
         }}
       >
-        <object
-          style={{
-            objectFit: 'cover',
-            width: '100%',
-            height: '100%',
-            mixBlendMode: 'multiply',
-            opacity: 1,
-          }}
-        >
-          <img
-            src={img_url}
-            style={{
-              objectFit: 'cover',
-              width: '100%',
-              height: '100%',
-              opacity: 1,
-            }}
-          />
-        </object>
+        {/* <img
+          src="/images/og-image.jpg"
+          style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+          alt="aaa"
+        /> */}
       </Box>
       <Box
         sx={{
@@ -66,13 +76,13 @@ const Cover: React.FC<CoverProps> = ({ userDetail }) => {
           bottom: 0,
           zIndex: 1,
           backgroundImage:
-            'linear-gradient(180deg,rgba(0,0,0,.01) 0,rgba(0,0,0,.75))',
+            'linear-gradient(180deg,rgba(0,0,0,.01) 0,rgba(0,0,0,.65))',
           padding: {
-            xl: '22px 20px',
-            lg: '12px',
-            md: '12px',
-            sm: '12px',
-            xs: '12px',
+            xl: '18px 20px',
+            lg: '10px',
+            md: '10px',
+            sm: '10px',
+            xs: '10px',
           },
         }}
       >
