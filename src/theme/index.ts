@@ -149,11 +149,7 @@ export default createTheme({
     },
     MuiDialogContent: {
       styleOverrides: {
-        root: {
-          '&:first-child': {
-            paddingTop: 0,
-          },
-        },
+        root: {},
       },
     },
   },

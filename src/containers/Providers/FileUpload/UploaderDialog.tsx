@@ -8,11 +8,14 @@ import {
   Button,
   Container,
   Box,
+  CircularProgress,
+  Alert,
 } from '@mui/material/'
 import { UploadOptions } from './types'
 import { useDropzone } from 'react-dropzone'
 import { image } from '@utils/helpers/image.helper'
 import { useS3Upload } from 'next-s3-upload'
+import { Colors } from '@theme/colors'
 
 interface UploadDialogProps {
   open: boolean
@@ -36,10 +39,14 @@ const UploadDialog = ({
   const dialogOpen = rest.open
   const { title, dialogProps } = options
   const [file, setFile] = useState<ExtendedFile>()
+  const [loading, setLoading] = useState<boolean>(false)
+  const [error, setError] = useState<string | null>(null)
+  const cloudfront = process.env.NEXT_PUBLIC_CLOUD_FRONT_URL
 
   const { uploadToS3 } = useS3Upload()
 
   const handleResize = async (file: File) => {
+    setError(null)
     try {
       const resized: File = await image.resizeFile(file)
       setFile(
@@ -47,24 +54,35 @@ const UploadDialog = ({
           preview: URL.createObjectURL(resized),
         })
       )
-    } catch (err) {}
+    } catch (err) {
+      setError('Зураг шахах үед алдаа гарлаа')
+    }
   }
 
   const handleUpload = async () => {
-    if (file)
+    if (file) {
+      setLoading(true)
       try {
-        const { url } = await uploadToS3(file)
-        onConfirm(url)
+        const { url, key } = await uploadToS3(file)
+        let absoluteUrl
+        if (cloudfront) {
+          absoluteUrl = `${cloudfront}${key}`
+        } else {
+          absoluteUrl = url
+        }
+        onConfirm(absoluteUrl)
       } catch (err) {
         // eslint-disable-next-line no-console
-        console.log('Something went wrong', err)
+        setError('Зураг сервер лүү хуулж чадсангүй')
       }
+      setLoading(false)
+    }
   }
 
   const { getRootProps, getInputProps, open } = useDropzone({
     noClick: true,
     noKeyboard: true,
-    accept: 'image/*',
+    accept: 'image/jpg, image/png',
     maxFiles: 1,
     maxSize: 2000000,
     onDrop: (acceptedFiles) => {
@@ -106,7 +124,15 @@ const UploadDialog = ({
   }
 
   return (
-    <Dialog fullWidth {...dialogProps} open={dialogOpen} onClose={onClose}>
+    <Dialog
+      fullWidth
+      {...dialogProps}
+      open={dialogOpen}
+      onClose={(e: any, r) => {
+        onClose(e, r)
+        setError(null)
+      }}
+    >
       <Container maxWidth={false}>
         {title && (
           <DialogTitle sx={{ padding: 0, mt: 2, mb: 2, textAlign: 'center' }}>
@@ -148,6 +174,11 @@ const UploadDialog = ({
               Сонгох
             </Button>
           </Box>
+          {error && (
+            <Box mt={1}>
+              <Alert severity="warning">Алдаа гарлаа - {error}</Alert>
+            </Box>
+          )}
         </DialogContent>
         <DialogActions
           sx={{ pt: 2, pb: 2, pl: 0, pr: 0, justifyContent: 'space-between' }}
@@ -155,13 +186,34 @@ const UploadDialog = ({
           <Button variant="outlined" onClick={onCancel}>
             Цуцлах
           </Button>
-          <Button variant="contained" onClick={handleUpload}>
-            Хуулах
+          <Button
+            variant="contained"
+            sx={{ minWidth: 100 }}
+            onClick={handleUpload}
+            disabled={loading}
+          >
+            <Box
+              sx={{
+                height: 22,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              {loading ? (
+                <CircularProgress
+                  style={{
+                    height: 14,
+                    width: 14,
+                    color: Colors.white,
+                  }}
+                />
+              ) : (
+                ' Хуулах'
+              )}
+            </Box>
           </Button>
         </DialogActions>
-        {/* <Typography variant="body1" component="p">
-          <WarningRounded fontSize="small" />
-        </Typography> */}
       </Container>
     </Dialog>
   )
