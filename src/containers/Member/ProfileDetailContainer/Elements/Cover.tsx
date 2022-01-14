@@ -31,41 +31,11 @@ const Cover: React.FC<CoverProps> = ({ userDetail }) => {
           left: 0,
           right: 0,
           bottom: 0,
-          background: `url("${img_url}") no-repeat top center`,
+          background: `url("${img_url}") no-repeat top center #2b50ed`,
           backgroundSize: 'cover',
           zIndex: 1,
-          // '&:before': {
-          //   backgroundColor: Colors.primary,
-          //   content: "''",
-          //   display: 'block',
-          //   width: '100%',
-          //   height: '100%',
-          //   mixBlendMode: 'darken',p
-          //   position: 'absolute',
-          //   top: '0',
-          //   left: '0',
-          //   zIndex: 2,
-          // },
-          // '&:after': {
-          //   backgroundColor: Colors.secondary,
-          //   content: "''",
-          //   display: 'block',
-          //   width: '100%',
-          //   height: '100%',
-          //   mixBlendMode: 'lighten',
-          //   position: 'absolute',
-          //   top: '0',
-          //   left: '0',
-          //   zIndex: 3,
-          // },
         }}
-      >
-        {/* <img
-          src="/images/og-image.jpg"
-          style={{ objectFit: 'cover', width: '100%', height: '100%' }}
-          alt="aaa"
-        /> */}
-      </Box>
+      ></Box>
       <Box
         sx={{
           display: 'flex',

@@ -12,6 +12,7 @@ import About from './About'
 import Info from './Info'
 import TimeBox from './TimeBox'
 import Participants from './Participants'
+import DownloadCSV from './DownloadCSV'
 
 interface MatchDetailProps {
   id: string
@@ -232,6 +233,12 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
                     </Box>
                     <Box mb={6}>
                       <Participants detail={detail} />
+                    </Box>
+
+                    <Box mb={6}>
+                      {userData && userData.mo_badge ? (
+                        <DownloadCSV id={id} />
+                      ) : null}
                     </Box>
                   </Grid>
                   <Grid item xs={12} lg={8}>

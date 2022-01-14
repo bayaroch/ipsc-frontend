@@ -362,10 +362,12 @@ const AdminSideBar: React.FC = () => {
               Хэрэглэгчийн цэс
             </Box>
             <MenuItem onClick={handleClose}>
-              <ListItemIcon sx={{ minWidth: 26 }}>
-                <Person fontSize="small" />
-              </ListItemIcon>
-              Профайл
+              <Link href={`/member/profile/${id}`}>
+                <ListItemIcon sx={{ minWidth: 26 }}>
+                  <Person fontSize="small" />
+                </ListItemIcon>
+                Профайл
+              </Link>
             </MenuItem>
             <MenuItem onClick={handleLogOut}>
               <ListItemIcon sx={{ minWidth: 26 }}>

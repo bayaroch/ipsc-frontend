@@ -24,7 +24,7 @@ export type UserData = {
   gender?: number
   enabled?: boolean
   class_id?: number
-  mo_badge?: null | number
+  mo_badge?: null | string
   img_url?: string
 }
 

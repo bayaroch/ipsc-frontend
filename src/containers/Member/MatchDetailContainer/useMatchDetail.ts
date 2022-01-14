@@ -20,6 +20,7 @@ import { registerMatch } from '@store/match/selectors'
 import _ from 'lodash'
 import { helper } from '@utils/helpers/common.helper'
 import { MATCH_PROGRESS_STATUS } from '@constants/common.constants'
+import { initProfile } from '@store/account/actions'
 
 const { selectors, actions } = searchStore
 const getDetailMeta = createMetaSelector(actions.getMatch)
@@ -38,9 +39,6 @@ const useMatchDetail = (): {
   progress: { id: MATCH_PROGRESS_STATUS; value: string }
   registerState: RegisterMatchData
 } => {
-  useEffect(() => {
-    dispatch(actions.clearMatchData())
-  }, [])
   const dispatch = useDispatch()
   const meta = useSelector(getDetailMeta)
   const detail = useSelector(selectors.matchDetail)
@@ -58,6 +56,14 @@ const useMatchDetail = (): {
   const support = useSelector(SP)
   const registerState = useSelector(registerMatch)
   const progress = helper.matchStatusTitle(detail)
+
+  useEffect(() => {
+    dispatch(actions.clearMatchData())
+  }, [])
+
+  useEffect(() => {
+    if (userData && userData.id) dispatch(initProfile(userData.id))
+  }, [])
 
   return {
     meta,

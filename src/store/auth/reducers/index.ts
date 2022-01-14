@@ -1,6 +1,9 @@
 import { AuthState } from '../actions/types'
 import { createReducer } from '@reduxjs/toolkit'
 import * as actions from '../actions'
+import { profile } from '@store/account/actions'
+import { UserData } from '@services/auth.services'
+import { MemberItem } from '@services/account.services'
 
 export const initialState: AuthState = {
   authenticated: false,
@@ -20,4 +23,21 @@ export default createReducer(initialState, (builder) => {
     state.token = undefined
     state.user = undefined
   })
+  builder.addCase(profile.fulfilled, (state, action) => {
+    state.user = updateCurrentUser(state.user, action.payload.data)
+  })
 })
+
+const updateCurrentUser = (
+  auth: UserData | undefined,
+  profile: MemberItem
+): UserData | undefined => {
+  if (auth !== undefined && auth.id === profile.id) {
+    return {
+      ...auth,
+      ...profile,
+    }
+  } else {
+    return auth
+  }
+}

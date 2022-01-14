@@ -179,4 +179,9 @@ export const matchServices = {
     )
     return data
   },
+
+  csvDownload: async (id: string): Promise<any> => {
+    const res = await api.get<any>(URI.EXPORT.replace(/:id/gi, id))
+    return res
+  },
 }

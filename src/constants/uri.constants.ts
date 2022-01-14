@@ -12,4 +12,5 @@ export const URI = {
   SQUADS: API_ROOT + 'squads',
   SQUADSJOIN: API_ROOT + 'squad_members',
   ACCOUNT: API_ROOT + 'users',
+  EXPORT: API_ROOT + 'practiscores/:id',
 }
