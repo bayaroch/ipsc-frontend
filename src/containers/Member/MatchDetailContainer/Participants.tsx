@@ -24,7 +24,7 @@ const Participants: React.FC<Participants> = ({ detail, openList }) => {
         title="Оролцогчид"
       ></CardHeader>
       <CardContent sx={{ display: 'flex', alignItems: 'flex-start' }}>
-        <AvatarGroup max={10} onClick={() => openList && openList()}>
+        <AvatarGroup max={8} onClick={() => openList && openList()}>
           {detail &&
             detail.participants.map((item, index) => {
               return (
