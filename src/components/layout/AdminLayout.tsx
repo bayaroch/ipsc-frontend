@@ -4,7 +4,6 @@ import AdminSideBar from '@components/layout/AdminElements/AdminSideBar'
 import LargeSideBar from '@components/layout/AdminElements/LargeSidebar'
 import useCommonData from '@utils/hooks/useCommonData'
 import withAuth from '@containers/withAuth'
-import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { UserData } from '@services/auth.services'
 

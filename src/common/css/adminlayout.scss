@@ -69,11 +69,14 @@
 
   .main-content-wrap header {
     position: fixed !important;
-    width: '100%';
-    z-index: 300 !important;
-    right: 0;
+    width: 100%;
     left: 0;
-    padding-left: 0;
-    top: 0;
+    right: 0;
+  }
+}
+
+@media screen and (min-width: 720px) and (max-width: 1024px) {
+  .main-content-wrap header {
+    padding-left: 70px !important;
   }
 }

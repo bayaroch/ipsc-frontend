@@ -16,7 +16,7 @@ const ContentBox: React.FC<ContentBoxProps> = ({
       elevation={0}
       sx={{
         padding: {
-          xl: '3rem',
+          xl: '2rem',
           lg: '80px 2rem',
           sm: '65px 1rem',
           xs: '65px 1rem',

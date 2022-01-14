@@ -31,20 +31,20 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({
         '& .MuiAppBar-root': {
           zIndex: 80,
           background: Colors.white,
-          paddingLeft: { xs: 0, sm: 0, md: '70px', lg: '70px', xl: '70px' },
+          paddingLeft: 0,
           borderBottom: '1px solid #eee',
+          '@media screen and (min-width:720px) and (max-width:1024 px) ': {
+            '& .MuiAppBar-root': {
+              paddingLeft: '70px !important',
+            },
+          },
         },
         '& .MuiToolbar-regular': {
           minHeight: 50,
         },
       }}
     >
-      <AppBar
-        sx={open ? {} : {}}
-        elevation={0}
-        position="relative"
-        color="default"
-      >
+      <AppBar elevation={0} position="relative" color="default">
         <Toolbar>
           <IconButton
             disableRipple
