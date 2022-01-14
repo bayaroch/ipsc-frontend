@@ -6,6 +6,7 @@ import CustomAvatar from '@components/common/Avatar'
 import _ from 'lodash'
 import { helper } from '@utils/helpers/common.helper'
 import { SupportState } from '@store/support/reducers'
+import BadgeChips from '../BadgeChips'
 
 interface MemberCardProps {
   item: MemberItem
@@ -28,7 +29,7 @@ const MemberCard: React.FC<MemberCardProps> = ({ item, onClick, support }) => {
           boxShadow:
             '0px 1px 3px rgba(0, 0, 0, 0.2), 0px 2px 1px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14)',
           borderRadius: 1,
-          padding: '34px 16px 20px 16px',
+          padding: '34px 16px 10px 16px',
           position: 'relative',
         }}
       >
@@ -68,7 +69,6 @@ const MemberCard: React.FC<MemberCardProps> = ({ item, onClick, support }) => {
               }}
             />
           ) : null}
-
           <Box component="p" color="text.secondary" fontSize={12}>
             {_.get(
               helper.classTitleHelper(
@@ -86,53 +86,15 @@ const MemberCard: React.FC<MemberCardProps> = ({ item, onClick, support }) => {
               })}
           </Box>
         </Box>
+        <Box mt={1} height={20}>
+          <BadgeChips
+            data={item}
+            badgesData={support && support.badges ? support.badges : []}
+          />
+        </Box>
       </Box>
     </Box>
   )
 }
-
-// const useStyles = makeStyles((theme) => ({
-//   agentItemsRoot: {
-//     paddingLeft: 10,
-//     paddingRight: 10,
-//   },
-//   code: {
-//     fontSize: 11,
-//     color: '#999',
-//   },
-//   cardRoot: {
-//     width: '100%',
-//     margin: 2,
-//     marginTop: 28,
-//     backgroundColor: theme.palette.background.paper,
-//     boxShadow:
-//       '0px 1px 3px rgba(0, 0, 0, 0.2), 0px 2px 1px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14)',
-//     borderRadius: 6,
-//     padding: '34px 16px 20px 16px',
-//     position: 'relative',
-//   },
-//   titleRoot: {
-//     color: theme.palette.common.black,
-//     letterSpacing: 0.25,
-//     marginBottom: 6,
-//     fontSize: 13,
-//   },
-//   starIcon: {
-//     color: theme.palette.warning.main,
-//     fontSize: 20,
-//     marginRight: 3,
-//   },
-//   avatarView: {
-//     position: 'absolute',
-//     left: 16,
-//     top: -28,
-//     zIndex: 1,
-//   },
-//   avatar: {
-//     width: 56,
-//     height: 56,
-//     border: `solid 1px ${theme.palette.grey[400]}`,
-//   },
-// }))
 
 export default MemberCard

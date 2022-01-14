@@ -13,6 +13,7 @@ const Item = styled(Chip)(() => ({
   fontSize: 11,
   padding: '3px 6px',
   height: 'auto',
+  fontWeight: 600,
 }))
 
 interface BadgeChipsProps {
