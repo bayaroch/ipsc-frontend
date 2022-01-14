@@ -13,6 +13,7 @@ import Info from './Info'
 import TimeBox from './TimeBox'
 import Participants from './Participants'
 import DownloadCSV from './DownloadCSV'
+import { USER_TYPE } from '@constants/user.constants'
 
 interface MatchDetailProps {
   id: string
@@ -193,13 +194,18 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
               width: '100%',
               position: 'relative',
               zIndex: 100,
-              height: 120,
               backgroundColor: '#eee',
               background: "url('/images/placeholder.png')",
               backgroundSize: 'cover',
               justifyContent: 'center',
               alignItems: 'center',
               display: 'flex',
+              padding: {
+                xl: '0',
+                lg: '20px 0 20px 0',
+                sm: '70px 0 10px 0',
+                xs: '70px 0 10px 0',
+              },
               '&:after': {
                 top: 0,
                 left: 0,
@@ -214,7 +220,12 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
           >
             <Typography
               variant="h2"
-              sx={{ color: Colors.white, position: 'relative', zIndex: 100 }}
+              sx={{
+                color: Colors.white,
+                position: 'relative',
+                zIndex: 100,
+                padding: '30px 0',
+              }}
               align="center"
             >
               {detail.name}
@@ -236,7 +247,9 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
                     </Box>
 
                     <Box mb={6}>
-                      {userData && userData.mo_badge ? (
+                      {(userData && userData.mo_badge) ||
+                      (userData &&
+                        userData.usertype === USER_TYPE.USER_ADMIN) ? (
                         <DownloadCSV id={id} />
                       ) : null}
                     </Box>

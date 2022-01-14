@@ -29,7 +29,7 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({
         background: '#fff',
         flexGrow: 1,
         '& .MuiAppBar-root': {
-          zIndex: 80,
+          zIndex: 900,
           background: Colors.white,
           paddingLeft: 0,
           borderBottom: '1px solid #eee',
