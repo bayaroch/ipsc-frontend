@@ -17,6 +17,7 @@ const JuniorContainer: React.FC = () => {
               paddingRight: { sm: 0, lg: '50px', md: '50px' },
               paddingBottom: '100px',
               overflow: 'hidden',
+              display: 'none',
             }}
           >
             <p>

@@ -73,6 +73,7 @@
     "eslint": "7.19.0",
     "eslint-config-prettier": "7.2.0",
     "eslint-plugin-react": "7.19.0",
+    "html-react-parser": "^1.4.5",
     "lodash": "^4.17.20",
     "material-ui-confirm": "^3.0.2",
     "moment": "^2.29.0",
