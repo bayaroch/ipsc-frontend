@@ -1,7 +1,5 @@
 import React from 'react'
 import { useBottomScrollListener } from 'react-bottom-scroll-listener'
-
-import { Box } from '@mui/material/'
 import { CustomListProps } from '.'
 
 const getEmptyContainer = (ListEmptyComponent: JSX.Element | undefined) => {
@@ -24,17 +22,16 @@ const ListView: React.FC<CustomListProps> = ({
   data,
   ListFooterComponent,
   ListEmptyComponent,
-  ...rest
 }) => {
   onEndReached && useBottomScrollListener(onEndReached)
 
   return (
-    <Box {...rest}>
+    <>
       {data.length > 0
         ? data.map((item, index) => renderRow(item, index))
         : getEmptyContainer(ListEmptyComponent)}
       {getFooterContainer(ListFooterComponent)}
-    </Box>
+    </>
   )
 }
 

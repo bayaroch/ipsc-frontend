@@ -3,12 +3,14 @@ import { Box, Paper, Typography, alpha } from '@mui/material/'
 import { MemberItem } from '@services/account.services'
 import { Colors } from '@theme/colors'
 import CustomAvatar from '@components/common/Avatar'
+import { SupportState } from '@store/support/reducers'
 
-interface GeneralInfoProps {
+interface CoverProps {
   userDetail: MemberItem
+  support?: SupportState
 }
 
-const Cover: React.FC<GeneralInfoProps> = ({ userDetail }) => {
+const Cover: React.FC<CoverProps> = ({ userDetail }) => {
   const { firstname, lastname, img_url, usercode } = userDetail
 
   return (

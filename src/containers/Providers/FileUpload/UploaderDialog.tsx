@@ -38,7 +38,7 @@ const UploadDialog = ({
 }: UploadDialogProps) => {
   const dialogOpen = rest.open
   const { title, dialogProps } = options
-  const [file, setFile] = useState<ExtendedFile>()
+  const [file, setFile] = useState<ExtendedFile | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
   const cloudfront = process.env.NEXT_PUBLIC_CLOUD_FRONT_URL
@@ -66,7 +66,7 @@ const UploadDialog = ({
         const { url, key } = await uploadToS3(file)
         let absoluteUrl
         if (cloudfront) {
-          absoluteUrl = `${cloudfront}${key}`
+          absoluteUrl = `${cloudfront}/${key}`
         } else {
           absoluteUrl = url
         }
@@ -131,6 +131,7 @@ const UploadDialog = ({
       onClose={(e: any, r) => {
         onClose(e, r)
         setError(null)
+        setFile(null)
       }}
     >
       <Container maxWidth={false}>

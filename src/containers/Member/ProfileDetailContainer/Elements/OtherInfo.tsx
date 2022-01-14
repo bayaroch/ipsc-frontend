@@ -1,13 +1,16 @@
 import React, { ReactElement } from 'react'
 import { Box, Typography, Paper, alpha } from '@mui/material'
-import { EmailOutlined, CakeOutlined } from '@mui/icons-material'
+import { EmailOutlined, CakeOutlined, LocalPolice } from '@mui/icons-material'
 import { MemberItem } from '@services/account.services'
 import { blue } from '@mui/material/colors'
 import moment from 'moment'
 import { Colors } from '@theme/colors'
+import BadgeChips from '@components/member/BadgeChips'
+import { SupportState } from '@store/support/reducers'
 
 interface OtherInfoProps {
   userDetail: MemberItem
+  support?: SupportState
 }
 
 interface InfoItemProps {
@@ -51,10 +54,24 @@ const InfoItem = ({ title, value, icon }: InfoItemProps) => (
   </Box>
 )
 
-const OtherInfo: React.FC<OtherInfoProps> = ({ userDetail }) => {
+const OtherInfo: React.FC<OtherInfoProps> = ({ userDetail, support }) => {
   const { birthday, email } = userDetail
   return (
     <Paper sx={{ padding: 2 }}>
+      {userDetail && support ? (
+        <InfoItem
+          title=""
+          icon={<LocalPolice />}
+          value={
+            <BadgeChips
+              badgesData={support && support.badges ? support.badges : []}
+              data={userDetail}
+            />
+          }
+        />
+      ) : (
+        ''
+      )}
       <InfoItem
         title="Имэйл"
         icon={<EmailOutlined />}

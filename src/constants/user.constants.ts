@@ -1,3 +1,5 @@
+import { red, orange, blue, purple, green } from '@mui/material/colors'
+
 export enum USER_TYPE {
   USER_ADMIN = 9,
   USER_REGULAR = 1,
@@ -65,3 +67,15 @@ export const CAT_DATA = [
     name: 'Lady',
   },
 ]
+
+interface IObjectKeys {
+  [key: number]: string
+}
+
+export const badgeColor: IObjectKeys = {
+  1: blue[500],
+  2: purple[500],
+  3: green[500],
+  4: orange[500],
+  5: red[500],
+}

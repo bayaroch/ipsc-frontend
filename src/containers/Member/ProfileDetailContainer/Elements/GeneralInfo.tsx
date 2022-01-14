@@ -15,13 +15,13 @@ const GeneralInfo: React.FC<GeneralInfoProps> = ({ userDetail, support }) => {
   return (
     <Box>
       <Box mb={4}>
-        <Cover userDetail={userDetail} />
+        <Cover userDetail={userDetail} support={support} />
       </Box>
       <Box mb={2}>
         <MemberInfo support={support} userDetail={userDetail} />
       </Box>
       <Box>
-        <OtherInfo userDetail={userDetail} />
+        <OtherInfo support={support} userDetail={userDetail} />
       </Box>
     </Box>
   )
