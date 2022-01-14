@@ -20,7 +20,7 @@ const LargeSideBar: React.FC = () => {
         position: 'fixed',
         top: '0',
         bottom: '0',
-        paddingLeft: '70px',
+        paddingLeft: { xs: 0, sm: 0, md: '70px', lg: '70px', xl: '70px' },
         WebkitBoxSizing: 'border-box',
         boxSizing: 'border-box',
         width: '320px',

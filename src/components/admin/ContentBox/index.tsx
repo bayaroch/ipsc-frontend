@@ -15,7 +15,12 @@ const ContentBox: React.FC<ContentBoxProps> = ({
     <Paper
       elevation={0}
       sx={{
-        padding: { xl: '4rem', lg: '1rem', sm: '1rem' },
+        padding: {
+          xl: '3rem',
+          lg: '80px 2rem',
+          sm: '65px 1rem',
+          xs: '65px 1rem',
+        },
         margin: '0 auto',
         maxWidth: fullWidth ? '100%' : '800px',
       }}

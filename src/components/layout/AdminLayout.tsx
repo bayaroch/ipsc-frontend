@@ -20,8 +20,8 @@ const AdminLayout: React.FC<LayoutProps> = ({
   title,
 }) => {
   const [open, letOpen] = useState(false)
-  const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
+  // const theme = useTheme()
+  const isMobile = useMediaQuery('(max-width:1024px)')
 
   const openClass = open === true ? 'sidenav-open' : ''
 
@@ -60,7 +60,7 @@ const AdminLayout: React.FC<LayoutProps> = ({
 }
 
 AdminLayout.defaultProps = {
-  title: 'IPSC admin',
+  title: 'IPSC Acton Air',
 }
 
 export default withAuth(AdminLayout)

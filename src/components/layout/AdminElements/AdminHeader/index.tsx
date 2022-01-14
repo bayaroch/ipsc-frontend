@@ -31,7 +31,7 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({
         '& .MuiAppBar-root': {
           zIndex: 80,
           background: Colors.white,
-          paddingLeft: 0,
+          paddingLeft: { xs: 0, sm: 0, md: '70px', lg: '70px', xl: '70px' },
           borderBottom: '1px solid #eee',
         },
         '& .MuiToolbar-regular': {
