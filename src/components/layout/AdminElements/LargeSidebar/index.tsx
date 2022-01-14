@@ -46,8 +46,6 @@ const LargeSideBar: React.FC<LargeSideBarProps> = ({ onCloseClick }) => {
         willChange: 'auto',
         visibility: 'hidden',
         opacity: 0,
-        WebkitTransition: '0.3s',
-        transition: '0.3s',
       }}
     >
       <Box
@@ -62,7 +60,7 @@ const LargeSideBar: React.FC<LargeSideBarProps> = ({ onCloseClick }) => {
       >
         <Box
           sx={{
-            display: { sm: 'block', xs: 'block', md: 'none', lg: 'none' },
+            display: { sm: 'block', xs: 'block', md: 'block', lg: 'none' },
             position: 'absolute',
             right: 5,
             top: 5,
