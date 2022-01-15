@@ -47,7 +47,7 @@ export const MATCH_PROGRESS_STATUS_TITLE = [
   },
   {
     id: MATCH_PROGRESS_STATUS.REGISTERING,
-    value: 'Бүртгэл явагдаж байна',
+    value: 'Бүртгэл эхэлсэн',
   },
   {
     id: MATCH_PROGRESS_STATUS.REGISTERING_CLOSED,

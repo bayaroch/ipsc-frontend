@@ -20,7 +20,7 @@ const AdminLayout: React.FC<LayoutProps> = ({
 }) => {
   const [open, letOpen] = useState(false)
   // const theme = useTheme()
-  const isMobile = useMediaQuery('(max-width:1024px)')
+  const isMobile = useMediaQuery('(max-width:900px)')
 
   const openClass = open === true ? 'sidenav-open' : ''
 

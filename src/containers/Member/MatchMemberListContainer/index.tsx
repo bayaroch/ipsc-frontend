@@ -4,7 +4,13 @@ import MatchMemberList from '@components/member/MatchMemberList'
 import { useRouter } from 'next/router'
 
 const MatchMemberListContainer: React.FC = () => {
-  const { getList, paginationMeta, meta, groupedList } = useMemberMatch()
+  const {
+    getList,
+    paginationMeta,
+    meta,
+    groupedList,
+    currentUser,
+  } = useMemberMatch()
   const router = useRouter()
 
   const handleEdit = (id: number) => {
@@ -14,6 +20,7 @@ const MatchMemberListContainer: React.FC = () => {
   return (
     <Box>
       <MatchMemberList
+        currentUser={currentUser}
         onEditClick={handleEdit}
         meta={meta}
         list={groupedList}

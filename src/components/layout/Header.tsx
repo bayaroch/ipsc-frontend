@@ -88,7 +88,7 @@ export const LogoContainer = styled.div`
   margin:5px;
   width:123px;
   margin-right:20px;
-  @media(max-width:1024px) {
+  @media(max-width:900px) {
     width:123px;
     margin:5px auto
   }

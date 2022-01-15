@@ -31,3 +31,24 @@ export const weekly: MatchCreateInputType = {
   Шагналт байр: Байхгүй`,
   sponsor_info: '',
 }
+
+// export type TournamentStatusTime =
+//   | 'RegisterStartIn'
+//   | 'RegisterEndIn'
+//   | 'MatchStartIn'
+//   | 'MatchEndIn'
+//   | 'Completed'
+//   | 'Draft'
+
+export enum TournamentStatusTimeText {
+  RegisterStartIn = 'Бүртгэл эхлэхэд',
+  RegisterEndIn = 'Бүртгэл хаагдахад',
+  MatchStartIn = 'Тэмцээн эхлэхэд',
+  MatchEndIn = 'Тэмцээн дуусахад',
+  Completed = 'Дууссан',
+}
+
+export type TournamentStatusTime = {
+  eventTime: string | null
+  eventText: TournamentStatusTimeText
+}

@@ -23,9 +23,6 @@ export default createTheme({
     },
     text: {},
   },
-  breakpoints: {
-    values: breakpointValues,
-  },
   typography: {
     fontFamily: font,
     h1: {

@@ -60,7 +60,7 @@ const LargeSideBar: React.FC<LargeSideBarProps> = ({ onCloseClick }) => {
       >
         <Box
           sx={{
-            display: { sm: 'block', xs: 'block', md: 'block', lg: 'none' },
+            display: { sm: 'block', xs: 'block', md: 'none', lg: 'none' },
             position: 'absolute',
             right: 5,
             top: 5,

@@ -61,7 +61,7 @@ const AdminSideBar: React.FC<AdminSideBarProps> = ({ currentUser }) => {
         left: 0,
         display: {
           xs: 'none',
-          sm: 'none',
+          sm: 'block',
           md: 'block',
           lg: 'block',
           xl: 'block',

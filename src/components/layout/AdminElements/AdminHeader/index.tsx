@@ -33,7 +33,7 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({
           background: Colors.white,
           paddingLeft: 0,
           borderBottom: '1px solid #eee',
-          '@media screen and (min-width:720px) and (max-width:1024 px) ': {
+          '@media screen and (min-width:600px) and (max-width:900px) ': {
             '& .MuiAppBar-root': {
               paddingLeft: '70px !important',
             },

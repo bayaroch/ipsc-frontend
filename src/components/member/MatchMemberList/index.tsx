@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Grid, Typography } from '@mui/material/'
+import { Box, Typography } from '@mui/material/'
 import Pagination from '@mui/material//Pagination'
 import { MatchPaginationMeta, MatchPageMeta } from '@services/match.services'
 import _ from 'lodash'
 import { Meta } from '@store/metadata/actions/types'
-import MatchCardItem from '../MatchCardItem'
-import { useRouter } from 'next/router'
 import { GroupedMatchListItem } from '@store/match/selectors/helpers'
+import MatchListItem from '@components/common/MatchListItem'
+import CustomList from '@components/common/List'
+import { MatchItem } from '@store/match/actions/types'
+import { UserData } from '@services/auth.services'
 
 export interface MatchListProps {
   getList: (params: MatchPageMeta) => void
@@ -14,15 +16,15 @@ export interface MatchListProps {
   pagination: MatchPaginationMeta
   onEditClick: (id: number) => void
   meta: Meta
+  currentUser: UserData
 }
 
 const defaultPerPage = 100
 
 const MatchList: React.FC<MatchListProps> = (props) => {
-  const { getList, list, pagination, meta } = props
+  const { getList, list, pagination, meta, currentUser } = props
   const [page, setPage] = useState<number>(1)
   const [rowsPerPage, setRowsPerPage] = useState<number>(defaultPerPage)
-  const router = useRouter()
 
   useEffect(() => {
     getList({
@@ -74,8 +76,8 @@ const MatchList: React.FC<MatchListProps> = (props) => {
     return null
   }
 
-  const handleDetail = (id: number) => {
-    router.push(`/member/matches/${id}`)
+  const renderRow = (item: MatchItem) => {
+    return <MatchListItem key={item.id} item={item} user={currentUser} />
   }
 
   const renderList = () => {
@@ -93,25 +95,9 @@ const MatchList: React.FC<MatchListProps> = (props) => {
                 >
                   {g.groupTitle}
                 </Typography>
-                <Grid container spacing={3}>
-                  {g.data.map((item, index) => {
-                    return (
-                      <Grid
-                        key={index}
-                        item
-                        xs={12}
-                        sm={12}
-                        md={4}
-                        lg={4}
-                        xl={3}
-                      >
-                        <Box>
-                          <MatchCardItem onClick={handleDetail} item={item} />
-                        </Box>
-                      </Grid>
-                    )
-                  })}
-                </Grid>
+                <Box>
+                  <CustomList data={g.data} renderRow={renderRow} />
+                </Box>
               </Box>
             )
           })}

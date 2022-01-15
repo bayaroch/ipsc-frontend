@@ -16,10 +16,16 @@ const ClubContainer: React.FC = () => {
         <Grid xs={12} md={4} item>
           <Box
             sx={{
-              height: '100%',
+              height: {
+                xl: '100%',
+                lg: '100%',
+                md: '100%',
+                sm: '500px',
+                xs: '400px',
+              },
               width: '100%',
               background: "url('images/bg/shooter.jpg')",
-              backgroundSize: 'Cover',
+              backgroundSize: 'cover',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
@@ -32,7 +38,7 @@ const ClubContainer: React.FC = () => {
               background: Colors.white,
               height: '100%',
               width: '100%',
-              padding: { xl: '140px', lg: '1rem', sm: '1rem', xs: '1rem' },
+              padding: { xl: '140px', lg: '3rem', sm: '2rem', xs: '1rem' },
             }}
           >
             <Typography
