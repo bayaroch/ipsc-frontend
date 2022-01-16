@@ -1,17 +1,10 @@
 import React from 'react'
-import {
-  Typography,
-  CardHeader,
-  Card,
-  CardContent,
-  Grid,
-  Box,
-  Icon,
-} from '@mui/material/'
+import { Typography, Card, CardContent } from '@mui/material/'
 import { MatchItem } from '@store/match/actions/types'
-import _ from 'lodash'
-import { MatchProgressType } from '@utils/helpers/common.helper'
+import { helper, MatchProgressType } from '@utils/helpers/common.helper'
 import StatusChip from '@components/member/StatusChip'
+import { InfoItem } from '../ProfileDetailContainer/Elements/OtherInfo'
+import { AccountTree, LocalAtm, LocalPolice, Update } from '@mui/icons-material'
 
 interface About {
   detail: MatchItem
@@ -28,118 +21,41 @@ const About: React.FC<About> = ({ detail, progress }) => {
         },
       }}
     >
-      <CardHeader
-        sx={{ borderBottom: '1px solid #eee' }}
-        title="Мэдээлэл"
-      ></CardHeader>
       <CardContent>
-        <section style={{ paddingTop: '15px', paddingBottom: '15px' }}>
-          <Grid spacing={3} container>
-            <Grid item sm={12} md={4}>
-              <Box display="flex" flexDirection="row">
-                <Icon
-                  className={`mdi mdi-trophy-award`}
-                  sx={{ marginRight: '20px', position: 'relative', top: -2 }}
-                />
-                <Box>
-                  <Typography
-                    variant="h2"
-                    sx={{ paddingBottom: '10px', fontSize: 16 }}
-                  >
-                    Түвшин
-                  </Typography>
-                  <Typography variant="body2">{detail.lvl}</Typography>
-                </Box>
-              </Box>
-            </Grid>
-            <Grid item sm={12} md={4}>
-              <Box display="flex" flexDirection="row">
-                <Icon
-                  className={`mdi mdi-currency-usd`}
-                  sx={{ marginRight: '20px', position: 'relative', top: -2 }}
-                />
-                <Box>
-                  <Typography
-                    variant="h2"
-                    sx={{ paddingBottom: '10px', fontSize: 16 }}
-                  >
-                    Хураамж
-                  </Typography>
-                  <Typography variant="body2">
-                    {detail.tax === 0 ? 'FREE' : detail.tax + '₮'}
-                  </Typography>
-                </Box>
-              </Box>
-            </Grid>
-            <Grid item sm={12} md={4}>
-              <Box display="flex" flexDirection="row">
-                <Icon
-                  className={`mdi mdi-target`}
-                  sx={{ marginRight: '20px', position: 'relative', top: -2 }}
-                />
-                <Box>
-                  <Typography
-                    variant="h2"
-                    sx={{ paddingBottom: '10px', fontSize: 16 }}
-                  >
-                    Стэйжийн тоо
-                  </Typography>
-                  <Typography variant="body2">{detail.stage_number}</Typography>
-                </Box>
-              </Box>
-            </Grid>
-          </Grid>
-        </section>
-        <>
-          <section>
-            <Grid spacing={3} container>
-              <Grid item sm={12} md={4}>
-                <Box display="flex" flexDirection="row">
-                  <Icon
-                    className={`mdi mdi-progress-check`}
-                    sx={{ marginRight: '20px', position: 'relative', top: -2 }}
-                    style={{ fontSize: 16, paddingLeft: 3 }}
-                  />
-                  <Box display="flex" flexDirection="column">
-                    <Typography
-                      variant="h2"
-                      sx={{ paddingBottom: '10px', fontSize: 16 }}
-                    >
-                      Тэмцээний төлөв
-                    </Typography>
-                    <StatusChip status={progress} label={progress.value} />
-                  </Box>
-                </Box>
-              </Grid>
-              <Grid item sm={12} md={8}>
-                {!_.isEmpty(detail.sponsor_info) ? (
-                  <Box display="flex" flexDirection="row">
-                    <Icon
-                      className={`mdi mdi-chess-queen`}
-                      sx={{
-                        marginRight: '20px',
-                        position: 'relative',
-                        top: -2,
-                      }}
-                      style={{ fontSize: 16, paddingLeft: 3 }}
-                    />
-                    <Box display="flex" flexDirection="column">
-                      <Typography
-                        variant="h2"
-                        sx={{ paddingBottom: '10px', fontSize: 16 }}
-                      >
-                        Спонсор
-                      </Typography>
-                      <Typography variant="body2">
-                        {detail.sponsor_info}
-                      </Typography>
-                    </Box>
-                  </Box>
-                ) : null}
-              </Grid>
-            </Grid>
-          </section>
-        </>
+        <InfoItem
+          title={'Төлөв'}
+          value={<StatusChip status={progress} label={progress.value} />}
+          icon={<Update />}
+        />
+        <InfoItem
+          title="Түвшин"
+          icon={<LocalPolice />}
+          value={
+            <Typography sx={{ fontWeight: 500, fontSize: 16 }} variant="body2">
+              Level {detail.lvl}
+            </Typography>
+          }
+        />
+
+        <InfoItem
+          title="Хураамж"
+          icon={<LocalAtm />}
+          value={
+            <Typography sx={{ fontWeight: 500, fontSize: 16 }} variant="body2">
+              {detail.tax === 0 ? 'FREE' : helper.currency(detail.tax)}
+            </Typography>
+          }
+        />
+
+        <InfoItem
+          title={' Стэйжийн тоо'}
+          value={
+            <Typography sx={{ fontWeight: 500, fontSize: 16 }} variant="body2">
+              {detail.stage_number}
+            </Typography>
+          }
+          icon={<AccountTree />}
+        />
       </CardContent>
     </Card>
   )

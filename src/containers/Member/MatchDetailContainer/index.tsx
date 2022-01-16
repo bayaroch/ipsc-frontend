@@ -243,9 +243,11 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
                       </Paper>
                     </Box>
                     <Box mb={6}>
+                      <About detail={detail} progress={progress} />
+                    </Box>
+                    <Box mb={6}>
                       <Participants detail={detail} />
                     </Box>
-
                     <Box mb={6}>
                       {(userData && userData.mo_badge) ||
                       (userData &&
@@ -255,9 +257,6 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
                     </Box>
                   </Grid>
                   <Grid item xs={12} lg={8}>
-                    <Box mb={6}>
-                      <About detail={detail} progress={progress} />
-                    </Box>
                     <Box mb={6}>
                       <Paper>
                         {!_.isEmpty(detail.additional_info) ? (

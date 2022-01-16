@@ -20,7 +20,8 @@ interface InfoItemProps {
   value: ReactElement | string
 }
 
-const InfoItem = ({ title, value, icon }: InfoItemProps) => (
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export const InfoItem = ({ title, value, icon }: InfoItemProps) => (
   <Box
     display="flex"
     alignItems="center"

@@ -42,8 +42,11 @@ const StatusChip: React.FC<StatusChip> = ({ status, ...rest }) => {
   return (
     <Chip
       sx={{
-        padding: '2px',
-        height: 30,
+        padding: '0 6px',
+        height: 19,
+        lineHeight: 1.6,
+        fontWeight: 600,
+        borderRadius: 0,
         '& .MuiChip-label': {
           color: '#fff',
         },
