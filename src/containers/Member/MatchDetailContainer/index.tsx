@@ -238,9 +238,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
                 <Grid container spacing={{ xs: 1, sm: 1, md: 2, lg: 3, xl: 3 }}>
                   <Grid item xs={12} lg={4}>
                     <Box mb={6}>
-                      <Paper>
-                        <TimeBox detail={detail} />
-                      </Paper>
+                      <TimeBox detail={detail} />
                     </Box>
                     <Box mb={6}>
                       <About detail={detail} progress={progress} />

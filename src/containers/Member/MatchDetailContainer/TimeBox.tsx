@@ -43,7 +43,14 @@ const TimeBox: React.FC<MatchTimeBoxProps> = ({ detail }) => {
   const registration_end = _.get(detail, 'registration_end', '')
 
   return (
-    <Card>
+    <Card
+      sx={{
+        '& .Cmt-header-root': {
+          paddingTop: 3,
+          paddingBottom: 0,
+        },
+      }}
+    >
       <CardContent>
         <Box display="flex" alignItems="center" mb={{ xs: 1, sm: '20px' }}>
           <Box
