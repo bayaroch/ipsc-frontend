@@ -1,9 +1,8 @@
 import { useState } from 'react'
-import { Box, Button } from '@mui/material/'
+import { Box } from '@mui/material/'
 import useAccount from './useAccount'
 import MemberList from '@components/admin/MemberList'
 import { MemberItem, UserCreateParams } from '@services/account.services'
-import { PersonAdd } from '@mui/icons-material'
 import _ from 'lodash'
 import MemberCreate from '@components/admin/MemberCreate'
 import MemberUpdate from '@components/admin/MemberUpdate'
@@ -111,34 +110,23 @@ const MatchListContainer: React.FC = () => {
 
   return (
     <Box>
-      <Box
-        sx={{
-          paddingBottom: '10px',
-          justifyContent: 'flex-end',
-          display: 'flex',
-        }}
-      >
-        <Button
-          variant="contained"
-          color={'primary'}
-          size="small"
-          onClick={() => {
-            setOpen(true)
-          }}
-        >
-          <PersonAdd style={{ marginRight: 5 }} />
-          Нэмэх
-        </Button>
-      </Box>
-      <MemberList
-        classData={support && support.class ? support.class : []}
-        onEditMember={handleEdit}
-        meta={meta}
-        badgeData={badges}
-        list={list}
-        getList={getList}
-        pagination={paginationMeta}
-      />
+      {list ? (
+        <>
+          <MemberList
+            classData={support && support.class ? support.class : []}
+            onEditMember={handleEdit}
+            meta={meta}
+            badgeData={badges}
+            list={list}
+            onAdd={() => setOpen(true)}
+            getList={getList}
+            pagination={paginationMeta}
+          />
+        </>
+      ) : (
+        ''
+      )}
+
       <MemberCreate
         badges={badges}
         submit={onSubmit}

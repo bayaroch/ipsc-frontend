@@ -14,19 +14,21 @@ import TimeBox from './TimeBox'
 import Participants from './Participants'
 import DownloadCSV from './DownloadCSV'
 import { USER_TYPE } from '@constants/user.constants'
+import { UserData } from '@services/auth.services'
+import useToast from '@utils/hooks/useToast'
 
 interface MatchDetailProps {
   id: string
+  userData: UserData
 }
 
-const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
+const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
   const [open, setOpen] = useState<boolean>(false)
   const {
     detail,
     meta,
     getDetail,
     register,
-    userData,
     category,
     participantsFiltered,
     support,
@@ -36,7 +38,13 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
     registerState,
   } = useMatchDetail()
 
-  const isRegistered = participants.find((user) => user.user.id === userData.id)
+  const isRegistered = participants.find(
+    (user) => user?.user?.id === userData?.id
+  )
+  const isRo = !_.isEmpty(userData && userData.mo_badge)
+  const isAdmin = userData?.usertype === USER_TYPE.USER_ADMIN
+
+  const { addToast } = useToast()
 
   const isRegisterActive = helper.isRegisterActive(
     _.get(detail, 'registration_start', ''),
@@ -70,7 +78,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
     setOpen(false)
   }
 
-  const handleRegister = (division: number) => {
+  const handleRegister = (division: number, is_ro: number) => {
     setOpen(false)
     if (id && userData.class_id) {
       const params = {
@@ -79,14 +87,14 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
         division_id: division,
         category_id: category,
         class_id: userData.class_id,
-        is_ro: 0,
+        is_ro: is_ro,
         remark: null,
       }
       register(params)
     }
   }
 
-  const handleUpdate = (division: number) => {
+  const handleUpdate = (division: number, is_ro: number) => {
     setOpen(false)
     if (id && userData.class_id && isRegistered) {
       const params = {
@@ -96,7 +104,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
           division_id: division,
           category_id: category,
           class_id: userData.class_id,
-          is_ro: 0,
+          is_ro: is_ro,
         },
         id: isRegistered.id,
       }
@@ -180,6 +188,8 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
       return (
         <>
           <MatchDivisionPicker
+            isRo={isRo}
+            validate={(v) => addToast({ message: v, severity: 'warning' })}
             open={open}
             divisions={support.divisions}
             onSubmit={
@@ -247,11 +257,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id }) => {
                       <Participants detail={detail} />
                     </Box>
                     <Box mb={6}>
-                      {(userData && userData.mo_badge) ||
-                      (userData &&
-                        userData.usertype === USER_TYPE.USER_ADMIN) ? (
-                        <DownloadCSV id={id} />
-                      ) : null}
+                      {isRo || isAdmin ? <DownloadCSV id={id} /> : null}
                     </Box>
                   </Grid>
                   <Grid item xs={12} lg={8}>

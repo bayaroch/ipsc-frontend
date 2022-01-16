@@ -13,5 +13,5 @@ export const memberType = createSelector(
 )
 export const category = createSelector(
   authState,
-  (state) => helper.categoryCalc(state.user.birthday, state.user.gender)[0] // selecting only first cat exluded lady future change might be needed sending multiple categories 1, 6 etc
+  (state) => helper.categoryCalc(state.user?.birthday, state.user?.gender)[0] // selecting only first cat exluded lady future change might be needed sending multiple categories 1, 6 etc
 )

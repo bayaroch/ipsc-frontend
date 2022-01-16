@@ -80,6 +80,7 @@ interface SlideButtonProps extends BoxProps {
   title: string
   color: string
   hovering: boolean
+  textColor: string
 }
 
 const SlideButton = ({
@@ -87,6 +88,7 @@ const SlideButton = ({
   title,
   hovering,
   color,
+  textColor,
   ...rest
 }: SlideButtonProps) => (
   <Box
@@ -115,7 +117,12 @@ const SlideButton = ({
     >
       <Typography
         variant="h4"
-        sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          color: textColor,
+        }}
       >
         {title}
         <ArrowRight />
@@ -352,6 +359,7 @@ const MatchListItem: React.FC<ListItemProps> = ({ item, user }) => {
                   hovering={item.id === hovering || isMobile}
                   title={isRegistered ? 'Дэлгэрэнгүй' : 'Бүртгүүлэх'}
                   color={isRegistered ? Colors.secondary : Colors.primary}
+                  textColor={isRegistered ? Colors.black : Colors.white}
                 ></SlideButton>
               </Box>
             </Box>

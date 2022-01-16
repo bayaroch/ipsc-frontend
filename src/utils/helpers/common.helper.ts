@@ -48,7 +48,7 @@ const classTitleHelper = (
   classData: SupportItem[]
 ): SupportItem | undefined => {
   const findId = Number(id)
-  const result = _.find(classData, { id: findId })
+  const result = id ? _.find(classData, { id: findId }) : undefined
   return result
 }
 
