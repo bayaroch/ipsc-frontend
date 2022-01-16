@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Alert, Box, Card, CardContent, CardHeader } from '@mui/material/'
 import { matchServices } from '@services/match.services'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SaveIcon from '@mui/icons-material/Save'
+import { DriveFileMove } from '@mui/icons-material'
 
 interface CSV {
   id: string
@@ -28,9 +29,38 @@ const DownloadCSV: React.FC<CSV> = ({ id }) => {
     setLoading(false)
   }
 
-  useEffect(() => {
-    fetchCSV(id)
-  }, [id])
+  const renderButton = () => {
+    if (url === '#' && !error && !loading) {
+      return (
+        <LoadingButton
+          startIcon={<DriveFileMove />}
+          fullWidth
+          variant="outlined"
+          color="inherit"
+          onClick={() => fetchCSV(id)}
+        >
+          Export
+        </LoadingButton>
+      )
+    }
+    if (loading || url) {
+      return (
+        <LoadingButton
+          startIcon={<SaveIcon />}
+          component="a"
+          href={url}
+          target="_blank"
+          loading={loading}
+          fullWidth
+          variant="contained"
+          color="secondary"
+        >
+          Татах
+        </LoadingButton>
+      )
+    }
+    return null
+  }
 
   return (
     <Card
@@ -48,20 +78,8 @@ const DownloadCSV: React.FC<CSV> = ({ id }) => {
       <CardContent
         sx={{ alignItems: 'center', justifyContent: 'center', display: 'flex' }}
       >
-        {error === false ? (
-          <LoadingButton
-            startIcon={<SaveIcon />}
-            component="a"
-            href={url}
-            target="_blank"
-            loading={loading}
-            fullWidth
-            variant="contained"
-            color="secondary"
-          >
-            Татах
-          </LoadingButton>
-        ) : (
+        {renderButton()}
+        {error ? (
           <Alert severity="warning">
             Алдаа гарлаа -{' '}
             <Box
@@ -76,6 +94,8 @@ const DownloadCSV: React.FC<CSV> = ({ id }) => {
             </Box>{' '}
             дахин оролдоно уу
           </Alert>
+        ) : (
+          ''
         )}
       </CardContent>
     </Card>
