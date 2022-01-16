@@ -11,7 +11,7 @@ const Matches: PageWithLayoutType = () => {
   return (
     <AdminLayout>
       <ContentBox>
-        {userData && <MatchListContainer currentUser={userData} />}
+        <MatchListContainer currentUser={userData} />
       </ContentBox>
     </AdminLayout>
   )

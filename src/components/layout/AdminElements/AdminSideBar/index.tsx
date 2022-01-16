@@ -13,21 +13,22 @@ import {
   Info,
   Layers,
 } from '@mui/icons-material'
-import { logOut } from '@store/auth/actions'
-import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
 import { UserData } from '@services/auth.services'
 
 interface AdminSideBarProps {
   currentUser: UserData
+  onLogOut: () => void
 }
 
-const AdminSideBar: React.FC<AdminSideBarProps> = ({ currentUser }) => {
+const AdminSideBar: React.FC<AdminSideBarProps> = ({
+  currentUser,
+  onLogOut,
+}) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const [userEl, setUserEl] = React.useState<null | HTMLElement>(null)
 
   const router = useRouter()
-  const dispatch = useDispatch()
 
   const handleClick = (event: React.MouseEvent<HTMLElement>, type: string) => {
     if (type === 'user') {
@@ -43,8 +44,8 @@ const AdminSideBar: React.FC<AdminSideBarProps> = ({ currentUser }) => {
   }
 
   const handleLogOut = () => {
-    dispatch(logOut())
     handleClose()
+    onLogOut()
   }
 
   const open = Boolean(anchorEl)

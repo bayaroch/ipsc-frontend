@@ -6,6 +6,8 @@ import useCommonData from '@utils/hooks/useCommonData'
 import withAuth from '@containers/withAuth'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { UserData } from '@services/auth.services'
+import { logOut } from '@store/auth/actions'
+import { useDispatch } from 'react-redux'
 
 interface LayoutProps {
   children: ReactNode
@@ -23,6 +25,7 @@ const AdminLayout: React.FC<LayoutProps> = ({
   const isMobile = useMediaQuery('(max-width:900px)')
 
   const openClass = open === true ? 'sidenav-open' : ''
+  const dispatch = useDispatch()
 
   const setOpen = (val: boolean) => {
     letOpen(val)
@@ -38,11 +41,12 @@ const AdminLayout: React.FC<LayoutProps> = ({
   }, [isMobile])
 
   const onCloseClick = () => setOpen(false)
+  const handleLogOut = () => dispatch(logOut())
 
   return (
     <div>
       <div className={`main-content-wrap ${openClass}`}>
-        <AdminSideBar currentUser={currentUser} />
+        <AdminSideBar onLogOut={handleLogOut} currentUser={currentUser} />
         <LargeSideBar onCloseClick={onCloseClick} />
         <div className="page-wrapper">
           <div className="main-content">
@@ -51,8 +55,9 @@ const AdminLayout: React.FC<LayoutProps> = ({
               title={title ? title : ''}
               open={open}
               setOpen={setOpen}
+              handleLogOut={handleLogOut}
             />
-            {children}
+            {currentUser && children}
           </div>
         </div>
       </div>

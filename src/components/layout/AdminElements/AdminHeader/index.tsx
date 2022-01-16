@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
@@ -8,12 +8,16 @@ import Box from '@mui/material/Box'
 import { Colors } from '@theme/colors'
 import { UserData } from '@services/auth.services'
 import Link from 'next/link'
+import MoreIcon from '@mui/icons-material/MoreVert'
+import { ExitToApp, Person } from '@mui/icons-material'
+import { MenuItem, ListItemIcon, Menu } from '@mui/material'
 
 export interface AdminHeaderProps {
   open: boolean
   setOpen: (open: boolean) => void
   title?: string
   currentUser: UserData
+  handleLogOut: () => void
 }
 
 const AdminHeader: React.FC<AdminHeaderProps> = ({
@@ -21,7 +25,55 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({
   setOpen,
   title,
   currentUser,
+  handleLogOut,
 }) => {
+  const [anchorEl, setAnchorEl] = useState(null)
+
+  const isMenuOpen = Boolean(anchorEl)
+
+  const handleProfileMenuOpen = (event: any) => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+
+  const menuId = 'primary-search-account-menu'
+
+  const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      open={isMenuOpen}
+      onClose={handleClose}
+    >
+      <Link href={`/member/profile/${currentUser?.id}`} passHref>
+        <MenuItem onClick={handleClose}>
+          <ListItemIcon sx={{ minWidth: 26 }}>
+            <Person fontSize="small" />
+          </ListItemIcon>
+          Профайл
+        </MenuItem>
+      </Link>
+      <MenuItem onClick={handleLogOut}>
+        <ListItemIcon sx={{ minWidth: 26 }}>
+          <ExitToApp fontSize="small" />
+        </ListItemIcon>
+        Гарах
+      </MenuItem>
+    </Menu>
+  )
+
   return (
     <Box
       sx={{
@@ -60,28 +112,41 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({
             {title}
           </Typography>
           {currentUser && (
-            <Box
-              display="flex"
-              flexDirection="row"
-              justifyContent="center"
-              alignItems="center"
-            >
-              <Link href={`/member/profile/${currentUser.id}`} passHref>
-                <Typography variant="body2" sx={{ cursor: 'pointer' }}>
-                  Сайн уу!
-                  <Typography
-                    component="span"
-                    variant="body2"
-                    sx={{ color: Colors.primary, fontWeight: 600, ml: 1 }}
-                  >
-                    {currentUser.firstname}
+            <>
+              <Box
+                display="flex"
+                flexDirection="row"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Link href={`/member/profile/${currentUser.id}`} passHref>
+                  <Typography variant="body2" sx={{ cursor: 'pointer' }}>
+                    Сайн уу!
+                    <Typography
+                      component="span"
+                      variant="body2"
+                      sx={{ color: Colors.primary, fontWeight: 600, ml: 1 }}
+                    >
+                      {currentUser.firstname}
+                    </Typography>
                   </Typography>
-                </Typography>
-              </Link>
-            </Box>
+                </Link>
+              </Box>
+              <IconButton
+                onClick={handleProfileMenuOpen}
+                aria-controls={menuId}
+                size="large"
+                aria-label="display more actions"
+                edge="end"
+                color="inherit"
+              >
+                <MoreIcon />
+              </IconButton>
+            </>
           )}
         </Toolbar>
       </AppBar>
+      {renderMenu}
     </Box>
   )
 }

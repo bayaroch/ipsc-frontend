@@ -29,7 +29,7 @@ export function withAuth<T>(Component: React.ComponentType<T>): React.FC {
     if (!render) {
       return <></>
     }
-    return currentUser && <Component currentUser={currentUser} {...props} />
+    return <Component currentUser={currentUser} {...props} />
   }
 
   return AppWithAuth
