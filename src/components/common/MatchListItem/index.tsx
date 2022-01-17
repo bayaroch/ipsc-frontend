@@ -169,11 +169,10 @@ const MatchListItem: React.FC<ListItemProps> = ({ item, user }) => {
           <Box
             sx={{
               display: { xs: 'none', sm: 'none', lg: 'flex', xl: 'flex' },
-
               height: '100%',
-              minHeight: '123px',
-              width: '123px',
-              flexBasis: '123px',
+              minHeight: '119px',
+              width: '119px',
+              flexBasis: '119px',
               position: 'relative',
               alignItems: 'center',
               justifyContent: 'center',
@@ -248,7 +247,7 @@ const MatchListItem: React.FC<ListItemProps> = ({ item, user }) => {
                 sx={{
                   display: 'flex',
                   flex: 1,
-                  padding: '14px 20px',
+                  padding: '10px 20px',
                   justifyContent: 'space-between',
                   flexWrap: 'wrap',
                 }}
@@ -317,6 +316,7 @@ const MatchListItem: React.FC<ListItemProps> = ({ item, user }) => {
                   backgroundRepeat: 'no-repeat',
                   alignItems: 'center',
                   justifyContent: 'center',
+                  minHeight: '67px',
                   borderTop: {
                     xl: 'none',
                     lg: 'none',

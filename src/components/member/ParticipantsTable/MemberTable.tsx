@@ -6,16 +6,27 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
+import Chip from '@mui/material/Chip'
 import { ParticipantsItem } from '@services/match.services'
 import _ from 'lodash'
 import { SupportItem } from '@services/support.services'
 import { helper } from '@utils/helpers/common.helper'
+import { blue } from '@mui/material/colors'
+import { Typography } from '@mui/material'
+import { styled } from '@mui/material/styles'
 
 interface TableProps {
   data: ParticipantsItem[]
   groupTitle?: string
   classData: SupportItem[]
 }
+
+const Item = styled(Chip)(() => ({
+  textAlign: 'center',
+  color: '#fff',
+  height: 'auto',
+  fontWeight: 600,
+}))
 
 const MemberTable: React.FC<TableProps> = (props) => {
   const { data, groupTitle, classData } = props
@@ -40,7 +51,21 @@ const MemberTable: React.FC<TableProps> = (props) => {
               <TableCell component="th" scope="row">
                 {i + 1}
               </TableCell>
-              <TableCell align="right">{row.user.firstname}</TableCell>
+              <TableCell align="right">
+                <Typography variant="body1">{row.user.firstname}</Typography>
+                {row.is_ro ? (
+                  <Item
+                    label={'RO'}
+                    sx={{
+                      backgroundColor: blue[500],
+                      padding: '2px 0px',
+                      fontSize: 9,
+                    }}
+                  />
+                ) : (
+                  ''
+                )}
+              </TableCell>
               <TableCell align="right">{row.user.usercode}</TableCell>
               <TableCell align="right">
                 {_.get(
