@@ -150,7 +150,13 @@ const MatchListItem: React.FC<ListItemProps> = ({ item, user }) => {
 
   return (
     <Paper
-      sx={{ boxShadow: 1, width: '100%', borderRadius: 0, cursor: 'pointer' }}
+      sx={{
+        boxShadow: 1,
+        width: '100%',
+        borderRadius: 0,
+        cursor: 'pointer',
+        marginBottom: 3,
+      }}
     >
       <Link href={`/member/matches/${item.id}`} passHref>
         <Box
