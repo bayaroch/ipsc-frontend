@@ -27,7 +27,7 @@ const DownloadCSV: React.FC<CSV> = ({ id }) => {
       const blob = await window.URL.createObjectURL(
         new Blob([res.data], { type: 'text/csv;charset=utf-8' })
       )
-      if (isIOS) {
+      if (!isIOS) {
         // eslint-disable-next-line no-console
         console.log('Device other than IOS')
         setUrl(blob)
