@@ -4,6 +4,8 @@ import { matchServices } from '@services/match.services'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SaveIcon from '@mui/icons-material/Save'
 import { DriveFileMove } from '@mui/icons-material'
+import { isIOS } from 'react-device-detect'
+import { useS3Upload } from 'next-s3-upload'
 
 interface CSV {
   id: string
@@ -13,16 +15,43 @@ const DownloadCSV: React.FC<CSV> = ({ id }) => {
   const [url, setUrl] = useState<string>('#')
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
+  const cloudfront = process.env.NEXT_PUBLIC_CLOUD_FRONT_URL
+
+  const { uploadToS3 } = useS3Upload()
 
   const fetchCSV = async (id: string) => {
     setError(false)
     setLoading(true)
     try {
       const res = await matchServices.csvDownload(id)
-      const url = await window.URL.createObjectURL(
+      const blob = await window.URL.createObjectURL(
         new Blob([res.data], { type: 'text/csv;charset=utf-8' })
       )
-      setUrl(url)
+      if (!isIOS) {
+        setUrl(blob)
+      } else {
+        if (url) {
+          try {
+            const raw = await new Blob([res.data], {
+              type: 'text/csv;charset=utf-8',
+            })
+            const file = await new File([raw], `match-${id}.csv`, {
+              type: 'text/csv;charset=utf-8',
+            })
+            const { url, key } = await uploadToS3(file)
+            let absoluteUrl
+            if (cloudfront) {
+              absoluteUrl = `${cloudfront}/${key}`
+            } else {
+              absoluteUrl = url
+            }
+            setUrl(absoluteUrl)
+          } catch (err) {
+            // eslint-disable-next-line no-console
+            setError(true)
+          }
+        }
+      }
     } catch {
       setError(true)
     }
@@ -43,7 +72,7 @@ const DownloadCSV: React.FC<CSV> = ({ id }) => {
         </LoadingButton>
       )
     }
-    if (loading || url) {
+    if (loading || (url && !error)) {
       return (
         <LoadingButton
           startIcon={<SaveIcon />}

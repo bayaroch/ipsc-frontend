@@ -11,9 +11,14 @@ export default class MyDocument extends Document {
   render(): React.ReactElement {
     return (
       <Html lang="en">
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
         <Head>
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
+
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Inter:300,400,500,700&display=swap"
