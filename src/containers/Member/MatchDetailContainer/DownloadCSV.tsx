@@ -28,6 +28,8 @@ const DownloadCSV: React.FC<CSV> = ({ id }) => {
         new Blob([res.data], { type: 'text/csv;charset=utf-8' })
       )
       if (!isIOS) {
+        // eslint-disable-next-line no-console
+        console.log('Device other than IOS')
         setUrl(blob)
       } else {
         if (url) {
