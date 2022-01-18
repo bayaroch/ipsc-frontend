@@ -16,6 +16,8 @@ const DownloadCSV: React.FC<CSV> = ({ id }) => {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
   const cloudfront = process.env.NEXT_PUBLIC_CLOUD_FRONT_URL
+  // eslint-disable-next-line no-console
+  console.log(cloudfront)
 
   const { uploadToS3 } = useS3Upload()
 
