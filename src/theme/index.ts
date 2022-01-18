@@ -85,7 +85,7 @@ export default createTheme({
     MuiInputBase: {
       styleOverrides: {
         root: {
-          fontSize: 14,
+          fontSize: 16,
           padding: '4px 8px',
         },
       },
