@@ -1,11 +1,11 @@
 import { Chip, ChipProps } from '@mui/material/'
 import { MatchProgressType } from '@utils/helpers/common.helper'
-import { orange, green, grey } from '@mui/material/colors'
+import { orange, green, grey, blue } from '@mui/material/colors'
 import { MATCH_PROGRESS_STATUS } from '@constants/common.constants'
 import _ from 'lodash'
 
 const colors = [
-  { id: MATCH_PROGRESS_STATUS.READY, value: grey[100] },
+  { id: MATCH_PROGRESS_STATUS.READY, value: blue[600] },
   {
     id: MATCH_PROGRESS_STATUS.REGISTERING,
     value: green[600],
@@ -20,7 +20,7 @@ const colors = [
   },
   {
     id: MATCH_PROGRESS_STATUS.COMPLETED,
-    value: green[600],
+    value: blue[600],
   },
   {
     id: MATCH_PROGRESS_STATUS.CANCELLED,

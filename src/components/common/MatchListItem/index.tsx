@@ -18,6 +18,7 @@ import StatusChip from '@components/member/StatusChip'
 import { helper } from '@utils/helpers/common.helper'
 import CustomAvatar from '../Avatar'
 import EventCountDown from './EventCountDown'
+import { MATCH_PROGRESS_STATUS } from '@constants/common.constants'
 
 interface ListItemProps {
   item: MatchItemType
@@ -148,6 +149,9 @@ const MatchListItem: React.FC<ListItemProps> = ({ item, user }) => {
 
   const isRegistered = item.participants.find((u) => u.user.id === user.id)
 
+  const showReadMore =
+    isRegistered || progress.id === MATCH_PROGRESS_STATUS.READY
+
   return (
     <Paper
       sx={{
@@ -170,7 +174,7 @@ const MatchListItem: React.FC<ListItemProps> = ({ item, user }) => {
             sx={{
               display: { xs: 'none', sm: 'none', lg: 'flex', xl: 'flex' },
               height: '100%',
-              minHeight: '119px',
+              minHeight: '118px',
               width: '119px',
               flexBasis: '119px',
               position: 'relative',
@@ -363,9 +367,9 @@ const MatchListItem: React.FC<ListItemProps> = ({ item, user }) => {
                 </Box>
                 <SlideButton
                   hovering={item.id === hovering || isMobile}
-                  title={isRegistered ? 'Дэлгэрэнгүй' : 'Бүртгүүлэх'}
-                  color={isRegistered ? Colors.secondary : Colors.primary}
-                  textColor={isRegistered ? Colors.black : Colors.white}
+                  title={showReadMore ? 'Дэлгэрэнгүй' : 'Бүртгүүлэх'}
+                  color={showReadMore ? Colors.secondary : Colors.primary}
+                  textColor={showReadMore ? Colors.black : Colors.white}
                 ></SlideButton>
               </Box>
             </Box>
