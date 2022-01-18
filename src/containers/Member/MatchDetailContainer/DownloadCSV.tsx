@@ -16,8 +16,6 @@ const DownloadCSV: React.FC<CSV> = ({ id }) => {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
   const cloudfront = process.env.NEXT_PUBLIC_CLOUD_FRONT_URL
-  // eslint-disable-next-line no-console
-  console.log(cloudfront)
 
   const { uploadToS3 } = useS3Upload()
 
@@ -30,8 +28,6 @@ const DownloadCSV: React.FC<CSV> = ({ id }) => {
         new Blob([res.data], { type: 'text/csv;charset=utf-8' })
       )
       if (!isIOS) {
-        // eslint-disable-next-line no-console
-        console.log('Device other than IOS')
         setUrl(blob)
       } else {
         if (url) {
@@ -82,7 +78,6 @@ const DownloadCSV: React.FC<CSV> = ({ id }) => {
           startIcon={<SaveIcon />}
           component="a"
           href={url}
-          download
           target="_blank"
           loading={loading}
           fullWidth
@@ -110,7 +105,12 @@ const DownloadCSV: React.FC<CSV> = ({ id }) => {
         title="Тэмцээний CSV Файл татаж авах"
       ></CardHeader>
       <CardContent
-        sx={{ alignItems: 'center', justifyContent: 'center', display: 'flex' }}
+        sx={{
+          alignItems: 'center',
+          justifyContent: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
       >
         {renderButton()}
         {error ? (
@@ -128,6 +128,15 @@ const DownloadCSV: React.FC<CSV> = ({ id }) => {
             </Box>{' '}
             дахин оролдоно уу
           </Alert>
+        ) : (
+          ''
+        )}
+        {isIOS ? (
+          <Box display="flex" mt={1}>
+            <Alert severity="info">
+              Та IOS оор орж байвал Safari ашиглаж татаж аваарай
+            </Alert>
+          </Box>
         ) : (
           ''
         )}
