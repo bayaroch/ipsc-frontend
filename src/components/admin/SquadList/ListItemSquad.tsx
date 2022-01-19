@@ -12,6 +12,8 @@ import TimeRange from '@components/common/TimeRange'
 import Badge from '@mui/material/Badge'
 import People from '@mui/icons-material/People'
 import Radio from '@mui/material/Radio'
+import { AvatarGroup } from '@mui/material'
+import CustomAvatar from '@components/common/Avatar'
 
 export interface SquadListProps {
   data: SquadListData
@@ -33,7 +35,7 @@ const ListItemSquad: React.FC<SquadListProps> = (props) => {
   } = props
 
   return (
-    <ListItem>
+    <ListItem disablePadding>
       {isEdit ? (
         <Radio
           checked={selectedId === data.id}
@@ -59,13 +61,40 @@ const ListItemSquad: React.FC<SquadListProps> = (props) => {
           <People />
         </Badge>
       </ListItemAvatar>
+
       <ListItemText
         primary={data.name}
         secondary={data.remark ? data.remark : null}
       />
+      <AvatarGroup
+        max={5}
+        sx={{
+          alignItems: 'flex-start',
+          marginRight: 2,
+          '& .MuiAvatarGroup-avatar': {
+            height: 24,
+            width: 24,
+            fontSize: 14,
+          },
+        }}
+      >
+        {data.squad_members.map((item, index) => {
+          return (
+            <CustomAvatar
+              key={index}
+              sx={{ height: 24, width: 24 }}
+              src={item.user?.img_url}
+              alt={item.user.firstname}
+            />
+          )
+        })}
+        )
+      </AvatarGroup>
+
       <Box sx={{ paddingRight: 1 }}>
         <TimeRange timeStart={data.time_start} timeEnd={data.time_end} />
       </Box>
+
       {onDelete ? (
         <ListItemSecondaryAction>
           <IconButton

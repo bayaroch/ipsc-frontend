@@ -264,7 +264,17 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
                     <Box mb={6}>
                       <Paper>
                         {!_.isEmpty(detail.additional_info) ? (
-                          <Info detail={detail} />
+                          <Info
+                            detail={detail.additional_info}
+                            title="Нэмэлт мэдээлэл"
+                          />
+                        ) : null}
+                      </Paper>
+                    </Box>
+                    <Box mb={6}>
+                      <Paper>
+                        {!_.isEmpty(detail.sponsor_info) ? (
+                          <Info detail={detail.sponsor_info} title="Спонсор" />
                         ) : null}
                       </Paper>
                     </Box>

@@ -34,6 +34,7 @@ export type SquadListMembers = {
     lastname: string
     mo_badge: null | string
     usercode: string
+    img_url: string
   }
   user_id: number
 }

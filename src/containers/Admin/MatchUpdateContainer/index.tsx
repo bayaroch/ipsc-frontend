@@ -400,8 +400,8 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
                   placeholder={'Ивээн тэтгэгчийн мэдээлэл'}
                   fullWidth={true}
                   multiline
-                  minRows={3}
-                  maxRows={10}
+                  minRows={5}
+                  maxRows={15}
                 />
               )}
             />

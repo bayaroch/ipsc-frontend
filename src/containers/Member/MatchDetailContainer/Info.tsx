@@ -1,12 +1,12 @@
 import React from 'react'
 import { Typography, CardHeader, Card, CardContent } from '@mui/material/'
-import { MatchItem } from '@store/match/actions/types'
 
 interface About {
-  detail: MatchItem
+  detail?: string
+  title: string
 }
 
-const Info: React.FC<About> = ({ detail }) => {
+const Info: React.FC<About> = ({ detail, title }) => {
   return (
     <Card
       sx={{
@@ -18,12 +18,12 @@ const Info: React.FC<About> = ({ detail }) => {
     >
       <CardHeader
         sx={{ borderBottom: '1px solid #eee' }}
-        title="Нэмэлт мэдээлэл"
+        title={title}
       ></CardHeader>
       <CardContent>
         <section style={{ paddingTop: 15, paddingBottom: 15 }}>
           <Typography variant="body1" sx={{ whiteSpace: 'pre-wrap' }}>
-            {detail.additional_info}
+            {detail}
           </Typography>
         </section>
       </CardContent>
