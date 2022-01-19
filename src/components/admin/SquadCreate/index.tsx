@@ -19,12 +19,14 @@ import useSquadCreate, {
 } from './useSquadCreate'
 import { Colors } from '@theme/colors'
 import { SquadCreateParams } from '@services/squad.services'
+import moment from 'moment'
 
 export interface SquadCreateProps {
   onSubmit: (params: SquadCreateInputType) => void
   isDisabled?: boolean
   isEdit?: boolean
   editData?: SquadCreateParams
+  matchStart: string
 }
 
 const SquadCreate: React.FC<SquadCreateProps> = (props) => {
@@ -37,11 +39,13 @@ const SquadCreate: React.FC<SquadCreateProps> = (props) => {
     formState: { errors },
   } = methods
 
-  const { onSubmit, isEdit, editData } = props
+  const { onSubmit, isEdit, editData, matchStart } = props
 
-  const [timeStart, setTimeStart] = useState<Date | string>(new Date())
+  const [timeStart, setTimeStart] = useState<Date | string>(
+    new Date(matchStart)
+  )
 
-  const [timeEnd, setTimeEnd] = useState<Date | string>(new Date())
+  const [timeEnd, setTimeEnd] = useState<Date | string>(new Date(matchStart))
 
   const handleDateChangeStart = (date: Date | null) => {
     if (date) setTimeStart(date)
@@ -53,8 +57,13 @@ const SquadCreate: React.FC<SquadCreateProps> = (props) => {
 
   const handleDateChange = (date: Date | null) => {
     if (date) {
-      setTimeStart(date)
-      setTimeEnd(date)
+      const start = moment(timeStart)
+      const end = moment(timeEnd)
+      const current = moment(date)
+      start.date(current.date())
+      end.date(current.date())
+      setTimeStart(start.toDate())
+      setTimeEnd(end.toDate())
     }
   }
 
@@ -81,12 +90,12 @@ const SquadCreate: React.FC<SquadCreateProps> = (props) => {
       <form onSubmit={handleSubmit(_onSubmit)}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <Grid container spacing={3}>
-            <Grid sm={6} md={2} item>
+            <Grid sm={6} xs={12} md={2} item>
               <Box display="flex" alignItems="center" flex={1} height={'100%'}>
                 <TimeRange timeStart={timeStart} timeEnd={timeEnd} />
               </Box>
             </Grid>
-            <Grid sm={6} md={4} item>
+            <Grid sm={6} xs={12} md={4} item>
               <DatePicker
                 label="Өдөр"
                 value={timeStart}
@@ -94,7 +103,7 @@ const SquadCreate: React.FC<SquadCreateProps> = (props) => {
                 onChange={handleDateChange}
               />
             </Grid>
-            <Grid sm={6} md={3} item>
+            <Grid sm={6} xs={12} md={3} item>
               <TimePicker
                 label="Эхлэх цаг"
                 value={timeStart}
@@ -103,7 +112,7 @@ const SquadCreate: React.FC<SquadCreateProps> = (props) => {
                 onChange={handleDateChangeStart}
               />
             </Grid>
-            <Grid sm={6} md={3} item>
+            <Grid sm={6} xs={12} md={3} item>
               <TimePicker
                 label="Дуусах цаг"
                 ampm={false}
@@ -114,7 +123,7 @@ const SquadCreate: React.FC<SquadCreateProps> = (props) => {
             </Grid>
           </Grid>
           <Grid container spacing={3} mt={1}>
-            <Grid item sm={12} md={5}>
+            <Grid item xs={12} sm={12} md={5}>
               <Controller
                 name="name"
                 control={control}
@@ -124,7 +133,7 @@ const SquadCreate: React.FC<SquadCreateProps> = (props) => {
                     inputRef={ref}
                     required={true}
                     labelPrimary=""
-                    placeholder={'Ээлжийн нэр'}
+                    placeholder={'Ээлжийн нэр (тайлбар) '}
                     fullWidth={true}
                     error={!!errors.name}
                     helperText={
@@ -134,7 +143,7 @@ const SquadCreate: React.FC<SquadCreateProps> = (props) => {
                 )}
               />
             </Grid>
-            <Grid item sm={12} md={5}>
+            <Grid item xs={12} sm={12} md={5}>
               <Controller
                 name="remark"
                 control={control}
@@ -145,7 +154,7 @@ const SquadCreate: React.FC<SquadCreateProps> = (props) => {
                     inputRef={ref}
                     required={false}
                     labelPrimary=""
-                    placeholder={'Нэмэлт тайлбар'}
+                    placeholder={'Group ID #day1, #Friday #Sunday etc'}
                     fullWidth={true}
                     error={!!errors.remark}
                     helperText={
@@ -155,7 +164,7 @@ const SquadCreate: React.FC<SquadCreateProps> = (props) => {
                 )}
               />
             </Grid>
-            <Grid item sm={12} md={2}>
+            <Grid item xs={12} sm={12} md={2}>
               <Box display="flex">
                 <Button
                   variant="contained"

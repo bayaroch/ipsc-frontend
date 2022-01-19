@@ -149,9 +149,10 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
   }
 
   const renderSquadCreate = () => {
-    if (!listMeta.pending && listMeta.loaded && !listMeta.error) {
+    if (!listMeta.pending && listMeta.loaded && !listMeta.error && match) {
       return (
         <SquadCreate
+          matchStart={match.match_start}
           isEdit={mode}
           editData={mode ? selectedData : undefined}
           isDisabled={
