@@ -13,23 +13,14 @@ export interface SquadListProps {
 }
 
 const SquadList: React.FC<SquadListProps> = (props) => {
-  const {
-    list,
-    onExpandMembers,
-    onDelete,
-    isEdit,
-    onSelectChange,
-    userId,
-  } = props
+  const { list, onExpandMembers, onSelectChange, userId } = props
   return (
     <List>
       {list.map((item, index) => {
         return (
           <ListItemSquad
-            isEdit={isEdit}
             selectedId={userId}
             onSelectChange={onSelectChange && onSelectChange}
-            onDelete={onDelete && onDelete}
             onExpandMembers={onExpandMembers}
             key={index}
             data={item}

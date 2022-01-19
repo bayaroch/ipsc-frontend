@@ -61,13 +61,6 @@ const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
     const groupData = listGroup.find((g) => g.groupTitle === group)
     const list = groupData ? groupData.data : []
 
-    // if (!_.isEmpty(list) && isArray(list)) {
-    //   const data = list.find((obj) => {
-    //     return obj.id === id
-    //   })
-    //   setSelectedData(data)
-    // }
-
     const existSquad = SquadHelper.isExist(list, userData.id)
 
     const existInThis = SquadHelper.isExistInThis(list, userData.id, id)

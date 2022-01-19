@@ -2,9 +2,6 @@ import React from 'react'
 import _ from 'lodash'
 import { SquadListData, SquadListMembers } from '@services/squad.services'
 import ListItem from '@mui/material/ListItem'
-import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction'
-import IconButton from '@mui/material/IconButton'
-import DeleteIcon from '@mui/icons-material/Delete'
 import Box from '@mui/material/Box'
 import TimeRange from '@components/common/TimeRange'
 import Radio from '@mui/material/Radio'
@@ -14,22 +11,13 @@ import { Colors } from '@theme/colors'
 
 export interface SquadListProps {
   data: SquadListData
-  onDelete?: (id: number) => void
   onExpandMembers?: (data: SquadListMembers[]) => void
-  isEdit?: boolean
   selectedId?: number
   onSelectChange?: (id: number) => void
 }
 
 const ListItemSquad: React.FC<SquadListProps> = (props) => {
-  const {
-    data,
-    onDelete,
-    onExpandMembers,
-    selectedId,
-    isEdit,
-    onSelectChange,
-  } = props
+  const { data, onExpandMembers, selectedId, onSelectChange } = props
 
   return (
     <ListItem
@@ -39,6 +27,7 @@ const ListItemSquad: React.FC<SquadListProps> = (props) => {
         boxShadow: 1,
         mb: 2,
         mt: '40px',
+        justifyContent: 'space-between',
       }}
     >
       <Box
@@ -60,21 +49,21 @@ const ListItemSquad: React.FC<SquadListProps> = (props) => {
           {data.name}
         </Typography>
       </Box>
-      {isEdit ? (
+      <Box sx={{ flexDirection: 'row', display: 'flex' }}>
         <Radio
           checked={!!_.find(data.squad_members, { user_id: selectedId })}
           onChange={() => onSelectChange && onSelectChange(data.id)}
           value={data.id}
           name="radio-button"
         />
-      ) : null}
 
-      <Box sx={{ paddingRight: 1 }}>
-        <TimeRange
-          sx={{ width: 126, paddingLeft: 1 }}
-          timeStart={data.time_start}
-          timeEnd={data.time_end}
-        />
+        <Box sx={{ paddingRight: 1 }}>
+          <TimeRange
+            sx={{ width: 126, paddingLeft: 1 }}
+            timeStart={data.time_start}
+            timeEnd={data.time_end}
+          />
+        </Box>
       </Box>
 
       <AvatarGroup
@@ -110,24 +99,8 @@ const ListItemSquad: React.FC<SquadListProps> = (props) => {
         })}
         )
       </AvatarGroup>
-
-      {onDelete ? (
-        <ListItemSecondaryAction>
-          <IconButton
-            edge="end"
-            onClick={() => onDelete && onDelete(data.id)}
-            aria-label="delete"
-          >
-            <DeleteIcon />
-          </IconButton>
-        </ListItemSecondaryAction>
-      ) : null}
     </ListItem>
   )
-}
-
-ListItemSquad.defaultProps = {
-  isEdit: false,
 }
 
 export default ListItemSquad

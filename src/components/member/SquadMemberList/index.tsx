@@ -10,10 +10,12 @@ import {
   SlideProps,
   Divider,
   Box,
+  ListItemAvatar,
 } from '@mui/material/'
 import { SquadListMembers } from '@services/squad.services'
 import { Colors } from '@theme/colors'
 import _ from 'lodash'
+import CustomAvatar from '@components/common/Avatar'
 
 interface PickerProps {
   open: boolean
@@ -58,6 +60,12 @@ const SquadMemberList: React.FC<PickerProps> = (props) => {
             return (
               <Box key={i}>
                 <ListItem>
+                  <ListItemAvatar>
+                    <CustomAvatar
+                      src={item.user.img_url}
+                      alt={item.user.firstname}
+                    />
+                  </ListItemAvatar>
                   <ListItemText
                     primary={_.defaultTo(item.user.firstname, '')}
                     secondary={_.defaultTo(item.user.usercode, '')}

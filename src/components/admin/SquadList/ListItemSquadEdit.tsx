@@ -40,6 +40,7 @@ const ListItemSquad: React.FC<SquadListProps> = (props) => {
         mb: 2,
         mt: '40px',
         position: 'relative',
+        justifyContent: 'space-between',
       }}
     >
       <Box
@@ -61,68 +62,72 @@ const ListItemSquad: React.FC<SquadListProps> = (props) => {
           {data.name}
         </Typography>
       </Box>
-      {isEdit ? (
-        <Radio
-          checked={selectedId === data.id}
-          onChange={() => onSelectChange && onSelectChange(data.id)}
-          value={data.id}
-          name="radio-button"
-        />
-      ) : null}
 
-      <Box sx={{ paddingRight: 1 }}>
-        <TimeRange
-          sx={{ width: 126, paddingLeft: 2 }}
-          timeStart={data.time_start}
-          timeEnd={data.time_end}
-        />
+      <Box sx={{ flexDirection: 'row', display: 'flex' }}>
+        {isEdit ? (
+          <Radio
+            checked={selectedId === data.id}
+            onChange={() => onSelectChange && onSelectChange(data.id)}
+            value={data.id}
+            name="radio-button"
+          />
+        ) : null}
+
+        <Box sx={{ paddingRight: 1 }}>
+          <TimeRange
+            sx={{ width: 126, paddingLeft: 2 }}
+            timeStart={data.time_start}
+            timeEnd={data.time_end}
+          />
+        </Box>
       </Box>
-
-      <AvatarGroup
-        max={3}
-        onClick={() =>
-          onExpandMembers &&
-          !_.isEmpty(data.squad_members) &&
-          onExpandMembers(data.squad_members)
-        }
-        style={{
-          cursor: !_.isEmpty(data.squad_members) ? 'pointer' : 'inherit',
-        }}
-        sx={{
-          alignItems: 'flex-start',
-          marginRight: 2,
-          '& .MuiAvatarGroup-avatar': {
-            height: 24,
-            width: 24,
-            fontSize: 14,
-          },
-          maxWidth: 70,
-        }}
-      >
-        {data.squad_members.map((item, index) => {
-          return (
-            <CustomAvatar
-              key={index}
-              sx={{ height: 24, width: 24 }}
-              src={item.user?.img_url}
-              alt={item.user.firstname}
-            />
+      <Box sx={{ position: 'relative', pr: 4 }}>
+        <AvatarGroup
+          max={3}
+          onClick={() =>
+            onExpandMembers &&
+            !_.isEmpty(data.squad_members) &&
+            onExpandMembers(data.squad_members)
+          }
+          style={{
+            cursor: !_.isEmpty(data.squad_members) ? 'pointer' : 'inherit',
+          }}
+          sx={{
+            alignItems: 'flex-start',
+            marginRight: 2,
+            '& .MuiAvatarGroup-avatar': {
+              height: 24,
+              width: 24,
+              fontSize: 14,
+            },
+            maxWidth: 70,
+          }}
+        >
+          {data.squad_members.map((item, index) => {
+            return (
+              <CustomAvatar
+                key={index}
+                sx={{ height: 24, width: 24 }}
+                src={item.user?.img_url}
+                alt={item.user.firstname}
+              />
+            )
+          })}
           )
-        })}
-        )
-      </AvatarGroup>
+        </AvatarGroup>
 
-      {onDelete ? (
-        <ListItemSecondaryAction>
-          <IconButton
-            edge="end"
-            onClick={() => onDelete && onDelete(data.id)}
-            aria-label="delete"
-          >
-            <DeleteIcon />
-          </IconButton>
-        </ListItemSecondaryAction>
-      ) : null}
+        {onDelete ? (
+          <ListItemSecondaryAction>
+            <IconButton
+              edge="end"
+              onClick={() => onDelete && onDelete(data.id)}
+              aria-label="delete"
+            >
+              <DeleteIcon />
+            </IconButton>
+          </ListItemSecondaryAction>
+        ) : null}
+      </Box>
     </ListItem>
   )
 }
