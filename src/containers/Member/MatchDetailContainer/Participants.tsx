@@ -1,6 +1,6 @@
 import React from 'react'
 import { CardHeader, Card, CardContent } from '@mui/material/'
-import { AvatarGroup } from '@mui/material/'
+import { AvatarGroup, Typography } from '@mui/material/'
 import { MatchItem } from '@store/match/actions/types'
 import CustomAvatar from '@components/common/Avatar'
 
@@ -23,6 +23,17 @@ const Participants: React.FC<Participants> = ({ detail, openList }) => {
         <CardHeader
           sx={{ borderBottom: '1px solid #eee' }}
           title="Оролцогчид"
+          action={
+            <Typography sx={{ fontWeight: 400 }} variant="h3">
+              Нийт оролцогчид:
+              <Typography
+                sx={{ fontWeight: 600, paddingLeft: 1, paddingRight: 1 }}
+                component="span"
+              >
+                {detail.participants.length}
+              </Typography>
+            </Typography>
+          }
         ></CardHeader>
         <CardContent sx={{ display: 'flex', alignItems: 'flex-start' }}>
           <AvatarGroup
