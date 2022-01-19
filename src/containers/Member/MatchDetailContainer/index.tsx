@@ -67,7 +67,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
   }, [id])
 
   useEffect(() => {
-    if (id) {
+    if (registerState && id) {
       getDetail(id)
     }
   }, [registerState])
