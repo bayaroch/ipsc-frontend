@@ -48,6 +48,17 @@ export const getClass = createAsyncThunk<SupportResponse>(
   }
 )
 
+export const commonData = () => async (
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  dispatch: any
+): Promise<any> => {
+  Promise.resolve(dispatch(getClass())).then(() => {
+    dispatch(getDivisions()).then(() => {
+      dispatch(getBadges())
+    })
+  })
+}
+
 export type toastParams = {
   message: string
   severity?: AlertColor

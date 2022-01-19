@@ -2,7 +2,6 @@ import React, { useState, useEffect, ReactNode } from 'react'
 import AdminHeader from '@components/layout/AdminElements/AdminHeader'
 import AdminSideBar from '@components/layout/AdminElements/AdminSideBar'
 import LargeSideBar from '@components/layout/AdminElements/LargeSidebar'
-import useCommonData from '@utils/hooks/useCommonData'
 import withAuth from '@containers/withAuth'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { UserData } from '@services/auth.services'
@@ -30,7 +29,6 @@ const AdminLayout: React.FC<LayoutProps> = ({
   const setOpen = (val: boolean) => {
     letOpen(val)
   }
-  useCommonData()
 
   useEffect(() => {
     if (isMobile) {

@@ -21,6 +21,8 @@ import { StylesProvider } from '@mui/styles'
 import '@common/css/main.scss'
 import Seo from '@components/common/Seo'
 import { UploaderProvider } from '@containers/Providers/FileUpload'
+import Common from '@containers/Providers/Common'
+
 /**
  * withRedux HOC
  * NextJS wrapper for Redux
@@ -62,6 +64,7 @@ const CustomApp = ({ Component, pageProps }: Props) => {
         >
           <ThemeProvider theme={theme}>
             <ThemeStyled theme={themeSass}>
+              <Common />
               <CssBaseline />
               <SnackBar />
               <ConfirmProvider>
