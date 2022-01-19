@@ -1,7 +1,7 @@
 import React from 'react'
 import List from '@mui/material/List'
 import { SquadListData, SquadListMembers } from '@services/squad.services'
-import ListItemSquad from './ListItemSquad'
+import ListItemSquadEdit from './ListItemSquadEdit'
 
 export interface SquadListProps {
   list: Array<SquadListData>
@@ -9,7 +9,7 @@ export interface SquadListProps {
   onExpandMembers: (members: SquadListMembers[]) => void
   isEdit?: boolean
   onSelectChange?: (id: number) => void
-  userId: number
+  selectedId: number | undefined
 }
 
 const SquadList: React.FC<SquadListProps> = (props) => {
@@ -19,15 +19,15 @@ const SquadList: React.FC<SquadListProps> = (props) => {
     onDelete,
     isEdit,
     onSelectChange,
-    userId,
+    selectedId,
   } = props
   return (
     <List>
       {list.map((item, index) => {
         return (
-          <ListItemSquad
+          <ListItemSquadEdit
             isEdit={isEdit}
-            selectedId={userId}
+            selectedId={selectedId}
             onSelectChange={onSelectChange && onSelectChange}
             onDelete={onDelete && onDelete}
             onExpandMembers={onExpandMembers}

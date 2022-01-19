@@ -27,8 +27,8 @@ const ListItemSquad: React.FC<SquadListProps> = (props) => {
     onDelete,
     onExpandMembers,
     selectedId,
-    isEdit,
     onSelectChange,
+    isEdit,
   } = props
 
   return (
@@ -39,6 +39,7 @@ const ListItemSquad: React.FC<SquadListProps> = (props) => {
         boxShadow: 1,
         mb: 2,
         mt: '40px',
+        position: 'relative',
       }}
     >
       <Box
@@ -62,7 +63,7 @@ const ListItemSquad: React.FC<SquadListProps> = (props) => {
       </Box>
       {isEdit ? (
         <Radio
-          checked={!!_.find(data.squad_members, { user_id: selectedId })}
+          checked={selectedId === data.id}
           onChange={() => onSelectChange && onSelectChange(data.id)}
           value={data.id}
           name="radio-button"
@@ -71,7 +72,7 @@ const ListItemSquad: React.FC<SquadListProps> = (props) => {
 
       <Box sx={{ paddingRight: 1 }}>
         <TimeRange
-          sx={{ width: 126, paddingLeft: 1 }}
+          sx={{ width: 126, paddingLeft: 2 }}
           timeStart={data.time_start}
           timeEnd={data.time_end}
         />

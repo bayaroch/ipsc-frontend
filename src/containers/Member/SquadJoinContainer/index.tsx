@@ -1,12 +1,11 @@
 import { useState } from 'react'
 import { Box, Typography } from '@mui/material/'
 import useSquadJoin from './useSquadJoin'
-import _, { isArray } from 'lodash'
+import _ from 'lodash'
 import SquadList from '@components/admin/SquadList'
 import {
   SquadChangeParams,
   SquadJoinParams,
-  SquadListData,
   SquadListMembers,
 } from '@services/squad.services'
 import { useConfirm } from 'material-ui-confirm'
@@ -23,9 +22,9 @@ const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
   const confirm = useConfirm()
   const [mode] = useState<boolean>(true)
   const [memberList, setMemberList] = useState<null | SquadListMembers[]>(null)
-  const [selectedData, setSelectedData] = useState<SquadListData | undefined>(
-    undefined
-  )
+  // const [selectedData, setSelectedData] = useState<SquadListData | undefined>(
+  //   undefined
+  // )
   const { listMeta, join, userData, match, change, listGroup } = useSquadJoin(
     id
   )
@@ -62,12 +61,12 @@ const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
     const groupData = listGroup.find((g) => g.groupTitle === group)
     const list = groupData ? groupData.data : []
 
-    if (!_.isEmpty(list) && isArray(list)) {
-      const data = list.find((obj) => {
-        return obj.id === id
-      })
-      setSelectedData(data)
-    }
+    // if (!_.isEmpty(list) && isArray(list)) {
+    //   const data = list.find((obj) => {
+    //     return obj.id === id
+    //   })
+    //   setSelectedData(data)
+    // }
 
     const existSquad = SquadHelper.isExist(list, userData.id)
 
@@ -107,7 +106,7 @@ const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
           }
         })
         .catch(() => {
-          setSelectedData(undefined)
+          // setSelectedData(undefined)
         })
     }
   }
@@ -124,10 +123,13 @@ const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
           <Box
             display="flex"
             width="100%"
-            justifyContent="space-between"
+            justifyContent="center"
             alignItems="center"
           >
-            <Typography variant="h3" sx={{ paddingLeft: '20px' }}>
+            <Typography
+              variant="h2"
+              sx={{ textAlign: 'center', padding: '20px 0' }}
+            >
               {_.get(match, 'name', '')}
             </Typography>
           </Box>
@@ -141,10 +143,10 @@ const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
   const renderRow = (item: SquadGroupType, index: number) => {
     return (
       <Box key={index}>
-        <Box>{item.groupTitle}</Box>
+        <Typography variant="h3">{item.groupTitle}</Typography>
         <SquadList
           isEdit={mode}
-          selectedId={_.get(selectedData, 'id', undefined)}
+          userId={userData.id}
           onSelectChange={(id) => onSelectChange(id, item.groupTitle)}
           onExpandMembers={onExpandMembers}
           list={item.data}

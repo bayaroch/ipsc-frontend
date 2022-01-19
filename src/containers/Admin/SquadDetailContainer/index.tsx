@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Box, Button, Typography } from '@mui/material/'
 import useSquadDetail from './useSquadDetail'
 import _, { isArray } from 'lodash'
-import SquadList from '@components/admin/SquadList'
+import SquadListEdit from '@components/admin/SquadList/SquadListEdit'
 import { SquadListData, SquadListMembers } from '@services/squad.services'
 import { useConfirm } from 'material-ui-confirm'
 import SquadCreate from '@components/admin/SquadCreate'
@@ -126,7 +126,7 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
     return (
       <Box key={index}>
         <Box>{item.groupTitle}</Box>
-        <SquadList
+        <SquadListEdit
           isEdit={mode}
           selectedId={_.get(selectedData, 'id', undefined)}
           onSelectChange={(id) => onSelectChange(id, item.groupTitle)}

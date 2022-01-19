@@ -17,6 +17,7 @@ import moment from 'moment'
 import StatusChip from '@components/member/StatusChip'
 import { helper } from '@utils/helpers/common.helper'
 import CustomAvatar from '../Avatar'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import EventCountDown from './EventCountDown'
 import { MATCH_PROGRESS_STATUS } from '@constants/common.constants'
 
@@ -232,7 +233,7 @@ const MatchListItem: React.FC<ListItemProps> = ({ item, user }) => {
                 {item.name}
               </Typography>
               <Box sx={{ minWidth: 160, height: 22 }}>
-                <EventCountDown data={item} />
+                {/* <EventCountDown data={item} /> */}
               </Box>
             </Box>
             <Box
