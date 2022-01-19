@@ -11,34 +11,40 @@ interface Participants {
 
 const Participants: React.FC<Participants> = ({ detail, openList }) => {
   return (
-    <Card
-      sx={{
-        '& .Cmt-header-root': {
-          paddingTop: 3,
-          paddingBottom: 0,
-        },
-      }}
-    >
-      <CardHeader
-        sx={{ borderBottom: '1px solid #eee' }}
-        title="Оролцогчид"
-      ></CardHeader>
-      <CardContent sx={{ display: 'flex', alignItems: 'flex-start' }}>
-        <AvatarGroup max={8} onClick={() => openList && openList()}>
-          {detail &&
-            detail.participants.map((item, index) => {
-              return (
-                <CustomAvatar
-                  key={index}
-                  src={item.user.img_url}
-                  alt={item.user.firstname}
-                />
-              )
-            })}
-          )
-        </AvatarGroup>
-      </CardContent>
-    </Card>
+    <>
+      <Card
+        sx={{
+          '& .Cmt-header-root': {
+            paddingTop: 3,
+            paddingBottom: 0,
+          },
+        }}
+      >
+        <CardHeader
+          sx={{ borderBottom: '1px solid #eee' }}
+          title="Оролцогчид"
+        ></CardHeader>
+        <CardContent sx={{ display: 'flex', alignItems: 'flex-start' }}>
+          <AvatarGroup
+            max={8}
+            onClick={() => openList && openList()}
+            sx={{ cursor: 'pointer' }}
+          >
+            {detail &&
+              detail.participants.map((item, index) => {
+                return (
+                  <CustomAvatar
+                    key={index}
+                    src={item.user.img_url}
+                    alt={item.user.firstname}
+                  />
+                )
+              })}
+            )
+          </AvatarGroup>
+        </CardContent>
+      </Card>
+    </>
   )
 }
 

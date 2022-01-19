@@ -16,6 +16,7 @@ import DownloadCSV from './DownloadCSV'
 import { USER_TYPE } from '@constants/user.constants'
 import { UserData } from '@services/auth.services'
 import useToast from '@utils/hooks/useToast'
+import MemberList from './MemberList'
 
 interface MatchDetailProps {
   id: string
@@ -24,6 +25,7 @@ interface MatchDetailProps {
 
 const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
   const [open, setOpen] = useState<boolean>(false)
+  const [member, setMember] = useState<boolean>(false)
   const {
     detail,
     meta,
@@ -254,7 +256,12 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
                       <About detail={detail} progress={progress} />
                     </Box>
                     <Box mb={6}>
-                      <Participants detail={detail} />
+                      <Participants
+                        openList={() => {
+                          setMember(true)
+                        }}
+                        detail={detail}
+                      />
                     </Box>
                     <Box mb={6}>
                       {isRo || isAdmin ? <DownloadCSV id={id} /> : null}
@@ -304,8 +311,17 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
 
   return (
     <Box>
-      {renderLoader()}
-      {renderContent()}
+      <>
+        {renderLoader()}
+        {renderContent()}
+        {detail && (
+          <MemberList
+            handleClose={() => setMember(false)}
+            members={detail.participants}
+            open={member}
+          />
+        )}
+      </>
     </Box>
   )
 }
