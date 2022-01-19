@@ -12,6 +12,8 @@ import {
 import { useConfirm } from 'material-ui-confirm'
 import SquadMemberList from '@components/member/SquadMemberList'
 import { SquadHelper } from '@store/squads/reducers/helpers'
+import ListView from '@components/common/List/ListView'
+import { SquadGroupType } from '@store/squads/selectors/helpers'
 
 interface SquadJoinContainerProps {
   id: string
@@ -24,7 +26,9 @@ const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
   const [selectedData, setSelectedData] = useState<SquadListData | undefined>(
     undefined
   )
-  const { list, listMeta, join, userData, match, change } = useSquadJoin(id)
+  const { listMeta, join, userData, match, change, listGroup } = useSquadJoin(
+    id
+  )
 
   const renderLoader = () => {
     if (listMeta.pending && !listMeta.loaded && !listMeta.error) {
@@ -54,15 +58,19 @@ const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
     !_.isEmpty(members) && setMemberList(members)
   }
 
-  const existSquad = SquadHelper.isExist(list, userData.id)
+  const onSelectChange = (id: number, group: string) => {
+    const groupData = listGroup.find((g) => g.groupTitle === group)
+    const list = groupData ? groupData.data : []
 
-  const onSelectChange = (id: number) => {
     if (!_.isEmpty(list) && isArray(list)) {
       const data = list.find((obj) => {
         return obj.id === id
       })
       setSelectedData(data)
     }
+
+    const existSquad = SquadHelper.isExist(list, userData.id)
+
     const existInThis = SquadHelper.isExistInThis(list, userData.id, id)
 
     if (!existInThis) {
@@ -106,7 +114,7 @@ const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
 
   const renderList = () => {
     if (
-      !_.isEmpty(list) &&
+      !_.isEmpty(listGroup) &&
       !listMeta.pending &&
       listMeta.loaded &&
       !listMeta.error
@@ -123,22 +131,31 @@ const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
               {_.get(match, 'name', '')}
             </Typography>
           </Box>
-          <SquadList
-            isEdit={mode}
-            selectedId={_.get(selectedData, 'id', undefined)}
-            onSelectChange={onSelectChange}
-            onExpandMembers={onExpandMembers}
-            list={list}
-          />
+          <ListView data={listGroup} renderRow={renderRow} />
         </Box>
       )
     }
     return null
   }
 
+  const renderRow = (item: SquadGroupType, index: number) => {
+    return (
+      <Box key={index}>
+        <Box>{item.groupTitle}</Box>
+        <SquadList
+          isEdit={mode}
+          selectedId={_.get(selectedData, 'id', undefined)}
+          onSelectChange={(id) => onSelectChange(id, item.groupTitle)}
+          onExpandMembers={onExpandMembers}
+          list={item.data}
+        />
+      </Box>
+    )
+  }
+
   const renderPlaceholder = () => {
     if (
-      _.isEmpty(list) &&
+      _.isEmpty(listGroup) &&
       !listMeta.pending &&
       listMeta.loaded &&
       !listMeta.error

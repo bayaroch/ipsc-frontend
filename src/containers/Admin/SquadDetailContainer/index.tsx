@@ -9,6 +9,8 @@ import SquadCreate from '@components/admin/SquadCreate'
 import { SquadCreateInputType } from '@components/admin/SquadCreate/useSquadCreate'
 import { Edit, Close } from '@mui/icons-material'
 import SquadMemberList from '@components/member/SquadMemberList'
+import ListView from '@components/common/List/ListView'
+import { SquadGroupType } from '@store/squads/selectors/helpers'
 
 interface SquadDetailContainerProps {
   id: string
@@ -22,7 +24,7 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
     undefined
   )
   const {
-    list,
+    listGroup,
     listMeta,
     create,
     createMeta,
@@ -75,7 +77,9 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
     !_.isEmpty(members) && setMemberList(members)
   }
 
-  const onSelectChange = (id: number) => {
+  const onSelectChange = (id: number, group: string) => {
+    const list = listGroup.find((g) => g.groupTitle === group)?.data
+
     if (!_.isEmpty(list) && isArray(list)) {
       const data = list.find((obj) => {
         return obj.id === id
@@ -86,7 +90,7 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
 
   const renderList = () => {
     if (
-      !_.isEmpty(list) &&
+      !_.isEmpty(listGroup) &&
       !listMeta.pending &&
       listMeta.loaded &&
       !listMeta.error
@@ -111,23 +115,32 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
               {mode ? 'Цуцлах' : 'Засах'}
             </Button>
           </Box>
-          <SquadList
-            isEdit={mode}
-            selectedId={_.get(selectedData, 'id', undefined)}
-            onSelectChange={onSelectChange}
-            onDelete={onDelete}
-            onExpandMembers={onExpandMembers}
-            list={list}
-          />
+          <ListView data={listGroup} renderRow={renderRow} />
         </Box>
       )
     }
     return null
   }
 
+  const renderRow = (item: SquadGroupType, index: number) => {
+    return (
+      <Box key={index}>
+        <Box>{item.groupTitle}</Box>
+        <SquadList
+          isEdit={mode}
+          selectedId={_.get(selectedData, 'id', undefined)}
+          onSelectChange={(id) => onSelectChange(id, item.groupTitle)}
+          onDelete={onDelete}
+          onExpandMembers={onExpandMembers}
+          list={item.data}
+        />
+      </Box>
+    )
+  }
+
   const renderPlaceholder = () => {
     if (
-      _.isEmpty(list) &&
+      _.isEmpty(listGroup) &&
       !listMeta.pending &&
       listMeta.loaded &&
       !listMeta.error

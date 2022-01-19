@@ -18,7 +18,7 @@ const isExist = (
 }
 
 const isExistInThis = (
-  state: SquadListData[],
+  state: SquadListData[] | undefined,
   payload: number,
   id: number
 ): boolean => {

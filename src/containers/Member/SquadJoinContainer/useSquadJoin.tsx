@@ -6,7 +6,7 @@ import {
 } from '@services/squad.services'
 import { squadList, squadJoin, squadChange } from '@store/squads/actions'
 import { createMetaSelector } from '@store/metadata/selectors'
-import { squads } from '@store/squads/selectors'
+import { squadByGroup, squads } from '@store/squads/selectors'
 import { Meta } from '@store/metadata/actions/types'
 import { useSelector, useDispatch } from 'react-redux'
 import searchStore from '@store/squads'
@@ -15,6 +15,7 @@ import { UserData } from '@services/auth.services'
 import { MatchItem } from '@store/match/actions/types'
 import { getMatch } from '@store/match/actions'
 import { matchDetail } from '@store/match/selectors'
+import { SquadGroupType } from '@store/squads/selectors/helpers'
 
 const { actions } = searchStore
 
@@ -32,9 +33,11 @@ const useSquadJoin = (
   getList: (id: string) => void
   userData: UserData
   match: MatchItem
+  listGroup: SquadGroupType[]
 } => {
   const dispatch = useDispatch()
   const list = useSelector(squads)
+  const listGroup = useSelector(squadByGroup)
   const listMeta: Meta = useSelector(getAllSquadsMeta)
   const joinMeta: Meta = useSelector(joinSquadMeta)
   const userData: UserData = useSelector(user)
@@ -66,6 +69,7 @@ const useSquadJoin = (
     joinMeta,
     getList,
     change,
+    listGroup,
     match,
   }
 }
