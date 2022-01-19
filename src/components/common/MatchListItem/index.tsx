@@ -18,7 +18,6 @@ import StatusChip from '@components/member/StatusChip'
 import { helper } from '@utils/helpers/common.helper'
 import CustomAvatar from '../Avatar'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import EventCountDown from './EventCountDown'
 import { MATCH_PROGRESS_STATUS } from '@constants/common.constants'
 
 interface ListItemProps {
