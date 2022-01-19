@@ -9,7 +9,10 @@ export const groupByRemark = (items: SquadListData[]): SquadGroupType[] => {
   const groupedItems = _.chain(items)
     .groupBy((item) => item.remark)
     .map((groupItems, groupTitle) => {
-      return { groupTitle: groupTitle, data: groupItems }
+      return {
+        groupTitle: groupTitle,
+        data: _.sortBy(groupItems, 'time_start'),
+      }
     })
     .value()
 
