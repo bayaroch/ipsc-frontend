@@ -18,7 +18,7 @@ const status = (
   const today = moment()
   const isBeforeMatch = moment(matchEnd).isBefore(today, 'days')
 
-  if (today.isBetween(today, start, 'days', '[]')) {
+  if (today.diff(start) <= 0) {
     return {
       eventTime: start,
       eventText: TournamentStatusTimeText.RegisterStartIn,

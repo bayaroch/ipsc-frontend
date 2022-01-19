@@ -12,15 +12,15 @@ interface EventCountDownProps {
 const EventCountDown: React.FC<EventCountDownProps> = ({ data }) => {
   const [time, setTime] = useState<TournamentStatusTime | null>(null)
 
-  const triggerStatus = () =>
-    setTime(
-      StatusHelper.status(
-        data.registration_start,
-        data.registration_end,
-        data.match_start,
-        data.match_end
-      )
+  const triggerStatus = () => {
+    const status = StatusHelper.status(
+      data.registration_start,
+      data.registration_end,
+      data.match_start,
+      data.match_end
     )
+    setTime(status)
+  }
 
   useEffect(() => {
     triggerStatus()
