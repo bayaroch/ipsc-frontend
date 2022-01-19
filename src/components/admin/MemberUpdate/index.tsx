@@ -86,7 +86,7 @@ const MemberUpdate: React.FC<PickerProps> = (props) => {
   useEffect(() => {
     if (open && initData) {
       const formValue = Object.assign({}, initData, {
-        birthday: moment(initData.birthday).format('YYYY-MM-DDTHH:mm'),
+        birthday: moment(initData.birthday).format('YYYY-MM-DD'),
       })
       const newData = _.omit(formValue, 'id')
       reset({
