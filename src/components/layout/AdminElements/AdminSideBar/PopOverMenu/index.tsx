@@ -45,15 +45,4 @@ const PopOverMenu: React.FC<PopOverMenuProps> = ({
   )
 }
 
-// const useStyles = makeStyles(() => ({
-//   popoverPaper: {
-//     background: '#fff',
-//     WebkitBoxShadow: '0 20px 60px 0 rgb(0 0 0 / 15%)',
-//     boxShadow: '0 20px 60px 0 rgb(0 0 0 / 15%)',
-//     border: '0 none',
-//     borderRadius: '12px',
-//     padding: '0',
-//   },
-// }))
-
 export default PopOverMenu

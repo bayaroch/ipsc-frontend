@@ -2,7 +2,7 @@ import AdminLayout from '@components/layout/AdminLayout'
 import PageWithLayoutType from '@constants/page'
 import { Box } from '@mui/material'
 
-const Admin: PageWithLayoutType = () => {
+const Member: PageWithLayoutType = () => {
   return (
     <AdminLayout>
       <Box></Box>
@@ -10,4 +10,4 @@ const Admin: PageWithLayoutType = () => {
   )
 }
 
-export default Admin
+export default Member

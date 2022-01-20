@@ -170,7 +170,11 @@ const MemberList: React.FC<MemberListProps> = (props) => {
                       </Typography>
                     </TableCell>
                     <TableCell scope="row" align="right">
-                      <Link href={`/member/profile/${row.id}`} passHref>
+                      <Link
+                        href={`/member/profile/[id]`}
+                        as={`/member/profile/${row.id}`}
+                        passHref
+                      >
                         <Typography
                           component="a"
                           sx={{

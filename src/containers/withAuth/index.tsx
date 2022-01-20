@@ -27,7 +27,7 @@ export function withAuth<T>(Component: React.ComponentType<T>): React.FC {
     }, [isLoggedIn])
 
     if (!render) {
-      return <></>
+      return null
     }
     return <Component currentUser={currentUser} {...props} />
   }

@@ -76,7 +76,11 @@ const ClubMembersContainer: React.FC = () => {
                           lg={3}
                           xl={3}
                         >
-                          <Link href={`/member/profile/${item.id}`} passHref>
+                          <Link
+                            href={`/member/profile/[id]`}
+                            as={`/member/profile/${item.id}`}
+                            passHref
+                          >
                             <Box sx={{ cursor: 'pointer' }}>
                               <MemberCard support={support} item={item} />
                             </Box>
