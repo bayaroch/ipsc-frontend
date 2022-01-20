@@ -1,14 +1,18 @@
 import api from './api'
 import { StoreType } from '../store/store'
+import { AxiosRequestConfig } from 'axios'
 
 export const authorizationProvider = (store: StoreType): void => {
   api.interceptors.request.use(
-    (config) => {
+    async (config: AxiosRequestConfig) => {
       const { auth } = store.getState()
       const user = auth.user
       if (user) {
         const token = `Bearer ${auth.token}`
         if (token) {
+          if (config.headers === undefined) {
+            config.headers = {}
+          }
           config.headers.Authorization = `${token}`
         }
       }
