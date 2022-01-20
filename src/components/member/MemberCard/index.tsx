@@ -89,6 +89,7 @@ const MemberCard: React.FC<MemberCardProps> = ({ item, onClick, support }) => {
         <Box mt={1} height={20}>
           <BadgeChips
             data={item}
+            size="small"
             badgesData={support && support.badges ? support.badges : []}
           />
         </Box>
