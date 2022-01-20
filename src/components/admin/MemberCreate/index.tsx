@@ -153,7 +153,7 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
             </Typography>
             <section style={{ marginBottom: 20 }}>
               <Grid spacing={3} container>
-                <Grid item sm={12} md={6}>
+                <Grid item sm={12} xs={12} md={6}>
                   <Controller
                     name="usercode"
                     control={control}
@@ -177,7 +177,7 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
                     )}
                   />
                 </Grid>
-                <Grid item sm={12} md={6}>
+                <Grid item sm={12} xs={12} md={6}>
                   <Controller
                     name="password"
                     control={control}
@@ -219,7 +219,7 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
             </section>
             <section style={{ marginBottom: 20 }}>
               <Grid spacing={3} container>
-                <Grid item sm={12} md={6}>
+                <Grid item sm={12} xs={12} md={6}>
                   <Controller
                     name="firstname"
                     control={control}
@@ -242,7 +242,7 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
                     )}
                   />
                 </Grid>
-                <Grid item sm={12} md={6}>
+                <Grid item sm={12} xs={12} md={6}>
                   <Controller
                     name="lastname"
                     control={control}
@@ -269,7 +269,7 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
             </section>
             <section style={{ marginBottom: 20 }}>
               <Grid spacing={3} container>
-                <Grid item sm={12} md={6}>
+                <Grid item sm={12} xs={12} md={6}>
                   <Controller
                     name="email"
                     control={control}
@@ -292,7 +292,7 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
                     )}
                   />
                 </Grid>
-                <Grid item sm={12} md={6}>
+                <Grid item sm={12} xs={12} md={6}>
                   <Controller
                     name="usertype"
                     control={control}
@@ -329,7 +329,7 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
             </section>
             <section style={{ marginBottom: 20 }}>
               <Grid spacing={3} container>
-                <Grid item sm={12} md={6}>
+                <Grid item sm={12} xs={12} md={6}>
                   <Controller
                     name="gender"
                     control={control}
@@ -362,7 +362,7 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
                     )}
                   />
                 </Grid>
-                <Grid item sm={12} md={6}>
+                <Grid item sm={12} xs={12} md={6}>
                   <Controller
                     name="birthday"
                     control={control}
@@ -390,7 +390,7 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
 
             <section style={{ marginBottom: 20 }}>
               <Grid spacing={3} container>
-                <Grid item sm={12} md={6}>
+                <Grid item sm={12} xs={12} md={6}>
                   <Controller
                     name="class_id"
                     control={control}
@@ -423,7 +423,7 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
                     )}
                   />
                 </Grid>
-                <Grid item sm={12} md={3}>
+                <Grid item sm={12} xs={12} md={3}>
                   <Controller
                     name="img_url"
                     control={control}
@@ -453,7 +453,7 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
                     }}
                   />
                 </Grid>
-                <Grid item sm={12} md={3}>
+                <Grid item sm={12} xs={12} md={3}>
                   <Controller
                     name="enabled"
                     control={control}
@@ -479,7 +479,7 @@ const MemberCreate: React.FC<PickerProps> = (props) => {
                     }}
                   />
                 </Grid>
-                <Grid item sm={12} md={6}>
+                <Grid item sm={12} xs={12} md={6}>
                   <Controller
                     name="mo_badge"
                     control={control}

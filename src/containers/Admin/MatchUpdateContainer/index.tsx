@@ -114,7 +114,7 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
           </section>
           <section style={{ marginBottom: '20px' }}>
             <Grid spacing={3} container>
-              <Grid item sm={12} md={6}>
+              <Grid item sm={12} xs={12} md={6}>
                 <Controller
                   name="match_start"
                   control={control}
@@ -137,7 +137,7 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
                   )}
                 />
               </Grid>
-              <Grid item sm={12} md={6}>
+              <Grid item sm={12} xs={12} md={6}>
                 <Controller
                   name="match_end"
                   control={control}
@@ -165,7 +165,7 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
 
           <section style={{ marginBottom: '20px' }}>
             <Grid spacing={3} container>
-              <Grid item sm={12} md={6}>
+              <Grid item sm={12} xs={12} md={6}>
                 <Controller
                   name="registration_start"
                   control={control}
@@ -188,7 +188,7 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
                   )}
                 />
               </Grid>
-              <Grid item sm={12} md={6}>
+              <Grid item sm={12} xs={12} md={6}>
                 <Controller
                   name="registration_end"
                   control={control}
@@ -217,7 +217,7 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
           <section style={{ marginBottom: '20px' }}>
             <FormGroup row={true}>
               <Grid spacing={3} container>
-                <Grid item sm={12} md={4}>
+                <Grid item sm={12} xs={12} md={4}>
                   <Controller
                     name="lvl"
                     control={control}
@@ -242,7 +242,7 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
                     )}
                   />
                 </Grid>
-                <Grid item sm={12} md={4}>
+                <Grid item sm={12} xs={12} md={4}>
                   <Controller
                     name="point_multiplier"
                     control={control}
@@ -264,7 +264,7 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
                     )}
                   />
                 </Grid>
-                <Grid item sm={12} md={4}>
+                <Grid item sm={12} xs={12} md={4}>
                   <Controller
                     name="per_squad"
                     control={control}
@@ -294,7 +294,7 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
 
           <section style={{ marginBottom: '20px' }}>
             <Grid spacing={3} container>
-              <Grid item sm={12} md={4}>
+              <Grid item sm={12} xs={12} md={4}>
                 <Controller
                   name="tax"
                   control={control}
@@ -318,7 +318,7 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
                   )}
                 />
               </Grid>
-              <Grid item sm={12} md={4}>
+              <Grid item sm={12} xs={12} md={4}>
                 <Controller
                   name="stage_number"
                   control={control}
@@ -334,7 +334,7 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
                   )}
                 />
               </Grid>
-              <Grid item sm={12} md={4}>
+              <Grid item sm={12} xs={12} md={4}>
                 <Controller
                   name="min_point"
                   control={control}
@@ -411,7 +411,7 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
 
           <section style={{ marginBottom: '20px' }}>
             <Grid container spacing={3}>
-              <Grid item sm={12} md={8}>
+              <Grid item sm={12} xs={12} md={8}>
                 <Controller
                   name="status"
                   control={control}
@@ -439,7 +439,7 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
                   )}
                 />
               </Grid>
-              <Grid item sm={12} md={4}>
+              <Grid item sm={12} xs={12} md={4}>
                 <Controller
                   name="is_public"
                   control={control}
