@@ -82,7 +82,7 @@ const UploadDialog = ({
   const { getRootProps, getInputProps, open } = useDropzone({
     noClick: true,
     noKeyboard: true,
-    accept: 'image/jpg, image/png',
+    accept: 'image/*',
     maxFiles: 1,
     maxSize: 2000000,
     onDrop: (acceptedFiles) => {
