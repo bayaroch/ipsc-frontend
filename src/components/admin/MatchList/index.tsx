@@ -110,11 +110,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
 
   useEffect(() => {
     getList({ page: page, per_page: rowsPerPage })
-  }, [])
-
-  useEffect(() => {
-    getList({ page: page, per_page: rowsPerPage })
-  }, [page, rowsPerPage])
+  }, [page])
 
   useEffect(() => {
     if (pagination && pagination.total_objects < rowsPerPage) {

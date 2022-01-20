@@ -26,14 +26,14 @@ const MatchList: React.FC<MatchListProps> = (props) => {
   const [page, setPage] = useState<number>(1)
   const [rowsPerPage, setRowsPerPage] = useState<number>(defaultPerPage)
 
-  useEffect(() => {
-    getList({
-      page: page,
-      per_page: rowsPerPage,
-      sort_order: 'DESC',
-      sort_column: 'match_start',
-    })
-  }, [])
+  // useEffect(() => {
+  //   getList({
+  //     page: page,
+  //     per_page: rowsPerPage,
+  //     sort_order: 'DESC',
+  //     sort_column: 'match_start',
+  //   })
+  // }, [])
 
   useEffect(() => {
     getList({
@@ -42,7 +42,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
       sort_order: 'DESC',
       sort_column: 'match_start',
     })
-  }, [page, rowsPerPage])
+  }, [page])
 
   useEffect(() => {
     if (pagination && pagination.total_objects < rowsPerPage) {
