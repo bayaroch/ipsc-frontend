@@ -58,6 +58,10 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
     _.get(detail, 'match_start', '')
   )
 
+  const isBeforeMatch = helper.isBeforeMatch(_.get(detail, 'match_start', ''))
+
+  const isOpenOnly = !isRegisterActive && isBeforeMatch
+
   const router = useRouter()
 
   useEffect(() => {
@@ -148,7 +152,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
           Бүртгүүлэх
         </Button>
       )
-    } else if (isRegistered && !_.isEmpty(participants) && isRegisterActive) {
+    } else if (isRegistered && !_.isEmpty(participants) && isBeforeMatch) {
       return (
         <Button
           type="submit"
@@ -194,6 +198,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
             validate={(v) => addToast({ message: v, severity: 'warning' })}
             open={open}
             divisions={support.divisions}
+            isOpenOnly={isOpenOnly}
             onSubmit={
               _.isEmpty(participants) || !isRegistered
                 ? handleRegister

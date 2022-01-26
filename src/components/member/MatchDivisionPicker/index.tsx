@@ -14,6 +14,7 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
+  Alert,
 } from '@mui/material/'
 import { SupportItem } from '@services/support.services'
 import { Colors } from '@theme/colors'
@@ -25,6 +26,7 @@ interface PickerProps {
   isRo: boolean
   onSubmit: (id: number, is_ro: number) => void
   validate?: (v: string) => void
+  isOpenOnly?: boolean
 }
 
 const Transition = forwardRef(function Transition(
@@ -35,7 +37,15 @@ const Transition = forwardRef(function Transition(
 })
 
 const MatchDivisionPicker: React.FC<PickerProps> = (props) => {
-  const { open, divisions, handleClose, onSubmit, isRo, validate } = props
+  const {
+    open,
+    divisions,
+    handleClose,
+    onSubmit,
+    isRo,
+    validate,
+    isOpenOnly,
+  } = props
   const [selected, choose] = useState<number>(-1)
   const [roField, setRoField] = useState<number>(0)
 
@@ -117,15 +127,47 @@ const MatchDivisionPicker: React.FC<PickerProps> = (props) => {
       </ButtonGroup>
       <Divider />
       {renderRoSection()}
+      {isOpenOnly ? (
+        <>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              pt: 2,
+              pb: 2,
+            }}
+          >
+            <Alert severity="info">
+              Тэмцээний бүртгэл хаагдсанаас хойш ангилал өөрчлөхгүй бөгөөд
+              өөрчлөх бол зөвхөн Open ангилалруу шилжих боломжтой.
+            </Alert>
+          </Box>
+          <Divider />
+        </>
+      ) : (
+        ''
+      )}
+
       <List>
         {divisions.map((item, i) => {
+          const disabled = isOpenOnly && item.id !== 1
           return (
             <Box key={i}>
               <ListItem
+                disabled={disabled}
+                // sx={{
+                //   opacity: disabled ? 0.2 : 1,
+                //   cursor: disabled ? 'inherit' : 'pointer',
+                // }}
                 button
                 selected={item.id === selected ? true : false}
                 onClick={() => {
-                  choose(item.id)
+                  if (isOpenOnly) {
+                    item.id === 1 && choose(item.id)
+                  } else {
+                    choose(item.id)
+                  }
                 }}
               >
                 <ListItemText primary={item.name} secondary={item.shorthand} />

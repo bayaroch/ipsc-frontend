@@ -177,6 +177,7 @@ const matchStatus = (data: MatchItem): MATCH_PROGRESS_STATUS => {
   const today = moment()
   const isAfterEnd = moment(match_end).isAfter(today, 'days')
   const isBeforeRegister = moment(today).isBefore(registration_start, 'days')
+
   const isBetweenMatchRegister = isRegisterActive(registration_end, match_start)
   const isCanceled = status === MATCH_STATUS.MATCH_CANCEL
 
@@ -197,6 +198,12 @@ const matchStatus = (data: MatchItem): MATCH_PROGRESS_STATUS => {
   }
 }
 
+const isBeforeMatch = (start: string): boolean => {
+  const today = moment()
+  const isBeforeMatch = moment(today).isBefore(start, 'days')
+  return isBeforeMatch
+}
+
 export const helper = {
   categoryTitleHelper,
   classTitleHelper,
@@ -209,5 +216,6 @@ export const helper = {
   currency,
   matchStatusTitle,
   matchStatus,
+  isBeforeMatch,
   registrationDate,
 }
