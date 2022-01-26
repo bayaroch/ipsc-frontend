@@ -106,7 +106,7 @@ const registrationDate = (
 
   if (today.isBetween(start, end, 'days', '[]')) {
     if (type === 'start') {
-      return `Яг одоо явагдаж байна , ${moment(start).format('MMM DD, YYYY')}`
+      return `${moment(start).format('MMM DD, YYYY')} (Яг одоо явагдаж байна) `
     } else {
       return `${moment(start).format('MMM DD, YYYY hh:mm')}`
     }
