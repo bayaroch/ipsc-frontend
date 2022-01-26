@@ -76,7 +76,7 @@ const MemberList: React.FC<PickerProps> = (props) => {
                     {item.is_verified ? (
                       <Verified sx={{ color: Colors.green }} />
                     ) : (
-                      <AccessTime sx={{ color: Colors.yellow }} />
+                      <AccessTime sx={{ color: Colors.primary }} />
                     )}
                   </ListItemSecondaryAction>
                 </ListItem>
