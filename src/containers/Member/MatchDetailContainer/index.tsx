@@ -271,6 +271,13 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
                       </Paper>
                     </Box>
                     <Box mb={6}>
+                      <Paper>
+                        {!_.isEmpty(detail.tax_info) ? (
+                          <Info detail={detail.tax_info} title="Tax Info" />
+                        ) : null}
+                      </Paper>
+                    </Box>
+                    <Box mb={6}>
                       {isRo || isAdmin ? <DownloadCSV id={id} /> : null}
                     </Box>
                   </Grid>

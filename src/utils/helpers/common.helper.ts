@@ -84,7 +84,7 @@ const matchDate = (start: string, end: string): string => {
   const isBefore = moment(end).isBefore(today, 'days')
 
   if (today.isBetween(start, end, 'days', '[]')) {
-    return 'Яг одоо явагдаж байна'
+    return `Яг одоо явагдаж байна`
   } else if (isBefore) {
     return `${moment(start).format('MMM DD, YYYY')}(Дууссан)`
   } else {
@@ -106,7 +106,7 @@ const registrationDate = (
 
   if (today.isBetween(start, end, 'days', '[]')) {
     if (type === 'start') {
-      return 'Яг одоо явагдаж байна'
+      return `Яг одоо явагдаж байна , ${moment(start).format('MMM DD, YYYY')}`
     } else {
       return `${moment(start).format('MMM DD, YYYY hh:mm')}`
     }
