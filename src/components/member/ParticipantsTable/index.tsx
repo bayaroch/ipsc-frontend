@@ -5,6 +5,8 @@ import MemberTable from './MemberTable'
 import { ParticipantSortedList } from '@store/match/selectors/helpers'
 import { helper } from '@utils/helpers/common.helper'
 import { SupportItem } from '@services/support.services'
+import { AccessTime, Verified } from '@mui/icons-material'
+import { Colors } from '@theme/colors'
 
 export interface MatchListProps {
   data: ParticipantSortedList
@@ -46,6 +48,35 @@ const ParticipantsTable: React.FC<MatchListProps> = (props) => {
             />
           </Box>
         ))}
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'flex-end',
+          alignItems: 'center',
+          pt: 2,
+          pb: 2,
+        }}
+      >
+        <Typography
+          variant="body1"
+          sx={{ mr: 2, display: 'flex', alignItems: 'center' }}
+        >
+          Бүртгэл баталгаажсан
+          <Verified
+            sx={{ fontSize: 14, ml: 1, mt: 0.5, color: Colors.green }}
+          />
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{ mr: 2, display: 'flex', alignItems: 'center' }}
+        >
+          Хүлээглэж буй
+          <AccessTime
+            sx={{ fontSize: 14, ml: 1, mt: 0.5, color: Colors.primary }}
+          />
+        </Typography>
+      </Box>
     </>
   )
 }

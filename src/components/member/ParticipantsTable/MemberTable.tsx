@@ -14,6 +14,8 @@ import { helper } from '@utils/helpers/common.helper'
 import { blue } from '@mui/material/colors'
 import { Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
+import { AccessTime, Verified } from '@mui/icons-material'
+import { Colors } from '@theme/colors'
 
 interface TableProps {
   data: ParticipantsItem[]
@@ -52,7 +54,18 @@ const MemberTable: React.FC<TableProps> = (props) => {
                 {i + 1}
               </TableCell>
               <TableCell align="right">
-                <Typography variant="body1">{row.user.firstname}</Typography>
+                <Typography variant="body1">
+                  {row.is_verified ? (
+                    <Verified
+                      sx={{ fontSize: 12, mr: 1, color: Colors.green }}
+                    />
+                  ) : (
+                    <AccessTime
+                      sx={{ fontSize: 12, mr: 1, color: Colors.primary }}
+                    />
+                  )}
+                  {row.user.firstname}
+                </Typography>
                 {row.is_ro ? (
                   <Item
                     label={'RO'}
