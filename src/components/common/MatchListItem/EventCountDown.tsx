@@ -28,7 +28,6 @@ const EventCountDown: React.FC<EventCountDownProps> = ({ data }) => {
 
   const renderer = ({ days, hours, minutes, completed }: any) => {
     if (completed) {
-      triggerStatus()
       return ''
     } else {
       return (
@@ -45,7 +44,7 @@ const EventCountDown: React.FC<EventCountDownProps> = ({ data }) => {
       <Box component="span" sx={{ fontSize: 13, fontWeight: 500 }}>
         {time && time.eventText} :
       </Box>
-      {time && time.eventTime && (
+      {time && time.eventTime !== null && (
         <Countdown date={time.eventTime} renderer={renderer} />
       )}
     </Box>
