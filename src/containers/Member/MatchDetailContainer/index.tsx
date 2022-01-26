@@ -287,8 +287,17 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
                             detail={
                               <Typography>
                                 <Typography>{detail.tax_info}</Typography>
-                                <Box>
-                                  <img src="/images/qpay.png" alt="qpay" />
+                                <Box
+                                  display="flex"
+                                  width="100%"
+                                  alignItems={'center'}
+                                  justifyContent={'center'}
+                                >
+                                  <img
+                                    style={{ maxWidth: '100%', height: 'auto' }}
+                                    src="/images/qpay.png"
+                                    alt="qpay"
+                                  />
                                 </Box>
                               </Typography>
                             }
