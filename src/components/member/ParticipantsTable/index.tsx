@@ -71,7 +71,7 @@ const ParticipantsTable: React.FC<MatchListProps> = (props) => {
           variant="body1"
           sx={{ mr: 2, display: 'flex', alignItems: 'center' }}
         >
-          Хүлээглэж буй
+          Хүлээгдэж буй
           <AccessTime
             sx={{ fontSize: 14, ml: 1, mt: 0.5, color: Colors.primary }}
           />
