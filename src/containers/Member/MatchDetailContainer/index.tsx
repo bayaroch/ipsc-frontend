@@ -271,14 +271,29 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
                     <Box mb={6}>
                       <Paper>
                         {!_.isEmpty(detail.sponsor_info) ? (
-                          <Info detail={detail.sponsor_info} title="Спонсор" />
+                          <Info
+                            detail={
+                              <Typography>{detail.sponsor_info}</Typography>
+                            }
+                            title="Спонсор"
+                          />
                         ) : null}
                       </Paper>
                     </Box>
                     <Box mb={6}>
                       <Paper>
                         {!_.isEmpty(detail.tax_info) ? (
-                          <Info detail={detail.tax_info} title="Tax Info" />
+                          <Info
+                            detail={
+                              <Typography>
+                                <Typography>{detail.tax_info}</Typography>
+                                <Box>
+                                  <img src="/images/qpay.png" alt="qpay" />
+                                </Box>
+                              </Typography>
+                            }
+                            title="Tax Info"
+                          />
                         ) : null}
                       </Paper>
                     </Box>

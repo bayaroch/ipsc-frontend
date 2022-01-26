@@ -363,7 +363,8 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
                   placeholder={'Хураамжын дэлгэрэнгүй'}
                   fullWidth={true}
                   multiline
-                  rows={3}
+                  minRows={3}
+                  maxRows={10}
                 />
               )}
             />
