@@ -11,11 +11,13 @@ import {
   Divider,
   Box,
   ListItemAvatar,
+  ListItemSecondaryAction,
 } from '@mui/material/'
 import { Colors } from '@theme/colors'
 import _ from 'lodash'
 import CustomAvatar from '@components/common/Avatar'
 import { ParticipantsItem } from '@services/match.services'
+import { AccessTime, Verified } from '@mui/icons-material'
 
 interface PickerProps {
   open: boolean
@@ -70,6 +72,13 @@ const MemberList: React.FC<PickerProps> = (props) => {
                     primary={_.defaultTo(item.user.firstname, '')}
                     secondary={_.defaultTo(item.user.usercode, '')}
                   />
+                  <ListItemSecondaryAction>
+                    {item.is_verified ? (
+                      <Verified sx={{ color: Colors.green }} />
+                    ) : (
+                      <AccessTime sx={{ color: Colors.yellow }} />
+                    )}
+                  </ListItemSecondaryAction>
                 </ListItem>
                 <Divider />
               </Box>

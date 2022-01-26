@@ -81,12 +81,13 @@ export type GetMatchesResponse = {
 }
 
 export type RegisterMatchParams = {
-  match_id: number
-  user_id: number
-  division_id: number
-  category_id: number
-  class_id: number
-  is_ro: number
+  match_id?: number
+  user_id?: number
+  division_id?: number
+  category_id?: number
+  class_id?: number
+  is_ro?: number
+  is_verified?: number | boolean
   remark?: string | null
 }
 
@@ -110,6 +111,8 @@ export type RegisterMatchData = {
   class_id: number
   is_ro: boolean
   remark?: string | null
+  is_verified: boolean | number
+  user: UserData
 }
 
 export type ParticipantsItem = {
@@ -121,6 +124,7 @@ export type ParticipantsItem = {
   class_id: number
   is_ro: boolean
   remark?: string | null
+  is_verified: boolean | number
   user: UserData
 }
 

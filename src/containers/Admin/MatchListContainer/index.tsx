@@ -29,6 +29,11 @@ const MatchListContainer: React.FC = () => {
       })
       .catch(() => null)
   }
+
+  const onConfirm = (id: number) => {
+    router.push(`/admin/participants/confirm/${id}`)
+  }
+
   return (
     <Box>
       <Box
@@ -37,6 +42,7 @@ const MatchListContainer: React.FC = () => {
       <MatchList
         onEditClick={handleEdit}
         onEditSquad={handleEditSquad}
+        onConfirm={onConfirm}
         meta={meta}
         list={groupedList}
         onDelete={onDelete}

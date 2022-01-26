@@ -8,7 +8,6 @@ import {
   TableBody,
   Paper,
   Box,
-  Avatar,
   Tab,
   Tabs,
   Typography,
@@ -21,8 +20,6 @@ import Link from 'next/link'
 import { Colors } from '@theme/colors'
 import { GroupedMatchListItem } from '@store/match/selectors/helpers'
 import TableActions from './TableActions'
-import { colorConstants } from '@components/member/MatchCardItem'
-import { red } from '@mui/material/colors'
 import { helper } from '@utils/helpers/common.helper'
 import {
   Visibility,
@@ -37,6 +34,7 @@ export interface MatchListProps {
   pagination: MatchPaginationMeta
   onEditClick: (id: number) => void
   onEditSquad: (id: number) => void
+  onConfirm: (id: number) => void
   meta: Meta
   onDelete: (id: number) => void
 }
@@ -97,6 +95,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
     meta,
     onEditSquad,
     onDelete,
+    onConfirm,
   } = props
 
   const [page, setPage] = useState<number>(1)
@@ -182,8 +181,6 @@ const MatchList: React.FC<MatchListProps> = (props) => {
                         <TableRow>
                           <TableCell>Нэр</TableCell>
                           <TableCell align="right">Эхлэх өдөр</TableCell>
-                          <TableCell align="right">Түвшин</TableCell>
-                          <TableCell align="right">Tax</TableCell>
                           <TableCell align="right">Төлөв</TableCell>
                           <TableCell align="right"></TableCell>
                         </TableRow>
@@ -231,33 +228,6 @@ const MatchList: React.FC<MatchListProps> = (props) => {
                               </Typography>
                             </TableCell>
                             <TableCell align="right">
-                              <Avatar
-                                aria-label="recipe"
-                                sx={{
-                                  flexDirection: 'column',
-                                  background: red[100],
-                                  width: 30,
-                                  height: 30,
-                                }}
-                                style={{ background: colorConstants[row.lvl] }}
-                              >
-                                <Box style={{ fontSize: 8, paddingBottom: 0 }}>
-                                  lvl
-                                </Box>
-                                <Typography variant="h2" sx={{ fontSize: 14 }}>
-                                  {row.lvl}
-                                </Typography>
-                              </Avatar>
-                            </TableCell>
-                            <TableCell align="right">
-                              <Typography
-                                sx={{ fontWeight: 600 }}
-                                variant="body1"
-                              >
-                                {helper.currency(row.tax)}
-                              </Typography>
-                            </TableCell>
-                            <TableCell align="right">
                               <Box sx={{ fontSize: 12 }}>
                                 {
                                   _.filter(MATCH_STATUS_TEXT_ICONS, function (
@@ -273,6 +243,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
                                 onEdit={onEditClick}
                                 onDelete={onDelete}
                                 onEditSquad={onEditSquad}
+                                onConfirm={onConfirm}
                                 data={row.id}
                               />
                             </TableCell>

@@ -1,78 +1,64 @@
-import { useState } from 'react'
-import Menu from '@mui/material/Menu'
-import MenuItem from '@mui/material/MenuItem'
-import MoreVertIcon from '@mui/icons-material/MoreVert'
-import IconButton from '@mui/material/IconButton'
+/* eslint-disable react/jsx-no-undef */
 import Typography from '@mui/material/Typography'
-import { DeleteOutlined, Edit, GroupAdd } from '@mui/icons-material'
+import { DeleteOutlined, Edit, Group, GroupAdd } from '@mui/icons-material'
+import { Box, Button, ButtonGroup } from '@mui/material'
 
 interface ActionProps {
   data: number
   onDelete: (id: number) => void
   onEditSquad: (id: number) => void
   onEdit: (id: number) => void
+  onConfirm: (id: number) => void
 }
 
 const TableActions: React.FC<ActionProps> = (props) => {
-  const [anchorEl, setAnchorEl] = useState(null)
-
-  const handleClick = (e: React.MouseEvent<any>) => {
-    setAnchorEl(e.currentTarget)
-  }
-
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
-
-  const { data, onDelete, onEdit, onEditSquad } = props
+  const { data, onDelete, onEdit, onEditSquad, onConfirm } = props
   return (
-    <>
-      <IconButton
-        style={{ padding: 0 }}
-        aria-label="more"
-        aria-controls="template-menu"
-        aria-haspopup="true"
-        onClick={handleClick}
-      >
-        <MoreVertIcon />
-      </IconButton>
-      <Menu
-        id="card-actions-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <MenuItem
+    <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <ButtonGroup variant="outlined" aria-label="outlined button group">
+        <Button
           onClick={() => {
             onEditSquad(data)
-            setAnchorEl(null)
           }}
         >
           <GroupAdd fontSize="small" />
-          <Typography style={{ marginLeft: 10 }}>Ээлж үүсгэх</Typography>
-        </MenuItem>
-        <MenuItem
+          <Typography style={{ marginLeft: 10, fontSize: 12 }}>
+            Ээлж үүсгэх
+          </Typography>
+        </Button>
+        <Button
           onClick={() => {
             onEdit(data)
-            setAnchorEl(null)
           }}
         >
           <Edit fontSize="small" />
-          <Typography style={{ marginLeft: 10 }}>Засах</Typography>
-        </MenuItem>
+          <Typography style={{ marginLeft: 10, fontSize: 12 }}>
+            Засах
+          </Typography>
+        </Button>
 
-        <MenuItem
+        <Button
+          onClick={() => {
+            onConfirm(data)
+          }}
+        >
+          <Group fontSize="small" />
+          <Typography style={{ marginLeft: 10, fontSize: 12 }}>
+            Бүртгэл Баталгаажуулах
+          </Typography>
+        </Button>
+        <Button
           onClick={() => {
             onDelete(data)
-            setAnchorEl(null)
           }}
         >
           <DeleteOutlined fontSize="small" />
-          <Typography style={{ marginLeft: 10 }}>Устгах</Typography>
-        </MenuItem>
-      </Menu>
-    </>
+          <Typography style={{ marginLeft: 10, fontSize: 12 }}>
+            Устгах
+          </Typography>
+        </Button>
+      </ButtonGroup>
+    </Box>
   )
 }
 

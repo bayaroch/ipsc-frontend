@@ -8,12 +8,14 @@ import { SupportState } from './support/reducers'
 import support from './support'
 import squads from './squads'
 import account from './account'
+import participants from './participants'
 
 export interface AppState {
   metadata: any
   auth: any
   match: MatchState
   support: SupportState
+  participants: any
 }
 
 const combinedReducers = combineReducers({
@@ -23,6 +25,7 @@ const combinedReducers = combineReducers({
   support: support.reducer,
   squads: squads.reducer,
   account: account.reducer,
+  participants: participants.reducer,
 })
 
 const reducer: Reducer<any> = (state, action) => {
