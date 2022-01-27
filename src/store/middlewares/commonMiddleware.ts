@@ -3,7 +3,7 @@ import { Action } from 'redux'
 import { addToast } from '@store/support/actions'
 import { squadChange, squadJoin, deleteSquads } from '@store/squads/actions'
 import { createUser, updateUser } from '@store/account/actions'
-import { deleteMatch } from '@store/match/actions'
+import { deleteMatch, updateRegisterMatch } from '@store/match/actions'
 import _ from 'lodash'
 
 const messages = {
@@ -13,6 +13,7 @@ const messages = {
   [`${createUser.fulfilled}`]: 'Гишүүн амжилттай нэмэгдлээ',
   [`${deleteMatch.fulfilled}`]: 'Тэмцээн устгагдлаа',
   [`${deleteSquads.fulfilled}`]: 'Ээлж устгагдлаа',
+  [`${updateRegisterMatch.fulfilled}`]: 'Амжилттай шинэчлэгдлээ',
 }
 
 export const commonMiddleware: any = (store: StoreType) => (

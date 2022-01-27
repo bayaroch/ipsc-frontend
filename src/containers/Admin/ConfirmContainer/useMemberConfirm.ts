@@ -9,6 +9,8 @@ import { createMetaSelector } from '@store/metadata/selectors'
 import { ParticipantsItem } from '@services/participant.service'
 import { MatchItem } from '@store/match/actions/types'
 import { UpdateMatchParams } from '@services/match.services'
+import { support } from '@store/support/selectors'
+import { SupportItem } from '@services/support.services'
 
 const _listMeta = createMetaSelector(getParticipants)
 const _detailMeta = createMetaSelector(getMatch)
@@ -21,8 +23,10 @@ const useMemberConfirm = (
   list: ParticipantsItem[]
   detailMeta: Meta
   listMeta: Meta
+  update: (params: UpdateMatchParams) => void
   respondMeta: Meta
   respond: (params: UpdateMatchParams) => void
+  divisions: SupportItem[]
 } => {
   const dispatch = useDispatch()
 
@@ -33,6 +37,10 @@ const useMemberConfirm = (
     }
   }, [id])
 
+  const update = (params: UpdateMatchParams) => {
+    dispatch(updateRegisterMatch(params))
+  }
+
   const detail = useSelector(matchDetail)
   const list = useSelector(participants)
   const detailMeta = useSelector(_detailMeta)
@@ -40,9 +48,19 @@ const useMemberConfirm = (
   const respond = (params: UpdateMatchParams) => {
     dispatch(updateRegisterMatch(params))
   }
+  const { divisions } = useSelector(support)
   const respondMeta = useSelector(_respondMeta)
 
-  return { detail, list, detailMeta, listMeta, respond, respondMeta }
+  return {
+    detail,
+    list,
+    detailMeta,
+    listMeta,
+    respond,
+    respondMeta,
+    divisions,
+    update,
+  }
 }
 
 export default useMemberConfirm

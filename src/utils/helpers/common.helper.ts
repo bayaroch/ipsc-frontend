@@ -86,9 +86,9 @@ const matchDate = (start: string, end: string): string => {
   if (today.isBetween(start, end, 'days', '[]')) {
     return `Яг одоо явагдаж байна`
   } else if (isBefore) {
-    return `${moment(start).format('MMM DD, YYYY')}(Дууссан)`
+    return `${moment(start).format('MMM DD, YYYY HH:mm')}(Дууссан)`
   } else {
-    return moment(start).format('ddd, MMM DD')
+    return moment(start).format('ddd, MMM DD HH:mm')
   }
 }
 
@@ -106,14 +106,21 @@ const registrationDate = (
 
   if (today.isBetween(start, end, 'days', '[]')) {
     if (type === 'start') {
-      return `${moment(start).format('MMM DD, YYYY')} (Яг одоо явагдаж байна) `
+      return `${moment(start).format(
+        'MMM DD, YYYY HH:mm'
+      )} (Яг одоо явагдаж байна) `
     } else {
-      return `${moment(start).format('MMM DD, YYYY hh:mm')}`
+      return `${moment(start).format('MMM DD, YYYY HH:mm')}`
     }
   } else if (isBefore) {
-    return `Бүртгэл хаагдсан`
+    if (type === 'start') {
+      return `${moment(start).format('ddd, MMM DD HH:mm')}`
+    } else {
+      return `${moment(end).format('ddd, MMM DD HH:mm')}
+  (Бүртгэл хаагдсан)`
+    }
   } else {
-    return moment(start).format('ddd, MMM DD hh:mm')
+    return moment(start).format('ddd, MMM DD HH:mm')
   }
 }
 
