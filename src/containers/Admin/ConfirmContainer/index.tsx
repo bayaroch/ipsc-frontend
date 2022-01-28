@@ -129,6 +129,7 @@ const ConfirmContainer: React.FC<ConfirmContainerProps> = ({ id }) => {
               }}
               loading={respondMeta.pending && current === item.id}
               variant="outlined"
+              size="small"
               color="primary"
               startIcon={<Cancel />}
             >
@@ -138,6 +139,7 @@ const ConfirmContainer: React.FC<ConfirmContainerProps> = ({ id }) => {
             <LoadingButton
               variant="contained"
               color="primary"
+              size="small"
               loading={respondMeta.pending && current === item.id}
               startIcon={<Verified />}
               onClick={() => {

@@ -17,8 +17,8 @@ export const STATUS = {
 }
 
 export enum GENDER {
-  FEMALE = 1,
-  MALE = 0,
+  FEMALE = 0,
+  MALE = 1,
 }
 
 export const GENDER_DATA = [
