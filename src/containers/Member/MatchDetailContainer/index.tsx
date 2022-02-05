@@ -48,10 +48,12 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
 
   const { addToast } = useToast()
 
-  const isRegisterActive = helper.isRegisterActive(
-    _.get(detail, 'registration_start', ''),
-    _.get(detail, 'registration_end', '')
-  )
+  // const isRegisterActive = helper.isRegisterActive(
+  //   _.get(detail, 'registration_start', ''),
+  //   _.get(detail, 'registration_end', '')
+  // )
+
+  const isRegisterActive = true
 
   const isSquadRegister = helper.isRegisterActive(
     _.get(detail, 'registration_start', ''),
