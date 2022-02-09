@@ -52,14 +52,10 @@ const MatchCreateContainer: React.FC = () => {
 
   const onSubmit = (data: MatchCreateParams) => {
     const params = Object.assign({}, data, {
-      match_start: moment(data.match_start).format('YYYY-MM-DD HH:mm:ss'),
-      match_end: moment(data.match_end).format('YYYY-MM-DD HH:mm:ss'),
-      registration_start: moment(data.registration_start).format(
-        'YYYY-MM-DD HH:mm:ss'
-      ),
-      registration_end: moment(data.registration_end).format(
-        'YYYY-MM-DD HH:mm:ss'
-      ),
+      match_start: moment(data.match_start).toDate(),
+      match_end: moment(data.match_end).toDate(),
+      registration_start: moment(data.registration_start).toDate(),
+      registration_end: moment(data.registration_end).toDate(),
     })
     create(params)
   }
