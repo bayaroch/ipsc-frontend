@@ -64,7 +64,7 @@ const AdminLayout: React.FC<LayoutProps> = ({
 }
 
 AdminLayout.defaultProps = {
-  title: 'IPSC Acton Air',
+  title: 'IPSC Action Air',
 }
 
 export default withAuth(AdminLayout)
