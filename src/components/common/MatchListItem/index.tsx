@@ -151,7 +151,9 @@ const MatchListItem: React.FC<ListItemProps> = ({ item, user }) => {
   const isRegistered = item.participants.find((u) => u.user.id === user.id)
 
   const showReadMore =
-    isRegistered || progress.id === MATCH_PROGRESS_STATUS.READY
+    isRegistered ||
+    progress.id === MATCH_PROGRESS_STATUS.READY ||
+    progress.id === MATCH_PROGRESS_STATUS.COMPLETED
 
   return (
     <Paper
