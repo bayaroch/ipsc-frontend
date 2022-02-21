@@ -1,10 +1,10 @@
 import SideBarMenu from '@components/common/SideBarMenu'
 import { allproducts } from '@constants/featured.course'
-import { Box, Grid } from '@mui/material/'
-// import Accordion from '@mui/material/Accordion'
-// import AccordionSummary from '@mui/material/AccordionSummary'
-// import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-// import AccordionDetails from '@mui/material/AccordionDetails'
+import { Box, Grid, Typography } from '@mui/material/'
+import Accordion from '@mui/material/Accordion'
+import AccordionSummary from '@mui/material/AccordionSummary'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import AccordionDetails from '@mui/material/AccordionDetails'
 import HTMLParser from '@components/common/HtmlParser'
 
 const JuniorContainer: React.FC = () => {
@@ -22,7 +22,7 @@ const JuniorContainer: React.FC = () => {
           >
             <HTMLParser
               html={`<p dir="ltr">
-   <strong> ЖУНИОР ХӨТӨЛБӨР</strong> 
+   <strong style="color:#ff9900;"> ЖУНИОР ХӨТӨЛБӨР</strong> 
 </p>
 <br/>
 <p dir="ltr">
@@ -34,7 +34,7 @@ const JuniorContainer: React.FC = () => {
 <br/>
 <br/>
 <p dir="ltr">
-<strong> Эзэмших чадварууд:</strong> 
+<strong style="color:#ff9900;"> Эзэмших чадварууд:</strong> 
 </p>
 <ul>
     <li dir="ltr">
@@ -100,7 +100,7 @@ const JuniorContainer: React.FC = () => {
 </ul>
 <br/>
 <p dir="ltr">
-<strong> Тавигдах шаардлага:</strong> 
+<strong style="color:#ff9900;"> Тавигдах шаардлага:</strong> 
 </p>
 <ul>
     <li dir="ltr">
@@ -118,7 +118,7 @@ const JuniorContainer: React.FC = () => {
 </ul>
 <br/>
 <p dir="ltr">
-<strong> Бүрдүүлэх материал:</strong> 
+<strong style="color:#ff9900;"> Бүрдүүлэх материал:</strong> 
 </p>
 <ul>
     <li dir="ltr">
@@ -164,7 +164,7 @@ const JuniorContainer: React.FC = () => {
 </p>
 <br/>
 <p dir="ltr">
-<strong>  Шаардлагатай зүйлс:</strong> 
+<strong style="color:#ff9900;">  Шаардлагатай зүйлс:</strong> 
 </p>
 <ul>
     <li dir="ltr">
@@ -213,7 +213,7 @@ const JuniorContainer: React.FC = () => {
 </p>
 <br/>
 <p dir="ltr">
-<strong>  Анги дэвших:</strong> 
+<strong style="color:#ff9900;">  Анги дэвших:</strong> 
 </p>
 <p dir="ltr">
     1-р түвшний сурагчид анги дэвшихэд нийт 56-с дээш цаг хичээллэсэн байх
@@ -223,9 +223,178 @@ const JuniorContainer: React.FC = () => {
 </p>
 <div>
     <br/>
-</div>`}
+</div><div align="left" dir="ltr" style="margin-left:0pt;">
+<table style="border:none;border-collapse:collapse;">
+    <tbody>
+        <tr style="height:0pt;">
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Ангиуд</span></p>
+            </td>
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">JR1 Class</span></p>
+            </td>
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">JR2 Class</span></p>
+            </td>
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;margin-right: -27.549212598425157pt;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">JR3 Class</span></p>
+            </td>
+        </tr>
+        <tr style="height:65.5pt;">
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Ангилал</span></p>
+            </td>
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Standard, Production,</span></p>
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Production Optics</span></p>
+            </td>
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Бүх ангилал нээлттэй</span></p>
+            </td>
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Бүх ангилал нээлттэй</span></p>
+            </td>
+        </tr>
+        <tr style="height:38.5pt;">
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Зэвсэг хэрэгсэл, буудлагын бүс, хамгаалалтын шил</span></p>
+            </td>
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Сургалтын төлбөрт ашиглалтын зардал багтсан</span></p>
+            </td>
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Хувийн хэрэгсэлтэй байх шаардлагатай</span></p>
+            </td>
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Хувийн хэрэгсэлтэй байх шаардлагатай</span></p>
+            </td>
+        </tr>
+        <tr style="height:38.5pt;">
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Сум, газ, цэвэрлэгээний зардал</span></p>
+            </td>
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Сургалтын төлбөрт багтсан</span></p>
+            </td>
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Сургалтын төлбөрт багтахгүй</span></p>
+            </td>
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Сургалтын төлбөрт багтахгүй</span></p>
+            </td>
+        </tr>
+        <tr style="height:38.5pt;">
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Долоо хоногт хичээллэх цаг</span></p>
+            </td>
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">4 цагаар 2 өдөр /</span></p>
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">3 цагаар 3 өдөр</span></p>
+            </td>
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">3 цагаар 2 өдөр</span></p>
+            </td>
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Байхгүй</span></p>
+            </td>
+        </tr>
+        <tr style="height:25pt;">
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Сард хичээллэх цаг</span></p>
+            </td>
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">32 цаг</span></p>
+            </td>
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">24 цаг</span></p>
+            </td>
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Байхгүй</span></p>
+            </td>
+        </tr>
+        <tr style="height:25pt;">
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Тэмцээнд оролцох</span></p>
+            </td>
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Оролцохгүй</span></p>
+            </td>
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Долоо хоногт 1 удаа оролцоно</span></p>
+            </td>
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Дотоодын болон ОУ-ын тэмцээнд оролцох</span></p>
+            </td>
+        </tr>
+        <tr style="height:25.75pt;">
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Төлбөр (1 сараар)</span></p>
+            </td>
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">250,000₮</span></p>
+            </td>
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">150,000₮</span></p>
+            </td>
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Насанд хүрэгчдийн 50%</span></p>
+            </td>
+        </tr>
+        <tr style="height:25.75pt;">
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Хичээллэх байршил:</span></p>
+            </td>
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Клубын бэлтгэл, сургалтын заал</span></p>
+            </td>
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Клубын бэлтгэл, сургалтын болон үндсэн заал</span></p>
+            </td>
+            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
+                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Клубын бэлтгэл, сургалтын болон үндсэн заал</span></p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<p><br></p>
+<p dir="ltr" style="line-height:1.38;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">*Сургалтын төлбөрийг сар эхлэхээс өмнө төлсөн тохиолдолд 10% хөнгөлөлттэй төлөх боломжтой бөгөөд үүнийг клубын гишүүнчлэлийн хураамж төлөх журмаар зохицуулна.</span></p>
+<p dir="ltr" style="line-height:1.38;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">**JR1 ангийн хамгийн эхний сарын төлбөр төлөлтөд дээрх хөнгөлөлт хамаарахгүй.</span></p>
+<p><br></p>
+<p><br></p>
+<p dir="ltr" style="line-height:1.38;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#ff9900;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Нэмэлт боломжууд:</span></p>
+<ul >
+<li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;">
+   <span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">2 ба түүнээс дээш түвшний сурагчид төлөөлөгчийн зөвшөөрөлтэйгөөр клубын ажилд туслан цагаар цалинжиж цалингаа сургалтын төлбөртөө тооцуулах боломжтой.</span></p>
+</li>
+<li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;">
+    <span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">3-р түвшний сурагчид төлөөлөгчийн зөвшөөрөлтэйгөөр клубын шүүгчийн сургалтад хамрагдан тэмцээний үеээр туслах шүүгчийн үүрэг гүйцэтгэж шүүгчийн цалинг сургалтын төлбөртөө тооцуулах боломжтой.&nbsp;</span></p>
+</li>
+</ul>`}
             />
           </Box>
+          <Accordion sx={{ marginTop: '20px', marginBottom: '20px' }}>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography variant="h3" component="h3">
+                Бүртгүүлэх
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <iframe
+                src="https://docs.google.com/forms/d/e/1FAIpQLSd1wpiVjiguSla-mIp25TrzzOd_NgSVp4saPFsNm96KuFevfw/viewform?embedded=true"
+                frameBorder="0"
+                width="100%"
+                height="3100"
+                marginHeight={0}
+                marginWidth={0}
+                allowFullScreen={true}
+              ></iframe>
+            </AccordionDetails>
+          </Accordion>
         </Grid>
         <Grid md={3} sm={12} xs={12} item>
           <SideBarMenu title="Сургалтууд" data={allproducts} />
@@ -407,29 +576,6 @@ export default JuniorContainer
             </p>
             <p>JR3 Class – Бүх түвшний тэмцээн + Хувийн бэлтгэл</p> */
 }
-
-//   <Accordion sx={{ marginTop: '20px', marginBottom: '20px' }}>
-//     <AccordionSummary
-//       expandIcon={<ExpandMoreIcon />}
-//       aria-controls="panel1a-content"
-//       id="panel1a-header"
-//     >
-//       <Typography variant="h3" component="h3">
-//         Бүртгүүлэх
-//       </Typography>
-//     </AccordionSummary>
-//     <AccordionDetails>
-//       <iframe
-//         src="https://docs.google.com/forms/d/e/1FAIpQLSd1wpiVjiguSla-mIp25TrzzOd_NgSVp4saPFsNm96KuFevfw/viewform?embedded=true"
-//         frameBorder="0"
-//         width="100%"
-//         height="3100"
-//         marginHeight={0}
-//         marginWidth={0}
-//         allowFullScreen={true}
-//       ></iframe>
-//     </AccordionDetails>
-//   </Accordion>
 
 //   <p>
 //     <span>Бүрдүүлэх материал</span>
