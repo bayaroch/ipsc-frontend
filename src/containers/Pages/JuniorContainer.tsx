@@ -1,6 +1,6 @@
 import SideBarMenu from '@components/common/SideBarMenu'
 import { allproducts } from '@constants/featured.course'
-import { Grid } from '@mui/material/'
+import { Box, Grid } from '@mui/material/'
 // import Accordion from '@mui/material/Accordion'
 // import AccordionSummary from '@mui/material/AccordionSummary'
 // import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
@@ -12,8 +12,16 @@ const JuniorContainer: React.FC = () => {
     <>
       <Grid container>
         <Grid md={9} sm={12} item>
-          <HTMLParser
-            html={`<p dir="ltr">
+          <Box
+            sx={{
+              width: '100%',
+              paddingRight: { sm: 0, lg: '50px', md: '50px' },
+              paddingBottom: '100px',
+              overflow: 'hidden',
+            }}
+          >
+            <HTMLParser
+              html={`<p dir="ltr">
    <strong> ЖУНИОР ХӨТӨЛБӨР</strong> 
 </p>
 <br/>
@@ -216,7 +224,8 @@ const JuniorContainer: React.FC = () => {
 <div>
     <br/>
 </div>`}
-          />
+            />
+          </Box>
         </Grid>
         <Grid md={3} sm={12} xs={12} item>
           <SideBarMenu title="Сургалтууд" data={allproducts} />
