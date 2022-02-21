@@ -1,17 +1,235 @@
 import SideBarMenu from '@components/common/SideBarMenu'
 import { allproducts } from '@constants/featured.course'
-import { Grid, Box, Typography } from '@mui/material/'
-import Accordion from '@mui/material/Accordion'
-import AccordionSummary from '@mui/material/AccordionSummary'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import AccordionDetails from '@mui/material/AccordionDetails'
+import { Grid } from '@mui/material/'
+// import Accordion from '@mui/material/Accordion'
+// import AccordionSummary from '@mui/material/AccordionSummary'
+// import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+// import AccordionDetails from '@mui/material/AccordionDetails'
+import HTMLParser from '@components/common/HtmlParser'
 
 const JuniorContainer: React.FC = () => {
   return (
     <>
       <Grid container>
         <Grid md={9} sm={12} item>
-          <Box
+          <HTMLParser
+            html={`<p dir="ltr">
+   <strong> ЖУНИОР ХӨТӨЛБӨР</strong> 
+</p>
+<br/>
+<p dir="ltr">
+    Жуниор хөтөлбөр буюу хүүхдэд зориулсан буудлагын курс хичээл нь хүүхэд
+    багачуудыг практик буудлагын спортод сонирхолтой болгох, буудлагын аюулгүй
+    ажиллагаа, зэвсэгтэй харьцах мэдлэгийг олгох, цаашлаад байнга хичээллэж
+    хөгжүүлэх сургалтын програм юм.
+</p>
+<br/>
+<br/>
+<p dir="ltr">
+<strong> Эзэмших чадварууд:</strong> 
+</p>
+<ul>
+    <li dir="ltr">
+        <p dir="ltr">
+            Таны хүүхэд галт зэвсэгтэй харьцах анхан шатны ажиллагаанд эйрсофт
+            спорт-сургалтын хэрэгслийг ашиглан аюулгүй суралцах болно.
+        </p>
+    </li>
+    <li dir="ltr">
+        <p dir="ltr">
+            Зэвсэгтэй байнга ажилласнаар анхаарал болгоомж нэмэгдэж, анхаарал
+            дээд цэгтээ тултал төвлөрч, богино хугацаанд шийдвэр төлөвлөгөө
+            гаргаж, түүнийхээ дагуу алдаагүй гүйцэтгэхэд суралцана.
+        </p>
+    </li>
+    <li dir="ltr">
+        <p dir="ltr">
+            Орчноос өөрийгөө тусгаарлан төвлөрөх, сэтгэл зүй болон хариу
+            үйлдлээ хянах чадвартай болж, хариуцлага нэмэгдэнэ.
+        </p>
+    </li>
+    <li dir="ltr">
+        <p dir="ltr">
+            Идэвхтэй хөдөлгөөн хийж, гар утасгүй орчинд амьд харилцаанд орно.
+        </p>
+    </li>
+    <li dir="ltr">
+        <p dir="ltr">
+            Бусдад туслах, бусдаар туслуулах, бусдын өмнөөс хариуцлага хүлээх,
+            алдаагаа хүлээн зөвшөөрөх чадвартай болно.
+        </p>
+    </li>
+    <li dir="ltr">
+        <p dir="ltr">
+            Практик буудлагын спортын тамирчны ёс зүйд суралцаж бусдын орон
+            зай, цаг хугацааг хүндэтгэх, өөрт олгогдсон боломжийг 100% ашиглаж
+            чаддаг болно.
+        </p>
+    </li>
+    <li dir="ltr">
+        <p dir="ltr">
+            Хууль эрх зүй, дүрэм журмын талаар ойлголттой болж, өөрийгөө
+            спортын дүрэмд тулгуурлан өмгөөлөх, тайлбар өгөх, гомдол гаргах
+            болон асуудлыг хэлэлцэх чадвартай болж хаана ч хэний ч өмнө
+            өөрийгөө илэрхийлэх ур чадварт суралцана.
+        </p>
+    </li>
+    <li dir="ltr">
+        <p dir="ltr">
+            Практик буудлагын спортын дүрэм, журмуудыг судлаж, спортын онцлог,
+            үндсэн шинж чанарыг ойлгосноор зөвхөн хийн гар буу гэлтгүй бусад
+            төрлүүдээр ч хичээллэх суурь техниктэй болно.
+        </p>
+    </li>
+    <li dir="ltr">
+        <p dir="ltr">
+            Практик буудлагын спортын хийн гар бууны тэмцээн уралдаанд оролцох
+            эрх нээгдэж, үндэсний шинж чанартай болон клубын, улсын, ОУ-ын
+            тэмцээн цаашлаад ДАШТ-нд эх орноо төлөөлөн оролцох тамирчин болох
+            боломжтой.
+        </p>
+    </li>
+</ul>
+<br/>
+<p dir="ltr">
+<strong> Тавигдах шаардлага:</strong> 
+</p>
+<ul>
+    <li dir="ltr">
+        <p dir="ltr">
+            12 - 16 настай байх.
+        </p>
+    </li>
+    <li dir="ltr">
+        <p dir="ltr">
+            Эцэг, эх эсвэл хуулиар олгогдсон эрх бүхий асран хамгаалагч нь
+            суралцагч хүүхдийн төлөөлөгчөөр бүртгүүлэн материал бүрдүүлж, гэрээ
+            байгуулах.
+        </p>
+    </li>
+</ul>
+<br/>
+<p dir="ltr">
+<strong> Бүрдүүлэх материал:</strong> 
+</p>
+<ul>
+    <li dir="ltr">
+        <p dir="ltr">
+            Урьдчилсан бүртгэл (Веб сайтаар бүртгүүлснээр гар утсанд мэдээлэл
+            очно)
+        </p>
+    </li>
+    <li dir="ltr">
+        <p dir="ltr">
+            4% цээж зураг (3*4 хэмжээтэй)
+        </p>
+    </li>
+    <li dir="ltr">
+        <p dir="ltr">
+            Төрсний гэрчилгээний хуулбар
+        </p>
+    </li>
+    <li dir="ltr">
+        <p dir="ltr">
+            Төлөөлөгчийн 1% цээж зураг (3*4 хэмжээтэй)
+        </p>
+    </li>
+    <li dir="ltr">
+        <p dir="ltr">
+            Төлөөлөгчийн иргэний үнэмлэхийн цахим лавлагаа
+        </p>
+    </li>
+    <li dir="ltr">
+        <p dir="ltr">
+            Төлөөлөгчийн оршин суугаа хаягийн цахим лавлагаа
+        </p>
+    </li>
+</ul>
+<p dir="ltr">
+    Бүртгүүлэх материалыг хичээл эхлэхээс хамгийн багадаа 7 хоногийн өмнө
+    бүрдүүлэн суралцагчийн төлөөлөгч өөрийн биеээр клубын бэлтгэл, сургалтын
+    зааланд авч ирж анкет бөглөн гэрээ байгуулж, төлбөр төлж элсэлтийн бүртгэл
+    баталгаажуулна. Элсэлтийн бүртгэл баталгаажснаар анхан шатанд сурагцагчдад
+    зориулсан видео хичээл (Онлайн хичээл)-ийг үзэх боломжтой болно. Онлайн
+    хичээлийг суралцагч нь сургалтын эхний өдөр ирэхдээ 100% үзэж танилцсан
+    байх шаардлагатай.
+</p>
+<br/>
+<p dir="ltr">
+<strong>  Шаардлагатай зүйлс:</strong> 
+</p>
+<ul>
+    <li dir="ltr">
+        <p dir="ltr">
+            Сольж өмсөх цэвэр ултай заалны пүүз
+        </p>
+    </li>
+    <li dir="ltr">
+        <p dir="ltr">
+            Солих маск, гар ариутгагч
+        </p>
+    </li>
+    <li dir="ltr">
+        <p dir="ltr">
+            Цэвэр усны сав эсвэл ус уух аяга
+        </p>
+    </li>
+    <li dir="ltr">
+        <p dir="ltr">
+            Буудлагын бүсээ зүүх түдүүлтэй өмд
+        </p>
+    </li>
+    <li dir="ltr">
+        <p dir="ltr">
+            Хамгаалалтын нүдний шил (Харааны шил зүүдэг бол шаардлагагүй)
+        </p>
+    </li>
+</ul>
+<br/>
+<p dir="ltr">
+    JR1 Class 7 хоногт 2 өдөр, өдөрт 4 цагаар сургалт, бэлтгэл, буудлагыг
+    хуваарийн дагуу хийх болно. Шаардлагатай бүх хэрэгслийн ашиглалтын зардал
+    сургалтын төлбөрт багтсан, хэрэв хувийн хэрэгсэлтэй тохиолдолд сургалтын
+    төлбөр 80,000₮ хөнгөлөгдөнө.
+</p>
+<p dir="ltr">
+    JR2 Class 7 хоногт 2 өдөр, өдөрт 3 цагаар сургалт, бэлтгэл хийх болно.
+    Долоо хоног бүр клубын тэмцээнд нэмэлт хураамжгүй оролцоно. Өөрийн хувийн
+    хэрэгсэлтэй байх шаардлагатай.
+</p>
+<p dir="ltr">
+    JR3 Class Клубын зүгээс зохион байгуулж байгаа бүх түвшний тэмцээнд оролцох
+    эрхтэй. Өөрийн хувийн хэрэгсэлтэй байх шаардлагатай. JR3 Class сурагчид
+    УАШТ болон ОУ-ын тэмцээнд оролцох, ажлын өдрөөр клубын сургалтын талбайд
+    хувийн бэлтгэл хийх эрхүүд нээгдэнэ.
+</p>
+<br/>
+<p dir="ltr">
+<strong>  Анги дэвших:</strong> 
+</p>
+<p dir="ltr">
+    1-р түвшний сурагчид анги дэвшихэд нийт 56-с дээш цаг хичээллэсэн байх
+    шаардлагатай бөгөөд клубын үндсэн зааланд аюулгүй ажиллагааны шалгалтыг өгч
+    тэнцсэн тохиолдолд анги дэвших эрх нээгдэх бөгөөд шинэ сараас анги дэвшиж,
+    бүртгэлийн дугаартай болсноор тэмцээнд оролцох эрх нээгдэх юм.
+</p>
+<div>
+    <br/>
+</div>`}
+          />
+        </Grid>
+        <Grid md={3} sm={12} xs={12} item>
+          <SideBarMenu title="Сургалтууд" data={allproducts} />
+        </Grid>
+      </Grid>
+    </>
+  )
+}
+
+export default JuniorContainer
+
+{
+  /* <Box
             sx={{
               width: '100%',
               paddingRight: { sm: 0, lg: '50px', md: '50px' },
@@ -178,79 +396,70 @@ const JuniorContainer: React.FC = () => {
               JR2C Class – Мягмар, Пүрэв 15:00 – 18:00 + Амралтын өдрүүдэд Lv1
               түвшний тэмцээн{' '}
             </p>
-            <p>JR3 Class – Бүх түвшний тэмцээн + Хувийн бэлтгэл</p> */}
-
-            <Accordion sx={{ marginTop: '20px', marginBottom: '20px' }}>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <Typography variant="h3" component="h3">
-                  Бүртгүүлэх
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <iframe
-                  src="https://docs.google.com/forms/d/e/1FAIpQLSd1wpiVjiguSla-mIp25TrzzOd_NgSVp4saPFsNm96KuFevfw/viewform?embedded=true"
-                  frameBorder="0"
-                  width="100%"
-                  height="3100"
-                  marginHeight={0}
-                  marginWidth={0}
-                  allowFullScreen={true}
-                ></iframe>
-              </AccordionDetails>
-            </Accordion>
-
-            <p>
-              <span>Бүрдүүлэх материал</span>
-            </p>
-            <figure>
-              <table className="table is-fullwidth is-striped is-bordered">
-                <tbody>
-                  <tr>
-                    <td>Шаардлагатай материал</td>
-                    <td>Тайлбар</td>
-                  </tr>
-                  <tr>
-                    <td>Бүртгэлийн анкет</td>
-                    <td>
-                      <div>
-                        <div>
-                          Сургалтанд хамрагдах үед нь эцэг, эх, асран хамгаалагч
-                          нь бөглөнө
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>4% Цээж зураг</td>
-                    <td>3*4 хэмжээтэй байх</td>
-                  </tr>
-                  <tr>
-                    <td>Бичиг баримт</td>
-                    <td>
-                      <div>
-                        <div>
-                          Хүүхдийн төрсөний гэрчилгээг, гарын үсэг зурж төлөөлөх
-                          эцэг, эх, асран хамгаалагчийн иргэний үнэмлэхтэй хамт
-                          А4 цаасан дээр хуулбарласан байна
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </figure>
-          </Box>
-        </Grid>
-        <Grid md={3} sm={12} xs={12} item>
-          <SideBarMenu title="Сургалтууд" data={allproducts} />
-        </Grid>
-      </Grid>
-    </>
-  )
+            <p>JR3 Class – Бүх түвшний тэмцээн + Хувийн бэлтгэл</p> */
 }
 
-export default JuniorContainer
+//   <Accordion sx={{ marginTop: '20px', marginBottom: '20px' }}>
+//     <AccordionSummary
+//       expandIcon={<ExpandMoreIcon />}
+//       aria-controls="panel1a-content"
+//       id="panel1a-header"
+//     >
+//       <Typography variant="h3" component="h3">
+//         Бүртгүүлэх
+//       </Typography>
+//     </AccordionSummary>
+//     <AccordionDetails>
+//       <iframe
+//         src="https://docs.google.com/forms/d/e/1FAIpQLSd1wpiVjiguSla-mIp25TrzzOd_NgSVp4saPFsNm96KuFevfw/viewform?embedded=true"
+//         frameBorder="0"
+//         width="100%"
+//         height="3100"
+//         marginHeight={0}
+//         marginWidth={0}
+//         allowFullScreen={true}
+//       ></iframe>
+//     </AccordionDetails>
+//   </Accordion>
+
+//   <p>
+//     <span>Бүрдүүлэх материал</span>
+//   </p>
+//   <figure>
+//     <table className="table is-fullwidth is-striped is-bordered">
+//       <tbody>
+//         <tr>
+//           <td>Шаардлагатай материал</td>
+//           <td>Тайлбар</td>
+//         </tr>
+//         <tr>
+//           <td>Бүртгэлийн анкет</td>
+//           <td>
+//             <div>
+//               <div>
+//                 Сургалтанд хамрагдах үед нь эцэг, эх, асран хамгаалагч
+//                 нь бөглөнө
+//               </div>
+//             </div>
+//           </td>
+//         </tr>
+//         <tr>
+//           <td>4% Цээж зураг</td>
+//           <td>3*4 хэмжээтэй байх</td>
+//         </tr>
+//         <tr>
+//           <td>Бичиг баримт</td>
+//           <td>
+//             <div>
+//               <div>
+//                 Хүүхдийн төрсөний гэрчилгээг, гарын үсэг зурж төлөөлөх
+//                 эцэг, эх, асран хамгаалагчийн иргэний үнэмлэхтэй хамт
+//                 А4 цаасан дээр хуулбарласан байна
+//               </div>
+//             </div>
+//           </td>
+//         </tr>
+//       </tbody>
+//     </table>
+//   </figure>
+// </Box>
