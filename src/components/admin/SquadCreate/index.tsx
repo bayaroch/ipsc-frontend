@@ -8,7 +8,7 @@ import {
   CircularProgress,
   TextField,
 } from '@mui/material/'
-import { TimePicker, DatePicker } from '@mui/lab'
+import { DateTimePicker } from '@mui/lab'
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import LocalizationProvider from '@mui/lab/LocalizationProvider'
 import TimeRange from '@components/common/TimeRange'
@@ -19,7 +19,6 @@ import useSquadCreate, {
 } from './useSquadCreate'
 import { Colors } from '@theme/colors'
 import { SquadCreateParams } from '@services/squad.services'
-import moment from 'moment'
 
 export interface SquadCreateProps {
   onSubmit: (params: SquadCreateInputType) => void
@@ -41,9 +40,7 @@ const SquadCreate: React.FC<SquadCreateProps> = (props) => {
 
   const { onSubmit, isEdit, editData, matchStart } = props
 
-  const [timeStart, setTimeStart] = useState<Date | string>(
-    new Date(matchStart)
-  )
+  const [timeStart, setTimeStart] = useState<Date | string>(new Date())
 
   const [timeEnd, setTimeEnd] = useState<Date | string>(new Date(matchStart))
 
@@ -53,18 +50,6 @@ const SquadCreate: React.FC<SquadCreateProps> = (props) => {
 
   const handleDateChangeEnd = (date: Date | null) => {
     if (date) setTimeEnd(date)
-  }
-
-  const handleDateChange = (date: Date | null) => {
-    if (date) {
-      const start = moment(timeStart)
-      const end = moment(timeEnd)
-      const current = moment(date)
-      start.date(current.date())
-      end.date(current.date())
-      setTimeStart(start.toDate())
-      setTimeEnd(end.toDate())
-    }
   }
 
   useEffect(() => {
@@ -95,16 +80,8 @@ const SquadCreate: React.FC<SquadCreateProps> = (props) => {
                 <TimeRange timeStart={timeStart} timeEnd={timeEnd} />
               </Box>
             </Grid>
-            <Grid sm={6} xs={12} md={4} item>
-              <DatePicker
-                label="Өдөр"
-                value={timeStart}
-                renderInput={(props) => <TextField fullWidth {...props} />}
-                onChange={handleDateChange}
-              />
-            </Grid>
-            <Grid sm={6} xs={12} md={3} item>
-              <TimePicker
+            <Grid sm={6} xs={12} md={5} item>
+              <DateTimePicker
                 label="Эхлэх цаг"
                 value={timeStart}
                 ampm={false}
@@ -112,8 +89,8 @@ const SquadCreate: React.FC<SquadCreateProps> = (props) => {
                 onChange={handleDateChangeStart}
               />
             </Grid>
-            <Grid sm={6} xs={12} md={3} item>
-              <TimePicker
+            <Grid sm={6} xs={12} md={5} item>
+              <DateTimePicker
                 label="Дуусах цаг"
                 ampm={false}
                 value={timeEnd}
