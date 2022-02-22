@@ -11,7 +11,7 @@ const JuniorContainer: React.FC = () => {
   return (
     <>
       <Grid container>
-        <Grid md={9} sm={12} item>
+        <Grid md={9} sm={12} xs={12} item>
           <Box
             sx={{
               width: '100%',

@@ -10,6 +10,7 @@ interface ButtonProps extends BoxProps {
 
 const TimeRange: React.FC<ButtonProps> = ({ timeStart, timeEnd, ...rest }) => {
   const title = moment(timeStart).format('YYYY-MM-DD, dddd')
+  // const titleEnd = moment(timeEnd).format('YYYY-MM-DD, dddd')
   const ts = moment(timeStart).format('HH:mm')
   const te = moment(timeEnd).format('HH:mm')
 
