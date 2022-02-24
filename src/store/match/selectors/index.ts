@@ -3,7 +3,11 @@ import { RootState } from '@store/reducers'
 import _ from 'lodash'
 import { MatchItem } from '../actions/types'
 import { MATCH_STATUS } from '@constants/common.constants'
-import { groupByDivision, groupByIsBefore } from './helpers'
+import {
+  groupByDivision,
+  groupByDivisionScore,
+  groupByIsBefore,
+} from './helpers'
 
 const getState = (state: RootState) => state.match
 const detail = (state: RootState) => state.match.detail
@@ -46,5 +50,11 @@ export const memberMatches = createSelector(getState, (state) => {
 export const matchParticipants = createSelector(detail, (state) => {
   if (state === undefined) return []
   const grouped = groupByDivision(state.participants)
+  return grouped
+})
+
+export const matchScorebyDivision = createSelector(detail, (state) => {
+  if (state === undefined) return []
+  const grouped = groupByDivisionScore(state.match_scores)
   return grouped
 })

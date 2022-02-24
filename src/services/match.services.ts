@@ -2,6 +2,7 @@ import api from './api'
 import { URI } from '@constants/uri.constants'
 import { MatchItem } from '@store/match/actions/types'
 import { UserData } from './auth.services'
+import { SupportItem } from './support.services'
 
 export type MatchPageMeta = {
   page: number
@@ -126,6 +127,22 @@ export type ParticipantsItem = {
   remark?: string | null
   is_verified: boolean | number
   user: UserData
+}
+
+export type ScoreItem = {
+  categories: string
+  classname: string
+  division: SupportItem
+  division_id: number
+  dq: boolean
+  exclude_flag: boolean
+  id: number
+  match_id: number
+  percent: number
+  pf: string
+  pts: number
+  user: UserData
+  user_id: number
 }
 
 export type MatchDeleteResponse = {

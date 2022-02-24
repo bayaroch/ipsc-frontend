@@ -17,6 +17,7 @@ import { USER_TYPE } from '@constants/user.constants'
 import { UserData } from '@services/auth.services'
 import useToast from '@utils/hooks/useToast'
 import MemberList from './MemberList'
+import Score from './Scores'
 
 interface MatchDetailProps {
   id: string
@@ -35,6 +36,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
     participantsFiltered,
     support,
     participants,
+    scoreFiltered,
     progress,
     update,
     registerState,
@@ -285,7 +287,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
                         {!_.isEmpty(detail.tax_info) ? (
                           <Info
                             detail={
-                              <Typography>
+                              <Typography component="span">
                                 <Typography>{detail.tax_info}</Typography>
                                 <Box
                                   display="flex"
@@ -325,11 +327,22 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
                 </Grid>
               </Box>
             </section>
-            <ParticipantsTable
-              classData={support.class}
-              divisions={support.divisions}
-              data={participantsFiltered}
-            />
+            {_.isEmpty(scoreFiltered) ? (
+              <ParticipantsTable
+                classData={support.class}
+                divisions={support.divisions}
+                data={participantsFiltered}
+              />
+            ) : null}
+
+            {!_.isEmpty(scoreFiltered) ? (
+              <Score
+                classData={support.class}
+                divisions={support.divisions}
+                data={scoreFiltered}
+              />
+            ) : null}
+
             <Box
               display="flex"
               justifyContent="space-between"
