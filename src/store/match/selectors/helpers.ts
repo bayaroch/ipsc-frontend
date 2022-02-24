@@ -37,8 +37,11 @@ export const groupByDivisionScore = (items: ScoreItem[]): DivisionScoreList => {
   const groupedItems = _.chain(items)
     .groupBy((item) => item.division_id)
     .map((groupItems, groupTitle) => {
-      const orderItems = _.orderBy(groupItems, ['pts', 'dq'], ['desc', 'asc'])
-      return { groupTitle: groupTitle, data: orderItems }
+      const dqItems = _.filter(groupItems, (c) => c.dq === true)
+      const scoreItems = _.filter(groupItems, (c) => c.dq === false)
+      const orderItems = _.orderBy(scoreItems, ['pts'], ['desc'])
+      const newArr = [...orderItems, ...dqItems]
+      return { groupTitle: groupTitle, data: newArr }
     })
     .value()
 
