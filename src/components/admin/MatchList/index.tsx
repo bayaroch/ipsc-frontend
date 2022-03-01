@@ -37,6 +37,7 @@ export interface MatchListProps {
   onConfirm: (id: number) => void
   meta: Meta
   onDelete: (id: number) => void
+  onImport: (id: number) => void
 }
 
 const defaultPerPage = 20
@@ -96,6 +97,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
     onEditSquad,
     onDelete,
     onConfirm,
+    onImport,
   } = props
 
   const [page, setPage] = useState<number>(1)
@@ -244,7 +246,9 @@ const MatchList: React.FC<MatchListProps> = (props) => {
                                 onDelete={onDelete}
                                 onEditSquad={onEditSquad}
                                 onConfirm={onConfirm}
+                                onImport={onImport}
                                 data={row.id}
+                                isScore={!_.isEmpty(row.match_scores)}
                               />
                             </TableCell>
                           </TableRow>

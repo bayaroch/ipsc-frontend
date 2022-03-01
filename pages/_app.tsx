@@ -22,6 +22,7 @@ import '@common/css/main.scss'
 import Seo from '@components/common/Seo'
 import { UploaderProvider } from '@containers/Providers/FileUpload'
 import Common from '@containers/Providers/Common'
+import { ImportProvider } from '@containers/Providers/ImportMatch'
 
 /**
  * withRedux HOC
@@ -68,11 +69,13 @@ const CustomApp = ({ Component, pageProps }: Props) => {
               <CssBaseline />
               <SnackBar />
               <ConfirmProvider>
-                <UploaderProvider>
-                  <Layout>
-                    <Component {...pageProps} />
-                  </Layout>
-                </UploaderProvider>
+                <ImportProvider>
+                  <UploaderProvider>
+                    <Layout>
+                      <Component {...pageProps} />
+                    </Layout>
+                  </UploaderProvider>
+                </ImportProvider>
               </ConfirmProvider>
             </ThemeStyled>
           </ThemeProvider>

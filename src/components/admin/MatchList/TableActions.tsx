@@ -1,6 +1,12 @@
 /* eslint-disable react/jsx-no-undef */
 import Typography from '@mui/material/Typography'
-import { DeleteOutlined, Edit, Group, GroupAdd } from '@mui/icons-material'
+import {
+  DeleteOutlined,
+  Edit,
+  Group,
+  GroupAdd,
+  HtmlRounded,
+} from '@mui/icons-material'
 import { Box, Button, ButtonGroup } from '@mui/material'
 
 interface ActionProps {
@@ -9,10 +15,20 @@ interface ActionProps {
   onEditSquad: (id: number) => void
   onEdit: (id: number) => void
   onConfirm: (id: number) => void
+  onImport?: (id: number) => void
+  isScore: boolean
 }
 
 const TableActions: React.FC<ActionProps> = (props) => {
-  const { data, onDelete, onEdit, onEditSquad, onConfirm } = props
+  const {
+    data,
+    onDelete,
+    onEdit,
+    onEditSquad,
+    onConfirm,
+    isScore,
+    onImport,
+  } = props
   return (
     <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
       <ButtonGroup variant="outlined" aria-label="outlined button group">
@@ -26,6 +42,19 @@ const TableActions: React.FC<ActionProps> = (props) => {
             Ээлж үүсгэх
           </Typography>
         </Button>
+
+        <Button
+          disabled={isScore}
+          onClick={() => {
+            onImport && onImport(data)
+          }}
+        >
+          <HtmlRounded fontSize="small" />
+          <Typography style={{ marginLeft: 10, fontSize: 12 }}>
+            Оноо оруулах
+          </Typography>
+        </Button>
+
         <Button
           onClick={() => {
             onEdit(data)

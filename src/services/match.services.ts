@@ -1,4 +1,4 @@
-import api from './api'
+import api, { form } from './api'
 import { URI } from '@constants/uri.constants'
 import { MatchItem } from '@store/match/actions/types'
 import { UserData } from './auth.services'
@@ -150,6 +150,13 @@ export type MatchDeleteResponse = {
   status: string
 }
 
+export type ImportParams = {
+  match_html: File
+  rts: 60
+  match_id?: number | string
+  exclude_codes?: string
+}
+
 export const matchServices = {
   createMatch: async (params: MatchCreateParams): Promise<MatchResponse> => {
     const { data } = await api.post<MatchResponse>(URI.MATCH, params)
@@ -203,6 +210,11 @@ export const matchServices = {
 
   csvDownload: async (id: string): Promise<any> => {
     const res = await api.get<any>(URI.EXPORT.replace(/:id/gi, id))
+    return res
+  },
+
+  importMatch: async (params: ImportParams): Promise<any> => {
+    const res = await form.post(URI.MATCH_SCORE, params)
     return res
   },
 }

@@ -165,6 +165,7 @@ const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
       {renderLoader()}
       {renderList()}
       {renderPlaceholder()}
+      {}
       <SquadMemberList
         handleClose={() => setMemberList(null)}
         members={memberList !== null ? memberList : []}

@@ -66,8 +66,10 @@ const ScoreTable: React.FC<TableProps> = (props) => {
                     return `${index === 1 ? ' | ' : ''}${c.name}`
                   })}
               </TableCell>
-              <TableCell align="right">{row.pts}</TableCell>
-              <TableCell align="right">{row.percent}%</TableCell>
+              <TableCell align="right">{row.dq ? null : row.pts}</TableCell>
+              <TableCell align="right">
+                {row.dq ? null : `${row.percent}%`}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

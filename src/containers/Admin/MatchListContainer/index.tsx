@@ -3,11 +3,15 @@ import useMatch from './useMatch'
 import MatchList from '@components/admin/MatchList'
 import { useRouter } from 'next/router'
 import { useConfirm } from 'material-ui-confirm'
+import { useImport } from '@containers/Providers/ImportMatch'
+import useToast from '@utils/hooks/useToast'
 
 const MatchListContainer: React.FC = () => {
   const { getList, groupedList, paginationMeta, meta, deleteMatch } = useMatch()
   const router = useRouter()
   const confirm = useConfirm()
+  const matchImport = useImport()
+  const { addToast } = useToast()
 
   const handleEdit = (id: number) => {
     router.push(`/admin/matches/edit/${id}`)
@@ -30,6 +34,16 @@ const MatchListContainer: React.FC = () => {
       .catch(() => null)
   }
 
+  const onImport = (id: number) => {
+    if (id) {
+      matchImport({ id: id })
+        .then(() => {
+          addToast({ message: 'Оноо амжилттай импорт хийгдлээ' })
+        })
+        .catch(() => null)
+    }
+  }
+
   const onConfirm = (id: number) => {
     router.push(`/admin/participants/confirm/${id}`)
   }
@@ -43,6 +57,7 @@ const MatchListContainer: React.FC = () => {
         onEditClick={handleEdit}
         onEditSquad={handleEditSquad}
         onConfirm={onConfirm}
+        onImport={onImport}
         meta={meta}
         list={groupedList}
         onDelete={onDelete}
