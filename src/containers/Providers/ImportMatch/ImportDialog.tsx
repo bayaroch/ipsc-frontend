@@ -12,7 +12,7 @@ import {
   Typography,
 } from '@mui/material/'
 import { UploadOptions } from './types'
-import { useDropzone } from 'react-dropzone'
+import { useDropzone, FileWithPath } from 'react-dropzone'
 import HtmlIcon from '@mui/icons-material/Html'
 import { LoadingButton } from '@mui/lab'
 import { matchServices } from '@services/match.services'
@@ -35,7 +35,7 @@ const ImportDialog = ({
 }: UploadDialogProps) => {
   const dialogOpen = rest.open
   const { title, dialogProps, id } = options
-  const [file, setFile] = useState<File | null>(null)
+  const [file, setFile] = useState<FileWithPath | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
   const [exclude_codes, setCodes] = useState<string>('')

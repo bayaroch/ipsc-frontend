@@ -3,6 +3,7 @@ import { URI } from '@constants/uri.constants'
 import { MatchItem } from '@store/match/actions/types'
 import { UserData } from './auth.services'
 import { SupportItem } from './support.services'
+import { FileWithPath } from 'react-dropzone'
 
 export type MatchPageMeta = {
   page: number
@@ -151,7 +152,7 @@ export type MatchDeleteResponse = {
 }
 
 export type ImportParams = {
-  match_html: File
+  match_html: FileWithPath
   rts: 60
   match_id?: number | string
   exclude_codes?: string
@@ -214,7 +215,15 @@ export const matchServices = {
   },
 
   importMatch: async (params: ImportParams): Promise<any> => {
-    const res = await api.post(URI.MATCH_SCORE, params, {
+    const formData = new FormData()
+    formData.append('match_html', params.match_html)
+    formData.append('rts', '60')
+    formData.append('match_id', String(params.match_id))
+    if (params.exclude_codes) {
+      formData.append('exclude_codes', params.exclude_codes)
+    }
+
+    const res = await api.post(URI.MATCH_SCORE, formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     })
     return res
