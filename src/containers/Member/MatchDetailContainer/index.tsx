@@ -18,6 +18,7 @@ import { UserData } from '@services/auth.services'
 import useToast from '@utils/hooks/useToast'
 import MemberList from './MemberList'
 import Score from './Scores'
+import HTMLParser from '@components/common/HtmlParser'
 
 interface MatchDetailProps {
   id: string
@@ -288,19 +289,9 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
                           <Info
                             detail={
                               <Typography component="span">
-                                <Typography>{detail.tax_info}</Typography>
-                                <Box
-                                  display="flex"
-                                  width="100%"
-                                  alignItems={'center'}
-                                  justifyContent={'center'}
-                                >
-                                  <img
-                                    style={{ maxWidth: '100%', height: 'auto' }}
-                                    src="/images/qpay.png"
-                                    alt="qpay"
-                                  />
-                                </Box>
+                                <HTMLParser
+                                  html={detail.tax_info ? detail.tax_info : ''}
+                                />
                               </Typography>
                             }
                             title="Tax Info"
