@@ -6,11 +6,6 @@ const api = axios.create({
   baseURL: URI.DOMAIN,
 })
 
-export const form = axios.create({
-  headers: { 'Content-Type': 'multipart/form-data' },
-  baseURL: URI.DOMAIN,
-})
-
 export const requestSource = function (): CancelTokenSource {
   return axios.CancelToken.source()
 }

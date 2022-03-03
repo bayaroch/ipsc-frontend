@@ -1,4 +1,4 @@
-import api, { form } from './api'
+import api from './api'
 import { URI } from '@constants/uri.constants'
 import { MatchItem } from '@store/match/actions/types'
 import { UserData } from './auth.services'
@@ -214,7 +214,9 @@ export const matchServices = {
   },
 
   importMatch: async (params: ImportParams): Promise<any> => {
-    const res = await form.post(URI.MATCH_SCORE, params)
+    const res = await api.post(URI.MATCH_SCORE, params, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    })
     return res
   },
 }
