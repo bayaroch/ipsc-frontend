@@ -7,6 +7,7 @@ export const URI = {
   LOGIN: API_ROOT + 'auth/login',
   MATCH: API_ROOT + 'matches',
   PARTICIPANT: API_ROOT + 'participants',
+  PARTICIPANT_STAT: API_ROOT + 'participants/stats/:id',
   BADGES: API_ROOT + 'badges',
   DIVISIONS: API_ROOT + 'divisions',
   CLASS: API_ROOT + 'classifications',

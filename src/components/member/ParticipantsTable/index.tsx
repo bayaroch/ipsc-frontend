@@ -5,8 +5,6 @@ import MemberTable from './MemberTable'
 import { ParticipantSortedList } from '@store/match/selectors/helpers'
 import { helper } from '@utils/helpers/common.helper'
 import { SupportItem } from '@services/support.services'
-import { AccessTime, Verified } from '@mui/icons-material'
-import { Colors } from '@theme/colors'
 
 export interface MatchListProps {
   data: ParticipantSortedList
@@ -48,7 +46,7 @@ const ParticipantsTable: React.FC<MatchListProps> = (props) => {
             />
           </Box>
         ))}
-      <Box
+      {/* <Box
         sx={{
           display: 'flex',
           flexDirection: 'row',
@@ -76,7 +74,7 @@ const ParticipantsTable: React.FC<MatchListProps> = (props) => {
             sx={{ fontSize: 14, ml: 1, mt: 0.5, color: Colors.primary }}
           />
         </Typography>
-      </Box>
+      </Box> */}
     </>
   )
 }

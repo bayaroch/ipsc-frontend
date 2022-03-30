@@ -130,6 +130,8 @@ export type ParticipantsItem = {
   user: UserData
 }
 
+export type StatItem = Array<string>
+
 export type ScoreItem = {
   categories: string
   classname: string

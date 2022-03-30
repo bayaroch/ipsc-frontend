@@ -19,6 +19,8 @@ import useToast from '@utils/hooks/useToast'
 import MemberList from './MemberList'
 import Score from './Scores'
 import HTMLParser from '@components/common/HtmlParser'
+import WaitingTable from '@components/member/ParticipantsTable/WaitingTable'
+import StatTable from '@components/member/ParticipantsTable/StatTable'
 
 interface MatchDetailProps {
   id: string
@@ -35,7 +37,10 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
     register,
     category,
     participantsFiltered,
+    waitingList,
     support,
+    stat,
+    getStat,
     participants,
     scoreFiltered,
     progress,
@@ -70,12 +75,14 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
   useEffect(() => {
     if (id) {
       getDetail(id)
+      getStat(id)
     }
   }, [id])
 
   useEffect(() => {
     if (registerState && id) {
       getDetail(id)
+      getStat(id)
     }
   }, [registerState])
 
@@ -319,11 +326,31 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
               </Box>
             </section>
             {_.isEmpty(scoreFiltered) ? (
-              <ParticipantsTable
-                classData={support.class}
-                divisions={support.divisions}
-                data={participantsFiltered}
-              />
+              <>
+                <ParticipantsTable
+                  classData={support.class}
+                  divisions={support.divisions}
+                  data={participantsFiltered}
+                />
+              </>
+            ) : null}
+
+            {_.isEmpty(scoreFiltered) ? (
+              <>
+                <Box
+                  justifyContent="center"
+                  alignItems="center"
+                  display="flex"
+                  padding={3}
+                >
+                  <Typography variant="h3">Хүлээлгийн жагсаалт</Typography>
+                </Box>
+                <WaitingTable
+                  data={waitingList}
+                  classData={support.class}
+                  divisions={support.divisions}
+                />
+              </>
             ) : null}
 
             {!_.isEmpty(scoreFiltered) ? (
@@ -332,6 +359,22 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
                 divisions={support.divisions}
                 data={scoreFiltered}
               />
+            ) : null}
+
+            {!_.isEmpty(stat) ? (
+              <>
+                <Box
+                  justifyContent="center"
+                  alignItems="center"
+                  display="flex"
+                  flexDirection="column"
+                  padding={3}
+                >
+                  <Typography variant="h3">Оролцогчдын мэдээлэл</Typography>
+                  <Typography>/хүлээлгийн жагсаалт хамаарахгүй/</Typography>
+                </Box>
+                <StatTable data={stat} />
+              </>
             ) : null}
 
             <Box

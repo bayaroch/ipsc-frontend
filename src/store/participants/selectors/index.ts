@@ -7,3 +7,8 @@ export const participants = createSelector(
   getState,
   (state) => state.participants
 )
+
+export const participantsStat = createSelector(
+  getState,
+  (state) => state.participantsStat
+)

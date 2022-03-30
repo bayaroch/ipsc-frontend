@@ -49,8 +49,15 @@ export const memberMatches = createSelector(getState, (state) => {
 
 export const matchParticipants = createSelector(detail, (state) => {
   if (state === undefined) return []
-  const grouped = groupByDivision(state.participants)
+  const verified = _.filter(state.participants, (p) => p.is_verified)
+  const grouped = groupByDivision(verified)
   return grouped
+})
+
+export const waitingList = createSelector(detail, (state) => {
+  if (state === undefined) return []
+  const verified = _.filter(state.participants, (p) => !p.is_verified)
+  return verified
 })
 
 export const matchScorebyDivision = createSelector(detail, (state) => {

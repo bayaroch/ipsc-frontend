@@ -22,6 +22,9 @@ import { registerMatch } from '@store/match/selectors'
 import _ from 'lodash'
 import { helper } from '@utils/helpers/common.helper'
 import { MATCH_PROGRESS_STATUS } from '@constants/common.constants'
+import { participantsStat } from '@store/participants/selectors'
+import { StatItem } from '@services/participant.service'
+import { getParticipantsStat } from '@store/participants/actions'
 
 const { selectors, actions } = searchStore
 const getDetailMeta = createMetaSelector(actions.getMatch)
@@ -39,14 +42,19 @@ const useMatchDetail = (): {
   progress: { id: MATCH_PROGRESS_STATUS; value: string }
   registerState: RegisterMatchData
   scoreFiltered: DivisionScoreList
+  waitingList: ParticipantsItem[]
+  stat: StatItem[]
+  getStat: (id: string) => void
 } => {
   const dispatch = useDispatch()
   const meta = useSelector(getDetailMeta)
   const detail = useSelector(selectors.matchDetail)
   const participants = _.get(detail, 'participants', [])
   const participantsFiltered = useSelector(selectors.matchParticipants)
+  const waitingList = useSelector(selectors.waitingList)
   const scoreFiltered = useSelector(selectors.matchScorebyDivision)
   const getDetail = (id: string) => dispatch(actions.getMatch(id))
+  const getStat = (id: string) => dispatch(getParticipantsStat(id))
   const register = (params: RegisterMatchParams) => {
     dispatch(actions.registerMatch(params))
   }
@@ -58,6 +66,7 @@ const useMatchDetail = (): {
   const support = useSelector(SP)
   const registerState = useSelector(registerMatch)
   const progress = helper.matchStatusTitle(detail)
+  const stat = useSelector(participantsStat)
 
   useEffect(() => {
     dispatch(actions.clearMatchData())
@@ -65,6 +74,7 @@ const useMatchDetail = (): {
 
   return {
     meta,
+    getStat,
     detail,
     getDetail,
     register,
@@ -74,7 +84,9 @@ const useMatchDetail = (): {
     participants,
     update,
     progress,
+    stat,
     registerState,
+    waitingList,
     scoreFiltered,
   }
 }

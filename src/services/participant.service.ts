@@ -25,6 +25,14 @@ export interface ParticipantsParams {
   id: number
 }
 
+export type StatItem = Array<string>
+
+export type ParticipantsStatResponse = {
+  data: Array<StatItem>
+  status: string
+  version: string
+}
+
 export const participantsServices = {
   participants: async (
     params: ParticipantsParams
@@ -32,6 +40,13 @@ export const participantsServices = {
     const { data } = await api.get<ParticipantsResponse>(URI.PARTICIPANT, {
       params: params,
     })
+    return data
+  },
+
+  participantsStat: async (id: string): Promise<ParticipantsStatResponse> => {
+    const { data } = await api.get<ParticipantsStatResponse>(
+      URI.PARTICIPANT_STAT.replace(/:id/gi, id)
+    )
     return data
   },
 }

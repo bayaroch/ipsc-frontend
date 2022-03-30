@@ -17,8 +17,8 @@ import { styled } from '@mui/material/styles'
 
 interface TableProps {
   data: ParticipantsItem[]
-  groupTitle?: string
   classData: SupportItem[]
+  divisions: SupportItem[]
 }
 
 const Item = styled(Chip)(() => ({
@@ -28,8 +28,8 @@ const Item = styled(Chip)(() => ({
   fontWeight: 600,
 }))
 
-const MemberTable: React.FC<TableProps> = (props) => {
-  const { data, groupTitle, classData } = props
+const WaitingTable: React.FC<TableProps> = (props) => {
+  const { data, classData, divisions } = props
 
   return (
     <TableContainer component={Paper}>
@@ -74,7 +74,13 @@ const MemberTable: React.FC<TableProps> = (props) => {
                   ''
                 )}
               </TableCell>
-              <TableCell align="right">{groupTitle && groupTitle}</TableCell>
+              <TableCell align="right">
+                {_.get(
+                  helper.groupTitleHelper(row.division_id, divisions),
+                  'name',
+                  ''
+                )}
+              </TableCell>
               <TableCell align="right">MINOR</TableCell>
               <TableCell align="right">
                 {helper
@@ -91,4 +97,4 @@ const MemberTable: React.FC<TableProps> = (props) => {
   )
 }
 
-export default MemberTable
+export default WaitingTable
