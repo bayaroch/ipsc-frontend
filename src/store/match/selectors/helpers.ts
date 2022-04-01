@@ -58,7 +58,10 @@ export const groupByIsBefore = (items: MatchItem[]): GroupedMatchListItem[] => {
     .map((groupItems, groupTitle) => {
       return {
         groupTitle: groupTitle === 'true' ? 'Явагдаж дууссан' : 'Удахгүй болох',
-        data: _.orderBy(groupItems, 'match_start', 'asc'),
+        data:
+          groupTitle === 'true'
+            ? _.orderBy(groupItems, 'match_start', 'desc')
+            : _.orderBy(groupItems, 'match_start', 'asc'),
       }
     })
     .value()

@@ -47,7 +47,7 @@ const WaitingTable: React.FC<TableProps> = (props) => {
         </TableHead>
         <TableBody>
           {data.map((row, i) => (
-            <TableRow key={i}>
+            <TableRow key={i} sx={{ opacity: 0.6 }}>
               <TableCell component="th" scope="row">
                 {i + 1}
               </TableCell>

@@ -21,7 +21,7 @@ const StatTable: React.FC<TableProps> = (props) => {
       <Table sx={{ minWidth: 650 }}>
         <TableHead>
           <TableRow>
-            <TableCell align="right">Name</TableCell>
+            <TableCell align="right">Division</TableCell>
             <TableCell align="right">Uncategorized</TableCell>
             <TableCell align="right">Lady</TableCell>
             <TableCell align="right">Junior</TableCell>
