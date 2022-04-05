@@ -9,7 +9,7 @@ export type MatchPageMeta = {
   page: number
   per_page: number
   sort_column?: string
-  sort_order?: 'ASC' | 'DESC'
+  sort_direction?: 'asc' | 'desc'
 }
 
 export type MatchCreateParams = {
@@ -130,8 +130,6 @@ export type ParticipantsItem = {
   user: UserData
 }
 
-export type StatItem = Array<string>
-
 export type ScoreItem = {
   categories: string
   classname: string
@@ -181,7 +179,7 @@ export const matchServices = {
 
   getAllMatches: async (meta: MatchPageMeta): Promise<GetMatchesResponse> => {
     const { data } = await api.get<GetMatchesResponse>(
-      `${URI.MATCH}?page=${meta.page}&per_page=${meta.per_page}`
+      `${URI.MATCH}?page=${meta.page}&per_page=${meta.per_page}&sort_column=${meta.sort_column}&sort_direction=${meta.sort_direction}`
     )
     return data
   },

@@ -39,7 +39,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
     getList({
       page: page,
       per_page: rowsPerPage,
-      sort_order: 'DESC',
+      sort_direction: 'desc',
       sort_column: 'match_start',
     })
   }, [page])

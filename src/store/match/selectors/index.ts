@@ -15,7 +15,7 @@ const detail = (state: RootState) => state.match.detail
 export const matches = createSelector(getState, (state) => state.matchList)
 
 export const matchGroupBy = createSelector(getState, (state) => {
-  return groupByIsBefore(state.matchList).reverse()
+  return groupByIsBefore(state.matchList)
 })
 
 export const createResult = createSelector(
