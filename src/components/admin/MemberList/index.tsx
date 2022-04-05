@@ -49,7 +49,7 @@ export interface MemberListProps {
   onAdd: () => void
 }
 
-const defaultPerPage = 100
+const defaultPerPage = 500
 
 const MemberList: React.FC<MemberListProps> = (props) => {
   const {
