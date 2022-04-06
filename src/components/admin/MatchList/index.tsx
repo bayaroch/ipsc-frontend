@@ -129,7 +129,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
           {list.map((g, i) => {
             return (
               <>
-                <Typography variant="h3" align="center">
+                <Typography variant="h3" mb={1} align="center">
                   {g.groupTitle}
                 </Typography>
                 <Paper key={i} sx={{ mb: 3 }}>
