@@ -6,11 +6,9 @@ import {
   TableContainer,
   TableCell,
   TableBody,
-  Paper,
   Box,
-  Tab,
-  Tabs,
   Typography,
+  Paper,
 } from '@mui/material/'
 import Pagination from '@mui/material//Pagination'
 import { MatchPaginationMeta, MatchPageMeta } from '@services/match.services'
@@ -40,13 +38,7 @@ export interface MatchListProps {
   onImport: (id: number) => void
 }
 
-const defaultPerPage = 20
-
-interface TabPanelProps {
-  children?: React.ReactNode
-  index: any
-  value: any
-}
+const defaultPerPage = 10
 
 export const MATCH_STATUS_TEXT_ICONS = [
   {
@@ -71,22 +63,6 @@ export const MATCH_STATUS_TEXT_ICONS = [
   },
 ]
 
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`scrollable-auto-tabpanel-${index}`}
-      aria-labelledby={`scrollable-auto-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Paper square>{children}</Paper>}
-    </div>
-  )
-}
-
 const MatchList: React.FC<MatchListProps> = (props) => {
   const {
     getList,
@@ -103,14 +79,13 @@ const MatchList: React.FC<MatchListProps> = (props) => {
   const [page, setPage] = useState<number>(1)
   const [rowsPerPage, setRowsPerPage] = useState<number>(defaultPerPage)
 
-  const [value, setValue] = React.useState(0)
-
-  const handleChange = (_event: React.ChangeEvent<any>, newValue: number) => {
-    setValue(newValue)
-  }
-
   useEffect(() => {
-    getList({ page: page, per_page: rowsPerPage })
+    getList({
+      page: page,
+      per_page: rowsPerPage,
+      sort_column: 'match_start',
+      sort_direction: 'desc',
+    })
   }, [page])
 
   useEffect(() => {
@@ -151,29 +126,13 @@ const MatchList: React.FC<MatchListProps> = (props) => {
     if (!_.isEmpty(list) && meta.loaded && !meta.pending) {
       return (
         <Box>
-          <Paper square>
-            <Tabs
-              value={value}
-              sx={{
-                '& .MuiTabs-flexContainer': { borderBottom: '1px solid #eee' },
-                '& .MuiTab-textColorPrimary': {
-                  fontSize: 12,
-                  fontWeight: 600,
-                },
-              }}
-              onChange={handleChange}
-              textColor="primary"
-              indicatorColor="primary"
-            >
-              {list.map((g, i) => {
-                return <Tab disableRipple label={g.groupTitle} key={i} />
-              })}
-            </Tabs>
-          </Paper>
           {list.map((g, i) => {
             return (
-              <TabPanel value={value} index={i} key={i}>
-                <Box>
+              <>
+                <Typography variant="h3" align="center">
+                  {g.groupTitle}
+                </Typography>
+                <Paper key={i} sx={{ mb: 3 }}>
                   <TableContainer>
                     <Table
                       sx={{ minWidth: 500 }}
@@ -262,8 +221,8 @@ const MatchList: React.FC<MatchListProps> = (props) => {
                       </TableBody>
                     </Table>
                   </TableContainer>
-                </Box>
-              </TabPanel>
+                </Paper>
+              </>
             )
           })}
           <Box
@@ -271,7 +230,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
             sx={{
               position: 'relative',
               justifyContent: 'center',
-              padding: 20,
+              padding: '20px',
               width: '100%',
             }}
           >
