@@ -39,6 +39,7 @@ const ImportDialog = ({
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
   const [exclude_codes, setCodes] = useState<string>('')
+  const [rts, setRTS] = useState<string>('')
 
   const handleImport = async () => {
     if (file) {
@@ -48,14 +49,14 @@ const ImportDialog = ({
         if (id) {
           await matchServices.importMatch({
             match_html: file,
-            rts: 60,
+            rts: rts,
             match_id: id,
             exclude_codes: exclude_codes,
           })
         } else {
           await matchServices.importMatch({
             match_html: file,
-            rts: 60,
+            rts: rts,
             exclude_codes: exclude_codes,
           })
         }
@@ -69,6 +70,10 @@ const ImportDialog = ({
 
   const onChangeCodes = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCodes(e.target.value)
+  }
+
+  const onChangeRTS = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setRTS(e.target.value)
   }
 
   const { getRootProps, getInputProps, open } = useDropzone({
@@ -163,7 +168,15 @@ const ImportDialog = ({
               type="text"
             />
           </Box>
-
+          <Box sx={{ mt: 1 }}>
+            <CustomInput
+              labelPrimary="RTS"
+              value={rts}
+              placeholder="RTS"
+              onChange={onChangeRTS}
+              type="number"
+            />
+          </Box>
           {error && (
             <Box mt={1}>
               <Alert severity="warning">Алдаа гарлаа - {error}</Alert>

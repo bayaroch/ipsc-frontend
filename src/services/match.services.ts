@@ -153,7 +153,7 @@ export type MatchDeleteResponse = {
 
 export type ImportParams = {
   match_html: FileWithPath
-  rts: 60
+  rts: string
   match_id?: number | string
   exclude_codes?: string
 }
@@ -217,7 +217,7 @@ export const matchServices = {
   importMatch: async (params: ImportParams): Promise<any> => {
     const formData = new FormData()
     formData.append('match_html', params.match_html)
-    formData.append('rts', '60')
+    formData.append('rts', params.rts)
     formData.append('match_id', String(params.match_id))
     if (params.exclude_codes) {
       formData.append('exclude_codes', params.exclude_codes)

@@ -368,7 +368,7 @@ const MatchCreateContainer: React.FC = () => {
                     fullWidth
                     inputRef={ref}
                     type="number"
-                    labelPrimary="Min Point"
+                    labelPrimary="RTS"
                   />
                 )}
               />

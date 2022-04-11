@@ -340,7 +340,7 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
                       fullWidth
                       inputRef={ref}
                       type="number"
-                      labelPrimary="Min Point"
+                      labelPrimary="RTS"
                     />
                   )}
                 />

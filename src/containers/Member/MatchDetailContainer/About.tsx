@@ -4,7 +4,13 @@ import { MatchItem } from '@store/match/actions/types'
 import { helper, MatchProgressType } from '@utils/helpers/common.helper'
 import StatusChip from '@components/member/StatusChip'
 import { InfoItem } from '../ProfileDetailContainer/Elements/OtherInfo'
-import { AccountTree, LocalAtm, LocalPolice, Update } from '@mui/icons-material'
+import {
+  AccountTree,
+  Adjust,
+  LocalAtm,
+  LocalPolice,
+  Update,
+} from '@mui/icons-material'
 
 interface About {
   detail: MatchItem
@@ -55,6 +61,16 @@ const About: React.FC<About> = ({ detail, progress }) => {
             </Typography>
           }
           icon={<AccountTree />}
+        />
+
+        <InfoItem
+          title={'Хамгийн бага онооны буудалтийн тоо'}
+          value={
+            <Typography sx={{ fontWeight: 500, fontSize: 16 }} variant="body2">
+              {detail.min_point}
+            </Typography>
+          }
+          icon={<Adjust />}
         />
       </CardContent>
     </Card>
