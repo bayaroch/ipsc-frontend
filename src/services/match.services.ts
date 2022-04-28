@@ -222,7 +222,7 @@ export const matchServices = {
     if (params.match_id) {
       formData.append('match_id', String(params.match_id))
     }
-    formData.append('add_zip', String(params.add_zip))
+    formData.append('add_zip', params.add_zip)
     if (params.exclude_codes) {
       formData.append('exclude_codes', params.exclude_codes)
     }
