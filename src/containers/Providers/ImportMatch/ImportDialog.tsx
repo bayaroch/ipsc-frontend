@@ -17,6 +17,7 @@ import HtmlIcon from '@mui/icons-material/Html'
 import { LoadingButton } from '@mui/lab'
 import { matchServices } from '@services/match.services'
 import CustomInput from '@components/common/Input'
+import { Attachment } from '@mui/icons-material'
 
 interface UploadDialogProps {
   open: boolean
@@ -36,13 +37,14 @@ const ImportDialog = ({
   const dialogOpen = rest.open
   const { title, dialogProps, id } = options
   const [file, setFile] = useState<FileWithPath | null>(null)
+  const [zip, setZip] = useState<FileWithPath | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
   const [exclude_codes, setCodes] = useState<string>('')
   const [rts, setRTS] = useState<string>('')
 
   const handleImport = async () => {
-    if (file) {
+    if (file && zip) {
       setLoading(true)
       try {
         setError(null)
@@ -52,12 +54,14 @@ const ImportDialog = ({
             rts: rts,
             match_id: id,
             exclude_codes: exclude_codes,
+            add_zip: zip,
           })
         } else {
           await matchServices.importMatch({
             match_html: file,
             rts: rts,
             exclude_codes: exclude_codes,
+            add_zip: zip,
           })
         }
         onConfirm()
@@ -88,6 +92,22 @@ const ImportDialog = ({
     },
   })
 
+  const {
+    getRootProps: getZipProps,
+    getInputProps: getZipInputProps,
+    open: zipOpen,
+  } = useDropzone({
+    noClick: true,
+    noKeyboard: true,
+    accept: 'application/zip, application/x-zip-compressed, multipart/x-zip',
+    maxFiles: 1,
+    maxSize: 20000000,
+    onDrop: (acceptedFiles) => {
+      const singleFile = acceptedFiles[0]
+      setZip(singleFile)
+    },
+  })
+
   const thumbs = () => {
     return (
       file && (
@@ -99,6 +119,19 @@ const ImportDialog = ({
     )
   }
 
+  const renderZipInfo = () => {
+    return (
+      zip && (
+        <Box sx={{ textAlign: 'center' }}>
+          <Attachment />
+          <Typography sx={{ fontSize: 14 }}>{zip.name}</Typography>
+        </Box>
+      )
+    )
+  }
+
+  // eslint-disable-next-line no-console
+  console.log(zip)
   return (
     <Dialog
       fullWidth
@@ -150,7 +183,7 @@ const ImportDialog = ({
               transition: 'border .24s ease-in-out',
             }}
           >
-            <input {...getInputProps()} />
+            <input {...getZipInputProps()} />
             <p>
               Чирэх эсвэл сонгож онооны файлаа оруулна уу. HTML файл байх
               шаардлагатай
@@ -176,6 +209,44 @@ const ImportDialog = ({
               onChange={onChangeRTS}
               type="number"
             />
+          </Box>
+          {/* zip area */}
+          <Box
+            display="flex"
+            mb={1}
+            mt={1}
+            sx={{ height: 'auto', width: '100%' }}
+            alignItems="center"
+            justifyContent="center"
+          >
+            {renderZipInfo()}
+          </Box>
+          <Box
+            {...getZipProps({ className: 'dropzone-zip' })}
+            sx={{
+              flex: '1',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              padding: '20px',
+              borderWidth: '2px',
+              borderRadius: '2px',
+              borderColor: '#eeeeee',
+              borderStyle: 'dashed',
+              backgroundColor: '#fafafa',
+              color: '#bdbdbd',
+              outline: 'none',
+              transition: 'border .24s ease-in-out',
+            }}
+          >
+            <input {...getInputProps()} />
+            <p>
+              Чирэх эсвэл сонгож онооны файлаа оруулна уу. Zip файл байх
+              шаардлагатай
+            </p>
+            <Button variant="outlined" color={'success'} onClick={zipOpen}>
+              Сонгох
+            </Button>
           </Box>
           {error && (
             <Box mt={1}>
