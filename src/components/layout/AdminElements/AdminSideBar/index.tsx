@@ -108,7 +108,7 @@ const AdminSideBar: React.FC<AdminSideBarProps> = ({
             //   router.pathname == '/admin' ? classes.activeLink : ''
             // }`}
           >
-            <img src="/images/logo-dvc.png" />
+            <img src="/images/logo-club.png" />
           </Box>
         </Link>
       </Box>

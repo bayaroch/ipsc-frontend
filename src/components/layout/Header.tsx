@@ -50,8 +50,15 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="navbar-brand">
             <LogoContainer className="logo-brand">
               <LogoBox>
-                <a href="/" style={{ display: 'block', lineHeight: 1 }}>
-                  <img src="/images/logo-club.png" alt="logo" />
+                <a
+                  href="/"
+                  style={{ display: 'block', lineHeight: 1, height: 50 }}
+                >
+                  <img
+                    src="/images/logo-club.png"
+                    style={{ height: 100, position: 'absolute', top: -2 }}
+                    alt="logo"
+                  />
                 </a>
               </LogoBox>
             </LogoContainer>

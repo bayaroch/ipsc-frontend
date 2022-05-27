@@ -1,4 +1,4 @@
-import { Box, BoxProps } from '@mui/material'
+import { Box, BoxProps, CircularProgress } from '@mui/material'
 import { Meta } from '@store/metadata/actions/types'
 
 interface LoaderProps extends BoxProps {
@@ -19,7 +19,7 @@ const BasicLoader: React.FC<LoaderProps> = ({ meta, ...rest }) => {
           }}
           {...rest}
         >
-          <Box className="dot-flashing" />
+          <CircularProgress variant="determinate" value={25} />
         </Box>
       )
     }
