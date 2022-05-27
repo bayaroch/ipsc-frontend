@@ -1,4 +1,4 @@
-const DOMAIN = 'https://morning-garden-98261.herokuapp.com'
+const DOMAIN = 'https://ipsc.babyzone.mn'
 const REST_API_PATH = '/api/v1/'
 const API_ROOT = REST_API_PATH
 
