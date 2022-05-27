@@ -308,7 +308,7 @@ const LoginPage: React.FC = () => {
                         },
                       }}
                     >
-                      <img src="images/logo-login.png" alt="dvc" />
+                      <img src="images/logo-club.png" alt="dvc" />
                     </Box>
                     {/* <Box className="intro-headline">
                       <Box style={{ fontSize: 48 }}>IPSC</Box>
