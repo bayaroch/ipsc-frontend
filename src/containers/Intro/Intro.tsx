@@ -22,14 +22,11 @@ const Intro: React.FC = () => {
           <div className="intro-container container">
             <div className="intro-content">
               {/* <div className="dvc-logo">
-                <img src="/images/logo-dvc.png" />
+                <img src="/images/logo-club.png" />
               </div> */}
               <div className="intro-headline">
-                ACTION AIR <br />
+                PRIME <br />
                 SHOOTING CLUB
-              </div>
-              <div className="intro-headline intro-headline-small">
-                Экшн эйр буудлагын клуб
               </div>
               <IntroButton onClick={() => router.push('/about_aasc')}>
                 Дэлгэрэнгүй
