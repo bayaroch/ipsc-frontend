@@ -7,10 +7,13 @@ import {
   groupByDivision,
   groupByDivisionScore,
   groupByIsBefore,
+  rankGroupByUser,
 } from './helpers'
+import { RankItem } from '@services/match.services'
 
 const getState = (state: RootState) => state.match
 const detail = (state: RootState) => state.match.detail
+const ranks = (state: RootState) => state.match.ranksByDivision
 
 export const matches = createSelector(getState, (state) => state.matchList)
 
@@ -21,6 +24,11 @@ export const matchGroupBy = createSelector(getState, (state) => {
 export const createResult = createSelector(
   getState,
   (state) => state.createMatch
+)
+
+export const rankResult = createSelector(
+  getState,
+  (state) => state.ranksByDivision
 )
 
 export const updateResult = createSelector(
@@ -64,4 +72,14 @@ export const matchScorebyDivision = createSelector(detail, (state) => {
   if (state === undefined) return []
   const grouped = groupByDivisionScore(state.match_scores)
   return grouped
+})
+
+export const rankResultByUser = createSelector(ranks, (state) => {
+  if (state === undefined) return []
+  const grouped = rankGroupByUser(state)
+  const sum = (el: RankItem[]) => {
+    return _.sumBy(el, (o) => o.rp)
+  }
+  const orderBySum = _.orderBy(grouped, (g) => sum(g.data), 'desc')
+  return orderBySum
 })

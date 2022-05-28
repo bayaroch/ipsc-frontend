@@ -16,4 +16,6 @@ export const URI = {
   ACCOUNT: API_ROOT + 'users',
   EXPORT: API_ROOT + 'practiscores/:id',
   MATCH_SCORE: API_ROOT + 'match_scores',
+  RANKS: API_ROOT + 'ranks',
+  RANKS_BY_DIVISION: API_ROOT + 'ranks?division_id=:id',
 }

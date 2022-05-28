@@ -65,6 +65,22 @@ export type MatchResponse = {
   version: string
 }
 
+export type RankResponse = {
+  data: RankItem[]
+  status: string
+  version: string
+}
+
+export type RankItem = {
+  id: number
+  match_id: number
+  user_id: number
+  division_id: number
+  rp: number
+  user: UserData
+  division: SupportItem
+}
+
 export type MetaPagination = {
   pagination: MatchPaginationMeta
 }
@@ -230,5 +246,12 @@ export const matchServices = {
       headers: { 'Content-Type': 'multipart/form-data' },
     })
     return res
+  },
+
+  ranksByDivision: async (division_id: string): Promise<RankResponse> => {
+    const { data } = await api.get<any>(
+      URI.RANKS_BY_DIVISION.replace(/:id/gi, division_id)
+    )
+    return data
   },
 }

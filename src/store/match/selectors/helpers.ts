@@ -1,7 +1,8 @@
-import { ParticipantsItem, ScoreItem } from '@services/match.services'
+import { ParticipantsItem, RankItem, ScoreItem } from '@services/match.services'
 import _ from 'lodash'
 import { MatchItem } from '../actions/types'
 import moment from 'moment'
+import { UserData } from '@services/auth.services'
 
 export type ParticipantSortedItem = {
   groupTitle: number | string
@@ -16,6 +17,11 @@ export type ScoreSortedItem = {
 export type GroupedMatchListItem = {
   groupTitle: string
   data: MatchItem[]
+}
+
+export type GroupedRankItem = {
+  id: UserData
+  data: RankItem[]
 }
 
 export type ParticipantSortedList = Array<ParticipantSortedItem>
@@ -62,6 +68,22 @@ export const groupByIsBefore = (items: MatchItem[]): GroupedMatchListItem[] => {
           groupTitle === 'true'
             ? _.orderBy(groupItems, 'match_start', 'desc')
             : _.orderBy(groupItems, 'match_start', 'asc'),
+      }
+    })
+    .value()
+
+  return groupedItems
+}
+
+export const rankGroupByUser = (items: RankItem[]): GroupedRankItem[] => {
+  const groupedItems = _.chain(items)
+    .groupBy((item) => {
+      return item.user_id
+    })
+    .map((groupItems) => {
+      return {
+        id: groupItems[0].user,
+        data: _.orderBy(groupItems, 'match_id', 'asc'),
       }
     })
     .value()

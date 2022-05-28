@@ -1,4 +1,4 @@
-import { List, Add, People } from '@mui/icons-material'
+import { List, Add, People, MilitaryTech } from '@mui/icons-material'
 
 export const ADMIN_MENU_LARGE = [
   {
@@ -33,5 +33,11 @@ export const MEMBER_MENU_LARGE = [
     route: '/member/list',
     name: 'Клубын гишүүд',
     icon: People,
+  },
+  {
+    id: 3,
+    route: '/member/ranks',
+    name: 'Чансаа',
+    icon: MilitaryTech,
   },
 ]

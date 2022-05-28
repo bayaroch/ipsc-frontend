@@ -3,6 +3,7 @@ import { MatchItem } from '../actions/types'
 import * as actions from '../actions'
 import {
   MatchPaginationMeta,
+  RankItem,
   RegisterMatchData,
 } from '@services/match.services'
 import _ from 'lodash'
@@ -14,6 +15,7 @@ export type MatchState = {
   updateMatch: MatchItem | undefined
   detail: MatchItem | undefined
   registerMatch: RegisterMatchData | undefined
+  ranksByDivision: RankItem[] | undefined
 }
 
 const initialState: MatchState = {
@@ -23,6 +25,7 @@ const initialState: MatchState = {
   updateMatch: undefined,
   detail: undefined,
   registerMatch: undefined,
+  ranksByDivision: undefined,
 }
 
 export default createReducer(initialState, (builder) => {
@@ -51,5 +54,11 @@ export default createReducer(initialState, (builder) => {
   })
   builder.addCase(actions.deleteMatch.fulfilled, (state, action) => {
     state.matchList = _.filter(state.matchList, (m) => m.id !== action.meta.arg)
+  })
+  builder.addCase(actions.ranksByDivisionList.fulfilled, (state, action) => {
+    state.ranksByDivision = action.payload.data
+  })
+  builder.addCase(actions.clearRankData, (state) => {
+    state.ranksByDivision = undefined
   })
 })
