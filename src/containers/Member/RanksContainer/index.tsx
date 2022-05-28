@@ -28,6 +28,7 @@ import {
   Margin,
   Grid,
 } from 'devextreme-react/chart'
+import Link from 'next/link'
 
 export enum FORM_ACTION_TYPE {
   CREATE = 1,
@@ -124,19 +125,12 @@ const RanksContainer: React.FC = () => {
     })
     const energySources = [{ value: 'rp', name: 'Rank Point' }]
 
-    const handleInfo = (e: any) => {
-      // eslint-disable-next-line no-console
-      console.log(e)
-    }
-
     const contentToolTip = (info: any) => {
       // eslint-disable-next-line no-console
       return (
         <Box>
           <Typography>RankPoints: {info.value}</Typography>
-          <Typography onClick={() => alert(info.argument)}>
-            Match ID: {info.argument}
-          </Typography>
+          <Typography>Match ID: {info.argument}</Typography>
         </Box>
       )
     }
@@ -155,7 +149,6 @@ const RanksContainer: React.FC = () => {
               <Paper sx={{ borderRadius: 0, p: 1 }}>
                 <Chart
                   dataSource={chartData}
-                  onTooltipShown={handleInfo}
                   onArgumentAxisClick={handleSeriesClick}
                 >
                   {energySources.map((item) => (
@@ -190,9 +183,11 @@ const RanksContainer: React.FC = () => {
         <TableCell>
           <Stack direction="row" spacing={1} alignItems="center">
             <CustomAvatar alt={data.id.firstname} src={data.id.img_url} />
-            <Typography>
-              {data.id.lastname} {data.id.firstname}
-            </Typography>
+            <Link href={`/member/profile/${data.id.id}`}>
+              <Typography sx={{ cursor: 'pointer' }}>
+                {data.id.lastname} {data.id.firstname}
+              </Typography>
+            </Link>
           </Stack>
         </TableCell>
         <TableCell>{total}</TableCell>
