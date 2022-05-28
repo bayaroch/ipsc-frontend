@@ -14,8 +14,8 @@ export const Footer: React.FC = () => {
               <div className="has-text-left has-text-white mb-2  is-flex-direction-row is-flex">
                 <Icon icon="is-small mdi-map-marker pr-3" />
                 <p>
-                  Монгол улс, Улаанбаатар хот, Хан-Уул дүүрэг, Алтай хотхоны
-                  хойно, ОБЕГ-ын сургалтын төвийн зүүн талд
+                  Монгол улс, Улаанбаатар хот, Сүхбаатар дүүрэг, Сүхбаатар
+                  Дүүрэг, 2-р хороо, Нарны зам гудамж-25, Урбанек төв
                 </p>
               </div>
               <div className="has-text-left has-text-white mb-2 is-flex-direction-row is-flex">

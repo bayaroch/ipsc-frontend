@@ -1,5 +1,7 @@
 export const Copyright: React.FC = () => {
   return (
-    <div className="copyright">© 2021-Present Action Air Shooting Club.</div>
+    <div className="copyright">
+      © 2022-Present Prime Practical Shooting Club .
+    </div>
   )
 }

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import IntroButton from '@components/common/IntroButton'
 import Slider from '@components/common/Slider'
 import { useRouter } from 'next/router'
@@ -25,8 +26,7 @@ const Intro: React.FC = () => {
                 <img src="/images/logo-club.png" />
               </div> */}
               <div className="intro-headline">
-                PRIME <br />
-                SHOOTING CLUB
+                ПРАКТИК БУУДЛАГЫН СПОРТЫН "ПРАЙМ" КЛУБ
               </div>
               <IntroButton onClick={() => router.push('/about_aasc')}>
                 Дэлгэрэнгүй
