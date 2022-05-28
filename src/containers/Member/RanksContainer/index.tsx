@@ -29,6 +29,7 @@ import {
   Grid,
 } from 'devextreme-react/chart'
 import Link from 'next/link'
+import { useConfirm } from 'material-ui-confirm'
 
 export enum FORM_ACTION_TYPE {
   CREATE = 1,
@@ -81,6 +82,7 @@ const RanksContainer: React.FC = () => {
   const [value, setValue] = useState(1)
   const router = useRouter()
   const { id } = router.query
+  const confirm = useConfirm()
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
@@ -137,7 +139,14 @@ const RanksContainer: React.FC = () => {
 
     const handleSeriesClick = (info: any) => {
       // eslint-disable-next-line no-console
-      router.push(`/member/matches/${info.argument}`)
+      confirm({
+        title: 'Тэмцээний дэлгэрэнгүй мэдээлэл',
+        description: `${info.argument} id- тай тэмцээний дэлгэрэнгүй хуудасруу үсрэх`,
+        confirmationText: 'Тийм',
+        cancellationText: 'Үгүй',
+      })
+        .then(() => router.push(`/member/matches/${info.argument}`))
+        .catch(() => null)
     }
 
     return (
