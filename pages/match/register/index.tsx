@@ -2,20 +2,23 @@ import ContentWrapper from '@components/layout/ContentWrapper'
 import MainLayout from '@components/layout/MainLayout'
 import PageWithLayoutType from '@constants/page'
 import ContentHeader from '@components/elements/ContentHeader'
-import { Box } from '@mui/material/'
-import PublicMatchListContainer from '@containers/PublicMatchListContainer'
+import { useRouter } from 'next/router'
+import { Box } from '@mui/material'
 
-const PublicList: PageWithLayoutType = () => {
+const MatchDetail: PageWithLayoutType = () => {
+  const router = useRouter()
+  const { id } = router.query
+
   return (
     <MainLayout isBanner={true} regular={true}>
-      <ContentHeader title={'Тэмцээн'} />
+      <ContentHeader title={'Тэмцээний бүртгэл'} />
       <ContentWrapper topSpace={true}>
-        <Box>
-          <PublicMatchListContainer />
-        </Box>
+        <>
+          <Box>Under development {id}</Box>
+        </>
       </ContentWrapper>
     </MainLayout>
   )
 }
 
-export default PublicList
+export default MatchDetail

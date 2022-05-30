@@ -249,9 +249,14 @@ export const matchServices = {
   },
 
   ranksByDivision: async (division_id: string): Promise<RankResponse> => {
-    const { data } = await api.get<any>(
+    const { data } = await api.get<RankResponse>(
       URI.RANKS_BY_DIVISION.replace(/:id/gi, division_id)
     )
+    return data
+  },
+
+  fetchPublicMatch: async (): Promise<GetMatchesResponse> => {
+    const { data } = await api.get<GetMatchesResponse>(URI.MATCH_PUBLIC)
     return data
   },
 }

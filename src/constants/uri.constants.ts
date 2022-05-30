@@ -18,4 +18,5 @@ export const URI = {
   MATCH_SCORE: API_ROOT + 'match_scores',
   RANKS: API_ROOT + 'ranks',
   RANKS_BY_DIVISION: API_ROOT + 'ranks?division_id=:id',
+  MATCH_PUBLIC: API_ROOT + 'public_match_list',
 }

@@ -152,3 +152,18 @@ export const fetchRanks = (params: string) => async (
     dispatch(ranksByDivisionList(params))
   })
 }
+
+export const getAllPublicMatches = createAsyncThunk<GetMatchesResponse, void>(
+  MATCH_ACTION_TYPE.GET_PUBLIC_MATCHES,
+  async (_, { rejectWithValue }) => {
+    try {
+      const res = await matchServices.fetchPublicMatch()
+      return res
+    } catch (error) {
+      if (!error) {
+        throw error
+      }
+      return rejectWithValue(error)
+    }
+  }
+)

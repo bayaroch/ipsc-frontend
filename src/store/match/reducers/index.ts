@@ -16,6 +16,7 @@ export type MatchState = {
   detail: MatchItem | undefined
   registerMatch: RegisterMatchData | undefined
   ranksByDivision: RankItem[] | undefined
+  matchListPublic: MatchItem[] | undefined
 }
 
 const initialState: MatchState = {
@@ -26,6 +27,7 @@ const initialState: MatchState = {
   detail: undefined,
   registerMatch: undefined,
   ranksByDivision: undefined,
+  matchListPublic: undefined,
 }
 
 export default createReducer(initialState, (builder) => {
@@ -60,5 +62,8 @@ export default createReducer(initialState, (builder) => {
   })
   builder.addCase(actions.clearRankData, (state) => {
     state.ranksByDivision = undefined
+  })
+  builder.addCase(actions.getAllPublicMatches.fulfilled, (state, action) => {
+    state.matchListPublic = action.payload.data
   })
 })

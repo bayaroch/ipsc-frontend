@@ -33,6 +33,7 @@ export enum MATCH_ACTION_TYPE {
   DELETE_MATCH = 'match/delete',
   RANKS_BY_DIVISION = 'match/ranksByDivision',
   CLEAR_RANK_DATA = 'match/clearRankData',
+  GET_PUBLIC_MATCHES = 'match/getPiblicMatches',
 }
 
 export const CLEAR_MATCH_DATA = 'match/clearMatchData'

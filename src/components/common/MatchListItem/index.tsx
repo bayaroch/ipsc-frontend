@@ -24,7 +24,8 @@ import { MATCH_PROGRESS_STATUS } from '@constants/common.constants'
 interface ListItemProps {
   item: MatchItemType
   onClick?: (id: number) => void
-  user: UserData
+  user?: UserData
+  href?: string
 }
 
 export const colorConstants: string[] = [
@@ -134,7 +135,7 @@ const SlideButton = ({
   </Box>
 )
 
-const MatchListItem: React.FC<ListItemProps> = ({ item, user }) => {
+const MatchListItem: React.FC<ListItemProps> = ({ item, user, href }) => {
   const [hovering, setHovering] = useState<null | number>(null)
   const isMobile = useMediaQuery('(max-width:900px)')
 
@@ -148,7 +149,7 @@ const MatchListItem: React.FC<ListItemProps> = ({ item, user }) => {
     setHovering(null)
   }
 
-  const isRegistered = item.participants.find((u) => u.user.id === user.id)
+  const isRegistered = item.participants.find((u) => u.user.id === user?.id)
 
   const showReadMore =
     isRegistered ||
@@ -165,7 +166,7 @@ const MatchListItem: React.FC<ListItemProps> = ({ item, user }) => {
         marginBottom: 3,
       }}
     >
-      <Link href={`/member/matches/${item.id}`} passHref>
+      <Link href={href ? href : `/member/matches/${item.id}`} passHref>
         <Box
           onMouseEnter={hoverOn}
           onMouseLeave={hoverOff}

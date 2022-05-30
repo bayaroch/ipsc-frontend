@@ -16,9 +16,17 @@ const detail = (state: RootState) => state.match.detail
 const ranks = (state: RootState) => state.match.ranksByDivision
 
 export const matches = createSelector(getState, (state) => state.matchList)
+export const matchesPublic = createSelector(
+  getState,
+  (state) => state.matchListPublic
+)
 
 export const matchGroupBy = createSelector(getState, (state) => {
   return groupByIsBefore(state.matchList)
+})
+
+export const matchPublicGroupBy = createSelector(getState, (state) => {
+  return groupByIsBefore(state.matchListPublic)
 })
 
 export const createResult = createSelector(
@@ -82,4 +90,11 @@ export const rankResultByUser = createSelector(ranks, (state) => {
   }
   const orderBySum = _.orderBy(grouped, (g) => sum(g.data), 'desc')
   return orderBySum
+})
+
+export const matchPublicParticipants = createSelector(detail, (state) => {
+  if (state === undefined) return []
+  const verified = _.filter(state.participants, (p) => p.is_verified)
+  const grouped = groupByDivision(verified)
+  return grouped
 })
