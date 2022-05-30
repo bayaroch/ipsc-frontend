@@ -18,6 +18,10 @@ export const topmenu = [
     ],
   },
   {
+    label: 'Тэмцээн',
+    route: '/match',
+  },
+  {
     label: 'Cпортын дүрэм',
     route: '/rules',
   },
