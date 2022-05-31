@@ -10,6 +10,7 @@ import {
   UpdateMatchParams,
   MatchDeleteResponse,
   RankResponse,
+  RegisterPublicMatchParams,
 } from '@services/match.services'
 import { createAsyncThunk, createAction } from '@reduxjs/toolkit'
 import { MATCH_ACTION_TYPE, CLEAR_MATCH_DATA } from './types'
@@ -158,6 +159,24 @@ export const getAllPublicMatches = createAsyncThunk<GetMatchesResponse, void>(
   async (_, { rejectWithValue }) => {
     try {
       const res = await matchServices.fetchPublicMatch()
+      return res
+    } catch (error) {
+      if (!error) {
+        throw error
+      }
+      return rejectWithValue(error)
+    }
+  }
+)
+
+export const registerPublicMatch = createAsyncThunk<
+  any,
+  RegisterPublicMatchParams
+>(
+  MATCH_ACTION_TYPE.REGISTER_PUBLIC_MATCH,
+  async (params, { rejectWithValue }) => {
+    try {
+      const res = await matchServices.registerPublicMatch(params)
       return res
     } catch (error) {
       if (!error) {

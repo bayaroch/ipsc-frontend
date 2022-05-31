@@ -4,6 +4,7 @@ import { MatchItem } from '@store/match/actions/types'
 import { UserData } from './auth.services'
 import { SupportItem } from './support.services'
 import { FileWithPath } from 'react-dropzone'
+import { GENDER } from '@constants/user.constants'
 
 export type MatchPageMeta = {
   page: number
@@ -175,6 +176,30 @@ export type ImportParams = {
   add_zip: FileWithPath
 }
 
+export type RegisterPublicMatchParams = {
+  match_id: number
+  division_id: number
+  category_id: number
+  class_id: number
+  remark: string
+  guest: UserDetail
+}
+
+export type UserDetail = {
+  usercode: string
+  firstname: string
+  lastname: string
+  email: string
+  birthday: string
+  usertype: number
+  gender: GENDER
+  class_id: number
+  is_main_club: number
+  remark_other: string
+  register_no: string
+  phone_no: string
+}
+
 export const matchServices = {
   createMatch: async (params: MatchCreateParams): Promise<MatchResponse> => {
     const { data } = await api.post<MatchResponse>(URI.MATCH, params)
@@ -257,6 +282,11 @@ export const matchServices = {
 
   fetchPublicMatch: async (): Promise<GetMatchesResponse> => {
     const { data } = await api.get<GetMatchesResponse>(URI.MATCH_PUBLIC)
+    return data
+  },
+
+  registerPublicMatch: async (params: RegisterMatchParams): Promise<any> => {
+    const { data } = await api.post(URI.PARTICIPANT_GUEST, params)
     return data
   },
 }

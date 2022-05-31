@@ -30,6 +30,7 @@ export enum MATCH_ACTION_TYPE {
   GET_MATCH = 'match/getMatch',
   REGISTER_MATCH = 'match/registerMatch',
   REGISTER_UPDATE_MATCH = 'match/registerUpdateMatch',
+  REGISTER_PUBLIC_MATCH = 'match/registerPublicMatch',
   DELETE_MATCH = 'match/delete',
   RANKS_BY_DIVISION = 'match/ranksByDivision',
   CLEAR_RANK_DATA = 'match/clearRankData',

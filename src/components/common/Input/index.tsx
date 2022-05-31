@@ -59,7 +59,7 @@ const CustomInput: React.FC<OutlinedInputProps & InputProps> = ({
                   paddingRight: (theme) => theme.spacing(1 / 2),
                   height: 16,
                   fontSize: 10,
-                  marginLeft: 5,
+                  marginLeft: '5px',
                   color: Colors.red,
                 }}
               >
