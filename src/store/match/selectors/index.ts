@@ -98,3 +98,9 @@ export const matchPublicParticipants = createSelector(detail, (state) => {
   const grouped = groupByDivision(verified)
   return grouped
 })
+
+export const matchPublicGuests = createSelector(detail, (state) => {
+  if (state === undefined) return []
+  const guests = _.filter(state.participants, (p) => p.user.usertype == 2)
+  return guests
+})

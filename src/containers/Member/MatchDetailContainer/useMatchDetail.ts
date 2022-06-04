@@ -18,7 +18,7 @@ import {
   ParticipantSortedList,
 } from '@store/match/selectors/helpers'
 import { SupportState } from '@store/support/reducers'
-import { registerMatch } from '@store/match/selectors'
+import { matchPublicGuests, registerMatch } from '@store/match/selectors'
 import _ from 'lodash'
 import { helper } from '@utils/helpers/common.helper'
 import { MATCH_PROGRESS_STATUS } from '@constants/common.constants'
@@ -45,6 +45,7 @@ const useMatchDetail = (): {
   waitingList: ParticipantsItem[]
   stat: StatItem[]
   getStat: (id: string) => void
+  guest: ParticipantsItem[]
 } => {
   const dispatch = useDispatch()
   const meta = useSelector(getDetailMeta)
@@ -67,6 +68,7 @@ const useMatchDetail = (): {
   const registerState = useSelector(registerMatch)
   const progress = helper.matchStatusTitle(detail)
   const stat = useSelector(participantsStat)
+  const guest = useSelector(matchPublicGuests)
 
   useEffect(() => {
     dispatch(actions.clearMatchData())
@@ -86,6 +88,7 @@ const useMatchDetail = (): {
     progress,
     stat,
     registerState,
+    guest,
     waitingList,
     scoreFiltered,
   }

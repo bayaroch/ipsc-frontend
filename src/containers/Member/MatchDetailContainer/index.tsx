@@ -1,5 +1,13 @@
 import { useEffect, useState } from 'react'
-import { Box, Typography, Grid, Paper, Button } from '@mui/material/'
+import {
+  Box,
+  Typography,
+  Grid,
+  Paper,
+  Button,
+  TableRow,
+  TableCell,
+} from '@mui/material/'
 import useMatchDetail from './useMatchDetail'
 import _ from 'lodash'
 import ContentBox from '@components/admin/ContentBox'
@@ -21,6 +29,8 @@ import Score from './Scores'
 import HTMLParser from '@components/common/HtmlParser'
 import WaitingTable from '@components/member/ParticipantsTable/WaitingTable'
 import StatTable from '@components/member/ParticipantsTable/StatTable'
+import PaperTable from '@components/common/PaperTable'
+import { ParticipantsItem } from '@services/match.services'
 
 interface MatchDetailProps {
   id: string
@@ -42,6 +52,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
     stat,
     getStat,
     participants,
+    guest,
     scoreFiltered,
     progress,
     update,
@@ -191,6 +202,26 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
     }
     return null
   }
+
+  const renderGuestRow = (data: ParticipantsItem, index: number) => {
+    const { user } = data
+    return (
+      <TableRow key={index}>
+        <TableCell>{user.usercode}</TableCell>
+        <TableCell>
+          {user.lastname} {user.firstname}
+        </TableCell>
+        <TableCell>{user.email}</TableCell>
+        <TableCell>{user.phone_no}</TableCell>
+        <TableCell>{user.register_no}</TableCell>
+        <TableCell>{user.is_main_club === 1 ? 'Төв клуб' : ''}</TableCell>
+        <TableCell>{user.remark_other}</TableCell>
+      </TableRow>
+    )
+  }
+
+  // eslint-disable-next-line no-console
+  console.log(guest)
 
   const renderContent = () => {
     if (
@@ -374,6 +405,49 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
                   <Typography>/хүлээлгийн жагсаалт хамаарахгүй/</Typography>
                 </Box>
                 <StatTable data={stat} />
+              </>
+            ) : null}
+
+            {isAdmin || isRo ? (
+              <>
+                <Box
+                  justifyContent="center"
+                  alignItems="center"
+                  display="flex"
+                  padding={3}
+                >
+                  <Typography variant="h3">Зочин оролцогчид</Typography>
+                </Box>
+                <PaperTable
+                  tableProps={{
+                    sx: {
+                      minWidth: 1100,
+                      '& .MuiTableCell-root': {
+                        p: 1,
+                        borderLeft: '1px solid rgba(224, 224, 224, 1)',
+                        maxWidth: 90,
+                        fontSize: 13,
+                      },
+                    },
+                  }}
+                  head={
+                    <>
+                      <TableRow>
+                        <TableCell sx={{ width: 40 }} align="center">
+                          ID
+                        </TableCell>
+                        <TableCell align="center">Нэр</TableCell>
+                        <TableCell align="center">Имэйл</TableCell>
+                        <TableCell align="center">Утас</TableCell>
+                        <TableCell align="center">Регистр</TableCell>
+                        <TableCell align="center">Төв клуб</TableCell>
+                        <TableCell align="center">Бусад</TableCell>
+                      </TableRow>
+                    </>
+                  }
+                  renderRow={renderGuestRow}
+                  data={guest}
+                />
               </>
             ) : null}
 

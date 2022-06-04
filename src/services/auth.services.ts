@@ -26,6 +26,10 @@ export type UserData = {
   class_id?: number
   mo_badge?: null | string
   img_url?: string
+  phone_no?: string
+  register_no?: string
+  remark_other?: string
+  is_main_club?: number
 }
 
 export const authServices = {
