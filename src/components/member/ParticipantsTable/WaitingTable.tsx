@@ -6,14 +6,14 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
-import Chip from '@mui/material/Chip'
+// import Chip from '@mui/material/Chip'
 import { ParticipantsItem } from '@services/match.services'
 import _ from 'lodash'
 import { SupportItem } from '@services/support.services'
 import { helper } from '@utils/helpers/common.helper'
-import { blue } from '@mui/material/colors'
+// import { blue } from '@mui/material/colors'
 import { Typography } from '@mui/material'
-import { styled } from '@mui/material/styles'
+// import { styled } from '@mui/material/styles'
 
 interface TableProps {
   data: ParticipantsItem[]
@@ -21,12 +21,12 @@ interface TableProps {
   divisions: SupportItem[]
 }
 
-const Item = styled(Chip)(() => ({
-  textAlign: 'center',
-  color: '#fff',
-  height: 'auto',
-  fontWeight: 600,
-}))
+// const Item = styled(Chip)(() => ({
+//   textAlign: 'center',
+//   color: '#fff',
+//   height: 'auto',
+//   fontWeight: 600,
+// }))
 
 const WaitingTable: React.FC<TableProps> = (props) => {
   const { data, classData, divisions } = props
@@ -53,7 +53,7 @@ const WaitingTable: React.FC<TableProps> = (props) => {
               </TableCell>
               <TableCell align="right">
                 <Typography variant="body1">{row.user.firstname}</Typography>
-                {row.is_ro ? (
+                {/* {row.is_ro ? (
                   <Item
                     label={'RO'}
                     sx={{
@@ -64,7 +64,7 @@ const WaitingTable: React.FC<TableProps> = (props) => {
                   />
                 ) : (
                   ''
-                )}
+                )} */}
               </TableCell>
               <TableCell align="right">{row.user.usercode}</TableCell>
               <TableCell align="right">
