@@ -200,6 +200,17 @@ export type UserDetail = {
   phone_no: string
 }
 
+export type MatchFile = {
+  id: number
+  match_id: number
+  filename: string
+  data: string
+}
+
+export type MatchFileResponse = {
+  data: MatchFile[]
+}
+
 export const matchServices = {
   createMatch: async (params: MatchCreateParams): Promise<MatchResponse> => {
     const { data } = await api.post<MatchResponse>(URI.MATCH, params)
@@ -287,6 +298,11 @@ export const matchServices = {
 
   registerPublicMatch: async (params: RegisterMatchParams): Promise<any> => {
     const { data } = await api.post(URI.PARTICIPANT_GUEST, params)
+    return data
+  },
+
+  getHTMLFiles: async (id: string): Promise<MatchFileResponse> => {
+    const { data } = await api.get(URI.MATCH_FILES.replace(/:id/gi, id))
     return data
   },
 }

@@ -6,6 +6,9 @@ import {
   Paper,
   Button,
   TableRow,
+  Card,
+  CardContent,
+  CardHeader,
   TableCell,
 } from '@mui/material/'
 import useMatchDetail from './useMatchDetail'
@@ -31,6 +34,7 @@ import WaitingTable from '@components/member/ParticipantsTable/WaitingTable'
 import StatTable from '@components/member/ParticipantsTable/StatTable'
 import PaperTable from '@components/common/PaperTable'
 import { ParticipantsItem } from '@services/match.services'
+import MatchFiles from './MatchFiles'
 
 interface MatchDetailProps {
   id: string
@@ -40,6 +44,7 @@ interface MatchDetailProps {
 const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
   const [open, setOpen] = useState<boolean>(false)
   const [member, setMember] = useState<boolean>(false)
+  const [fileOpen, setFileOpen] = useState<boolean>(false)
   const {
     detail,
     meta,
@@ -55,6 +60,8 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
     guest,
     scoreFiltered,
     progress,
+    getMatchFiles,
+    fileList,
     update,
     registerState,
   } = useMatchDetail()
@@ -77,6 +84,9 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
     _.get(detail, 'match_start', '')
   )
 
+  // eslint-disable-next-line no-console
+  console.log(fileList)
+
   const isBeforeMatch = helper.isBeforeMatch(_.get(detail, 'match_start', ''))
 
   const isOpenOnly = !isRegisterActive && isBeforeMatch
@@ -87,6 +97,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
     if (id) {
       getDetail(id)
       getStat(id)
+      getMatchFiles(id)
     }
   }, [id])
 
@@ -340,6 +351,34 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
                     <Box mb={6}>
                       {isRo || isAdmin ? <DownloadCSV id={id} /> : null}
                     </Box>
+                    <Box>
+                      {!_.isEmpty(fileList) ? (
+                        <Card
+                          sx={{
+                            '& .Cmt-header-root': {
+                              paddingTop: 3,
+                              paddingBottom: 0,
+                            },
+                          }}
+                        >
+                          <CardHeader
+                            sx={{ borderBottom: '1px solid #eee' }}
+                            title="Тэмцээний онооны файлууд"
+                          ></CardHeader>
+                          <CardContent>
+                            <Box>
+                              <Button
+                                variant="outlined"
+                                fullWidth
+                                onClick={() => setFileOpen(true)}
+                              >
+                                Тэмцээний онооны файлууд харах
+                              </Button>
+                            </Box>
+                          </CardContent>
+                        </Card>
+                      ) : null}
+                    </Box>
                   </Grid>
                   <Grid item xs={12} lg={8}>
                     <Box mb={6}>
@@ -471,11 +510,19 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
       <>
         {renderLoader()}
         {renderContent()}
+
         {detail && (
           <MemberList
             handleClose={() => setMember(false)}
             members={detail.participants}
             open={member}
+          />
+        )}
+        {!_.isEmpty(fileList) && (
+          <MatchFiles
+            handleClose={() => setFileOpen(false)}
+            files={fileList}
+            open={fileOpen}
           />
         )}
       </>

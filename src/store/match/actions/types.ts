@@ -35,6 +35,7 @@ export enum MATCH_ACTION_TYPE {
   RANKS_BY_DIVISION = 'match/ranksByDivision',
   CLEAR_RANK_DATA = 'match/clearRankData',
   GET_PUBLIC_MATCHES = 'match/getPiblicMatches',
+  MATCH_HTML = 'match/matchHTML',
 }
 
 export const CLEAR_MATCH_DATA = 'match/clearMatchData'

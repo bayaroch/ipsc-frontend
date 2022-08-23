@@ -5,6 +5,7 @@ import { Meta } from '@store/metadata/actions/types'
 import { useDispatch, useSelector } from 'react-redux'
 import { MatchItem } from '@store/match/actions/types'
 import {
+  MatchFile,
   ParticipantsItem,
   RegisterMatchData,
   RegisterMatchParams,
@@ -18,7 +19,11 @@ import {
   ParticipantSortedList,
 } from '@store/match/selectors/helpers'
 import { SupportState } from '@store/support/reducers'
-import { matchPublicGuests, registerMatch } from '@store/match/selectors'
+import {
+  matchHTMLFiles,
+  matchPublicGuests,
+  registerMatch,
+} from '@store/match/selectors'
 import _ from 'lodash'
 import { helper } from '@utils/helpers/common.helper'
 import { MATCH_PROGRESS_STATUS } from '@constants/common.constants'
@@ -46,6 +51,8 @@ const useMatchDetail = (): {
   stat: StatItem[]
   getStat: (id: string) => void
   guest: ParticipantsItem[]
+  getMatchFiles: (id: string) => void
+  fileList: MatchFile[]
 } => {
   const dispatch = useDispatch()
   const meta = useSelector(getDetailMeta)
@@ -59,8 +66,14 @@ const useMatchDetail = (): {
   const register = (params: RegisterMatchParams) => {
     dispatch(actions.registerMatch(params))
   }
+  const fileList = useSelector(matchHTMLFiles)
+
   const update = (params: UpdateMatchParams) => {
     dispatch(actions.updateRegisterMatch(params))
+  }
+
+  const getMatchFiles = (id: string) => {
+    dispatch(actions.getMatchFileList(id))
   }
 
   const category = useSelector(cat)
@@ -81,6 +94,7 @@ const useMatchDetail = (): {
     getDetail,
     register,
     category,
+    getMatchFiles,
     support,
     participantsFiltered,
     participants,
@@ -91,6 +105,7 @@ const useMatchDetail = (): {
     guest,
     waitingList,
     scoreFiltered,
+    fileList,
   }
 }
 

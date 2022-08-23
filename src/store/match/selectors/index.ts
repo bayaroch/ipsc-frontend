@@ -49,6 +49,11 @@ export const paginationMeta = createSelector(
   (state) => state.matchMeta
 )
 
+export const matchHTMLFiles = createSelector(
+  getState,
+  (state) => state.matchHTML
+)
+
 export const matchDetail = createSelector(getState, (state) => state.detail)
 
 export const registerMatch = createSelector(

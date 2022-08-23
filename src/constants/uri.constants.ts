@@ -20,4 +20,5 @@ export const URI = {
   RANKS_BY_DIVISION: API_ROOT + 'ranks?division_id=:id',
   MATCH_PUBLIC: API_ROOT + 'public_match_list',
   PARTICIPANT_GUEST: API_ROOT + 'participants/create_guest',
+  MATCH_FILES: API_ROOT + 'match_files?match_id=:id',
 }

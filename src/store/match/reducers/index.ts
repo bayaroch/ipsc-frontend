@@ -2,6 +2,7 @@ import { createReducer } from '@reduxjs/toolkit'
 import { MatchItem } from '../actions/types'
 import * as actions from '../actions'
 import {
+  MatchFile,
   MatchPaginationMeta,
   RankItem,
   RegisterMatchData,
@@ -17,6 +18,7 @@ export type MatchState = {
   registerMatch: RegisterMatchData | undefined
   ranksByDivision: RankItem[] | undefined
   matchListPublic: MatchItem[] | undefined
+  matchHTML: MatchFile[] | undefined
 }
 
 const initialState: MatchState = {
@@ -28,6 +30,7 @@ const initialState: MatchState = {
   registerMatch: undefined,
   ranksByDivision: undefined,
   matchListPublic: undefined,
+  matchHTML: undefined,
 }
 
 export default createReducer(initialState, (builder) => {
@@ -65,5 +68,8 @@ export default createReducer(initialState, (builder) => {
   })
   builder.addCase(actions.getAllPublicMatches.fulfilled, (state, action) => {
     state.matchListPublic = action.payload.data
+  })
+  builder.addCase(actions.getMatchFileList.fulfilled, (state, action) => {
+    state.matchHTML = action.payload.data
   })
 })
