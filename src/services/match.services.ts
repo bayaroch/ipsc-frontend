@@ -66,6 +66,12 @@ export type MatchResponse = {
   version: string
 }
 
+export type RankCombinedResponse = {
+  data: CombinedItem[]
+}
+
+export type CombinedItem = [number, string, number, number]
+
 export type RankResponse = {
   data: RankItem[]
   status: string
@@ -284,10 +290,8 @@ export const matchServices = {
     return res
   },
 
-  ranksByDivision: async (division_id: string): Promise<RankResponse> => {
-    const { data } = await api.get<RankResponse>(
-      URI.RANKS_BY_DIVISION.replace(/:id/gi, division_id)
-    )
+  ranksByLast40: async (): Promise<RankCombinedResponse> => {
+    const { data } = await api.get<RankCombinedResponse>(URI.RANKS_BY_LAST_YEAR)
     return data
   },
 

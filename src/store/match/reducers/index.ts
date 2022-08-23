@@ -2,9 +2,9 @@ import { createReducer } from '@reduxjs/toolkit'
 import { MatchItem } from '../actions/types'
 import * as actions from '../actions'
 import {
+  CombinedItem,
   MatchFile,
   MatchPaginationMeta,
-  RankItem,
   RegisterMatchData,
 } from '@services/match.services'
 import _ from 'lodash'
@@ -16,7 +16,7 @@ export type MatchState = {
   updateMatch: MatchItem | undefined
   detail: MatchItem | undefined
   registerMatch: RegisterMatchData | undefined
-  ranksByDivision: RankItem[] | undefined
+  ranksByDivision: CombinedItem[] | undefined
   matchListPublic: MatchItem[] | undefined
   matchHTML: MatchFile[] | undefined
 }

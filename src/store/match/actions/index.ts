@@ -9,9 +9,9 @@ import {
   RegisterMatchResponse,
   UpdateMatchParams,
   MatchDeleteResponse,
-  RankResponse,
   MatchFileResponse,
   RegisterPublicMatchParams,
+  RankCombinedResponse,
 } from '@services/match.services'
 import { createAsyncThunk, createAction } from '@reduxjs/toolkit'
 import { MATCH_ACTION_TYPE, CLEAR_MATCH_DATA } from './types'
@@ -128,11 +128,11 @@ export const updateRegisterMatch = createAsyncThunk<
   }
 )
 
-export const ranksByDivisionList = createAsyncThunk<RankResponse, string>(
+export const ranksByDivisionList = createAsyncThunk<RankCombinedResponse, void>(
   MATCH_ACTION_TYPE.RANKS_BY_DIVISION,
-  async (params, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      const res = await matchServices.ranksByDivision(params)
+      const res = await matchServices.ranksByLast40()
       return res
     } catch (error) {
       if (!error) {
@@ -146,12 +146,12 @@ export const ranksByDivisionList = createAsyncThunk<RankResponse, string>(
 export const clearMatchData = createAction(CLEAR_MATCH_DATA)
 export const clearRankData = createAction(MATCH_ACTION_TYPE.CLEAR_RANK_DATA)
 
-export const fetchRanks = (params: string) => async (
+export const fetchRanks = () => async (
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   dispatch: any
 ): Promise<any> => {
   Promise.resolve(dispatch(clearRankData())).then(() => {
-    dispatch(ranksByDivisionList(params))
+    dispatch(ranksByDivisionList())
   })
 }
 

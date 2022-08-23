@@ -34,10 +34,11 @@ export const createResult = createSelector(
   (state) => state.createMatch
 )
 
-export const rankResult = createSelector(
-  getState,
-  (state) => state.ranksByDivision
-)
+export const rankResult = createSelector(ranks, (state) => {
+  if (state === undefined) return []
+  const orderBySum = _.orderBy(state, (g) => g[2], 'desc')
+  return orderBySum
+})
 
 export const updateResult = createSelector(
   getState,
