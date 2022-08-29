@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Dialog,
   DialogActions,
@@ -42,6 +42,16 @@ const ImportDialog = ({
   const [error, setError] = useState<string | null>(null)
   const [exclude_codes, setCodes] = useState<string>('')
   const [rts, setRTS] = useState<string>('')
+
+  useEffect(() => {
+    if (dialogOpen) {
+      setZip(null)
+      setFile(null)
+      setRTS('')
+      setError(null)
+      setCodes('')
+    }
+  }, [dialogOpen])
 
   const handleImport = async () => {
     if (file && zip) {
