@@ -24,4 +24,7 @@ export const URI = {
   MATCH_PUBLIC: API_ROOT + 'public_match_list',
   PARTICIPANT_GUEST: API_ROOT + 'participants/create_guest',
   MATCH_FILES: API_ROOT + 'match_files?match_id=:id',
+  TEAMS: API_ROOT + 'teams',
+  TEAMS_EDIT: API_ROOT + 'teams/:id',
+  TEAM_MEMBERS: API_ROOT + 'team_members',
 }

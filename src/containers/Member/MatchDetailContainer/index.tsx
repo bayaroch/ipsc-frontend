@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState } from 'react'
 import {
   Box,
@@ -35,6 +36,7 @@ import StatTable from '@components/member/ParticipantsTable/StatTable'
 import PaperTable from '@components/common/PaperTable'
 import { ParticipantsItem } from '@services/match.services'
 import MatchFiles from './MatchFiles'
+import Teams from './Teams'
 
 interface MatchDetailProps {
   id: string
@@ -57,13 +59,18 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
     stat,
     getStat,
     participants,
+    getTeams,
     guest,
     scoreFiltered,
     progress,
+    join,
     getMatchFiles,
     fileList,
     update,
     registerState,
+    allTeams,
+    currentUser,
+    myTeams,
   } = useMatchDetail()
 
   const isRegistered = participants.find(
@@ -71,6 +78,9 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
   )
   const isRo = !_.isEmpty(userData && userData.mo_badge)
   const isAdmin = userData?.usertype === USER_TYPE.USER_ADMIN
+
+  // eslint-disable-next-line no-console
+  console.log('allTeams', allTeams, 'myTeams', myTeams)
 
   const { addToast } = useToast()
 
@@ -98,6 +108,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
       getDetail(id)
       getStat(id)
       getMatchFiles(id)
+      getTeams(id)
     }
   }, [id])
 
@@ -199,20 +210,20 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
     return <Box></Box>
   }
 
-  const renderSquadButton = () => {
-    if (isRegistered && isSquadRegister) {
-      return (
-        <Button
-          onClick={() => router.push(`/member/squad/${id}`)}
-          variant="contained"
-          color="secondary"
-        >
-          Ээлж сонгох
-        </Button>
-      )
-    }
-    return null
-  }
+  // const renderSquadButton = () => {
+  //   if (isRegistered && isSquadRegister) {
+  //     return (
+  //       <Button
+  //         onClick={() => router.push(`/member/squad/${id}`)}
+  //         variant="contained"
+  //         color="secondary"
+  //       >
+  //         Ээлж сонгох
+  //       </Button>
+  //     )
+  //   }
+  //   return null
+  // }
 
   const renderGuestRow = (data: ParticipantsItem, index: number) => {
     const { user } = data
@@ -230,9 +241,6 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
       </TableRow>
     )
   }
-
-  // eslint-disable-next-line no-console
-  console.log(guest)
 
   const renderContent = () => {
     if (
@@ -491,13 +499,28 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
             ) : null}
 
             <Box
+              justifyContent="center"
+              alignItems="center"
+              display="flex"
+              padding={3}
+            >
+              <Typography variant="h3">Нээлттэй багууд</Typography>
+            </Box>
+            {currentUser && allTeams && (
+              <Teams
+                currentId={currentUser.id}
+                teams={allTeams}
+                joinTeam={join}
+              />
+            )}
+
+            <Box
               display="flex"
               justifyContent="space-between"
               mt={5}
               alignItems="center"
             >
               {renderRegisterButton()}
-              {renderSquadButton()}
             </Box>
           </ContentBox>
         </>

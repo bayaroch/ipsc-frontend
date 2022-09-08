@@ -67,7 +67,10 @@ const ConfirmContainer: React.FC<ConfirmContainerProps> = ({ id }) => {
   }
 
   const onRespond = (id: number, is_verified: boolean) => {
-    respond({ id: id, data: { is_verified: is_verified } })
+    respond({
+      id: id,
+      data: { is_verified: Number(is_verified), team_id: null },
+    })
   }
 
   const onSubmit = (division: number) => {

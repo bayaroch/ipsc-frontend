@@ -1,6 +1,6 @@
 import { StoreType, AppDispatch } from '@store/store'
 import { Action } from 'redux'
-import { addToast } from '@store/support/actions'
+import { addToast, toastParams } from '@store/support/actions'
 import { squadChange, squadJoin, deleteSquads } from '@store/squads/actions'
 import { createUser, updateUser } from '@store/account/actions'
 import {
@@ -10,16 +10,49 @@ import {
 } from '@store/match/actions'
 import _ from 'lodash'
 import Router from 'next/router'
+import { joinTeam } from '@store/team/actions'
 
 const messages = {
-  [`${squadChange.fulfilled}`]: 'Ээлж солигдлоо',
-  [`${squadJoin.fulfilled}`]: 'Ээлж сонгогдлоо',
-  [`${updateUser.fulfilled}`]: 'Мэдээлэл шинэчлэгдлээ',
-  [`${createUser.fulfilled}`]: 'Гишүүн амжилттай нэмэгдлээ',
-  [`${deleteMatch.fulfilled}`]: 'Тэмцээн устгагдлаа',
-  [`${deleteSquads.fulfilled}`]: 'Ээлж устгагдлаа',
-  [`${updateRegisterMatch.fulfilled}`]: 'Амжилттай шинэчлэгдлээ',
-  [`${registerPublicMatch.fulfilled}`]: 'Амжилттай бүртгэгдлээ',
+  [`${squadChange.fulfilled}`]: {
+    message: 'Ээлж солигдлоо',
+    severity: 'success',
+  },
+  [`${squadJoin.fulfilled}`]: {
+    message: 'Ээлж сонгогдлоо',
+    severity: 'success',
+  },
+  [`${updateUser.fulfilled}`]: {
+    message: 'Мэдээлэл шинэчлэгдлээ',
+    severity: 'success',
+  },
+  [`${createUser.fulfilled}`]: {
+    message: 'Гишүүн амжилттай нэмэгдлээ',
+    severity: 'success',
+  },
+  [`${deleteMatch.fulfilled}`]: {
+    message: 'Тэмцээн устгагдлаа',
+    severity: 'success',
+  },
+  [`${deleteSquads.fulfilled}`]: {
+    message: 'Ээлж устгагдлаа',
+    severity: 'success',
+  },
+  [`${updateRegisterMatch.fulfilled}`]: {
+    message: 'Амжилттай шинэчлэгдлээ',
+    severity: 'success',
+  },
+  [`${registerPublicMatch.fulfilled}`]: {
+    message: 'Амжилттай бүртгэгдлээ',
+    severity: 'success',
+  },
+  [`${joinTeam.rejected}`]: {
+    message: 'Амжилтгүй код буруу',
+    severity: 'warning',
+  },
+  [`${joinTeam.fulfilled}`]: {
+    message: 'Амжилттай багт орлоо',
+    severity: 'success',
+  },
 }
 
 const navigateToMatch = (action: any, _store: any) => {
@@ -38,7 +71,7 @@ export const commonMiddleware: any = (store: StoreType) => (
 ) => <A extends Action>(action: A): A => {
   const message = messages[action.type]
   if (message && !_.isEmpty(message))
-    store.dispatch(addToast({ message: message, severity: 'success' }))
+    store.dispatch(addToast(message as toastParams))
 
   const globalAction = actions[action.type]
 

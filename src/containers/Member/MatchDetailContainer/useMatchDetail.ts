@@ -11,7 +11,7 @@ import {
   RegisterMatchParams,
   UpdateMatchParams,
 } from '@services/match.services'
-import { category as cat } from '@store/auth/selectors'
+import { category as cat, user } from '@store/auth/selectors'
 import { CATEGORY } from '@constants/user.constants'
 import { support as SP } from '@store/support/selectors'
 import {
@@ -30,6 +30,10 @@ import { MATCH_PROGRESS_STATUS } from '@constants/common.constants'
 import { participantsStat } from '@store/participants/selectors'
 import { StatItem } from '@services/participant.service'
 import { getParticipantsStat } from '@store/participants/actions'
+import { joinTeam, listTeam } from '@store/team/actions'
+import { teams } from '@store/team/selectors'
+import { TeamItem, TeamJoinParams } from '@services/team.service'
+import { UserData } from '@services/auth.services'
 
 const { selectors, actions } = searchStore
 const getDetailMeta = createMetaSelector(actions.getMatch)
@@ -53,6 +57,11 @@ const useMatchDetail = (): {
   guest: ParticipantsItem[]
   getMatchFiles: (id: string) => void
   fileList: MatchFile[]
+  getTeams: (id: string) => void
+  myTeams: TeamItem[]
+  allTeams: TeamItem[]
+  currentUser: UserData
+  join: (params: TeamJoinParams) => void
 } => {
   const dispatch = useDispatch()
   const meta = useSelector(getDetailMeta)
@@ -66,6 +75,16 @@ const useMatchDetail = (): {
   const register = (params: RegisterMatchParams) => {
     dispatch(actions.registerMatch(params))
   }
+  const join = (params: TeamJoinParams) => dispatch(joinTeam(params))
+  const currentUser = useSelector(user)
+  const allTeams = useSelector(teams)
+  const myTeams = allTeams
+    ? _.filter(allTeams, (t: TeamItem) => {
+        return _.find(t.team_members, { user: { id: currentUser.id } })
+          ? true
+          : false
+      })
+    : []
   const fileList = useSelector(matchHTMLFiles)
 
   const update = (params: UpdateMatchParams) => {
@@ -82,6 +101,7 @@ const useMatchDetail = (): {
   const progress = helper.matchStatusTitle(detail)
   const stat = useSelector(participantsStat)
   const guest = useSelector(matchPublicGuests)
+  const getTeams = (id: string) => dispatch(listTeam({ match_id: id }))
 
   useEffect(() => {
     dispatch(actions.clearMatchData())
@@ -92,6 +112,7 @@ const useMatchDetail = (): {
     getStat,
     detail,
     getDetail,
+    join,
     register,
     category,
     getMatchFiles,
@@ -106,6 +127,10 @@ const useMatchDetail = (): {
     waitingList,
     scoreFiltered,
     fileList,
+    getTeams,
+    myTeams,
+    currentUser,
+    allTeams,
   }
 }
 

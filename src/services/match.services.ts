@@ -114,6 +114,7 @@ export type RegisterMatchParams = {
   is_ro?: number
   is_verified?: number | boolean
   remark?: string | null
+  team_id?: number | null
 }
 
 export type UpdateMatchParams = {
