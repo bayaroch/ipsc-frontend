@@ -2,14 +2,11 @@ import { useState } from 'react'
 import { Box, Typography, Grid, Paper, Button } from '@mui/material/'
 import _ from 'lodash'
 import ContentBox from '@components/admin/ContentBox'
-import MatchDivisionPicker from '@components/member/MatchDivisionPicker'
 import ParticipantsTable from '@components/member/ParticipantsTable'
-
 import About from '@containers/Member/MatchDetailContainer/About'
 import Info from '@containers/Member/MatchDetailContainer//Info'
 import TimeBox from '@containers/Member/MatchDetailContainer//TimeBox'
 import Participants from '@containers/Member/MatchDetailContainer//Participants'
-import useToast from '@utils/hooks/useToast'
 import MemberList from '@containers/Member/MatchDetailContainer//MemberList'
 import Score from '@containers/Member/MatchDetailContainer//Scores'
 import HTMLParser from '@components/common/HtmlParser'
@@ -35,13 +32,10 @@ const PublicMatchDetail: React.FC<PublicMatchDetailProps> = ({
   support,
   meta,
 }) => {
-  const [open, setOpen] = useState<boolean>(false)
   const [member, setMember] = useState<boolean>(false)
 
   const verified = _.filter(detail.participants, (p) => !!p.is_verified)
   const grouped = groupByDivision(verified)
-  // eslint-disable-next-line no-console
-  console.log('grouped', grouped)
 
   const scores = groupByDivisionScore(detail.match_scores)
   const waitingList = _.filter(detail.participants, (p) => !p.is_verified)
@@ -50,10 +44,6 @@ const PublicMatchDetail: React.FC<PublicMatchDetailProps> = ({
     _.get(detail, 'registration_start', ''),
     _.get(detail, 'registration_end', '')
   )
-
-  const { addToast } = useToast()
-
-  const handleClose = () => setOpen(false)
 
   const renderRegisterButton = () => {
     if (isRegisterActive) {
@@ -79,15 +69,6 @@ const PublicMatchDetail: React.FC<PublicMatchDetailProps> = ({
     ) {
       return (
         <>
-          <MatchDivisionPicker
-            isRo={false}
-            validate={(v) => addToast({ message: v, severity: 'warning' })}
-            open={open}
-            divisions={support.divisions}
-            isOpenOnly={false}
-            onSubmit={() => null}
-            handleClose={handleClose}
-          />
           <ContentBox>
             <section style={{ paddingTop: 15, paddingBottom: 15 }}>
               <Box sx={{ width: '100%' }}>

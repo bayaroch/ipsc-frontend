@@ -247,7 +247,7 @@ const MatchCreateContainer: React.FC = () => {
                   control={control}
                   render={({ field: { onChange, value, ref } }) => (
                     <Select
-                      onChange={onChange}
+                      onChange={(v) => onChange(v.target.value)}
                       inputRef={ref}
                       required={true}
                       fullWidth={true}

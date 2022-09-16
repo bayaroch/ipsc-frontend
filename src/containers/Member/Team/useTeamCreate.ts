@@ -3,32 +3,23 @@ import { useMemo } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
-export interface SquadCreateInputType {
-  name: string
-  remark: string
-  time_end: string
-  time_start: string
-}
-export interface SquadValidateType {
-  name: string
-  remark: string
-}
-
-const useSquadCreate = () => {
+const useTeamCreate = () => {
   const validationSchema = useMemo(
     () =>
       yup.object().shape({
         name: yup.string().required('Заавал бөглөх'),
-        remark: yup.string().notRequired(),
+        code: yup.string().required('Заавал бөглөх'),
+        division_id: yup.number().required('Заавал бөглөх'),
       }),
     []
   )
 
-  const methods = useForm<SquadValidateType>({
+  const methods = useForm({
     resolver: yupResolver(validationSchema),
     defaultValues: {
       name: '',
-      remark: '',
+      code: '',
+      division_id: 0,
     },
   })
 
@@ -38,4 +29,4 @@ const useSquadCreate = () => {
   }
 }
 
-export default useSquadCreate
+export default useTeamCreate

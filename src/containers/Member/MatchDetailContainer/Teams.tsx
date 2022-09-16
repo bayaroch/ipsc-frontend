@@ -1,5 +1,9 @@
 import React, { forwardRef, useState } from 'react'
-import { TeamItem, TeamJoinParams } from '@services/team.service'
+import {
+  TeamItem,
+  TeamJoinParams,
+  TeamLeaveParams,
+} from '@services/team.service'
 import PaperTable from '@components/common/PaperTable'
 import {
   Button,
@@ -9,6 +13,7 @@ import {
   Typography,
   Box,
   SlideProps,
+  IconButton,
   Stack,
   TableCell,
   TableRow,
@@ -16,11 +21,16 @@ import {
 import _ from 'lodash'
 import CustomInput from '@components/common/Input'
 import { LoadingButton } from '@mui/lab'
+import { UserData } from '@services/auth.services'
+import { USER_TYPE } from '@constants/user.constants'
+import { Delete } from '@mui/icons-material'
 
 interface TeamProps {
   teams: TeamItem[]
   joinTeam: (params: TeamJoinParams) => void
-  currentId: number
+  currentUser: UserData
+  leaveTeam: (params: TeamLeaveParams) => void
+  deleteTeam?: (id: string) => void
 }
 
 const Transition = forwardRef(function Transition(
@@ -30,19 +40,26 @@ const Transition = forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />
 })
 
-const Teams: React.FC<TeamProps> = ({ teams, currentId, joinTeam }) => {
+const Teams: React.FC<TeamProps> = ({
+  teams,
+  currentUser,
+  joinTeam,
+  leaveTeam,
+  deleteTeam,
+}) => {
   const [open, setOpen] = useState<TeamItem | null>(null)
   const [code, setCode] = useState<string>('')
 
   const handleClose = () => setOpen(null)
 
   const renderRow = (data: TeamItem, index: number) => {
-    const isExist = _.find(data.team_members, { user: { id: currentId } })
+    const isExist = _.find(data.team_members, { user: { id: currentUser.id } })
 
     return (
       <TableRow key={index}>
         <TableCell>{data.id}</TableCell>
         <TableCell>{data.name}</TableCell>
+        <TableCell>{data.division.name}</TableCell>
         <TableCell>
           <Stack direction={'row'} spacing={1}>
             {data.team_members.map((t, i) => {
@@ -59,15 +76,39 @@ const Teams: React.FC<TeamProps> = ({ teams, currentId, joinTeam }) => {
           </Stack>
         </TableCell>
         <TableCell>
-          {!isExist ? (
-            <Button
-              onClick={() => setOpen(data)}
-              variant="contained"
-              color="success"
-            >
-              Орох
-            </Button>
-          ) : null}
+          <Stack direction={'row'} spacing={1}>
+            {!isExist ? (
+              <Button
+                onClick={() => setOpen(data)}
+                variant="contained"
+                color="success"
+                size="small"
+              >
+                Нэгдэх
+              </Button>
+            ) : null}
+            {isExist ? (
+              <Button
+                size="small"
+                onClick={() =>
+                  leaveTeam({ team_id: data.id, user_id: currentUser.id })
+                }
+                variant="contained"
+                color="warning"
+              >
+                Гарах
+              </Button>
+            ) : null}
+
+            {currentUser.usertype === USER_TYPE.USER_ADMIN ||
+            data.user.id === currentUser.id ? (
+              <IconButton
+                onClick={() => deleteTeam && deleteTeam(data.id.toString())}
+              >
+                <Delete />
+              </IconButton>
+            ) : null}
+          </Stack>
         </TableCell>
       </TableRow>
     )
@@ -84,6 +125,7 @@ const Teams: React.FC<TeamProps> = ({ teams, currentId, joinTeam }) => {
                 ID
               </TableCell>
               <TableCell align="center">Нэр</TableCell>
+              <TableCell align="center">Ангилал</TableCell>
               <TableCell align="center">Гишүүд</TableCell>
               <TableCell align="center"></TableCell>
             </TableRow>
@@ -109,7 +151,11 @@ const Teams: React.FC<TeamProps> = ({ teams, currentId, joinTeam }) => {
           <LoadingButton
             onClick={() => {
               if (open !== null) {
-                joinTeam({ team_id: open.id, user_id: currentId, code: code })
+                joinTeam({
+                  team_id: open.id,
+                  user_id: currentUser.id,
+                  code: code,
+                })
                 setOpen(null)
                 setCode('')
               }
@@ -117,7 +163,7 @@ const Teams: React.FC<TeamProps> = ({ teams, currentId, joinTeam }) => {
             variant="contained"
             color="success"
           >
-            Орох
+            Нэгдэх
           </LoadingButton>
         </Box>
       </Dialog>

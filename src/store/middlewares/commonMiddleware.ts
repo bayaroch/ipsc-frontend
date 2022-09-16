@@ -10,7 +10,7 @@ import {
 } from '@store/match/actions'
 import _ from 'lodash'
 import Router from 'next/router'
-import { joinTeam } from '@store/team/actions'
+import { createTeam, deleteTeam, joinTeam } from '@store/team/actions'
 
 const messages = {
   [`${squadChange.fulfilled}`]: {
@@ -52,6 +52,26 @@ const messages = {
   [`${joinTeam.fulfilled}`]: {
     message: 'Амжилттай багт орлоо',
     severity: 'success',
+  },
+  [`${joinTeam.fulfilled}`]: {
+    message: 'Амжилттай багаас гарлаа',
+    severity: 'success',
+  },
+  [`${createTeam.fulfilled}`]: {
+    message: 'Амжилттай баг үүсгэлээ',
+    severity: 'success',
+  },
+  [`${createTeam.rejected}`]: {
+    message: 'Алдаа гарлаа',
+    severity: 'warning',
+  },
+  [`${deleteTeam.fulfilled}`]: {
+    message: 'Амжилттай баг устгалаа',
+    severity: 'success',
+  },
+  [`${deleteTeam.rejected}`]: {
+    message: 'Алдаа гарлаа',
+    severity: 'warning',
   },
 }
 

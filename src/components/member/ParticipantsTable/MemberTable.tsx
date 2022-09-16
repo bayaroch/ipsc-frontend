@@ -43,6 +43,7 @@ const MemberTable: React.FC<TableProps> = (props) => {
             <TableCell align="right">Division</TableCell>
             <TableCell align="right">PF</TableCell>
             <TableCell align="right">Categories</TableCell>
+            <TableCell align="right">Team</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -70,7 +71,7 @@ const MemberTable: React.FC<TableProps> = (props) => {
               <TableCell align="right">
                 {_.get(
                   helper.classTitleHelper(row.user.class_id, classData),
-                  'name',
+                  'shorthand',
                   ''
                 )}
               </TableCell>
@@ -82,6 +83,9 @@ const MemberTable: React.FC<TableProps> = (props) => {
                   .map((c, index) => {
                     return `${index === 1 ? ' | ' : ''}${c.name}`
                   })}
+              </TableCell>
+              <TableCell align="right">
+                {_.get(row, 'team.name', '-')}
               </TableCell>
             </TableRow>
           ))}

@@ -44,7 +44,7 @@ export enum CATEGORY {
 export const CAT_DATA = [
   {
     id: 1,
-    name: 'Uncategorized',
+    name: '-',
   },
   {
     id: 2,

@@ -10,20 +10,31 @@ export interface SquadListProps {
   isEdit?: boolean
   onSelectChange?: (id: number) => void
   userId: number
+  tempId?: number
 }
 
 const SquadList: React.FC<SquadListProps> = (props) => {
-  const { list, onExpandMembers, onSelectChange, userId } = props
+  const {
+    list,
+    onExpandMembers,
+    onSelectChange,
+    userId,
+    tempId,
+    isEdit,
+  } = props
   return (
     <List>
       {list.map((item, index) => {
         return (
           <ListItemSquad
+            tempId={tempId}
+            isEdit={isEdit ? isEdit : false}
             selectedId={userId}
             onSelectChange={onSelectChange && onSelectChange}
             onExpandMembers={onExpandMembers}
             key={index}
             data={item}
+            nameMode={true}
           />
         )
       })}

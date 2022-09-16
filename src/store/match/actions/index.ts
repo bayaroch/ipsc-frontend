@@ -15,6 +15,8 @@ import {
 } from '@services/match.services'
 import { createAsyncThunk, createAction } from '@reduxjs/toolkit'
 import { MATCH_ACTION_TYPE, CLEAR_MATCH_DATA } from './types'
+import { squadJoin } from '@store/squads/actions'
+import { SquadJoinParams } from '@services/squad.services'
 
 export const getAllMatches = createAsyncThunk<
   GetMatchesResponse,
@@ -152,6 +154,18 @@ export const fetchRanks = () => async (
 ): Promise<any> => {
   Promise.resolve(dispatch(clearRankData())).then(() => {
     dispatch(ranksByDivisionList())
+  })
+}
+
+export const registerThenSquadJoin = (
+  params: RegisterMatchParams,
+  squadParams: SquadJoinParams
+) => async (
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  dispatch: any
+): Promise<any> => {
+  Promise.resolve(dispatch(registerMatch(params))).then(() => {
+    dispatch(squadJoin(squadParams))
   })
 }
 

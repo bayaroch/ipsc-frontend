@@ -52,9 +52,14 @@ export type TeamJoinResponse = {
   data: TeamMemberItem | string
 }
 
+export type TeamLeaveParams = {
+  team_id: number
+  user_id: number
+}
+
 export const teamServices = {
   teamCreate: async (params: TeamCreateParams): Promise<TeamResponse> => {
-    const { data } = await api.post<TeamResponse>(URI.MATCH, params)
+    const { data } = await api.post<TeamResponse>(URI.TEAMS, params)
     return data
   },
   teamDelete: async (id: string): Promise<any> => {
@@ -75,6 +80,11 @@ export const teamServices = {
   },
   teamJoin: async (params: TeamJoinParams): Promise<TeamJoinResponse> => {
     const { data } = await api.post<TeamJoinResponse>(URI.TEAM_MEMBERS, params)
+    return data
+  },
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  teamLeave: async (params: TeamLeaveParams) => {
+    const { data } = await api.delete(`${URI.TEAM_MEMBERS}/${params.team_id}`)
     return data
   },
 }

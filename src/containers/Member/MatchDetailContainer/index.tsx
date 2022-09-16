@@ -16,9 +16,8 @@ import useMatchDetail from './useMatchDetail'
 import _ from 'lodash'
 import ContentBox from '@components/admin/ContentBox'
 import { Colors } from '@theme/colors'
-import MatchDivisionPicker from '@components/member/MatchDivisionPicker'
+import MatchRegistration from '@components/member/MatchRegistration'
 import ParticipantsTable from '@components/member/ParticipantsTable'
-import { useRouter } from 'next/router'
 import { helper } from '@utils/helpers/common.helper'
 import About from './About'
 import Info from './Info'
@@ -37,6 +36,9 @@ import PaperTable from '@components/common/PaperTable'
 import { ParticipantsItem } from '@services/match.services'
 import MatchFiles from './MatchFiles'
 import Teams from './Teams'
+import useSquadJoin from '../SquadJoinContainer/useSquadJoin'
+import { SquadJoinParams } from '@services/squad.services'
+import TeamCreateDialog from '../Team/TeamCreateDialog'
 
 interface MatchDetailProps {
   id: string
@@ -45,6 +47,7 @@ interface MatchDetailProps {
 
 const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
   const [open, setOpen] = useState<boolean>(false)
+  const [openTeam, setTeamCreate] = useState<boolean>(false)
   const [member, setMember] = useState<boolean>(false)
   const [fileOpen, setFileOpen] = useState<boolean>(false)
   const {
@@ -60,27 +63,31 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
     getStat,
     participants,
     getTeams,
+    leaveTeam,
     guest,
     scoreFiltered,
     progress,
-    join,
+    joinTeam,
     getMatchFiles,
+    createMeta,
+    teamCreate,
     fileList,
+    teamDelete,
     update,
     registerState,
     allTeams,
     currentUser,
     myTeams,
+    registerThenJoin,
   } = useMatchDetail()
+
+  const { listMeta, join, change, list } = useSquadJoin(id)
 
   const isRegistered = participants.find(
     (user) => user?.user?.id === userData?.id
   )
   const isRo = !_.isEmpty(userData && userData.mo_badge)
   const isAdmin = userData?.usertype === USER_TYPE.USER_ADMIN
-
-  // eslint-disable-next-line no-console
-  console.log('allTeams', allTeams, 'myTeams', myTeams)
 
   const { addToast } = useToast()
 
@@ -89,28 +96,32 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
     _.get(detail, 'registration_end', '')
   )
 
-  const isSquadRegister = helper.isRegisterActive(
-    _.get(detail, 'registration_start', ''),
-    _.get(detail, 'match_start', '')
-  )
-
-  // eslint-disable-next-line no-console
-  console.log(fileList)
+  // const isSquadRegister = helper.isRegisterActive(
+  //   _.get(detail, 'registration_start', ''),
+  //   _.get(detail, 'match_start', '')
+  // )
 
   const isBeforeMatch = helper.isBeforeMatch(_.get(detail, 'match_start', ''))
 
   const isOpenOnly = !isRegisterActive && isBeforeMatch
 
-  const router = useRouter()
+  const myRegistration = _.find(participants, (p) => p.user_id === userData.id)
+
+  const myDivisionId = myRegistration?.division_id
 
   useEffect(() => {
     if (id) {
       getDetail(id)
       getStat(id)
       getMatchFiles(id)
-      getTeams(id)
     }
   }, [id])
+
+  useEffect(() => {
+    if (myDivisionId && id) {
+      getTeams(id, myDivisionId.toString())
+    }
+  }, [myDivisionId])
 
   useEffect(() => {
     if (registerState && id) {
@@ -127,7 +138,11 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
     setOpen(false)
   }
 
-  const handleRegister = (division: number, is_ro: number) => {
+  const handleRegister = (
+    division: number,
+    is_ro: number,
+    team_id: number | null
+  ) => {
     setOpen(false)
     if (id && userData.class_id) {
       const params = {
@@ -138,12 +153,41 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
         class_id: userData.class_id,
         is_ro: is_ro,
         remark: null,
+        is_verified: detail.lvl === 1 ? true : false,
+        team_id: team_id,
       }
       register(params)
     }
   }
 
-  const handleUpdate = (division: number, is_ro: number) => {
+  const handleRegisterThenJoin = (
+    division: number,
+    is_ro: number,
+    team_id: number | null,
+    squadParams: SquadJoinParams
+  ) => {
+    setOpen(false)
+    if (id && userData.class_id) {
+      const params = {
+        match_id: Number(id),
+        user_id: userData.id,
+        division_id: division,
+        category_id: category,
+        class_id: userData.class_id,
+        is_ro: is_ro,
+        remark: null,
+        is_verified: detail.lvl === 1 ? true : false,
+        team_id: team_id,
+      }
+      registerThenJoin(params, squadParams)
+    }
+  }
+
+  const handleUpdate = (
+    division: number,
+    is_ro: number,
+    team_id: number | null
+  ) => {
     setOpen(false)
     if (id && userData.class_id && isRegistered) {
       const params = {
@@ -154,6 +198,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
           category_id: category,
           class_id: userData.class_id,
           is_ro: is_ro,
+          team_id: team_id,
         },
         id: isRegistered.id,
       }
@@ -210,20 +255,21 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
     return <Box></Box>
   }
 
-  // const renderSquadButton = () => {
-  //   if (isRegistered && isSquadRegister) {
-  //     return (
-  //       <Button
-  //         onClick={() => router.push(`/member/squad/${id}`)}
-  //         variant="contained"
-  //         color="secondary"
-  //       >
-  //         Ээлж сонгох
-  //       </Button>
-  //     )
-  //   }
-  //   return null
-  // }
+  const renderTeamCreateButton = () => {
+    if (isBeforeMatch) {
+      return (
+        <Button
+          type="submit"
+          onClick={() => setTeamCreate(true)}
+          variant="contained"
+          color="secondary"
+        >
+          Баг үүсгэх
+        </Button>
+      )
+    }
+    return <Box></Box>
+  }
 
   const renderGuestRow = (data: ParticipantsItem, index: number) => {
     const { user } = data
@@ -253,19 +299,37 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
     ) {
       return (
         <>
-          <MatchDivisionPicker
+          <MatchRegistration
+            userData={userData}
+            change={change}
+            join={join}
+            myTeams={myTeams}
+            myRegistration={myRegistration}
+            id={id}
             isRo={isRo}
             validate={(v) => addToast({ message: v, severity: 'warning' })}
             open={open}
             divisions={support.divisions}
+            squadList={list}
+            squadMeta={listMeta}
             isOpenOnly={isOpenOnly}
-            onSubmit={
-              _.isEmpty(participants) || !isRegistered
-                ? handleRegister
-                : handleUpdate
-            }
+            isRegistered={_.isEmpty(participants) || !isRegistered}
+            onRegister={handleRegister}
+            onRegisterThenJoin={handleRegisterThenJoin}
+            onUpdate={handleUpdate}
             handleClose={handleClose}
           />
+          {openTeam && (
+            <TeamCreateDialog
+              handleClose={() => setTeamCreate(false)}
+              create={teamCreate}
+              createMeta={createMeta}
+              open={openTeam}
+              divisions={support.divisions}
+              currentId={currentUser.id}
+            />
+          )}
+
           <Box
             sx={{
               width: '100%',
@@ -455,7 +519,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
               </>
             ) : null}
 
-            {isAdmin || isRo ? (
+            {(isAdmin && detail.is_public) || (isRo && detail.is_public) ? (
               <>
                 <Box
                   justifyContent="center"
@@ -504,13 +568,24 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
               display="flex"
               padding={3}
             >
-              <Typography variant="h3">Нээлттэй багууд</Typography>
+              <Typography variant="h3">Багууд</Typography>
             </Box>
-            {currentUser && allTeams && (
+            <Box component="p">
+              Ангилал:
+              {_.find(support.divisions, (s) => s.id === myDivisionId)?.name}
+              {_.isEmpty(
+                _.find(support.divisions, (s) => s.id === myDivisionId)?.name
+              )
+                ? 'Бүгд'
+                : ''}
+            </Box>
+            {support && currentUser && allTeams && (
               <Teams
-                currentId={currentUser.id}
+                leaveTeam={leaveTeam}
+                currentUser={currentUser}
                 teams={allTeams}
-                joinTeam={join}
+                deleteTeam={teamDelete}
+                joinTeam={joinTeam}
               />
             )}
 
@@ -521,6 +596,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
               alignItems="center"
             >
               {renderRegisterButton()}
+              {renderTeamCreateButton()}
             </Box>
           </ContentBox>
         </>

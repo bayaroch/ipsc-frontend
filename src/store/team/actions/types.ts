@@ -4,4 +4,5 @@ export enum TEAM_ACTION_TYPE {
   DELETE_TEAMS = 'team/delete',
   EDIT_TEAMS = 'team/edit',
   TEAM_JOIN = 'team/join',
+  TEAM_LEAVE = 'team/leave',
 }

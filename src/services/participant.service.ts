@@ -1,6 +1,7 @@
 import api from './api'
 import { URI } from '@constants/uri.constants'
 import { UserData } from './auth.services'
+import { TeamItem } from './team.service'
 
 export type ParticipantsItem = {
   id: number
@@ -13,6 +14,7 @@ export type ParticipantsItem = {
   is_ro: boolean
   remark?: string | null
   user: UserData
+  team?: TeamItem
 }
 
 export type ParticipantsResponse = {

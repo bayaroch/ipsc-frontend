@@ -4,6 +4,7 @@ import {
   TeamCreateParams,
   TeamJoinParams,
   TeamJoinResponse,
+  TeamLeaveParams,
   TeamListParams,
   TeamListResponse,
   TeamResponse,
@@ -45,6 +46,21 @@ export const joinTeam = createAsyncThunk<TeamJoinResponse, TeamJoinParams>(
   async (params, { rejectWithValue }) => {
     try {
       const res = await teamServices.teamJoin(params)
+      return res
+    } catch (error) {
+      if (!error) {
+        throw error
+      }
+      return rejectWithValue(error)
+    }
+  }
+)
+
+export const leaveTeam = createAsyncThunk<void, TeamLeaveParams>(
+  TEAM_ACTION_TYPE.TEAM_LEAVE,
+  async (params, { rejectWithValue }) => {
+    try {
+      const res = await teamServices.teamLeave(params)
       return res
     } catch (error) {
       if (!error) {

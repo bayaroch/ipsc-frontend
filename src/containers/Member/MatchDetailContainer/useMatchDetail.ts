@@ -30,13 +30,27 @@ import { MATCH_PROGRESS_STATUS } from '@constants/common.constants'
 import { participantsStat } from '@store/participants/selectors'
 import { StatItem } from '@services/participant.service'
 import { getParticipantsStat } from '@store/participants/actions'
-import { joinTeam, listTeam } from '@store/team/actions'
+import {
+  joinTeam as join,
+  listTeam,
+  leaveTeam as leave,
+  createTeam,
+  deleteTeam,
+} from '@store/team/actions'
 import { teams } from '@store/team/selectors'
-import { TeamItem, TeamJoinParams } from '@services/team.service'
+import {
+  TeamCreateParams,
+  TeamItem,
+  TeamJoinParams,
+  TeamLeaveParams,
+} from '@services/team.service'
 import { UserData } from '@services/auth.services'
+import { SquadJoinParams } from '@services/squad.services'
+import { registerThenSquadJoin } from '@store/match/actions'
 
 const { selectors, actions } = searchStore
 const getDetailMeta = createMetaSelector(actions.getMatch)
+const createTeamMeta = createMetaSelector(createTeam)
 
 const useMatchDetail = (): {
   meta: Meta
@@ -57,14 +71,23 @@ const useMatchDetail = (): {
   guest: ParticipantsItem[]
   getMatchFiles: (id: string) => void
   fileList: MatchFile[]
-  getTeams: (id: string) => void
+  getTeams: (id: string, dId: string) => void
   myTeams: TeamItem[]
   allTeams: TeamItem[]
   currentUser: UserData
-  join: (params: TeamJoinParams) => void
+  joinTeam: (params: TeamJoinParams) => void
+  leaveTeam: (params: TeamLeaveParams) => void
+  registerThenJoin: (
+    params: RegisterMatchParams,
+    squadParams: SquadJoinParams
+  ) => void
+  teamCreate: (params: TeamCreateParams) => void
+  createMeta: Meta
+  teamDelete: (id: string) => void
 } => {
   const dispatch = useDispatch()
   const meta = useSelector(getDetailMeta)
+  const createMeta = useSelector(createTeamMeta)
   const detail = useSelector(selectors.matchDetail)
   const participants = _.get(detail, 'participants', [])
   const participantsFiltered = useSelector(selectors.matchParticipants)
@@ -75,7 +98,12 @@ const useMatchDetail = (): {
   const register = (params: RegisterMatchParams) => {
     dispatch(actions.registerMatch(params))
   }
-  const join = (params: TeamJoinParams) => dispatch(joinTeam(params))
+  const joinTeam = (params: TeamJoinParams) => dispatch(join(params))
+  const leaveTeam = (params: TeamLeaveParams) => dispatch(leave(params))
+  const registerThenJoin = (
+    params: RegisterMatchParams,
+    squadParams: SquadJoinParams
+  ) => dispatch(registerThenSquadJoin(params, squadParams))
   const currentUser = useSelector(user)
   const allTeams = useSelector(teams)
   const myTeams = allTeams
@@ -101,23 +129,31 @@ const useMatchDetail = (): {
   const progress = helper.matchStatusTitle(detail)
   const stat = useSelector(participantsStat)
   const guest = useSelector(matchPublicGuests)
-  const getTeams = (id: string) => dispatch(listTeam({ match_id: id }))
+  const getTeams = (id: string, dId: string) =>
+    dispatch(listTeam({ match_id: id, division_id: dId }))
 
-  useEffect(() => {
+  const teamCreate = (params: TeamCreateParams) => dispatch(createTeam(params))
+  const teamDelete = (id: string) => dispatch(deleteTeam(id))
+
+  void useEffect(() => {
     dispatch(actions.clearMatchData())
   }, [])
 
   return {
     meta,
+    teamDelete,
+    teamCreate,
     getStat,
     detail,
     getDetail,
-    join,
+    joinTeam,
     register,
     category,
     getMatchFiles,
     support,
     participantsFiltered,
+    registerThenJoin,
+    createMeta,
     participants,
     update,
     progress,
@@ -125,6 +161,7 @@ const useMatchDetail = (): {
     registerState,
     guest,
     waitingList,
+    leaveTeam,
     scoreFiltered,
     fileList,
     getTeams,

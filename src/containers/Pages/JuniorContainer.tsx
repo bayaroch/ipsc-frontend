@@ -358,7 +358,6 @@ const JuniorContainer: React.FC = () => {
 </table>
 </div>
 <p><br></p>
-<p dir="ltr" style="line-height:1.38;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">*Сургалтын төлбөрийг сар эхлэхээс өмнө төлсөн тохиолдолд 10% хөнгөлөлттэй төлөх боломжтой бөгөөд үүнийг клубын гишүүнчлэлийн хураамж төлөх журмаар зохицуулна.</span></p>
 <p dir="ltr" style="line-height:1.38;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">**JR1 ангийн хамгийн эхний сарын төлбөр төлөлтөд дээрх хөнгөлөлт хамаарахгүй.</span></p>
 <p><br></p>
 <p><br></p>
