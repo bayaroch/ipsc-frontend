@@ -48,7 +48,7 @@ const TeamCreateDialog: React.FC<TeamCreateProps> = ({
   const {
     control,
     handleSubmit,
-    reset,
+    setValue,
     formState: { errors, isValid },
   } = methods
 
@@ -63,7 +63,7 @@ const TeamCreateDialog: React.FC<TeamCreateProps> = ({
     for (let i = 0; i < length; i++) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength))
     }
-    reset({ code: result })
+    setValue('code', result, { shouldDirty: true })
   }
 
   const onSubmit = (values: any) => {
