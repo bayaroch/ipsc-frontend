@@ -51,7 +51,9 @@ export default createReducer(initialState, (builder) => {
   })
   builder.addCase(actions.createTeam.fulfilled, (state, action) => {
     state.teams = state.teams
-      ? _.concat(state.teams, action.payload.data)
+      ? state.teams[0]?.division.id === action.payload.data?.division.id
+        ? _.concat(state.teams, action.payload.data)
+        : state.teams
       : undefined
   })
   builder.addCase(actions.deleteTeam.fulfilled, (state, action) => {
