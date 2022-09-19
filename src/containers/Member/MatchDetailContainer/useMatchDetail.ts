@@ -71,7 +71,7 @@ const useMatchDetail = (): {
   guest: ParticipantsItem[]
   getMatchFiles: (id: string) => void
   fileList: MatchFile[]
-  getTeams: (id: string, dId: string) => void
+  getTeams: (id: string, dId?: string) => void
   myTeams: TeamItem[]
   allTeams: TeamItem[]
   currentUser: UserData
@@ -129,7 +129,7 @@ const useMatchDetail = (): {
   const progress = helper.matchStatusTitle(detail)
   const stat = useSelector(participantsStat)
   const guest = useSelector(matchPublicGuests)
-  const getTeams = (id: string, dId: string) =>
+  const getTeams = (id: string, dId?: string) =>
     dispatch(listTeam({ match_id: id, division_id: dId }))
 
   const teamCreate = (params: TeamCreateParams) => dispatch(createTeam(params))

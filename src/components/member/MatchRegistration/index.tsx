@@ -98,6 +98,8 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
   const [newSquad, setNewSquad] = useState<null | SquadJoinParams>(null)
   const [team, setValueId] = useState<string>('')
 
+  const filteredTeams = _.filter(myTeams, (m) => m.division.id === selected)
+
   // eslint-disable-next-line no-console
   console.log(isRegistered)
 
@@ -387,7 +389,7 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
                   <MenuItem value="">
                     <em>None</em>
                   </MenuItem>
-                  {myTeams.map((item, i) => (
+                  {filteredTeams.map((item, i) => (
                     <MenuItem key={i} value={item.id.toString()}>
                       <ListItemText primary={item.name} />
                     </MenuItem>

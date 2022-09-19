@@ -31,6 +31,7 @@ interface TeamProps {
   currentUser: UserData
   leaveTeam: (params: TeamLeaveParams) => void
   deleteTeam?: (id: string) => void
+  myDivisionId?: number
 }
 
 const Transition = forwardRef(function Transition(
@@ -46,6 +47,7 @@ const Teams: React.FC<TeamProps> = ({
   joinTeam,
   leaveTeam,
   deleteTeam,
+  myDivisionId,
 }) => {
   const [open, setOpen] = useState<TeamItem | null>(null)
   const [code, setCode] = useState<string>('')
@@ -54,6 +56,9 @@ const Teams: React.FC<TeamProps> = ({
 
   const renderRow = (data: TeamItem, index: number) => {
     const isExist = _.find(data.team_members, { user: { id: currentUser.id } })
+    const divisionMatch = myDivisionId
+      ? data.division.id === myDivisionId
+      : true
 
     return (
       <TableRow key={index}>
@@ -76,7 +81,7 @@ const Teams: React.FC<TeamProps> = ({
         </TableCell>
         <TableCell>
           <Stack direction={'row'} spacing={1}>
-            {!isExist ? (
+            {!isExist && divisionMatch ? (
               <Button
                 onClick={() => setOpen(data)}
                 variant="contained"
@@ -85,7 +90,9 @@ const Teams: React.FC<TeamProps> = ({
               >
                 Нэгдэх
               </Button>
-            ) : null}
+            ) : (
+              '-'
+            )}
             {isExist ? (
               <Button
                 size="small"
@@ -98,16 +105,17 @@ const Teams: React.FC<TeamProps> = ({
                 Гарах
               </Button>
             ) : null}
-
-            {currentUser.usertype === USER_TYPE.USER_ADMIN ||
-            data.user.id === currentUser.id ? (
-              <IconButton
-                onClick={() => deleteTeam && deleteTeam(data.id.toString())}
-              >
-                <Delete />
-              </IconButton>
-            ) : null}
           </Stack>
+        </TableCell>
+        <TableCell>
+          {currentUser.usertype === USER_TYPE.USER_ADMIN ||
+          data.user.id === currentUser.id ? (
+            <IconButton
+              onClick={() => deleteTeam && deleteTeam(data.id.toString())}
+            >
+              <Delete />
+            </IconButton>
+          ) : null}
         </TableCell>
       </TableRow>
     )
@@ -123,6 +131,7 @@ const Teams: React.FC<TeamProps> = ({
               <TableCell align="center">Нэр</TableCell>
               <TableCell align="center">Ангилал</TableCell>
               <TableCell align="center">Гишүүд</TableCell>
+              <TableCell align="center"></TableCell>
               <TableCell align="center"></TableCell>
             </TableRow>
           </>

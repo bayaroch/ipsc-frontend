@@ -120,7 +120,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
 
   useEffect(() => {
     if (myDivisionId && id) {
-      getTeams(id, myDivisionId.toString())
+      getTeams(id)
     }
   }, [myDivisionId])
 
@@ -596,20 +596,12 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
             >
               <Typography variant="h3">Багууд</Typography>
             </Box>
-            <Box component="p">
-              Ангилал:
-              {_.find(support.divisions, (s) => s.id === myDivisionId)?.name}
-              {_.isEmpty(
-                _.find(support.divisions, (s) => s.id === myDivisionId)?.name
-              )
-                ? 'Бүгд'
-                : ''}
-            </Box>
             {support && currentUser && allTeams && (
               <Teams
                 leaveTeam={leaveTeam}
                 currentUser={currentUser}
                 teams={allTeams}
+                myDivisionId={myDivisionId}
                 deleteTeam={teamDelete}
                 joinTeam={joinTeam}
               />
