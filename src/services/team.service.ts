@@ -7,6 +7,7 @@ export type TeamCreateParams = {
   name: string
   code: string
   division_id: number
+  match_id: number
 }
 
 export type TeamItem = {

@@ -26,6 +26,7 @@ interface TeamCreateProps {
   open: boolean
   handleClose: () => void
   createMeta: Meta
+  currentMatch: number
 }
 
 const Transition = forwardRef(function Transition(
@@ -42,6 +43,7 @@ const TeamCreateDialog: React.FC<TeamCreateProps> = ({
   open,
   createMeta,
   handleClose,
+  currentMatch,
 }) => {
   const { Controller, methods } = useTeamCreate()
 
@@ -72,6 +74,7 @@ const TeamCreateDialog: React.FC<TeamCreateProps> = ({
       code: values.code,
       division_id: values.division_id,
       user_id: currentId,
+      match_id: currentMatch,
     }
     create(params)
     handleClose()

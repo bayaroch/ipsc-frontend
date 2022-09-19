@@ -327,6 +327,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
         <>
           <MatchRegistration
             userData={userData}
+            maxSquad={detail.per_squad}
             change={change}
             join={join}
             myTeams={myTeams}
@@ -347,6 +348,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
           />
           {openTeam && (
             <TeamCreateDialog
+              currentMatch={Number(id)}
               handleClose={() => setTeamCreate(false)}
               create={teamCreate}
               createMeta={createMeta}

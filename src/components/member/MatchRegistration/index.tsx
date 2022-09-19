@@ -40,6 +40,7 @@ interface PickerProps {
   open: boolean
   id: string
   divisions: SupportItem[]
+  maxSquad: number
   handleClose: () => void
   userData: UserData
   isRo: boolean
@@ -88,6 +89,7 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
     onRegisterThenJoin,
     onRegister,
     isRegistered,
+    maxSquad,
   } = props
 
   const confirm = useConfirm()
@@ -186,8 +188,10 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
     const existSquad = SquadHelper.isExist(squadList, userData.id)
 
     const existInThis = SquadHelper.isExistInThis(squadList, userData.id, id)
+    const selected = _.filter(squadList, (s) => s.id == id)[0].squad_members
+    const max = selected.length >= maxSquad
 
-    if (!existInThis) {
+    if (!existInThis && !max) {
       confirm({
         title: 'Ээлж сонголт',
         description: existSquad
@@ -221,6 +225,17 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
             setNewSquad(params)
           }
         })
+        .catch(() => {
+          // setSelectedData(undefined)
+        })
+    } else if (max && !existInThis) {
+      confirm({
+        title: 'Скуад дүүрсэн байна.',
+        description: `Тэмцээний нэг скуадад орох оролцогчдын хязгаар: ${maxSquad}.`,
+        confirmationText: 'Ок',
+        cancellationText: null,
+      })
+        .then(() => null)
         .catch(() => {
           // setSelectedData(undefined)
         })
