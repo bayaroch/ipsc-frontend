@@ -137,6 +137,8 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
   }
 
   const handleSubmit = () => {
+    // eslint-disable-next-line no-console
+    console.log(isRegistered, newSquad)
     if (!isRegistered && newSquad) {
       onRegisterThenJoin(
         selected,

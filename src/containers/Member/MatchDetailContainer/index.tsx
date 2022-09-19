@@ -339,9 +339,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
             squadList={list}
             squadMeta={listMeta}
             isOpenOnly={isOpenOnly}
-            isRegistered={
-              !_.isEmpty(participants) || isRegistered ? true : false
-            }
+            isRegistered={isRegistered ? true : false}
             onRegister={handleRegister}
             onRegisterThenJoin={handleRegisterThenJoin}
             onUpdate={handleUpdate}
