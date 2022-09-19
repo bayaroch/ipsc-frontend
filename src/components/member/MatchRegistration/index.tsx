@@ -86,6 +86,7 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
     onUpdate,
     myRegistration,
     onRegisterThenJoin,
+    onRegister,
     isRegistered,
   } = props
 
@@ -96,6 +97,9 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
   const [mode] = useState<boolean>(true)
   const [newSquad, setNewSquad] = useState<null | SquadJoinParams>(null)
   const [team, setValueId] = useState<string>('')
+
+  // eslint-disable-next-line no-console
+  console.log(isRegistered)
 
   const renderWarning = () => {
     if (
@@ -143,6 +147,8 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
     } else if (isRegistered && newSquad) {
       onUpdate(selected, roField, _.isEmpty(team) ? null : Number(team))
       join(newSquad)
+    } else if (!isRegistered && !newSquad) {
+      onRegister(selected, roField, _.isEmpty(team) ? null : Number(team))
     } else {
       onUpdate(selected, roField, _.isEmpty(team) ? null : Number(team))
     }

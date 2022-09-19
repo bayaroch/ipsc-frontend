@@ -39,6 +39,7 @@ import Teams from './Teams'
 import useSquadJoin from '../SquadJoinContainer/useSquadJoin'
 import { SquadJoinParams } from '@services/squad.services'
 import TeamCreateDialog from '../Team/TeamCreateDialog'
+import SquadList from '@components/admin/SquadList'
 
 interface MatchDetailProps {
   id: string
@@ -138,6 +139,29 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
     setOpen(false)
   }
 
+  const renderSquadList = () => {
+    if (
+      !_.isEmpty(list) &&
+      !listMeta.pending &&
+      listMeta.loaded &&
+      !listMeta.error &&
+      listMeta &&
+      isRegisterActive
+    ) {
+      return (
+        <Box>
+          <SquadList
+            isEdit={false}
+            userId={userData.id}
+            onExpandMembers={() => null}
+            list={list}
+          />
+        </Box>
+      )
+    }
+    return null
+  }
+
   const handleRegister = (
     division: number,
     is_ro: number,
@@ -167,6 +191,8 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
     squadParams: SquadJoinParams
   ) => {
     setOpen(false)
+    // eslint-disable-next-line no-console
+    console.log('im here')
     if (id && userData.class_id) {
       const params = {
         match_id: Number(id),
@@ -313,7 +339,9 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
             squadList={list}
             squadMeta={listMeta}
             isOpenOnly={isOpenOnly}
-            isRegistered={_.isEmpty(participants) || !isRegistered}
+            isRegistered={
+              !_.isEmpty(participants) || isRegistered ? true : false
+            }
             onRegister={handleRegister}
             onRegisterThenJoin={handleRegisterThenJoin}
             onUpdate={handleUpdate}
@@ -588,6 +616,8 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
                 joinTeam={joinTeam}
               />
             )}
+
+            {renderSquadList()}
 
             <Box
               display="flex"
