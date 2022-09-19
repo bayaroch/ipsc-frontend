@@ -57,7 +57,6 @@ const Teams: React.FC<TeamProps> = ({
 
     return (
       <TableRow key={index}>
-        <TableCell>{data.id}</TableCell>
         <TableCell>{data.name}</TableCell>
         <TableCell>{data.division.name}</TableCell>
         <TableCell>
@@ -121,9 +120,6 @@ const Teams: React.FC<TeamProps> = ({
         head={
           <>
             <TableRow>
-              <TableCell sx={{ width: 40 }} align="center">
-                ID
-              </TableCell>
               <TableCell align="center">Нэр</TableCell>
               <TableCell align="center">Ангилал</TableCell>
               <TableCell align="center">Гишүүд</TableCell>
