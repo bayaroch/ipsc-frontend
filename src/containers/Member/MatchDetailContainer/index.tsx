@@ -282,19 +282,16 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
   }
 
   const renderTeamCreateButton = () => {
-    if (isBeforeMatch) {
-      return (
-        <Button
-          type="submit"
-          onClick={() => setTeamCreate(true)}
-          variant="contained"
-          color="secondary"
-        >
-          Баг үүсгэх
-        </Button>
-      )
-    }
-    return <Box></Box>
+    return (
+      <Button
+        type="submit"
+        onClick={() => setTeamCreate(true)}
+        variant="contained"
+        color="secondary"
+      >
+        Баг үүсгэх
+      </Button>
+    )
   }
 
   const renderGuestRow = (data: ParticipantsItem, index: number) => {
