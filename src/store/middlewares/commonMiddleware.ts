@@ -14,11 +14,11 @@ import { createTeam, deleteTeam, joinTeam } from '@store/team/actions'
 
 const messages = {
   [`${squadChange.fulfilled}`]: {
-    message: 'Ээлж солигдлоо',
+    message: 'Скуад солигдлоо',
     severity: 'success',
   },
   [`${squadJoin.fulfilled}`]: {
-    message: 'Ээлж сонгогдлоо',
+    message: 'Скуад сонгогдлоо',
     severity: 'success',
   },
   [`${updateUser.fulfilled}`]: {
@@ -34,7 +34,7 @@ const messages = {
     severity: 'success',
   },
   [`${deleteSquads.fulfilled}`]: {
-    message: 'Ээлж устгагдлаа',
+    message: 'Скуад устгагдлаа',
     severity: 'success',
   },
   [`${updateRegisterMatch.fulfilled}`]: {
@@ -46,7 +46,7 @@ const messages = {
     severity: 'success',
   },
   [`${joinTeam.rejected}`]: {
-    message: 'Амжилтгүй код буруу',
+    message: 'Амжилтгүй, код буруу эсвэл баг дүүрсэн байна',
     severity: 'warning',
   },
   [`${joinTeam.fulfilled}`]: {

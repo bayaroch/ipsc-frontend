@@ -54,8 +54,7 @@ export type TeamJoinResponse = {
 }
 
 export type TeamLeaveParams = {
-  team_id: number
-  user_id: number
+  primary_key: number
 }
 
 export const teamServices = {
@@ -85,7 +84,9 @@ export const teamServices = {
   },
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   teamLeave: async (params: TeamLeaveParams) => {
-    const { data } = await api.delete(`${URI.TEAM_MEMBERS}/${params.team_id}`)
+    const { data } = await api.delete(
+      `${URI.TEAM_MEMBERS}/${params.primary_key}`
+    )
     return data
   },
 }

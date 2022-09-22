@@ -60,7 +60,7 @@ const SquadDetailContainer: React.FC<SquadDetailContainerProps> = ({ id }) => {
   const onDelete = (id: number) => {
     confirm({
       title: 'Та итгэлтэй байна уу',
-      description: 'Энэ ээлжийг усгах гэж байна',
+      description: 'Энэ скуад усгах гэж байна',
       confirmationText: 'Устгах',
       cancellationText: 'Цуцлах',
     })

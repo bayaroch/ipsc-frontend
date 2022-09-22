@@ -32,20 +32,14 @@ export default createReducer(initialState, (builder) => {
       : undefined
   })
   builder.addCase(actions.leaveTeam.fulfilled, (state, action) => {
-    const teamId = action.meta.arg.team_id
-    const userId = action.meta.arg.user_id
+    const pK = action.meta.arg.primary_key
 
     state.teams = state.teams
       ? _.map(state.teams, (t: TeamItem) => {
-          if (t.id === teamId) {
-            return {
-              ...t,
-              team_members: _.filter(
-                t.team_members,
-                (team) => team.user.id !== userId
-              ),
-            }
-          } else return t
+          return {
+            ...t,
+            team_members: _.filter(t.team_members, (team) => team.id !== pK),
+          }
         })
       : undefined
   })

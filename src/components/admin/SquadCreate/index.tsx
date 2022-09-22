@@ -65,8 +65,8 @@ const SquadCreate: React.FC<SquadCreateProps> = (props) => {
                     {...rest}
                     inputRef={ref}
                     required={true}
-                    labelPrimary="Ээлжийн нэр"
-                    placeholder={'Ээлж 1, Ээлж 2 etc'}
+                    labelPrimary="Скуад нэр"
+                    placeholder={'Скуад 1, Скуад 2 etc'}
                     fullWidth={true}
                     error={!!errors.name}
                     helperText={

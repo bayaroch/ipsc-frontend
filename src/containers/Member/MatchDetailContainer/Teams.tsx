@@ -60,6 +60,10 @@ const Teams: React.FC<TeamProps> = ({
       ? data.division.id === myDivisionId
       : true
 
+    const pK = isExist
+      ? _.find(data.team_members, { user: { id: currentUser.id } })?.id
+      : null
+
     return (
       <TableRow key={index}>
         <TableCell>{data.name}</TableCell>
@@ -90,15 +94,11 @@ const Teams: React.FC<TeamProps> = ({
               >
                 Нэгдэх
               </Button>
-            ) : (
-              '-'
-            )}
+            ) : null}
             {isExist ? (
               <Button
                 size="small"
-                onClick={() =>
-                  leaveTeam({ team_id: data.id, user_id: currentUser.id })
-                }
+                onClick={() => pK && leaveTeam({ primary_key: pK })}
                 variant="contained"
                 color="warning"
               >

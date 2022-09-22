@@ -193,10 +193,10 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
 
     if (!existInThis && !max) {
       confirm({
-        title: 'Ээлж сонголт',
+        title: 'Скуад сонголт',
         description: existSquad
-          ? 'Та ээлжээ өөрчлөх гэж байна.'
-          : 'Та шинээр ээлж сонгож байна',
+          ? 'Та скуад өөрчлөх гэж байна.'
+          : 'Та шинээр скуад сонгож байна',
         confirmationText: 'Тийм',
         cancellationText: 'Үгүй',
       })

@@ -67,10 +67,10 @@ const SquadJoinContainer: React.FC<SquadJoinContainerProps> = ({ id }) => {
 
     if (!existInThis) {
       confirm({
-        title: 'Ээлж сонголт',
+        title: 'Скуад сонголт',
         description: existSquad
-          ? 'Та ээлжээ өөрчлөх гэж байна.'
-          : 'Та шинээр ээлж сонгож байна',
+          ? 'Та скуад өөрчлөх гэж байна.'
+          : 'Та шинээр скуад сонгож байна',
         confirmationText: 'Тийм',
         cancellationText: 'Үгүй',
       })
