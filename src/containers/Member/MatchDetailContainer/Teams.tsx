@@ -25,6 +25,7 @@ import { UserData } from '@services/auth.services'
 import { USER_TYPE } from '@constants/user.constants'
 import { Delete } from '@mui/icons-material'
 import Link from 'next/link'
+import { useConfirm } from 'material-ui-confirm'
 
 interface TeamProps {
   teams: TeamItem[]
@@ -52,6 +53,8 @@ const Teams: React.FC<TeamProps> = ({
 }) => {
   const [open, setOpen] = useState<TeamItem | null>(null)
   const [code, setCode] = useState<string>('')
+
+  const confirm = useConfirm()
 
   const handleClose = () => setOpen(null)
 
@@ -102,7 +105,18 @@ const Teams: React.FC<TeamProps> = ({
             {isExist ? (
               <Button
                 size="small"
-                onClick={() => pK && leaveTeam({ primary_key: pK })}
+                onClick={() =>
+                  confirm({
+                    title: 'Багаас гарах',
+                    description: 'Та багаас гарах гэж байна.',
+                    confirmationText: 'Тийм',
+                    cancellationText: 'Үгүй',
+                  })
+                    .then(() => {
+                      pK && leaveTeam({ primary_key: pK })
+                    })
+                    .catch(() => null)
+                }
                 variant="contained"
                 color="warning"
               >
@@ -115,7 +129,17 @@ const Teams: React.FC<TeamProps> = ({
           {currentUser.usertype === USER_TYPE.USER_ADMIN ||
           data.user.id === currentUser.id ? (
             <IconButton
-              onClick={() => deleteTeam && deleteTeam(data.id.toString())}
+              onClick={() =>
+                confirm({
+                  title: 'Баг устгах',
+                  confirmationText: 'Тийм',
+                  cancellationText: 'Үгүй',
+                })
+                  .then(() => {
+                    deleteTeam && deleteTeam(data.id.toString())
+                  })
+                  .catch(() => null)
+              }
             >
               <Delete />
             </IconButton>
