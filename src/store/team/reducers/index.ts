@@ -18,16 +18,21 @@ export default createReducer(initialState, (builder) => {
   builder.addCase(actions.joinTeam.fulfilled, (state, action) => {
     const teamId = action.meta.arg.team_id
     state.teams = state.teams
-      ? _.map(state.teams, (t: TeamItem) => {
+      ? _.map(state.teams, (t) => {
           if (t.id === teamId) {
             return {
               ...t,
-              team_members: _.concat(
+              team_members: _.concat(t.team_members, action.payload.data),
+            }
+          } else {
+            return {
+              ...t,
+              team_members: _.filter(
                 t.team_members,
-                action.payload.data as TeamItem
+                (t) => t.user.id !== action.payload.data.user.id
               ),
             }
-          } else return t
+          }
         })
       : undefined
   })

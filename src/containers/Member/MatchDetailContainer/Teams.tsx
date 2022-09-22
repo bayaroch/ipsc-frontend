@@ -24,6 +24,7 @@ import { LoadingButton } from '@mui/lab'
 import { UserData } from '@services/auth.services'
 import { USER_TYPE } from '@constants/user.constants'
 import { Delete } from '@mui/icons-material'
+import Link from 'next/link'
 
 interface TeamProps {
   teams: TeamItem[]
@@ -72,13 +73,16 @@ const Teams: React.FC<TeamProps> = ({
           <Stack direction={'row'} spacing={1}>
             {data.team_members.map((t, i) => {
               return (
-                <Chip
-                  size="small"
-                  key={i}
-                  label={
-                    t.user ? `${t?.user?.lastname}. ${t?.user?.firstname}` : ''
-                  }
-                />
+                <Link key={i} href={`/member/profile/${t.user.id}`}>
+                  <Chip
+                    size="small"
+                    label={
+                      t.user
+                        ? `${t?.user?.lastname}. ${t?.user?.firstname}`
+                        : ''
+                    }
+                  />
+                </Link>
               )
             })}
           </Stack>

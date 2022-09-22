@@ -50,7 +50,7 @@ export type TeamJoinParams = {
 }
 
 export type TeamJoinResponse = {
-  data: TeamMemberItem | string
+  data: TeamMemberItem
 }
 
 export type TeamLeaveParams = {
