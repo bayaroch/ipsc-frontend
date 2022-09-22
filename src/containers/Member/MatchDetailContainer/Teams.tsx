@@ -147,7 +147,8 @@ const Teams: React.FC<TeamProps> = ({
         TransitionComponent={Transition}
       >
         <Box sx={{ p: 2 }}>
-          <Typography>{open?.name}</Typography>
+          <Typography variant="h4">{open?.name}</Typography>
+          <Typography>{open?.division.name}</Typography>
           <CustomInput
             required={true}
             fullWidth={true}
