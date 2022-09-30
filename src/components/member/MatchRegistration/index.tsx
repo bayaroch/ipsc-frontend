@@ -87,7 +87,7 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
     onUpdate,
     myRegistration,
     onRegisterThenJoin,
-    onRegister,
+
     isRegistered,
     maxSquad,
   } = props
@@ -141,8 +141,6 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
   }
 
   const handleSubmit = () => {
-    // eslint-disable-next-line no-console
-    console.log(isRegistered, newSquad)
     if (!isRegistered && newSquad) {
       onRegisterThenJoin(
         selected,
@@ -154,7 +152,15 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
       onUpdate(selected, roField, _.isEmpty(team) ? null : Number(team))
       join(newSquad)
     } else if (!isRegistered && !newSquad) {
-      onRegister(selected, roField, _.isEmpty(team) ? null : Number(team))
+      confirm({
+        title: 'Скуад сонголт',
+        description: 'Аль нэг скуад заавал сонгоно уу',
+        confirmationText: 'Ойлголоо',
+        cancellationText: null,
+      })
+        .then(() => null)
+        .catch(() => null)
+      //onRegister(selected, roField, _.isEmpty(team) ? null : Number(team))
     } else {
       onUpdate(selected, roField, _.isEmpty(team) ? null : Number(team))
     }
