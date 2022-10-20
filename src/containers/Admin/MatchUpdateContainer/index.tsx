@@ -393,8 +393,8 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
                 <CustomInput
                   {...rest}
                   inputRef={ref}
-                  labelPrimary="Sponsor Info"
-                  placeholder={'Ивээн тэтгэгчийн мэдээлэл'}
+                  labelPrimary="Скуад"
+                  placeholder={''}
                   fullWidth={true}
                   multiline
                   minRows={5}

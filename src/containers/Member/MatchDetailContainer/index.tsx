@@ -424,7 +424,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
                             detail={
                               <Typography>{detail.sponsor_info}</Typography>
                             }
-                            title="Спонсор"
+                            title="Скуад"
                           />
                         ) : null}
                       </Paper>
