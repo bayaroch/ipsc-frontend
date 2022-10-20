@@ -179,14 +179,13 @@ const MatchListItem: React.FC<ListItemProps> = ({ item, user, href }) => {
               display: { xs: 'none', sm: 'none', lg: 'flex', xl: 'flex' },
               height: '100%',
               minHeight: '118px',
-              width: '119px',
-              flexBasis: '119px',
+              width: '2px',
+              flexBasis: '2px',
               position: 'relative',
               alignItems: 'center',
               justifyContent: 'center',
-              background: "url('/images/og-image.jpg') no-repeat center center",
               backgroundSize: 'cover',
-              backgroundColor: '#eee',
+              backgroundColor: Colors.primary,
             }}
           ></Box>
           <Box
@@ -264,10 +263,10 @@ const MatchListItem: React.FC<ListItemProps> = ({ item, user, href }) => {
                   <Box
                     sx={{
                       borderRadius: 0,
-                      height: 20,
+                      height: 22,
                       lineHeight: 1.6,
                       color: '#111',
-                      fontSize: 12,
+                      fontSize: 14,
                       backgroundColor: colorConstants[item.lvl - 1],
                       textAlign: 'center',
                       padding: '0px 16px',
@@ -292,8 +291,8 @@ const MatchListItem: React.FC<ListItemProps> = ({ item, user, href }) => {
                         <CustomAvatar
                           key={index}
                           sx={{ height: 24, width: 24 }}
-                          src={item.user.img_url}
-                          alt={item.user.firstname}
+                          src={item.user?.img_url}
+                          alt={item.user?.firstname}
                         />
                       )
                     })}

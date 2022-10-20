@@ -43,7 +43,7 @@ export enum MATCH_PROGRESS_STATUS {
 export const MATCH_PROGRESS_STATUS_TITLE = [
   {
     id: MATCH_PROGRESS_STATUS.READY,
-    value: 'Идэвхитэй',
+    value: 'Бүртгэл эхлээгүй',
   },
   {
     id: MATCH_PROGRESS_STATUS.REGISTERING,

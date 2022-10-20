@@ -107,6 +107,6 @@ export const matchPublicParticipants = createSelector(detail, (state) => {
 
 export const matchPublicGuests = createSelector(detail, (state) => {
   if (state === undefined) return []
-  const guests = _.filter(state.participants, (p) => p.user.usertype == 2)
+  const guests = _.filter(state.participants, (p) => p.user?.usertype == 2)
   return guests
 })

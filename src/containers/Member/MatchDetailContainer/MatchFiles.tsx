@@ -68,15 +68,12 @@ const MatchFiles: React.FC<PickerProps> = (props) => {
           </Button>
         </Box>
       ) : null}
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          height: '100%',
-        }}
-      >
-        {view !== null ? <HTMLParser html={view} /> : null}
+      <Box>
+        {view !== null ? (
+          <Box sx={{ pt: 5, pb: 5 }}>
+            <HTMLParser html={view} />
+          </Box>
+        ) : null}
       </Box>
       {view === null ? (
         <List sx={{ padding: 0 }}>
