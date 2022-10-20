@@ -73,7 +73,6 @@ const PublicMatchRegister: React.FC<PublicMatchRegisterProps> = ({
         remark: values.remark,
         guest: UserData as UserDetail,
       }
-      console.log(params)
       dispatch(registerPublicMatch(params))
     }
   }
