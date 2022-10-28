@@ -70,7 +70,19 @@ export type RankCombinedResponse = {
   data: CombinedItem[]
 }
 
-export type CombinedItem = [number, string, number, number]
+export type CombinedItem = {
+  id: number
+  user_id: number
+  match_id: number
+  division_id: number
+  rp: number
+  match_name: string
+  match_end: string
+  firstname: string
+  lastname: string
+  img_url: string | null
+  usercode: string
+}
 
 export type RankResponse = {
   data: RankItem[]
@@ -291,8 +303,15 @@ export const matchServices = {
     return res
   },
 
-  ranksByLast40: async (): Promise<RankCombinedResponse> => {
-    const { data } = await api.get<RankCombinedResponse>(URI.RANKS_BY_LAST_YEAR)
+  // ranksByLast40: async (): Promise<RankCombinedResponse> => {
+  //   const { data } = await api.get<RankCombinedResponse>(URI.RANKS_BY_LAST_YEAR)
+  //   return data
+  // },
+
+  ranksByTop40: async (): Promise<RankCombinedResponse> => {
+    const { data } = await api.get<RankCombinedResponse>(
+      URI.RANKS_TOP_BY_LAST_YEAR
+    )
     return data
   },
 

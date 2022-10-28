@@ -134,7 +134,7 @@ export const ranksByDivisionList = createAsyncThunk<RankCombinedResponse, void>(
   MATCH_ACTION_TYPE.RANKS_BY_DIVISION,
   async (_, { rejectWithValue }) => {
     try {
-      const res = await matchServices.ranksByLast40()
+      const res = await matchServices.ranksByTop40()
       return res
     } catch (error) {
       if (!error) {

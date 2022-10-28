@@ -9,7 +9,15 @@ import {
   groupByIsBefore,
   rankGroupByUser,
 } from './helpers'
-import { RankItem } from '@services/match.services'
+import { CombinedItem, RankItem } from '@services/match.services'
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface RanksItem {
+  user_id: string
+  total: number
+  count: number
+  data: CombinedItem[]
+}
 
 const getState = (state: RootState) => state.match
 const detail = (state: RootState) => state.match.detail
@@ -34,11 +42,27 @@ export const createResult = createSelector(
   (state) => state.createMatch
 )
 
-export const rankResult = createSelector(ranks, (state) => {
-  if (state === undefined) return []
-  const orderBySum = _.orderBy(state, (g) => g[2], 'desc')
-  return orderBySum
-})
+export const rankResult = createSelector(
+  ranks,
+  (state: CombinedItem[] | undefined) => {
+    if (state === undefined) return []
+    const groupBySum = _.chain(state)
+      // Group the elements of Array based on `color` property
+      .groupBy('user_id')
+      // `key` is group's name (color), `value` is the array of objects
+      .map((value, key) => ({
+        user_id: key,
+        total: _.sumBy(value, (o) => o.rp),
+        count: value.length,
+        data: value,
+      }))
+      .value()
+
+    const orderBySum = _.orderBy(groupBySum, (o) => o.total, 'desc')
+
+    return orderBySum
+  }
+)
 
 export const updateResult = createSelector(
   getState,
