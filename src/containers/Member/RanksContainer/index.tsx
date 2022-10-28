@@ -236,7 +236,7 @@ const RanksContainer: React.FC = () => {
                 <TableCell align="center">Нэр</TableCell>
                 <TableCell
                   align="center"
-                  sx={{ maxWidth: 200, minWidth: 200 }}
+                  sx={{ maxWidth: 150, minWidth: 150 }}
                   colSpan={2}
                 ></TableCell>
                 <TableCell align="center">RP</TableCell>
