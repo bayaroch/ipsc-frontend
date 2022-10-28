@@ -169,7 +169,7 @@ const ConfirmContainer: React.FC<ConfirmContainerProps> = ({ id }) => {
           <LoadingButton
             variant="contained"
             sx={{ ml: 1 }}
-            color="primary"
+            color="inherit"
             size="small"
             loading={respondMeta.pending && current === item.id}
             startIcon={<Delete />}
