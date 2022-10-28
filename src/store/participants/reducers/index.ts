@@ -33,4 +33,12 @@ export default createReducer(initialState, (builder) => {
           })
         : [action.payload.data]
   })
+  builder.addCase(actions.deleteParticipants.fulfilled, (state, action) => {
+    state.participants =
+      state.participants !== undefined
+        ? _.filter(state.participants, function (a) {
+            return a.id !== action.meta.arg.id
+          })
+        : []
+  })
 })

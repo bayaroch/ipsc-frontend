@@ -51,4 +51,11 @@ export const participantsServices = {
     )
     return data
   },
+
+  deleteParticipants: async (id: string): Promise<any> => {
+    const { data } = await api.delete<ParticipantsStatResponse>(
+      `${URI.PARTICIPANT}/${id}`
+    )
+    return data
+  },
 }

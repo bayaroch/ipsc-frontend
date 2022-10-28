@@ -12,7 +12,7 @@ import CustomList from '@components/common/List'
 import CustomAvatar from '@components/common/Avatar'
 import _ from 'lodash'
 import { ParticipantsItem } from '@services/participant.service'
-import { Cancel, Edit, Verified } from '@mui/icons-material'
+import { Cancel, Delete, Edit, Verified } from '@mui/icons-material'
 import { LoadingButton } from '@mui/lab'
 import { useEffect, useState } from 'react'
 import { helper } from '@utils/helpers/common.helper'
@@ -32,6 +32,7 @@ const ConfirmContainer: React.FC<ConfirmContainerProps> = ({ id }) => {
     respondMeta,
     divisions,
     update,
+    deleteMember,
   } = useMemberConfirm(id)
   const [current, setCurrent] = useState<number | null>(null)
   const [open, setOpen] = useState<ParticipantsItem | null>(null)
@@ -96,6 +97,18 @@ const ConfirmContainer: React.FC<ConfirmContainerProps> = ({ id }) => {
     }
   }
 
+  const onDelete = (id: number) => {
+    confirm({
+      title: 'Оролцогч устгах ',
+      confirmationText: 'Тийм',
+      cancellationText: 'Үгүй',
+    })
+      .then(() => {
+        deleteMember(id)
+      })
+      .catch(() => setOpen(null))
+  }
+
   const renderRow = (item: ParticipantsItem, i: number) => {
     return (
       <ListItem
@@ -153,6 +166,17 @@ const ConfirmContainer: React.FC<ConfirmContainerProps> = ({ id }) => {
               Баталгаажуулах
             </LoadingButton>
           )}
+          <LoadingButton
+            variant="contained"
+            sx={{ ml: 1 }}
+            color="primary"
+            size="small"
+            loading={respondMeta.pending && current === item.id}
+            startIcon={<Delete />}
+            onClick={() => onDelete(item.id)}
+          >
+            Устгах
+          </LoadingButton>
         </ListItemSecondaryAction>
       </ListItem>
     )

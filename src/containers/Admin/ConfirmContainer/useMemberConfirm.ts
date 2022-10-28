@@ -3,7 +3,10 @@ import { matchDetail } from '@store/match/selectors'
 import { getMatch, updateRegisterMatch } from '@store/match/actions'
 import { Meta } from '@store/metadata/actions/types'
 import { useSelector, useDispatch } from 'react-redux'
-import { getParticipants } from '@store/participants/actions'
+import {
+  deleteParticipants,
+  getParticipants,
+} from '@store/participants/actions'
 import { participants } from '@store/participants/selectors'
 import { createMetaSelector } from '@store/metadata/selectors'
 import { ParticipantsItem } from '@services/participant.service'
@@ -27,6 +30,7 @@ const useMemberConfirm = (
   respondMeta: Meta
   respond: (params: UpdateMatchParams) => void
   divisions: SupportItem[]
+  deleteMember: (id: number) => void
 } => {
   const dispatch = useDispatch()
 
@@ -48,6 +52,9 @@ const useMemberConfirm = (
   const respond = (params: UpdateMatchParams) => {
     dispatch(updateRegisterMatch(params))
   }
+  const deleteMember = (id: number) => {
+    dispatch(deleteParticipants({ id: id }))
+  }
   const { divisions } = useSelector(support)
   const respondMeta = useSelector(_respondMeta)
 
@@ -60,6 +67,7 @@ const useMemberConfirm = (
     respondMeta,
     divisions,
     update,
+    deleteMember,
   }
 }
 

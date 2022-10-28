@@ -25,6 +25,23 @@ export const getParticipants = createAsyncThunk<
   }
 )
 
+export const deleteParticipants = createAsyncThunk<any, ParticipantsParams>(
+  PARTICIPANTS_ACTION_TYPE.DELETE_PARTICIPANTS,
+  async (params, { rejectWithValue }) => {
+    try {
+      const res = await participantsServices.deleteParticipants(
+        String(params.id)
+      )
+      return res
+    } catch (error) {
+      if (!error) {
+        throw error
+      }
+      return rejectWithValue(error)
+    }
+  }
+)
+
 export const getParticipantsStat = createAsyncThunk<
   ParticipantsStatResponse,
   string
