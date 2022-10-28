@@ -148,14 +148,15 @@ const RanksContainer: React.FC = () => {
 
   const renderRow = (item: any, index: number) => {
     const renderRowExpand = (data: CombinedItem, index: number) => {
-      const previous = index !== 0 ? item.data[index - 1].rp : data.rp
+      const previous =
+        index + 1 === item.data.length ? data.rp : item.data[index + 1].rp
 
       const percentchange =
-        index !== 0
-          ? previous === 0
-            ? ''
-            : Math.round(((data.rp - previous) / previous) * 100)
-          : ''
+        index + 1 === item.data.length
+          ? ''
+          : previous === 0
+          ? ''
+          : Math.round(((data.rp - previous) / previous) * 100)
 
       // eslint-disable-next-line no-console
       console.log(Number(data.rp) - Number(previous), Number(previous), data.rp)

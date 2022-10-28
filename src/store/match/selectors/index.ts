@@ -54,7 +54,7 @@ export const rankResult = createSelector(
         user_id: key,
         total: _.sumBy(value, (o) => o.rp),
         count: value.length,
-        data: _.orderBy(value, (v) => v.match_end, 'asc'),
+        data: _.orderBy(value, (v) => v.match_end, 'desc'),
       }))
       .value()
 
