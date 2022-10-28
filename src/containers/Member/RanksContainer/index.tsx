@@ -121,12 +121,41 @@ const RanksContainer: React.FC = () => {
     if (filter) getDetail(String(filter.match_id))
   }, [filter])
 
+  const renderPercent = (value: number) => {
+    if (value >= 0) {
+      {
+        return (
+          <Box sx={{ color: value >= 0 ? 'green' : 'red' }}>
+            <Box component={'span'}>
+              <ArrowUpward sx={{ color: 'green', fontSize: 10 }} />
+            </Box>
+            {value} %
+          </Box>
+        )
+      }
+      return
+    } else if (value < 0) {
+      return (
+        <Box sx={{ color: value >= 0 ? 'green' : 'red' }}>
+          <Box component={'span'}>
+            <ArrowDownward sx={{ color: 'red', fontSize: 10 }} />
+          </Box>
+          {value} %
+        </Box>
+      )
+    } else return ''
+  }
+
   const renderRow = (item: any, index: number) => {
     const renderRowExpand = (data: CombinedItem, index: number) => {
       const previous = index !== 0 ? item.data[index - 1].rp : data.rp
 
       const percentchange =
-        index !== 0 ? Math.round(((data.rp - previous) / previous) * 100) : ''
+        index !== 0
+          ? previous === 0
+            ? ''
+            : Math.round(((data.rp - previous) / previous) * 100)
+          : ''
 
       // eslint-disable-next-line no-console
       console.log(Number(data.rp) - Number(previous), Number(previous), data.rp)
@@ -154,18 +183,7 @@ const RanksContainer: React.FC = () => {
             <Stack direction={'row'} sx={{ width: '100%' }} spacing={1}>
               <Box sx={{ fontWeight: 600 }}>{`${data.rp}`}</Box>
               <Box>
-                {percentchange !== '' && (
-                  <Box sx={{ color: percentchange >= 0 ? 'green' : 'red' }}>
-                    <Box component={'span'}>
-                      {percentchange >= 0 ? (
-                        <ArrowUpward sx={{ color: 'green', fontSize: 10 }} />
-                      ) : (
-                        <ArrowDownward sx={{ color: 'red', fontSize: 10 }} />
-                      )}
-                    </Box>
-                    {percentchange} %
-                  </Box>
-                )}
+                {percentchange === '' ? '' : renderPercent(percentchange)}
               </Box>
             </Stack>
           </TableCell>

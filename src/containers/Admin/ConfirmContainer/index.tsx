@@ -5,6 +5,7 @@ import {
   ListItemAvatar,
   ListItemSecondaryAction,
   ListItemText,
+  IconButton,
   Typography,
 } from '@mui/material/'
 import useMemberConfirm from './useMemberConfirm'
@@ -149,7 +150,7 @@ const ConfirmContainer: React.FC<ConfirmContainerProps> = ({ id }) => {
               color="primary"
               startIcon={<Cancel />}
             >
-              Цуцлах
+              Cancel
             </LoadingButton>
           ) : (
             <LoadingButton
@@ -163,20 +164,12 @@ const ConfirmContainer: React.FC<ConfirmContainerProps> = ({ id }) => {
                 setCurrent(item.id)
               }}
             >
-              Баталгаажуулах
+              Confirm
             </LoadingButton>
           )}
-          <LoadingButton
-            variant="contained"
-            sx={{ ml: 1 }}
-            color="inherit"
-            size="small"
-            loading={respondMeta.pending && current === item.id}
-            startIcon={<Delete />}
-            onClick={() => onDelete(item.id)}
-          >
-            Устгах
-          </LoadingButton>
+          <IconButton onClick={() => onDelete(item.id)}>
+            <Delete />
+          </IconButton>
         </ListItemSecondaryAction>
       </ListItem>
     )
