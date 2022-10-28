@@ -73,11 +73,15 @@ const ExpandableTableRow = ({
           </TableCell>
           <TableCell>
             <Typography variant="body2" sx={{ color: '#111', fontWeight: 600 }}>
+              Тэмцээний огноо
+            </Typography>
+          </TableCell>
+          <TableCell>
+            <Typography variant="body2" sx={{ color: '#111', fontWeight: 600 }}>
               Match RP
             </Typography>
           </TableCell>
           <TableCell>
-            {' '}
             <Typography variant="body2" sx={{ color: '#111', fontWeight: 600 }}>
               Дэлгэрэнгүй
             </Typography>
@@ -136,8 +140,7 @@ const RanksContainer: React.FC = () => {
               ''
             )}
           </TableCell>
-          <TableCell>
-            {' '}
+          <TableCell colSpan={2}>
             <Link href={`/member/matches/${data.match_id}`} passHref>
               <Typography
                 sx={{ fontWeight: 600, cursor: 'pointer' }}
@@ -191,6 +194,11 @@ const RanksContainer: React.FC = () => {
         renderRowExpand={renderRowExpand}
       >
         <TableCell>
+          <Typography component={'span'} sx={{ color: '#111' }}>
+            {index + 1} .
+          </Typography>
+        </TableCell>
+        <TableCell>
           <Box>
             <Link href={`/member/profile/${item.data[0].user_id}`} passHref>
               <Typography
@@ -233,12 +241,17 @@ const RanksContainer: React.FC = () => {
             <>
               <TableRow>
                 <TableCell sx={{ width: 50 }} align="center"></TableCell>
-                <TableCell align="center">Нэр</TableCell>
+                <TableCell sx={{ width: 80 }} align="center"></TableCell>
+                <TableCell sx={{ maxWidth: 120, minWidth: 120 }} align="center">
+                  Нэр
+                </TableCell>
                 <TableCell
                   align="center"
-                  sx={{ maxWidth: 150, minWidth: 150 }}
+                  sx={{ maxWidth: 100, minWidth: 100 }}
                   colSpan={2}
-                ></TableCell>
+                >
+                  Gender Rank
+                </TableCell>
                 <TableCell align="center">RP</TableCell>
                 <TableCell
                   sx={{ maxWidth: 80, minWidth: 80 }}
