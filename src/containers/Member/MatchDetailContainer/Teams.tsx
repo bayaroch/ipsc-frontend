@@ -68,6 +68,9 @@ const Teams: React.FC<TeamProps> = ({
       ? _.find(data.team_members, { user: { id: currentUser.id } })?.id
       : null
 
+    // eslint-disable-next-line no-console
+    console.log(!isExist && divisionMatch)
+
     return (
       <TableRow key={index}>
         <TableCell>{data.name}</TableCell>

@@ -213,7 +213,7 @@ const RanksContainer: React.FC = () => {
         renderRowExpand={renderRowExpand}
       >
         <TableCell>
-          <Typography component={'span'} sx={{ color: '#111' }}>
+          <Typography component={'span'} align="center" sx={{ color: '#111' }}>
             {index + 1} .
           </Typography>
         </TableCell>

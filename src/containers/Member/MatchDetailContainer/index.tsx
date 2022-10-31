@@ -145,8 +145,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
       !listMeta.pending &&
       listMeta.loaded &&
       !listMeta.error &&
-      listMeta &&
-      isRegisterActive
+      listMeta
     ) {
       return (
         <Box>
