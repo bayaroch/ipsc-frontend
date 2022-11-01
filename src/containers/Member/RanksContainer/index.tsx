@@ -117,6 +117,10 @@ const RanksContainer: React.FC = () => {
     ranks()
   }, [])
 
+  const toFixedIfNecessary = (value: string, dp: number) => {
+    return +parseFloat(value).toFixed(dp)
+  }
+
   useEffect(() => {
     if (filter) getDetail(String(filter.match_id))
   }, [filter])
@@ -182,7 +186,10 @@ const RanksContainer: React.FC = () => {
           )}`}</TableCell>
           <TableCell>
             <Stack direction={'row'} sx={{ width: '100%' }} spacing={1}>
-              <Box sx={{ fontWeight: 600 }}>{`${data.rp}`}</Box>
+              <Box sx={{ fontWeight: 600 }}>{`${toFixedIfNecessary(
+                data.rp.toString(),
+                2
+              )}`}</Box>
               <Box>
                 {percentchange === '' ? '' : renderPercent(percentchange)}
               </Box>
@@ -214,7 +221,7 @@ const RanksContainer: React.FC = () => {
       >
         <TableCell>
           <Typography component={'span'} align="center" sx={{ color: '#111' }}>
-            {index + 1} .
+            #{index + 1}
           </Typography>
         </TableCell>
         <TableCell>
@@ -234,7 +241,9 @@ const RanksContainer: React.FC = () => {
         </TableCell>
         <TableCell colSpan={2}></TableCell>
         <TableCell>
-          <Typography sx={{ fontWeight: '600' }}>{item.total} </Typography>
+          <Typography sx={{ fontWeight: '600' }}>
+            {toFixedIfNecessary(item.total.toString(), 2)}
+          </Typography>
         </TableCell>
         <TableCell colSpan={2}>{item.count}</TableCell>
       </ExpandableTableRow>

@@ -19,6 +19,7 @@ export interface MatchItem {
   status: MATCH_STATUS
   last_modified_by: number
   stage_number?: number
+  rts: number
   participants: Array<ParticipantsItem>
   match_scores: Array<ScoreItem>
 }

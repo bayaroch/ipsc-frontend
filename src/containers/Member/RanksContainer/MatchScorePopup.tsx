@@ -76,12 +76,18 @@ const MatchScorePopup: React.FC<PickerProps> = (props) => {
             <Box sx={{ mb: 3 }}>
               <Typography variant="body1" align="center">
                 Оролцогчдын тоо {detail?.match_scores.length} ,{' '}
+              </Typography>
+              <Typography variant="body1" align="center">
+                Оролцсон ангиллын оролцогчдын тоо (
                 {_.get(
                   helper.groupTitleHelper(open.division_id, divisions),
                   'name',
                   ''
-                )}{' '}
-                {count}
+                )}
+                ) {count}
+              </Typography>
+              <Typography variant="body1" align="center">
+                Хамгийн бага онооны буудалтын тоо {detail.rts}
               </Typography>
             </Box>
             <Score data={data} divisions={divisions} classData={classData} />
