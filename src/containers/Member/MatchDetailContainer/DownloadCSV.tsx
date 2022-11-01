@@ -142,7 +142,7 @@ const DownloadCSV: React.FC<CSV> = ({
     >
       <CardHeader
         sx={{ borderBottom: '1px solid #eee' }}
-        title="Тэмцээний CSV Файл татаж авах"
+        title="Range Officers"
       ></CardHeader>
       <CardContent
         sx={{
