@@ -47,6 +47,14 @@ import {
 import { UserData } from '@services/auth.services'
 import { SquadJoinParams } from '@services/squad.services'
 import { registerThenSquadJoin } from '@store/match/actions'
+import {
+  RoItem,
+  RoJoinParams,
+  RoListParams,
+  RoUpdateParams,
+} from '@services/ro.services'
+import { roDelete, roJoin, roList, roUpdate } from '@store/ro/actions'
+import { matchRo } from '@store/ro/selectors'
 
 const { selectors, actions } = searchStore
 const getDetailMeta = createMetaSelector(actions.getMatch)
@@ -84,6 +92,11 @@ const useMatchDetail = (): {
   teamCreate: (params: TeamCreateParams) => void
   createMeta: Meta
   teamDelete: (id: string) => void
+  joinRo: (params: RoJoinParams) => void
+  matchRoList: RoItem[]
+  getRo: (params: RoListParams) => void
+  updateRo: (params: RoUpdateParams) => void
+  deleteRo: (params: number) => void
 } => {
   const dispatch = useDispatch()
   const meta = useSelector(getDetailMeta)
@@ -100,6 +113,11 @@ const useMatchDetail = (): {
   }
   const joinTeam = (params: TeamJoinParams) => dispatch(join(params))
   const leaveTeam = (params: TeamLeaveParams) => dispatch(leave(params))
+  const updateRo = (params: RoUpdateParams) => dispatch(roUpdate(params))
+  const deleteRo = (params: number) => dispatch(roDelete(params))
+  const joinRo = (params: RoJoinParams) => dispatch(roJoin(params))
+  const getRo = (params: RoListParams) => dispatch(roList(params))
+  const matchRoList = useSelector(matchRo)
   const registerThenJoin = (
     params: RegisterMatchParams,
     squadParams: SquadJoinParams
@@ -141,9 +159,13 @@ const useMatchDetail = (): {
 
   return {
     meta,
+    updateRo,
+    joinRo,
     teamDelete,
     teamCreate,
     getStat,
+    getRo,
+    matchRoList,
     detail,
     getDetail,
     joinTeam,
@@ -151,6 +173,7 @@ const useMatchDetail = (): {
     category,
     getMatchFiles,
     support,
+    deleteRo,
     participantsFiltered,
     registerThenJoin,
     createMeta,

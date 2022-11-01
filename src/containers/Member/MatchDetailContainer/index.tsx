@@ -40,6 +40,7 @@ import useSquadJoin from '../SquadJoinContainer/useSquadJoin'
 import { SquadJoinParams } from '@services/squad.services'
 import TeamCreateDialog from '../Team/TeamCreateDialog'
 import SquadList from '@components/admin/SquadList'
+import RoList from './RoList'
 
 interface MatchDetailProps {
   id: string
@@ -70,6 +71,10 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
     progress,
     joinTeam,
     getMatchFiles,
+    getRo,
+    joinRo,
+    updateRo,
+    matchRoList,
     createMeta,
     teamCreate,
     fileList,
@@ -79,6 +84,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
     allTeams,
     currentUser,
     myTeams,
+    deleteRo,
     registerThenJoin,
   } = useMatchDetail()
 
@@ -103,7 +109,12 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
   // )
 
   const isBeforeMatch = helper.isBeforeMatch(_.get(detail, 'match_start', ''))
-
+  const isJoinActive =
+    isBeforeMatch && matchRoList
+      ? !matchRoList.find((m) => m.user_id === currentUser.id)
+        ? true
+        : false
+      : true
   const isOpenOnly = !isRegisterActive && isBeforeMatch
 
   const myRegistration = _.find(participants, (p) => p.user_id === userData.id)
@@ -115,6 +126,9 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
       getDetail(id)
       getStat(id)
       getMatchFiles(id)
+      getRo({
+        id: Number(id),
+      })
     }
   }, [id])
 
@@ -446,7 +460,18 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
                       </Paper>
                     </Box>
                     <Box mb={6}>
-                      {isRo || isAdmin ? <DownloadCSV id={id} /> : null}
+                      {isRo || isAdmin ? (
+                        <DownloadCSV
+                          currentUser={currentUser}
+                          joinAsRo={(params) => {
+                            if (isRo || isAdmin) {
+                              joinRo(params)
+                            }
+                          }}
+                          isJoinActive={isJoinActive}
+                          id={id}
+                        />
+                      ) : null}
                     </Box>
                     <Box>
                       {!_.isEmpty(fileList) ? (
@@ -492,7 +517,19 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
                 </Grid>
               </Box>
             </section>
-            {_.isEmpty(scoreFiltered) ? (
+
+            {!_.isEmpty(matchRoList) ? (
+              <>
+                <RoList
+                  roData={matchRoList}
+                  update={updateRo}
+                  isAdmin={isAdmin}
+                  deleteRo={deleteRo}
+                />
+              </>
+            ) : null}
+
+            {!_.isEmpty(participantsFiltered) ? (
               <>
                 <ParticipantsTable
                   classData={support.class}
@@ -502,7 +539,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
               </>
             ) : null}
 
-            {_.isEmpty(scoreFiltered) ? (
+            {!_.isEmpty(waitingList) ? (
               <>
                 <Box
                   justifyContent="center"
@@ -587,23 +624,25 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
               </>
             ) : null}
 
-            <Box
-              justifyContent="center"
-              alignItems="center"
-              display="flex"
-              padding={3}
-            >
-              <Typography variant="h3">Багууд</Typography>
-            </Box>
             {support && currentUser && allTeams && (
-              <Teams
-                leaveTeam={leaveTeam}
-                currentUser={currentUser}
-                teams={allTeams}
-                myDivisionId={myDivisionId}
-                deleteTeam={teamDelete}
-                joinTeam={joinTeam}
-              />
+              <>
+                <Box
+                  justifyContent="center"
+                  alignItems="center"
+                  display="flex"
+                  padding={3}
+                >
+                  <Typography variant="h3">Багууд</Typography>
+                </Box>
+                <Teams
+                  leaveTeam={leaveTeam}
+                  currentUser={currentUser}
+                  teams={allTeams}
+                  myDivisionId={myDivisionId}
+                  deleteTeam={teamDelete}
+                  joinTeam={joinTeam}
+                />
+              </>
             )}
 
             {renderSquadList()}

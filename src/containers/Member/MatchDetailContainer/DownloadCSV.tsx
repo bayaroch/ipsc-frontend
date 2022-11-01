@@ -1,17 +1,35 @@
 import React, { useState } from 'react'
-import { Alert, Box, Card, CardContent, CardHeader } from '@mui/material/'
+import {
+  Alert,
+  Box,
+  Card,
+  Divider,
+  CardContent,
+  CardHeader,
+  Typography,
+} from '@mui/material/'
 import { matchServices } from '@services/match.services'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SaveIcon from '@mui/icons-material/Save'
-import { DriveFileMove } from '@mui/icons-material'
+import { DriveFileMove, Person } from '@mui/icons-material'
 import { isIOS } from 'react-device-detect'
 import { useS3Upload } from 'next-s3-upload'
+import { UserData } from '@services/auth.services'
+import { RoJoinParams } from '@services/ro.services'
 
 interface CSV {
   id: string
+  isJoinActive: boolean
+  joinAsRo: (params: RoJoinParams) => void
+  currentUser: UserData
 }
 
-const DownloadCSV: React.FC<CSV> = ({ id }) => {
+const DownloadCSV: React.FC<CSV> = ({
+  id,
+  isJoinActive,
+  joinAsRo,
+  currentUser,
+}) => {
   const [url, setUrl] = useState<string>('#')
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
@@ -91,6 +109,28 @@ const DownloadCSV: React.FC<CSV> = ({ id }) => {
     return null
   }
 
+  const renderJoinRo = () => {
+    if (isJoinActive) {
+      return (
+        <LoadingButton
+          startIcon={<Person />}
+          fullWidth
+          variant="contained"
+          color="success"
+          onClick={() =>
+            joinAsRo({
+              match_id: Number(id),
+              user_id: currentUser.id,
+            })
+          }
+        >
+          Шүүгчээр бүртгүүлэх
+        </LoadingButton>
+      )
+    }
+    return null
+  }
+
   return (
     <Card
       sx={{
@@ -112,7 +152,11 @@ const DownloadCSV: React.FC<CSV> = ({ id }) => {
           flexDirection: 'column',
         }}
       >
+        <Typography variant={'body2'} sx={{ mb: 1 }}>
+          Тэмцээний CSV Файл татаж авах
+        </Typography>
         {renderButton()}
+
         {error ? (
           <Alert severity="warning">
             Алдаа гарлаа -{' '}
@@ -140,6 +184,8 @@ const DownloadCSV: React.FC<CSV> = ({ id }) => {
         ) : (
           ''
         )}
+        <Divider sx={{ mt: 1, mb: 1 }} />
+        {renderJoinRo()}
       </CardContent>
     </Card>
   )

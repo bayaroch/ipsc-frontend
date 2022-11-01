@@ -29,4 +29,5 @@ export const URI = {
   TEAMS: API_ROOT + 'teams',
   TEAMS_EDIT: API_ROOT + 'teams/:id',
   TEAM_MEMBERS: API_ROOT + 'team_members',
+  RO: API_ROOT + 'range_officers',
 }
