@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ChangeEvent, forwardRef, useEffect, useState } from 'react'
 import {
   Dialog,
@@ -249,43 +250,43 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
     }
   }
 
-  const renderRoSection = () => {
-    if (isRo)
-      return (
-        <>
-          <Box
-            sx={{
-              display: 'flex',
-              padding: '20px 10px',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <FormControl component="fieldset">
-              <RadioGroup
-                row
-                aria-label="gender"
-                name="row-radio-buttons-group"
-                value={roField}
-                onChange={handleChange}
-              >
-                <FormControlLabel
-                  value={0}
-                  control={<Radio />}
-                  label="Буудагчаар оролцох"
-                />
-                <FormControlLabel
-                  value={1}
-                  control={<Radio />}
-                  label="Шүүгчээр давхар ажиллах"
-                />
-              </RadioGroup>
-            </FormControl>
-          </Box>
-          <Divider />
-        </>
-      )
-  }
+  // const renderRoSection = () => {
+  //   if (isRo)
+  //     return (
+  //       <>
+  //         <Box
+  //           sx={{
+  //             display: 'flex',
+  //             padding: '20px 10px',
+  //             justifyContent: 'center',
+  //             alignItems: 'center',
+  //           }}
+  //         >
+  //           <FormControl component="fieldset">
+  //             <RadioGroup
+  //               row
+  //               aria-label="gender"
+  //               name="row-radio-buttons-group"
+  //               value={roField}
+  //               onChange={handleChange}
+  //             >
+  //               <FormControlLabel
+  //                 value={0}
+  //                 control={<Radio />}
+  //                 label="Буудагчаар оролцох"
+  //               />
+  //               <FormControlLabel
+  //                 value={1}
+  //                 control={<Radio />}
+  //                 label="Шүүгчээр давхар ажиллах"
+  //               />
+  //             </RadioGroup>
+  //           </FormControl>
+  //         </Box>
+  //         <Divider />
+  //       </>
+  //     )
+  // }
 
   return (
     <Dialog
@@ -328,7 +329,7 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
         )}
       </ButtonGroup>
       <Divider />
-      {renderRoSection()}
+      {/* {renderRoSection()} */}
       {isOpenOnly ? (
         <>
           <Box
