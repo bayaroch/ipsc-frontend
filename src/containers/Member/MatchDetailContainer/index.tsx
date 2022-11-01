@@ -327,6 +327,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
             change={change}
             join={join}
             myTeams={myTeams}
+            isRegisterActive={isRegisterActive}
             myRegistration={myRegistration}
             id={id}
             isRo={isRo}

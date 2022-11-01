@@ -61,6 +61,7 @@ interface PickerProps {
   isRegistered: boolean
   onUpdate: (id: number, is_ro: number, team: number | null) => void
   myRegistration?: ParticipantsItem | undefined
+  isRegsiterActive: boolean
 }
 
 const Transition = forwardRef(function Transition(
@@ -77,6 +78,7 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
     handleClose,
     isRo,
     change,
+    isRegsiterActive,
     validate,
     userData,
     myTeams,
@@ -96,7 +98,6 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
   const [selected, choose] = useState<number>(-1)
   const [roField, setRoField] = useState<number>(0)
   const [showSquad, setShowSquad] = useState<boolean>(false)
-  const [mode] = useState<boolean>(true)
   const [newSquad, setNewSquad] = useState<null | SquadJoinParams>(null)
   const [team, setValueId] = useState<string>('')
 
@@ -178,7 +179,7 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
         <Box>
           <SquadList
             tempId={newSquad?.squad_id}
-            isEdit={mode}
+            isEdit={isRegsiterActive}
             userId={userData.id}
             onSelectChange={(id) => onSelectChange(id)}
             onExpandMembers={() => null}
@@ -310,7 +311,10 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
         {showSquad ? (
           <Button
             style={{ borderRadius: 0, borderColor: Colors.white }}
-            onClick={() => handleSubmit()}
+            onClick={(e) => {
+              e.preventDefault()
+              handleSubmit()
+            }}
           >
             {isRegistered ? 'Шинэчлэх' : 'Бүртгүүлэх'}
           </Button>
