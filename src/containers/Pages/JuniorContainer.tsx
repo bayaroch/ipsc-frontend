@@ -1,10 +1,10 @@
 import SideBarMenu from '@components/common/SideBarMenu'
 import { allproducts } from '@constants/featured.course'
-import { Box, Grid, Typography } from '@mui/material/'
-import Accordion from '@mui/material/Accordion'
-import AccordionSummary from '@mui/material/AccordionSummary'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import AccordionDetails from '@mui/material/AccordionDetails'
+import { Box, Grid } from '@mui/material/'
+// import Accordion from '@mui/material/Accordion'
+// import AccordionSummary from '@mui/material/AccordionSummary'
+// import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+// import AccordionDetails from '@mui/material/AccordionDetails'
 import HTMLParser from '@components/common/HtmlParser'
 
 const JuniorContainer: React.FC = () => {
@@ -232,11 +232,11 @@ const JuniorContainer: React.FC = () => {
 
 
 
-<figure class="wp-block-table is-style-stripes"><table><tbody><tr><td class="has-text-align-center" data-align="center"><strong>Level 1 Class</strong></td><td class="has-text-align-center" data-align="center"><strong>Level 2 Class</strong></td><td class="has-text-align-center" data-align="center"><strong>Level 3 Class</strong></td><td class="has-text-align-center" data-align="center"><strong>Level 4 Class</strong></td><td class="has-text-align-center" data-align="center"><strong>Level 5 Class</strong></td></tr></tbody></table></figure>
+<figure class="wp-block-table is-style-stripes"><table  class="table  is-striped is-bordered"><tbody><tr><td class="has-text-align-center" data-align="center"><strong>Level 1 Class</strong></td><td class="has-text-align-center" data-align="center"><strong>Level 2 Class</strong></td><td class="has-text-align-center" data-align="center"><strong>Level 3 Class</strong></td><td class="has-text-align-center" data-align="center"><strong>Level 4 Class</strong></td><td class="has-text-align-center" data-align="center"><strong>Level 5 Class</strong></td></tr></tbody></table></figure>
 </div>`}
             />
           </Box>
-          <Accordion sx={{ marginTop: '20px', marginBottom: '20px' }}>
+          {/* <Accordion sx={{ marginTop: '20px', marginBottom: '20px' }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
@@ -257,7 +257,7 @@ const JuniorContainer: React.FC = () => {
                 allowFullScreen={true}
               ></iframe>
             </AccordionDetails>
-          </Accordion>
+          </Accordion> */}
         </Grid>
         <Grid md={3} sm={12} xs={12} item>
           <SideBarMenu title="Сургалтууд" data={allproducts} />
