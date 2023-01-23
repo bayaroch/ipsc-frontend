@@ -21,351 +21,219 @@ const JuniorContainer: React.FC = () => {
             }}
           >
             <HTMLParser
-              html={`<p dir="ltr">
-   <strong style="color:#ff9900;"> ЖУНИОР ХӨТӨЛБӨР</strong> 
-</p>
-<br/>
-<p dir="ltr">
-    Жуниор хөтөлбөр буюу хүүхдэд зориулсан буудлагын курс хичээл нь хүүхэд
-    багачуудыг практик буудлагын спортод сонирхолтой болгох, буудлагын аюулгүй
-    ажиллагаа, зэвсэгтэй харьцах мэдлэгийг олгох, цаашлаад байнга хичээллэж
-    хөгжүүлэх сургалтын програм юм.
-</p>
-<br/>
-<br/>
-<p dir="ltr">
-<strong style="color:#ff9900;"> Эзэмших чадварууд:</strong> 
-</p>
+              html={`
+<img loading="lazy" width="1024" height="683" src="https://ipscaas.files.wordpress.com/2023/01/314638188_1461403841013280_2164283256493963742_n.jpg?w=1024" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" decoding="async" srcset="https://ipscaas.files.wordpress.com/2023/01/314638188_1461403841013280_2164283256493963742_n.jpg?w=1024 1024w, https://ipscaas.files.wordpress.com/2023/01/314638188_1461403841013280_2164283256493963742_n.jpg 2048w, https://ipscaas.files.wordpress.com/2023/01/314638188_1461403841013280_2164283256493963742_n.jpg?w=150 150w, https://ipscaas.files.wordpress.com/2023/01/314638188_1461403841013280_2164283256493963742_n.jpg?w=300 300w, https://ipscaas.files.wordpress.com/2023/01/314638188_1461403841013280_2164283256493963742_n.jpg?w=768 768w" sizes="(max-width: 1024px) 100vw, 1024px" data-attachment-id="69" data-permalink="https://ipscaas.wordpress.com/www-ipscaa-com-junior/314638188_1461403841013280_2164283256493963742_n/" data-orig-file="https://ipscaas.files.wordpress.com/2023/01/314638188_1461403841013280_2164283256493963742_n.jpg" data-orig-size="2048,1366" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="314638188_1461403841013280_2164283256493963742_n" data-image-description="" data-image-caption="" data-medium-file="https://ipscaas.files.wordpress.com/2023/01/314638188_1461403841013280_2164283256493963742_n.jpg?w=300" data-large-file="https://ipscaas.files.wordpress.com/2023/01/314638188_1461403841013280_2164283256493963742_n.jpg?w=1024">
+<div class="entry-content wp-block-post-content is-layout-constrained">
+<h5 class="wp-block-heading"><strong>ЖУНИОР ХӨТӨЛБӨР</strong></h5>
+
+
+
+<p>Жуниор хөтөлбөр нь зөвхөн хүүхдэд зориулсан цогц хөтөлбөр бөгөөд хүүхэд багачуудыг практик буудлагын спортод сонирхолтой болгох, буудлагын аюулгүй ажиллагаа, зэвсэгтэй харьцах мэдлэгийг олгох, цаашлаад тогтмол хичээллэн, тэмцээн уралдаанд оролцох аюулгүй буудагч бэлтгэх хөтөлбөр юм.</p>
+
+
+
+<p><strong>Эзэмших чадварууд:</strong></p>
+
+
+
 <ul>
-    <li dir="ltr">
-        <p dir="ltr">
-            Таны хүүхэд галт зэвсэгтэй харьцах анхан шатны ажиллагаанд эйрсофт
-            спорт-сургалтын хэрэгслийг ашиглан аюулгүй суралцах болно.
-        </p>
-    </li>
-    <li dir="ltr">
-        <p dir="ltr">
-            Зэвсэгтэй байнга ажилласнаар анхаарал болгоомж нэмэгдэж, анхаарал
-            дээд цэгтээ тултал төвлөрч, богино хугацаанд шийдвэр төлөвлөгөө
-            гаргаж, түүнийхээ дагуу алдаагүй гүйцэтгэхэд суралцана.
-        </p>
-    </li>
-    <li dir="ltr">
-        <p dir="ltr">
-            Орчноос өөрийгөө тусгаарлан төвлөрөх, сэтгэл зүй болон хариу
-            үйлдлээ хянах чадвартай болж, хариуцлага нэмэгдэнэ.
-        </p>
-    </li>
-    <li dir="ltr">
-        <p dir="ltr">
-            Идэвхтэй хөдөлгөөн хийж, гар утасгүй орчинд амьд харилцаанд орно.
-        </p>
-    </li>
-    <li dir="ltr">
-        <p dir="ltr">
-            Бусдад туслах, бусдаар туслуулах, бусдын өмнөөс хариуцлага хүлээх,
-            алдаагаа хүлээн зөвшөөрөх чадвартай болно.
-        </p>
-    </li>
-    <li dir="ltr">
-        <p dir="ltr">
-            Практик буудлагын спортын тамирчны ёс зүйд суралцаж бусдын орон
-            зай, цаг хугацааг хүндэтгэх, өөрт олгогдсон боломжийг 100% ашиглаж
-            чаддаг болно.
-        </p>
-    </li>
-    <li dir="ltr">
-        <p dir="ltr">
-            Хууль эрх зүй, дүрэм журмын талаар ойлголттой болж, өөрийгөө
-            спортын дүрэмд тулгуурлан өмгөөлөх, тайлбар өгөх, гомдол гаргах
-            болон асуудлыг хэлэлцэх чадвартай болж хаана ч хэний ч өмнө
-            өөрийгөө илэрхийлэх ур чадварт суралцана.
-        </p>
-    </li>
-    <li dir="ltr">
-        <p dir="ltr">
-            Практик буудлагын спортын дүрэм, журмуудыг судлаж, спортын онцлог,
-            үндсэн шинж чанарыг ойлгосноор зөвхөн хийн гар буу гэлтгүй бусад
-            төрлүүдээр ч хичээллэх суурь техниктэй болно.
-        </p>
-    </li>
-    <li dir="ltr">
-        <p dir="ltr">
-            Практик буудлагын спортын хийн гар бууны тэмцээн уралдаанд оролцох
-            эрх нээгдэж, үндэсний шинж чанартай болон клубын, улсын, ОУ-ын
-            тэмцээн цаашлаад ДАШТ-нд эх орноо төлөөлөн оролцох тамирчин болох
-            боломжтой.
-        </p>
-    </li>
+<li>Таны хүүхэд галт зэвсэгтэй харьцах анхан шатны ажиллагаанд эйрсофт спорт-сургалтын хэрэгслийг ашиглан аюулгүй суралцах болно.</li>
+
+
+
+<li>Зэвсэгтэй байнга ажилласнаар анхаарал болгоомж нэмэгдэж, анхаарал дээд цэгтээ тултал төвлөрч, богино хугацаанд шийдвэр төлөвлөгөө гаргаж, түүнийхээ дагуу алдаагүй гүйцэтгэхэд суралцана.</li>
+
+
+
+<li>Орчноос өөрийгөө тусгаарлан төвлөрөх, сэтгэл зүй болон хариу үйлдлээ хянах чадвартай болж, хариуцлага нэмэгдэнэ.</li>
+
+
+
+<li>Идэвхтэй хөдөлгөөн хийж, гар утасгүй орчинд амьд харилцаанд орно.</li>
+
+
+
+<li>Бусдад туслах, бусдаар туслуулах, бусдын өмнөөс хариуцлага хүлээх, алдаагаа хүлээн зөвшөөрөх чадвартай болно.</li>
+
+
+
+<li>Практик буудлагын спортын тамирчны ёс зүйд суралцаж бусдын орон зай, цаг хугацааг хүндэтгэх, өөрт олгогдсон боломжийг 100% ашиглаж чаддаг болно.</li>
+
+
+
+<li>Хууль эрх зүй, дүрэм журмын талаар ойлголттой болж, өөрийгөө спортын дүрэмд тулгуурлан өмгөөлөх, тайлбар өгөх, гомдол гаргах болон асуудлыг хэлэлцэх чадвартай болж хаана ч хэний ч өмнө өөрийгөө илэрхийлэх ур чадварт суралцана.</li>
+
+
+
+<li>Практик буудлагын спортын дүрэм, журмуудыг судлаж, спортын онцлог, үндсэн шинж чанарыг ойлгосноор зөвхөн хийн гар буу гэлтгүй бусад төрлүүдээр ч хичээллэх суурь техниктэй болно.</li>
+
+
+
+<li>Практик буудлагын спортын хийн гар бууны тэмцээн уралдаанд оролцох эрх нээгдэж, үндэсний шинж чанартай болон клубын, улсын, ОУ-ын тэмцээн цаашлаад Тив, Дэлхий аварга шалгаруулах тэмцээнд эх орноо төлөөлөн оролцох үндэсний шигшээ багийн тамирчин болох боломжтой.</li>
 </ul>
-<br/>
-<p dir="ltr">
-<strong style="color:#ff9900;"> Тавигдах шаардлага:</strong> 
-</p>
+
+
+
+<h5 class="wp-block-heading"><strong>Тавигдах шаардлага:</strong></h5>
+
+
+
 <ul>
-    <li dir="ltr">
-        <p dir="ltr">
-            12 - 16 настай байх.
-        </p>
-    </li>
-    <li dir="ltr">
-        <p dir="ltr">
-            Эцэг, эх эсвэл хуулиар олгогдсон эрх бүхий асран хамгаалагч нь
-            суралцагч хүүхдийн төлөөлөгчөөр бүртгүүлэн материал бүрдүүлж, гэрээ
-            байгуулах.
-        </p>
-    </li>
+<li>18 хүртэлх насны байх</li>
+
+
+
+<li>Эцэг, эх эсвэл хуулиар олгогдсон эрх бүхий асран хамгаалагч нь суралцагч хүүхдийн төлөөлөгчөөр бүртгүүлэн материал бүрдүүлж, гэрээ байгуулах</li>
 </ul>
-<br/>
-<p dir="ltr">
-<strong style="color:#ff9900;"> Бүрдүүлэх материал:</strong> 
-</p>
+
+
+
+<h5 class="wp-block-heading"><strong>Бүртгэлийг баталгаажуулах:</strong></h5>
+
+
+
+<p>Урьдчилсан бүртгэлийн хэсгийг бөглөн илгээсний дараа шинэ ангиудын цагийн хуваарь болоод бусад мэдээллийг и-мэйл болон гар утасруу илгээнэ. Хэрэв тухайн цагийн хуваарийн дагуу хичээллэх боломжтой гэж үзвэл эхний сарын төлбөрийг шилжүүлснээр бүртгэл баталгаажна.</p>
+
+
+
+<p>Зарим тохиолдолд шинэ ангийн хичээлийн хуваарь зарлагдах хүртэл 1-3 сар хүлээгдэх боломжтой.</p>
+
+
+
+<p><strong><br>Бүрдүүлэх материал:</strong></p>
+
+
+
 <ul>
-    <li dir="ltr">
-        <p dir="ltr">
-            Урьдчилсан бүртгэл (Веб сайтаар бүртгүүлснээр гар утсанд мэдээлэл
-            очно)
-        </p>
-    </li>
-    <li dir="ltr">
-        <p dir="ltr">
-            4% цээж зураг (3*4 хэмжээтэй)
-        </p>
-    </li>
-    <li dir="ltr">
-        <p dir="ltr">
-            Төрсний гэрчилгээний хуулбар
-        </p>
-    </li>
-    <li dir="ltr">
-        <p dir="ltr">
-            Төлөөлөгчийн 1% цээж зураг (3*4 хэмжээтэй)
-        </p>
-    </li>
-    <li dir="ltr">
-        <p dir="ltr">
-            Төлөөлөгчийн иргэний үнэмлэхийн цахим лавлагаа
-        </p>
-    </li>
-    <li dir="ltr">
-        <p dir="ltr">
-            Төлөөлөгчийн оршин суугаа хаягийн цахим лавлагаа
-        </p>
-    </li>
+<li>Урьдчилсан бүртгэл (Энэхүү хуудсаар дамжин бүртгүүлнэ)</li>
+
+
+
+<li>Хүүхдийн төрсний гэрчилгээний хуулбар</li>
+
+
+
+<li>Хүүхдийн 4% цээж зураг (3*4 хэмжээтэй)</li>
+
+
+
+<li>Төлөөлөгчийн 1% цээж зураг (3*4 хэмжээтэй)</li>
+
+
+
+<li>Төлөөлөгчийн иргэний үнэмлэхийн цахим лавлагаа</li>
+
+
+
+<li>Төлөөлөгчийн оршин суугаа хаягийн цахим лавлагаа</li>
+
+
+
+<li>Төлөөлөгчийн нэр хүүхдийн төрсний гэрчилгээ дээр бичигдсэн байх эсвэл хуулиар асран хамгаалах эрх олгосон тухай хүчин төгөлдөр баримт бичгийн хамт байхыг анхаарна уу</li>
 </ul>
-<p dir="ltr">
-    Бүртгүүлэх материалыг хичээл эхлэхээс хамгийн багадаа 7 хоногийн өмнө
-    бүрдүүлэн суралцагчийн төлөөлөгч өөрийн биеээр клубын бэлтгэл, сургалтын
-    зааланд авч ирж анкет бөглөн гэрээ байгуулж, төлбөр төлж элсэлтийн бүртгэл
-    баталгаажуулна. Элсэлтийн бүртгэл баталгаажснаар анхан шатанд сурагцагчдад
-    зориулсан видео хичээл (Онлайн хичээл)-ийг үзэх боломжтой болно. Онлайн
-    хичээлийг суралцагч нь сургалтын эхний өдөр ирэхдээ 100% үзэж танилцсан
-    байх шаардлагатай.
-</p>
-<br/>
-<p dir="ltr">
-<strong style="color:#ff9900;">  Шаардлагатай зүйлс:</strong> 
-</p>
+
+
+
+<p>Дээрх материалийг хичээл эхлэх өдөр суралцагчийн төлөөлөгч өөрийн биеэр авч ирж, суралцагчийн анкетийг бөглөн гэрээ байгуулна.</p>
+
+
+
+<p><strong>Хувцас хэрэгсэл:</strong></p>
+
+
+
 <ul>
-    <li dir="ltr">
-        <p dir="ltr">
-            Сольж өмсөх цэвэр ултай заалны пүүз
-        </p>
-    </li>
-    <li dir="ltr">
-        <p dir="ltr">
-            Солих маск, гар ариутгагч
-        </p>
-    </li>
-    <li dir="ltr">
-        <p dir="ltr">
-            Цэвэр усны сав эсвэл ус уух аяга
-        </p>
-    </li>
-    <li dir="ltr">
-        <p dir="ltr">
-            Буудлагын бүсээ зүүх түдүүлтэй өмд
-        </p>
-    </li>
-    <li dir="ltr">
-        <p dir="ltr">
-            Хамгаалалтын нүдний шил (Харааны шил зүүдэг бол шаардлагагүй)
-        </p>
-    </li>
+<li>Сольж өмсөх цэвэр ултай заалны пүүз</li>
+
+
+
+<li>Буудлагын бүсээ зүүх түдүүлтэй өмд  </li>
 </ul>
-<br/>
-<p dir="ltr">
-    JR1 Class 7 хоногт 2 өдөр, өдөрт 4 цагаар сургалт, бэлтгэл, буудлагыг
-    хуваарийн дагуу хийх болно. Шаардлагатай бүх хэрэгслийн ашиглалтын зардал
-    сургалтын төлбөрт багтсан, хэрэв хувийн хэрэгсэлтэй тохиолдолд сургалтын
-    төлбөр 80,000₮ хөнгөлөгдөнө.
-</p>
-<p dir="ltr">
-    JR2 Class 7 хоногт 2 өдөр, өдөрт 3 цагаар сургалт, бэлтгэл хийх болно.
-    Долоо хоног бүр клубын тэмцээнд нэмэлт хураамжгүй оролцоно. Өөрийн хувийн
-    хэрэгсэлтэй байх шаардлагатай.
-</p>
-<p dir="ltr">
-    JR3 Class Клубын зүгээс зохион байгуулж байгаа бүх түвшний тэмцээнд оролцох
-    эрхтэй. Өөрийн хувийн хэрэгсэлтэй байх шаардлагатай. JR3 Class сурагчид
-    УАШТ болон ОУ-ын тэмцээнд оролцох, ажлын өдрөөр клубын сургалтын талбайд
-    хувийн бэлтгэл хийх эрхүүд нээгдэнэ.
-</p>
-<br/>
-<p dir="ltr">
-<strong style="color:#ff9900;">  Анги дэвших:</strong> 
-</p>
-<p dir="ltr">
-    1-р түвшний сурагчид анги дэвшихэд нийт 56-с дээш цаг хичээллэсэн байх
-    шаардлагатай бөгөөд клубын үндсэн зааланд аюулгүй ажиллагааны шалгалтыг өгч
-    тэнцсэн тохиолдолд анги дэвших эрх нээгдэх бөгөөд шинэ сараас анги дэвшиж,
-    бүртгэлийн дугаартай болсноор тэмцээнд оролцох эрх нээгдэх юм.
-</p>
-<div>
-    <br/>
-</div><div align="left" dir="ltr" style="margin-left:0pt;">
-<table style="border:none;border-collapse:collapse;">
-    <tbody>
-        <tr style="height:0pt;">
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Ангиуд</span></p>
-            </td>
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">JR1 Class</span></p>
-            </td>
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">JR2 Class</span></p>
-            </td>
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;margin-right: -27.549212598425157pt;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">JR3 Class</span></p>
-            </td>
-        </tr>
-        <tr style="height:65.5pt;">
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Ангилал</span></p>
-            </td>
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Standard, Production,</span></p>
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Production Optics</span></p>
-            </td>
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Бүх ангилал нээлттэй</span></p>
-            </td>
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Бүх ангилал нээлттэй</span></p>
-            </td>
-        </tr>
-        <tr style="height:38.5pt;">
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Зэвсэг хэрэгсэл, буудлагын бүс, хамгаалалтын шил</span></p>
-            </td>
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Сургалтын төлбөрт ашиглалтын зардал багтсан</span></p>
-            </td>
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Хувийн хэрэгсэлтэй байх шаардлагатай</span></p>
-            </td>
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Хувийн хэрэгсэлтэй байх шаардлагатай</span></p>
-            </td>
-        </tr>
-        <tr style="height:38.5pt;">
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Сум, газ, цэвэрлэгээний зардал</span></p>
-            </td>
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Сургалтын төлбөрт багтсан</span></p>
-            </td>
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Сургалтын төлбөрт багтахгүй</span></p>
-            </td>
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Сургалтын төлбөрт багтахгүй</span></p>
-            </td>
-        </tr>
-        <tr style="height:38.5pt;">
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Долоо хоногт хичээллэх цаг</span></p>
-            </td>
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">4 цагаар 2 өдөр /</span></p>
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">3 цагаар 3 өдөр</span></p>
-            </td>
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">3 цагаар 2 өдөр</span></p>
-            </td>
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Байхгүй</span></p>
-            </td>
-        </tr>
-        <tr style="height:25pt;">
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Сард хичээллэх цаг</span></p>
-            </td>
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">32 цаг</span></p>
-            </td>
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">24 цаг</span></p>
-            </td>
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Байхгүй</span></p>
-            </td>
-        </tr>
-        <tr style="height:25pt;">
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Тэмцээнд оролцох</span></p>
-            </td>
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Оролцохгүй</span></p>
-            </td>
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Долоо хоногт 1 удаа оролцоно</span></p>
-            </td>
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Дотоодын болон ОУ-ын тэмцээнд оролцох</span></p>
-            </td>
-        </tr>
-        <tr style="height:25.75pt;">
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Төлбөр (1 сараар)</span></p>
-            </td>
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">250,000₮</span></p>
-            </td>
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">150,000₮</span></p>
-            </td>
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Насанд хүрэгчдийн 50%</span></p>
-            </td>
-        </tr>
-        <tr style="height:25.75pt;">
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Хичээллэх байршил:</span></p>
-            </td>
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Клубын бэлтгэл, сургалтын заал</span></p>
-            </td>
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Клубын бэлтгэл, сургалтын болон үндсэн заал</span></p>
-            </td>
-            <td style="border-left:solid #808080 0.5pt;border-right:solid #808080 0.5pt;border-bottom:solid #808080 0.5pt;border-top:solid #808080 0.5pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;">
-                <p dir="ltr" style="line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Клубын бэлтгэл, сургалтын болон үндсэн заал</span></p>
-            </td>
-        </tr>
-    </tbody>
-</table>
-</div>
-<p dir="ltr" style="line-height:1.38;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#ff9900;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Нэмэлт боломжууд:</span></p>
-<ul >
-<li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;">
-   <span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">2 ба түүнээс дээш түвшний сурагчид төлөөлөгчийн зөвшөөрөлтэйгөөр клубын ажилд туслан цагаар цалинжиж цалингаа сургалтын төлбөртөө тооцуулах боломжтой.</span></p>
-</li>
-<li aria-level="1" dir="ltr" style="list-style-type:disc;font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;">
-    <span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">3-р түвшний сурагчид төлөөлөгчийн зөвшөөрөлтэйгөөр клубын шүүгчийн сургалтад хамрагдан тэмцээний үеээр туслах шүүгчийн үүрэг гүйцэтгэж шүүгчийн цалинг сургалтын төлбөртөө тооцуулах боломжтой.&nbsp;</span></p>
-</li>
-</ul>`}
+
+
+
+<p><strong>Сургалтын түвшин:</strong></p>
+
+
+
+<p><em>Level 1 class (JR1)</em> </p>
+
+
+
+<p>Сард 8 өдөр, өдөрт 3 цагаар сургалт, бэлтгэл, буудлагыг хуваарийн дагуу хийх болно. Шаардлагатай бүх хэрэгслийн ашиглалтын зардал сургалтын төлбөрт багтсан, хэрэв хувийн хэрэгсэлтэй тохиолдолд сургалтын төлбөр 80,000₮ хөнгөлөгдөнө. Тэмцээнд оролцохгүй.</p>
+
+
+
+<p><em>Level 2 class (JR2)</em> </p>
+
+
+
+<p>Сард 6 өдөр, өдөрт 3 цагаар сургалтанд хамрагдана. Үүнээс гадна амралтын өдрүүдэд хичээлийн бус цагаар клубын тэмцээнд оролцож, чансааны оноо цуглуулж эхлэнэ. Ашиглалтын зардал багтахгүй бөгөөд, хувийн хэрэгсэлтэй байх шаардлагатай.</p>
+
+
+
+<p><em>Level 3 class (JR3)</em> </p>
+
+
+
+<p>Сард 6 өдөр, өдөрт 2 цагаар сургалтанд хамрагдана. Клубын зүгээс зохион байгуулж байгаа бүх түвшний тэмцээн болон 3-р түвшний олон улсын тэмцээнд зохих журмын дагуу оролцох, ажлын өдрүүдээр клубын зааланд хувийн бэлтгэл хийх боломжтой. </p>
+
+
+
+<p><em>Level 4 class (JR4)</em> </p>
+
+
+
+<p>Сард 3 өдөр, өдөрт 2 цагаар сургалтанд хамрагдана. Клубын зүгээс зохион байгуулж буй бүх түшний тэмцээнд оролцох эрхтэй ба олон улсын 3 болон 4-р түвшний тэмцээнд зохих журмын дагуу оролцох, ажлын өдрүүдээр клубын зааланд хувийн бэлтгэл хийх боломжтой. </p>
+
+
+
+<p><em>Level 5 class (JR5)</em> </p>
+
+
+
+<p>Энэ ангийн сурагч нь сургалтанд хамрагдахгүй бөгөөд 1-5-р түвшний буюу бүх түвшний тэмцээн уралдаанд зохих журмын дагуу оролцох, нэмэлтээр зохион байгуулагдах эрчимжүүлсэн болон тусгай сургалтуудад хамрагдах, түүний сонгон шалгаруулалтанд өрсөлдөх эрхтэй. Ажлын өдрүүдээр клубын зааланд хувийн бэлтгэл хийх боломжтой. </p>
+
+
+
+<p><strong>Анги дэвших:</strong></p>
+
+
+
+<p>Доорх хүснэгтэд харагдаж байгаа шаагдлагуудыг биелүүлсэн гэж үзвэл өргөдлийн маягтыг веб сайтаас татан авч клубын инструктор эсвэл сургалтын үйл ажиллагаа хариуцсан менежерт хүлээлгэн өгснөөр анги дэвшүүлэх шийдвэр гарч тухайн сардаа багтан шинэ түвшний ангийн гэрээг байгуулан дараагийн сараас эхлэн түвшин ахиулж, шинэ хөтөлбөрийн дагуу хичээллэнэ.</p>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table class="table  is-striped is-bordered"><tbody><tr><td></td><td>Level 1 Class</td><td>Level 2 Class</td><td>Level 3 Class</td><td>Level 4 Class</td><td>Level 5 Class</td></tr><tr><td>Хичээллэсэн цаг</td><td>0+</td><td>40+</td><td>80+</td><td>120+</td><td>200+</td></tr><tr><td>Чансааны оноо</td><td>–</td><td>1+</td><td>100+</td><td>250+</td><td>500+</td></tr><tr><td>Аюулгүй ажиллагааны шалгалт</td><td>–</td><td>Тэнцсэн байх</td><td>–</td><td>–</td><td>–</td></tr><tr><td>Сорил</td><td>–</td><td>–</td><td>–</td><td>80% тэнцэх</td><td>90% тэнцэх</td></tr><tr><td>2-р түвшний тэмцээнд шүүгчийн туслах</td><td>–</td><td>1 удаа RA хийсэн байх</td><td>2 удаа RA хийсэн байх</td><td>3 удаа RA хийсэн байх</td><td>1 удаа ARO, 3 удаа RA хийсэн байх</td></tr></tbody></table></figure>
+
+
+
+<p><strong>Төлбөрийн задаргаа:</strong></p>
+
+
+
+<p>Анги дэвших бүрт тухайн түвшний ангийн онцлог, дүрэм журмуудтай холбоотой тухайлсан гэрээг байгуулах бөгөөд доорх мэдээлэл нь ерөнхий бүдүүвч мэдээлэл юм.</p>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table class="table  is-striped is-bordered"><tbody><tr><td>Хөтөлбөр</td><td>Level 1 Class</td><td>Level 2 Class</td><td>Level 3 Class</td><td>Level 4 Class</td><td>Level 5 Class</td></tr><tr><td>Сар бүрийн сургалтын цаг</td><td>8 өдөр, өдөрт 3 цаг</td><td>6 өдөр, өдөрт 3 цаг</td><td>6 өдөр, өдөрт 2 цаг</td><td>3 өдөр, өдөрт 2 цаг</td><td>0 цаг</td></tr><tr><td>Сар бүрийн клубын тэмцээн (Level 1 Match)</td><td>–</td><td>Сар бүр 3 удаа тэмцээний хураамжгүй оролцоно</td><td>Сар бүр 3 удаа тэмцээний хураамжгүй оролцоно</td><td>Сар бүр 3 удаа тэмцээний хураамжгүй оролцоно</td><td>Сар бүр3 удаа тэмцээний хураамжгүй оролцоно</td></tr><tr><td>Оролцож болох бусад тэмцээн</td><td>–</td><td>2 хүртэлх түвшний тэмцээнд зохих журмын дагуу</td><td>3 хүртэлх түвшний тэмцээнд зохих журмын дагуу</td><td>4 хүртэлх түвшний тэмцээнд зохих журмын дагуу</td><td>5 хүртэлх түвшний тэмцээнд зохих журмын дагуу</td></tr><tr><td>Төлбөр</td><td>250,000₮</td><td>200,000₮</td><td>150,000₮</td><td>100,000₮</td><td>75,000₮</td></tr><tr><td>Аюулгүй ажиллагааны шалгалт / Сорил</td><td>3 удаа өгөх боломжтой, хичээлийн бус цагаар хувийн хэрэгсэл ашиглаж өгнө</td><td>–</td><td>–</td><td>Улиралд 1 удаа явагдана, төлбөр 30,000₮</td><td>Улиралд 1 удаа явагдана, төлбөр 30,000₮</td></tr><tr><td>Зэвсэг ашиглалтын зардал багтсан эсэх</td><td>Багтсан, хэрэв хувийн хэрэгсэлтэй бол 80,000₮ хасч тооцно</td><td>–</td><td>–</td><td>–</td><td>–</td></tr><tr><td>ОУПБХ, МПБХ-ны хураамж</td><td colspan="5">Эхний 1 жилийн хураамжийг клуб хариуцна. 2 дахь жилээсээ эхлэн ОУПБХ, МПБХ-ны хураамжийг зохих журмын дагуу суралцагч төлнө.&nbsp;</td></tr></tbody></table></figure>
+
+
+
+<p><strong>Урьдчилсан бүртгэл:</strong></p>
+
+
+
+<iframe loading="lazy" src="https://docs.google.com/forms/d/e/1FAIpQLSd1wpiVjiguSla-mIp25TrzzOd_NgSVp4saPFsNm96KuFevfw/viewform?embedded=true" frameborder="0" width="640" height="3491" marginheight="0" marginwidth="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+
+
+<p><strong>Анкет, гэрээний загвар татах:</strong></p>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table><tbody><tr><td class="has-text-align-center" data-align="center"><strong>Level 1 Class</strong></td><td class="has-text-align-center" data-align="center"><strong>Level 2 Class</strong></td><td class="has-text-align-center" data-align="center"><strong>Level 3 Class</strong></td><td class="has-text-align-center" data-align="center"><strong>Level 4 Class</strong></td><td class="has-text-align-center" data-align="center"><strong>Level 5 Class</strong></td></tr></tbody></table></figure>
+</div>`}
             />
           </Box>
           <Accordion sx={{ marginTop: '20px', marginBottom: '20px' }}>
