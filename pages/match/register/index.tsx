@@ -21,7 +21,7 @@ const MatchDetail: PageWithLayoutType = () => {
   const data = _.find(list, (l) => l.id == Number(id as string))
 
   useEffect(() => {
-    getList()
+    getList({ per_page: 100, page: 1 })
   }, [])
 
   useEffect(() => {
