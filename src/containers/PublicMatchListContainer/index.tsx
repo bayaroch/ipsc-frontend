@@ -16,14 +16,14 @@ const PublicMatchListContainer: React.FC = () => {
   }
 
   useEffect(() => {
-    getList()
+    getList({ per_page: 100, page: 1 })
   }, [])
 
   return (
     <Box>
       <BasicLoader meta={meta} />
       {!meta.pending && meta.loaded && groupedList
-        ? groupedList.map((g, i) => {
+        ? groupedList.reverse().map((g, i) => {
             return (
               <Box key={i}>
                 <Typography

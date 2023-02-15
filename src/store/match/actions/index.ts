@@ -169,20 +169,20 @@ export const registerThenSquadJoin = (
   })
 }
 
-export const getAllPublicMatches = createAsyncThunk<GetMatchesResponse, void>(
-  MATCH_ACTION_TYPE.GET_PUBLIC_MATCHES,
-  async (_, { rejectWithValue }) => {
-    try {
-      const res = await matchServices.fetchPublicMatch()
-      return res
-    } catch (error) {
-      if (!error) {
-        throw error
-      }
-      return rejectWithValue(error)
+export const getAllPublicMatches = createAsyncThunk<
+  GetMatchesResponse,
+  MatchPageMeta
+>(MATCH_ACTION_TYPE.GET_PUBLIC_MATCHES, async (params, { rejectWithValue }) => {
+  try {
+    const res = await matchServices.fetchPublicMatch(params)
+    return res
+  } catch (error) {
+    if (!error) {
+      throw error
     }
+    return rejectWithValue(error)
   }
-)
+})
 
 export const getMatchFileList = createAsyncThunk<MatchFileResponse, string>(
   MATCH_ACTION_TYPE.MATCH_HTML,

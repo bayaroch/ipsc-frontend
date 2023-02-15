@@ -315,8 +315,12 @@ export const matchServices = {
     return data
   },
 
-  fetchPublicMatch: async (): Promise<GetMatchesResponse> => {
-    const { data } = await api.get<GetMatchesResponse>(URI.MATCH_PUBLIC)
+  fetchPublicMatch: async (
+    params: MatchPageMeta
+  ): Promise<GetMatchesResponse> => {
+    const { data } = await api.get<GetMatchesResponse>(URI.MATCH_PUBLIC, {
+      params: params,
+    })
     return data
   },
 

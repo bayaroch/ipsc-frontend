@@ -6,6 +6,7 @@ import { MatchItem } from '@store/match/actions/types'
 import { GroupedMatchListItem } from '@store/match/selectors/helpers'
 import { SupportState } from '@store/support/reducers'
 import { BADGES, CLASS, DIVISIONS } from '@constants/common.constants'
+import { MatchPageMeta } from '@services/match.services'
 
 const { selectors, actions } = searchStore
 const getAllPublicMatchesMeta = createMetaSelector(actions.getAllPublicMatches)
@@ -13,7 +14,7 @@ const getAllPublicMatchesMeta = createMetaSelector(actions.getAllPublicMatches)
 const useMemberMatch = (): {
   meta: Meta
   list: MatchItem[]
-  getList: () => void
+  getList: (params: MatchPageMeta) => void
   groupedList: GroupedMatchListItem[]
   support: SupportState
 } => {
@@ -21,7 +22,8 @@ const useMemberMatch = (): {
   const meta = useSelector(getAllPublicMatchesMeta)
   const list = useSelector(selectors.matchesPublic)
   const groupedList = useSelector(selectors.matchPublicGroupBy)
-  const getList = () => dispatch(actions.getAllPublicMatches())
+  const getList = (params: MatchPageMeta) =>
+    dispatch(actions.getAllPublicMatches(params))
   const support = {
     class: CLASS,
     divisions: DIVISIONS,
