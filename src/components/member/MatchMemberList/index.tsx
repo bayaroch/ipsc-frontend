@@ -19,7 +19,7 @@ export interface MatchListProps {
   currentUser: UserData
 }
 
-const defaultPerPage = 10
+const defaultPerPage = 50
 
 const MatchList: React.FC<MatchListProps> = (props) => {
   const { getList, list, pagination, meta, currentUser } = props
