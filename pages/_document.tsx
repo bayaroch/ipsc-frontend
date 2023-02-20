@@ -28,6 +28,17 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
+        <script src="https://www.googletagmanager.com/gtag/js?id=G-K3LDD9QVCZ" />
+        <script
+          id="google-analytics"
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'G-K3LDD9QVCZ');`,
+          }}
+        />
       </Html>
     )
   }
