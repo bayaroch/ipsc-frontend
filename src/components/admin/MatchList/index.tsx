@@ -38,7 +38,7 @@ export interface MatchListProps {
   onImport: (id: number) => void
 }
 
-const defaultPerPage = 30
+const defaultPerPage = 10
 
 export const MATCH_STATUS_TEXT_ICONS = [
   {
