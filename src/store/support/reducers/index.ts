@@ -12,7 +12,7 @@ export type SupportState = {
     message: string
     severity: 'success' | 'error' | 'warning' | 'info'
   }[]
-  page: any
+  page?: any
 }
 
 const initialState: SupportState = {
