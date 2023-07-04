@@ -2,18 +2,18 @@ import ContentWrapper from '@components/layout/ContentWrapper'
 import MainLayout from '@components/layout/MainLayout'
 import PageWithLayoutType from '@constants/page'
 import ContentHeader from '@components/elements/ContentHeader'
+import { Grid, Box } from '@mui/material/'
+import SideBarMenu from '@components/common/SideBarMenu'
+import { allproducts } from '@constants/featured.course'
+import HTMLParser from '@components/common/HtmlParser'
 import { useEffect } from 'react'
 import useWordpress from '@utils/hooks/useWordpress'
-import { Grid, Box } from '@mui/material/'
-import { allproducts } from '@constants/featured.course'
-import SideBarMenu from '@components/common/SideBarMenu'
-import HTMLParser from '@components/common/HtmlParser'
 
-const Course1: PageWithLayoutType = () => {
+const Online: PageWithLayoutType = () => {
   const { data, fetchPage } = useWordpress()
 
   useEffect(() => {
-    fetchPage('3092')
+    fetchPage('3118')
   }, [])
 
   return (
@@ -21,18 +21,12 @@ const Course1: PageWithLayoutType = () => {
       <ContentHeader title={data && data.title} />
       <ContentWrapper topSpace={true}>
         <>
-          <Grid container maxWidth={'xl'}>
+          <Grid container>
             <Grid md={9} sm={12} xs={12} item>
               <Box
                 sx={{
-                  paddingRight: { lg: '50px', md: '50px', sm: 0, xs: 0 },
-                  paddingBottom: {
-                    lg: '100px',
-                    md: '100px',
-                    sm: '20px',
-                    xs: '20px',
-                  },
-                  textAlign: { sm: 'justify', xs: 'justify' },
+                  paddingRight: { sm: 0, lg: '50px', md: '50px' },
+                  paddingBottom: '100px',
                 }}
               >
                 <div className="content">
@@ -50,4 +44,4 @@ const Course1: PageWithLayoutType = () => {
   )
 }
 
-export default Course1
+export default Online

@@ -2,6 +2,7 @@ import { createAsyncThunk, createAction } from '@reduxjs/toolkit'
 import { SUPPORT_ACTION_TYPE } from './types'
 import { SupportResponse, supportServices } from '@services/support.services'
 import { AlertColor } from '@mui/material/Alert'
+import { contentServices } from '@services/public.service'
 
 export const getBadges = createAsyncThunk<SupportResponse>(
   SUPPORT_ACTION_TYPE.GET_BADGES,
@@ -38,6 +39,21 @@ export const getClass = createAsyncThunk<SupportResponse>(
   async (_, { rejectWithValue }) => {
     try {
       const res = await supportServices.getClass()
+      return res
+    } catch (error) {
+      if (!error) {
+        throw error
+      }
+      return rejectWithValue(error)
+    }
+  }
+)
+
+export const fetchWordpress = createAsyncThunk<any, string>(
+  SUPPORT_ACTION_TYPE.GET_WORDPRESS,
+  async (id, { rejectWithValue }) => {
+    try {
+      const res = await contentServices.getPageContent(id)
       return res
     } catch (error) {
       if (!error) {

@@ -7,18 +7,18 @@ import HTMLParser from '@components/common/HtmlParser'
 import useWordpress from '@utils/hooks/useWordpress'
 import { useEffect } from 'react'
 
-const Membership: PageWithLayoutType = () => {
+const ContactUs: PageWithLayoutType = () => {
   const { data, fetchPage } = useWordpress()
 
   useEffect(() => {
-    fetchPage('3121')
+    fetchPage('3147')
   }, [])
 
   return (
     <MainLayout isBanner={true} regular={true}>
       <ContentHeader title={data && data.title} />
       <ContentWrapper>
-        <Box pt={3} sx={{ textAlign: 'center' }}>
+        <Box pt={3}>
           <div className="content">
             {data && <HTMLParser html={data.content} />}
           </div>
@@ -28,4 +28,4 @@ const Membership: PageWithLayoutType = () => {
   )
 }
 
-export default Membership
+export default ContactUs

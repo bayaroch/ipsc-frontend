@@ -18,13 +18,12 @@ export const featuredproducts = [
       'https://docs.google.com/forms/u/0/d/e/1FAIpQLSfEnh6dDR2eRoaXt_A0VgloGBa8we5DVJtajhsw3KZghs7amw/formResponse?embedded=true',
   },
   {
-    title: 'Онлайн сургалт',
+    title: 'Туршилтын буудлага/Trial shooting',
     desc:
-      'Сургалтанд хамрагдсанаар практик буудлагын спортын анхан шатны дүрэм, онолын мэдлэгтэй болох бөгөөд үргэлжлүүлэн гишүүнчлэлийн сургалт болон жуниор хөтөлбөрт хамрагдах эрх нээгдэх юм.',
+      'Монголын Практик Буудлагын Холбооны мэргэжлийн инструктор багшийн зааварчилгаагаар 6мм-н үрлэн сумтай эйрсофт хийн гар буу болоод эйрсофт карабинаар туршилтын буудалт хийх.',
     image: '/images/featured/online.jpg',
-    route: '/online',
-    register:
-      'https://docs.google.com/forms/u/0/d/e/1FAIpQLSc9Z1AV8uBRk7ocX1kvpf8j5priTg3QAC3kSGpIouXdmdR0yg/formResponse?embedded=true',
+    route: '/trial-shooting',
+    register: '',
   },
   {
     title: 'Жуниор хөтөлбөр',
@@ -73,13 +72,12 @@ export const allproducts = [
       'https://docs.google.com/forms/d/e/1FAIpQLSd1wpiVjiguSla-mIp25TrzzOd_NgSVp4saPFsNm96KuFevfw/viewform?embedded=true',
   },
   {
-    title: 'Онлайн сургалт',
+    title: 'Туршилтын буудлага/Trial shooting',
     desc:
-      'Сургалтанд хамрагдсанаар практик буудлагын спортын анхан шатны дүрэм, онолын мэдлэгтэй болох бөгөөд үргэлжлүүлэн гишүүнчлэлийн сургалт болон жуниор хөтөлбөрт хамрагдах эрх нээгдэх юм.',
+      'Монголын Практик Буудлагын Холбооны мэргэжлийн инструктор багшийн зааварчилгаагаар 6мм-н үрлэн сумтай эйрсофт хийн гар буу болоод эйрсофт карабинаар туршилтын буудалт хийх.',
     image: '/images/featured/online.jpg',
-    route: '/online',
-    register:
-      'https://docs.google.com/forms/u/0/d/e/1FAIpQLSc9Z1AV8uBRk7ocX1kvpf8j5priTg3QAC3kSGpIouXdmdR0yg/formResponse?embedded=true',
+    route: '/trial-shooting',
+    register: '',
   },
   // {
   //   title: 'Про буудагч цогц сургалт',

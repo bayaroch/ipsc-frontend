@@ -12,6 +12,7 @@ export type SupportState = {
     message: string
     severity: 'success' | 'error' | 'warning' | 'info'
   }[]
+  page: any
 }
 
 const initialState: SupportState = {
@@ -19,6 +20,7 @@ const initialState: SupportState = {
   badges: undefined,
   divisions: undefined,
   toasts: [],
+  page: undefined,
 }
 
 export default createReducer(initialState, (builder) => {
@@ -46,5 +48,8 @@ export default createReducer(initialState, (builder) => {
   })
   builder.addCase(actions.cleanToasts, (state) => {
     state.toasts = []
+  })
+  builder.addCase(actions.fetchWordpress.fulfilled, (state, action) => {
+    state.page = action.payload
   })
 })
