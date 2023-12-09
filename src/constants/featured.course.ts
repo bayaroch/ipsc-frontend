@@ -1,13 +1,13 @@
 export const featuredproducts = [
-  {
-    title: 'Танилцах сургалт',
-    desc:
-      'Зөвхөн манай спорттой танилцах эсвэл байгууллага хамт олноороо цагийг өнгөрүүлж, хамт олон дундаа тэмцээн зохион байгуулуулах зарчмаар явагдана. Танилцах сургалтанд хамрагдсанаар ямар нэгэн батламж, гэрчилгээ олгохгүй бөгөөд инструкторын удирдлаганд буудлага хийж танилцах боломжтой юм.',
-    image: '/images/featured/product-1.jpg',
-    route: '/course0',
-    register:
-      'https://docs.google.com/forms/d/e/1FAIpQLSfYX2Ce9Zc8a0rgMPebnptDhLQyMj26l22XaOkPAL4hJL0efQ/viewform?embedded=true',
-  },
+  // {
+  //   title: 'Танилцах сургалт',
+  //   desc:
+  //     'Зөвхөн манай спорттой танилцах эсвэл байгууллага хамт олноороо цагийг өнгөрүүлж, хамт олон дундаа тэмцээн зохион байгуулуулах зарчмаар явагдана. Танилцах сургалтанд хамрагдсанаар ямар нэгэн батламж, гэрчилгээ олгохгүй бөгөөд инструкторын удирдлаганд буудлага хийж танилцах боломжтой юм.',
+  //   image: '/images/featured/product-1.jpg',
+  //   route: '/course0',
+  //   register:
+  //     'https://docs.google.com/forms/d/e/1FAIpQLSfYX2Ce9Zc8a0rgMPebnptDhLQyMj26l22XaOkPAL4hJL0efQ/viewform?embedded=true',
+  // },
   {
     title: 'Гишүүнчлэлийн сургалт',
     desc:
