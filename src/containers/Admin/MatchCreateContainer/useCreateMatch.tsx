@@ -3,13 +3,15 @@ import { useForm, Controller } from 'react-hook-form'
 import { useMemo } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { MatchCreateParams } from '@services/match.services'
+import { DivisionsItem, MatchCreateParams } from '@services/match.services'
 import { clearMatchData, createMatch } from '@store/match/actions'
 import { MATCH_STATUS } from '@constants/common.constants'
 import { useDispatch, useSelector } from 'react-redux'
 import { createMetaSelector } from '@store/metadata/selectors'
 import { createResult } from '@store/match/selectors'
 import { Meta } from '@store/metadata/actions/types'
+import { SupportState } from '@store/support/reducers'
+import { support as sup } from '@store/support/selectors'
 
 const createMatchesMeta = createMetaSelector(createMatch)
 
@@ -19,6 +21,9 @@ export interface MatchCreateInputType {
   match_end: string
   registration_start: string
   registration_end: string
+  match_type_id: number
+  divisions: string[]
+  div_categories: DivisionsItem[]
   lvl: number
   point_multiplier: number
   stage_number?: number | undefined
@@ -29,6 +34,7 @@ export interface MatchCreateInputType {
   sponsor_info?: string
   per_squad: number | undefined
   is_public: boolean
+  is_practice: boolean
   status: MATCH_STATUS
 }
 
@@ -36,6 +42,7 @@ const useCreateMatch = () => {
   const dispatch = useDispatch()
   const metadata: Meta = useSelector(createMatchesMeta)
   const response = useSelector(createResult)
+  const support: SupportState = useSelector(sup)
 
   useEffect(() => {
     dispatch(clearMatchData())
@@ -49,9 +56,11 @@ const useCreateMatch = () => {
         match_end: yup.string().required('Field is required'),
         registration_start: yup.string().required('Field is required'),
         registration_end: yup.string().required('Field is required'),
+        match_type_id: yup.number().required('Field is required'),
         lvl: yup.number().required('Field is required'),
         point_multiplier: yup.number().required('Field is required'),
         is_public: yup.bool().required('Field is required'),
+        is_practice: yup.bool().required('Field is required'),
         per_squad: yup.number().required('Field is required'),
         stage_number: yup.number().notRequired(),
         status: yup.number().required('Field is required'),
@@ -72,9 +81,13 @@ const useCreateMatch = () => {
       match_end: '',
       registration_start: '',
       registration_end: '',
+      match_type_id: 1,
+      divisions: [],
+      div_categories: [],
       lvl: 1,
       point_multiplier: 1,
       is_public: false,
+      is_practice: false,
       per_squad: 10,
       stage_number: 4,
       status: 1,
@@ -96,6 +109,7 @@ const useCreateMatch = () => {
     Controller,
     metadata,
     response,
+    support,
   }
 }
 

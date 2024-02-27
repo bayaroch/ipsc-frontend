@@ -23,6 +23,11 @@ export const supportServices = {
     const { data } = await api.get<SupportResponse>(`${URI.DIVISIONS}`)
     return data
   },
+  getMatchTypes: async (): Promise<SupportResponse> => {
+    const { data } = await api.get<SupportResponse>(`${URI.MATCHTYPES}`)
+    console.log('match types service data: ', data)
+    return data
+  },
   getClass: async (): Promise<SupportResponse> => {
     const { data } = await api.get<SupportResponse>(`${URI.CLASS}`)
     return data

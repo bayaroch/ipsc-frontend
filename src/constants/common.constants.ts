@@ -168,25 +168,31 @@ export const CATEGORIES = [
   {
     id: 1,
     name: 'Uncategorized (Аль ч категорид хамаарахгүй)',
+    shorthand: 'U',
   },
   {
     id: 2,
     name: 'Super Junior (16-с доош насны)',
+    shorthand: 'Super Junior',
   },
   {
     id: 3,
     name: 'Junior (21-с доош насны)',
+    shorthand: 'Junior',
   },
   {
     id: 4,
     name: 'Senior (50-с дээш насны)',
+    shorthand: 'Senior',
   },
   {
     id: 5,
     name: 'Super Senior (60-с дээш насны)',
+    shorthand: 'Super Senior',
   },
   {
     id: 6,
     name: 'Lady (Эмэгтэй)',
+    shorthand: 'Lady',
   },
 ]

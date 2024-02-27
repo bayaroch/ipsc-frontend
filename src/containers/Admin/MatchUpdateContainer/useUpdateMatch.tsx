@@ -3,13 +3,15 @@ import { useForm, Controller } from 'react-hook-form'
 import { useMemo } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { MatchUpdateParams } from '@services/match.services'
+import { DivisionsItem, MatchUpdateParams } from '@services/match.services'
 import { clearMatchData, updateMatch, getMatch } from '@store/match/actions'
 import { MATCH_STATUS } from '@constants/common.constants'
 import { useDispatch, useSelector } from 'react-redux'
 import { createMetaSelector } from '@store/metadata/selectors'
 import { updateResult, matchDetail } from '@store/match/selectors'
 import { Meta } from '@store/metadata/actions/types'
+import { SupportState } from '@store/support/reducers'
+import { support as sup } from '@store/support/selectors'
 import moment from 'moment'
 
 const updateMatchesMeta = createMetaSelector(updateMatch)
@@ -21,9 +23,13 @@ const defaultData = {
   match_end: '',
   registration_start: '',
   registration_end: '',
+  match_type_id: 1,
+  divisions: [],
+  div_categories: [],
   lvl: 1,
   point_multiplier: 0,
   is_public: false,
+  is_practice: false,
   per_squad: undefined,
   stage_number: undefined,
   status: 1,
@@ -41,6 +47,9 @@ export interface MatchUpdateInputType {
   match_end: string
   registration_start: string
   registration_end: string
+  match_type_id: number
+  divisions: string[]
+  div_categories: DivisionsItem[]
   lvl: number
   point_multiplier: number
   stage_number?: number | undefined
@@ -51,6 +60,7 @@ export interface MatchUpdateInputType {
   sponsor_info?: string
   per_squad: number | undefined
   is_public: boolean
+  is_practice: boolean
   status: MATCH_STATUS
 }
 
@@ -63,6 +73,7 @@ const useUpdateMatch = (id: string) => {
   const [defaultValue, setDefaultValue] = useState<MatchUpdateInputType>(
     defaultData
   )
+  const support: SupportState = useSelector(sup)
 
   useEffect(() => {
     dispatch(clearMatchData())
@@ -70,6 +81,19 @@ const useUpdateMatch = (id: string) => {
 
   useEffect(() => {
     if (detail !== undefined) {
+      const divs = detail.match_divisions.map((div: any) => div.division_id.toString())
+      const map1 = detail.match_divisions.map((x: any) => {
+        const div: DivisionsItem = {
+          id: x.id,
+          name: x.name,
+          division_id: x.division_id,
+          category_ids: x.categories.split(','),
+          is_multi: x.is_multi_cat,
+          is_team: x.is_team_result,
+        }
+        return div
+      });
+
       const formValue = Object.assign({}, detail, {
         match_start: moment(detail.match_start).format('YYYY-MM-DDTHH:mm'),
         match_end: moment(detail.match_end).format('YYYY-MM-DDTHH:mm'),
@@ -79,6 +103,8 @@ const useUpdateMatch = (id: string) => {
         registration_end: moment(detail.registration_end).format(
           'YYYY-MM-DDTHH:mm'
         ),
+        divisions: divs,
+        div_categories: map1,
       })
       setDefaultValue(formValue)
     }
@@ -102,9 +128,11 @@ const useUpdateMatch = (id: string) => {
         match_end: yup.string().required('Field is required'),
         registration_start: yup.string().required('Field is required'),
         registration_end: yup.string().required('Field is required'),
+        match_type_id: yup.number().required('Field is required'),
         lvl: yup.number().required('Field is required'),
         point_multiplier: yup.number().required('Field is required'),
         is_public: yup.bool().required('Field is required'),
+        is_practice: yup.bool().required('Field is required'),
         per_squad: yup.number().required('Field is required'),
         stage_number: yup.number().notRequired(),
         status: yup.number().required('Field is required'),
@@ -136,6 +164,7 @@ const useUpdateMatch = (id: string) => {
     updatemeta,
     response,
     detail,
+    support,
   }
 }
 

@@ -1,4 +1,4 @@
-const DOMAIN = 'https://ipsc.babyzone.mn'
+const DOMAIN = 'http://128.199.170.72'
 const REST_API_PATH = '/api/v1/'
 const API_ROOT = REST_API_PATH
 
@@ -12,6 +12,7 @@ export const URI = {
   PARTICIPANT_STAT: API_ROOT + 'participants/stats/:id',
   BADGES: API_ROOT + 'badges',
   DIVISIONS: API_ROOT + 'divisions',
+  MATCHTYPES: API_ROOT + 'match_types',
   CLASS: API_ROOT + 'classifications',
   SQUADS: API_ROOT + 'squads',
   SQUADSJOIN: API_ROOT + 'squad_members',

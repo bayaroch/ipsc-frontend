@@ -348,6 +348,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
             validate={(v) => addToast({ message: v, severity: 'warning' })}
             open={open}
             divisions={support.divisions}
+            match_divisions={detail.match_divisions}
             squadList={list}
             squadMeta={listMeta}
             isOpenOnly={isOpenOnly}
