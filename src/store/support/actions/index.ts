@@ -19,6 +19,21 @@ export const getBadges = createAsyncThunk<SupportResponse>(
   }
 )
 
+export const getMatchTypes = createAsyncThunk<SupportResponse>(
+  SUPPORT_ACTION_TYPE.GET_MATCHTYPES,
+  async (_, { rejectWithValue }) => {
+    try {
+      const res = await supportServices.getMatchTypes()
+      return res
+    } catch (error) {
+      if (!error) {
+        throw error
+      }
+      return rejectWithValue(error)
+    }
+  }
+)
+
 export const getDivisions = createAsyncThunk<SupportResponse>(
   SUPPORT_ACTION_TYPE.GET_DIVISIONS,
   async (_, { rejectWithValue }) => {
@@ -71,6 +86,7 @@ export const commonData = () => async (
   Promise.resolve(dispatch(getClass())).then(() => {
     dispatch(getDivisions()).then(() => {
       dispatch(getBadges())
+      dispatch(getMatchTypes())
     })
   })
 }

@@ -19,6 +19,9 @@ export type MatchCreateParams = {
   match_end: string
   registration_start: string
   registration_end: string
+  match_type_id: number
+  divisions: DivisionsItem[]
+  match_divisions: any[]
   lvl: number
   point_multiplier: number
   stage_number?: number
@@ -44,6 +47,8 @@ export type MatchUpdateParams = {
     match_end: string
     registration_start: string
     registration_end: string
+    match_type_id: number
+    divisions: DivisionsItem[]
     lvl: number
     point_multiplier: number
     stage_number?: number
@@ -164,6 +169,19 @@ export type ParticipantsItem = {
   remark?: string | null
   is_verified: boolean | number
   user: UserData
+}
+
+export type DivisionsItem = {
+  id: number | undefined
+  name: string | undefined
+  division: any | undefined
+  division_id: number
+  category_ids: string[]
+  categories: string[]
+  is_multi: boolean
+  is_team: boolean
+  is_multi_cat: boolean
+  is_team_result: boolean
 }
 
 export type ScoreItem = {

@@ -7,6 +7,7 @@ export type SupportState = {
   class: SupportItem[] | undefined
   badges: SupportItem[] | undefined
   divisions: SupportItem[] | undefined
+  matchTypes: SupportItem[] | undefined
   toasts: {
     uuid: string
     message: string
@@ -19,6 +20,7 @@ const initialState: SupportState = {
   class: undefined,
   badges: undefined,
   divisions: undefined,
+  matchTypes: undefined,
   toasts: [],
   page: undefined,
 }
@@ -29,6 +31,9 @@ export default createReducer(initialState, (builder) => {
   })
   builder.addCase(actions.getDivisions.fulfilled, (state, action) => {
     state.divisions = action.payload.data
+  })
+  builder.addCase(actions.getMatchTypes.fulfilled, (state, action) => {
+    state.matchTypes = action.payload.data
   })
   builder.addCase(actions.getClass.fulfilled, (state, action) => {
     state.class = action.payload.data

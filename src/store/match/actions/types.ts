@@ -1,5 +1,5 @@
 import { MATCH_STATUS } from '@constants/common.constants'
-import { ParticipantsItem, ScoreItem } from '@services/match.services'
+import { DivisionsItem, ParticipantsItem, ScoreItem } from '@services/match.services'
 export interface MatchItem {
   id: number
   name: string
@@ -7,6 +7,9 @@ export interface MatchItem {
   match_end: string
   registration_start: string
   registration_end: string
+  match_type_id: number
+  divisions: Array<DivisionsItem>
+  match_divisions: Array<DivisionsItem>
   lvl: number
   point_multiplier: number
   tax: number
@@ -16,6 +19,7 @@ export interface MatchItem {
   sponsor_info?: string
   per_squad: number
   is_public: boolean
+  is_practice: boolean
   status: MATCH_STATUS
   last_modified_by: number
   stage_number?: number

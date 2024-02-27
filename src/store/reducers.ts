@@ -8,6 +8,8 @@ import { SupportState } from './support/reducers'
 import support from './support'
 import squads from './squads'
 import account from './account'
+import division from './division'
+import matchType from './match-type'
 import participants from './participants'
 import team from './team'
 import ro from './ro'
@@ -28,6 +30,8 @@ const combinedReducers = combineReducers({
   support: support.reducer,
   squads: squads.reducer,
   account: account.reducer,
+  division: division.reducer,
+  matchType: matchType.reducer,
   participants: participants.reducer,
   team: team.reducer,
   ro: ro.reducer,

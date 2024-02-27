@@ -19,6 +19,18 @@ export const ADMIN_MENU_LARGE = [
     name: 'Гишүүд',
     icon: People,
   },
+  {
+    id: 4,
+    route: '/admin/match-types',
+    name: 'Match Types',
+    icon: List,
+  },
+  {
+    id: 5,
+    route: '/admin/divisions',
+    name: 'Divisions',
+    icon: List,
+  },
 ]
 
 //comment

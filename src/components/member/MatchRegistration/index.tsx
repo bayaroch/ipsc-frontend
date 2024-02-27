@@ -4,6 +4,7 @@ import {
   List,
   ListItemButton,
   ListItemText,
+  ListItemIcon,
   Button,
   ButtonGroup,
   Slide,
@@ -18,6 +19,8 @@ import {
   FormControlLabel,
   Radio,
   Alert,
+  Checkbox,
+  ListItem
 } from '@mui/material/'
 import { SupportItem } from '@services/support.services'
 import { Colors } from '@theme/colors'
@@ -35,11 +38,14 @@ import _ from 'lodash'
 import { TeamItem } from '@services/team.service'
 import ESSelect from '@components/common/Select'
 import { ParticipantsItem } from '@services/participant.service'
+import { DivisionsItem } from '@services/match.services'
+import { CATEGORIES } from '@constants/common.constants'
 
 interface PickerProps {
   open: boolean
   id: string
   divisions: SupportItem[]
+  match_divisions: DivisionsItem[]
   maxSquad: number
   handleClose: () => void
   userData: UserData
@@ -75,6 +81,7 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
   const {
     open,
     divisions,
+    match_divisions,
     handleClose,
     isRo,
     change,
@@ -98,6 +105,9 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
   const [selected, choose] = useState<number>(-1)
   const [roField, setRoField] = useState<number>(0)
   const [showSquad, setShowSquad] = useState<boolean>(false)
+  const [catIds, setCatIds] = useState<string[]>([])
+  const [catIsMulti, setCatIsMulti] = useState<boolean>(false)
+  const [teamAllowed, setCTeamAllowed] = useState<boolean>(false)
   const [newSquad, setNewSquad] = useState<null | SquadJoinParams>(null)
   const [team, setValueId] = useState<string>('')
 
@@ -247,7 +257,7 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
           // setSelectedData(undefined)
         })
     }
-  }
+  }  
 
   const renderRoSection = () => {
     if (isRo)
@@ -286,6 +296,69 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
         </>
       )
   }
+
+  const renderCatSection = () => {
+    if (selected !== -1)
+      
+      return (
+        <>
+          <Typography
+            variant="h3"
+            sx={{ textAlign: 'center', p: 1, borderBottom: '1px solid #eee' }}
+          >
+            Категори сонгох {catIsMulti ? 'Анхааруулга:(Олон категори сонгох боломжтой)' : '(Зөвхөн нэгийг сонгоно)'}
+          </Typography>
+          <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+            {
+            
+            CATEGORIES.filter(item => catIds.includes(item.id.toString())).map((item, index) => {
+              const labelId = `checkbox-list-label-${index.toString()}`;
+
+              return (
+                <ListItem
+                  key={index}
+                  disablePadding
+                >
+                  <ListItemButton role={undefined} onClick={handleToggle(item.id)} dense>
+                    <ListItemIcon>
+                      <Checkbox
+                        edge="start"
+                        checked={checked.indexOf(item.id) !== -1}
+                        tabIndex={-1}
+                        disableRipple
+                        inputProps={{ 'aria-labelledby': labelId }}
+                      />
+                    </ListItemIcon>
+                    <ListItemText id={labelId} primary={`${item.name}`} />
+                  </ListItemButton>
+                </ListItem>
+              );
+            })}
+          </List>
+        </>
+      )
+  }
+
+  const [checked, setChecked] = useState([0]);
+
+  const handleToggle = (value: number) => () => {
+
+    if (catIsMulti) {
+      const currentIndex = checked.indexOf(value);
+      const newChecked = [...checked];
+
+      if (currentIndex === -1) {
+        newChecked.push(value);
+      } else {
+        newChecked.splice(currentIndex, 1);
+      }
+
+      setChecked(newChecked);
+    } else {
+      setChecked([value]);
+    }
+    
+  };
 
   return (
     <Dialog
@@ -359,7 +432,41 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
             Ангилал сонгох
           </Typography>
           <List>
-            {divisions.map((item, i) => {
+            { match_divisions.length > 0 ?
+            match_divisions.map((item, i) => {
+              const disabled = isOpenOnly && item.division_id !== 1
+              return (
+                <Box key={i}>
+                  <ListItemButton
+                    disabled={disabled}
+                    // sx={{
+                    //   opacity: disabled ? 0.2 : 1,
+                    //   cursor: disabled ? 'inherit' : 'pointer',
+                    // }}
+                    selected={item.division_id === selected ? true : false}
+                    onSelect={() => setShowSquad(true)}
+                    onClick={() => {
+                      setChecked([0])
+                      setCatIsMulti(item.is_multi_cat)
+                      setCTeamAllowed(item.is_team_result)
+                      setCatIds(item.categories)
+                      if (isOpenOnly) {
+                        item.division_id === 1 && choose(item.division_id)
+                      } else {
+                        choose(item.division_id)
+                      }
+                    }}
+                  >
+                    <ListItemText
+                      primary={item.name}
+                      secondary={item.division.shorthand}
+                    />
+                  </ListItemButton>
+                  <Divider />
+                </Box>
+              )
+            }) : 
+            divisions.map((item, i) => {
               const disabled = isOpenOnly && item.id !== 1
               return (
                 <Box key={i}>
@@ -387,9 +494,12 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
                   <Divider />
                 </Box>
               )
-            })}
+            })
+            }
           </List>
           {renderWarning()}
+
+          {renderCatSection()}
 
           {!_.isEmpty(myTeams) ? (
             <Box>
