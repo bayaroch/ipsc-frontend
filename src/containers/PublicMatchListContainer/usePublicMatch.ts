@@ -28,6 +28,7 @@ const useMemberMatch = (): {
     class: CLASS,
     divisions: DIVISIONS,
     badges: BADGES,
+    matchTypes: [],
     toasts: [],
   }
 

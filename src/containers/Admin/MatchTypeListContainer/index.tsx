@@ -7,7 +7,7 @@ import _ from 'lodash'
 import MatchTypeCreate from '@components/admin/MatchTypeCreate'
 import MatchTypeUpdate from '@components/admin/MatchTypeUpdate'
 import { useConfirm } from 'material-ui-confirm'
-import { commonData, getMatchTypes } from '@store/support/actions'
+import { commonData } from '@store/support/actions'
 import { useDispatch } from 'react-redux'
 interface UpsertDialog {
   open: boolean

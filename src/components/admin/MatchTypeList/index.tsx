@@ -47,10 +47,8 @@ const MatchTypeList: React.FC<MatchTypeListProps> = (props) => {
     list,
     pagination,
     meta,
-    classData,
     onAdd,
     onEditMatchType,
-    badgeData,
   } = props
   const [page, setPage] = useState<number>(1)
   const [rowsPerPage, setRowsPerPage] = useState<number>(defaultPerPage)

@@ -27,11 +27,6 @@ interface PickerProps {
   badges: SupportItem[]
 }
 
-interface State {
-  showPassword: boolean
-  disabled: boolean
-}
-
 const Transition = forwardRef(function Transition(
   props: SlideProps & { children?: React.ReactElement },
   ref: React.Ref<unknown>
@@ -40,7 +35,7 @@ const Transition = forwardRef(function Transition(
 })
 
 const DivisionUpdate: React.FC<PickerProps> = (props) => {
-  const { open, handleClose, submit, initData, badges } = props
+  const { open, handleClose, submit, initData } = props
 
   const { methods, Controller } = useUpdateForm()
 
