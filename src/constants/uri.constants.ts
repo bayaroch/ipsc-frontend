@@ -1,4 +1,4 @@
-const DOMAIN = 'http://128.199.170.72'
+const DOMAIN = 'https://128.199.170.72'
 const REST_API_PATH = '/api/v1/'
 const API_ROOT = REST_API_PATH
 
