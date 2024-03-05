@@ -52,6 +52,7 @@ interface PickerProps {
   isRo: boolean
   onRegisterThenJoin: (
     id: number,
+    category_id: number,
     is_ro: number,
     team: number | null,
     squadParams: SquadJoinParams
@@ -65,7 +66,7 @@ interface PickerProps {
   change: (params: SquadChangeParams) => void
   join: (params: SquadJoinParams) => void
   isRegistered: boolean
-  onUpdate: (id: number, is_ro: number, team: number | null) => void
+  onUpdate: (id: number, category_id: number, is_ro: number, team: number | null) => void
   myRegistration?: ParticipantsItem | undefined
   isRegsiterActive: boolean
 }
@@ -107,7 +108,7 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
   const [showSquad, setShowSquad] = useState<boolean>(false)
   const [catIds, setCatIds] = useState<string[]>([])
   const [catIsMulti, setCatIsMulti] = useState<boolean>(false)
-  const [teamAllowed, setCTeamAllowed] = useState<boolean>(false)
+  // const [teamAllowed, setCTeamAllowed] = useState<boolean>(false)
   const [newSquad, setNewSquad] = useState<null | SquadJoinParams>(null)
   const [team, setValueId] = useState<string>('')
 
@@ -133,6 +134,7 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
   useEffect(() => {
     if (myRegistration) {
       choose(myRegistration.division_id)
+      setChecked([myRegistration.category_id])
       if (myRegistration.team) {
         setValueId(myRegistration.team.id.toString())
       }
@@ -155,12 +157,13 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
     if (!isRegistered && newSquad) {
       onRegisterThenJoin(
         selected,
+        checked[0],
         roField,
         _.isEmpty(team) ? null : Number(team),
         newSquad
       )
     } else if (isRegistered && newSquad) {
-      onUpdate(selected, roField, _.isEmpty(team) ? null : Number(team))
+      onUpdate(selected, checked[0], roField, _.isEmpty(team) ? null : Number(team))
       join(newSquad)
     } else if (!isRegistered && !newSquad) {
       confirm({
@@ -173,7 +176,7 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
         .catch(() => null)
       //onRegister(selected, roField, _.isEmpty(team) ? null : Number(team))
     } else {
-      onUpdate(selected, roField, _.isEmpty(team) ? null : Number(team))
+      onUpdate(selected, checked[0], roField, _.isEmpty(team) ? null : Number(team))
     }
   }
 
@@ -448,7 +451,7 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
                     onClick={() => {
                       setChecked([0])
                       setCatIsMulti(item.is_multi_cat)
-                      setCTeamAllowed(item.is_team_result)
+                      // setCTeamAllowed(item.is_team_result)
                       setCatIds(item.categories)
                       if (isOpenOnly) {
                         item.division_id === 1 && choose(item.division_id)

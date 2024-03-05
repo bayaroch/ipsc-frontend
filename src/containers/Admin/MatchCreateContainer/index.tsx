@@ -232,7 +232,7 @@ const MatchCreateContainer: React.FC = () => {
                           <Controller
                             name="div_categories"
                             control={control}
-                            render={({ field: { ref, value } }: FieldValues) => (
+                            render={({ field: { ref } }: FieldValues) => (
                               <Select
                                 inputRef={ref}
                                 onChange={(e) => handleMultiCat(e, index)}

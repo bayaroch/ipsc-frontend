@@ -7,8 +7,7 @@ import _ from 'lodash'
 import DivisionCreate from '@components/admin/DivisionCreate'
 import DivisionUpdate from '@components/admin/DivisionUpdate'
 import { useConfirm } from 'material-ui-confirm'
-import moment from 'moment'
-import { commonData, getDivisions } from '@store/support/actions'
+import { commonData } from '@store/support/actions'
 import { useDispatch } from 'react-redux'
 interface UpsertDialog {
   open: boolean

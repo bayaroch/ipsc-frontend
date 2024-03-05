@@ -90,6 +90,10 @@ const useUpdateMatch = (id: string) => {
           category_ids: x.categories.split(','),
           is_multi: x.is_multi_cat,
           is_team: x.is_team_result,
+          division: [],
+          categories: [],
+          is_multi_cat: x.is_multi_cat,
+          is_team_result: x.is_team_result,
         }
         return div
       });

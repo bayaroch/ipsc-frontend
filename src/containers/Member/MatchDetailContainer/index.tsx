@@ -199,6 +199,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
 
   const handleRegisterThenJoin = (
     division: number,
+    category_id: number,
     is_ro: number,
     team_id: number | null,
     squadParams: SquadJoinParams
@@ -211,7 +212,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
         match_id: Number(id),
         user_id: userData.id,
         division_id: division,
-        category_id: category,
+        category_id: category_id ? category_id : category,
         class_id: userData.class_id,
         is_ro: is_ro,
         remark: null,
@@ -224,6 +225,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
 
   const handleUpdate = (
     division: number,
+    category_id: number,
     is_ro: number,
     team_id: number | null
   ) => {
@@ -234,7 +236,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
           match_id: Number(id),
           user_id: userData.id,
           division_id: division,
-          category_id: category,
+          category_id: category_id ? category_id : category,
           class_id: userData.class_id,
           is_ro: is_ro,
           team_id: team_id,

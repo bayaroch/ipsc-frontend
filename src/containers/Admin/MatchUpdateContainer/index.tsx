@@ -77,6 +77,10 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
           category_ids: x.categories.split(','),
           is_multi: x.is_multi_cat,
           is_team: x.is_team_result,
+          division: [],
+          categories: [],
+          is_multi_cat: x.is_multi_cat,
+          is_team_result: x.is_team_result,
         }
         return div
       });
@@ -146,6 +150,10 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
         category_ids: ['1','2','3','4','5','6'],
         is_multi: false,
         is_team: false,
+        division: [],
+        categories: [],
+        is_multi_cat: x.is_multi_cat,
+        is_team_result: x.is_team_result,
       }
       return div
     });
@@ -253,7 +261,7 @@ const MatchUpdateContainer: React.FC<MatchUpdateContainerProps> = ({ id }) => {
                           <Controller
                             name="div_categories"
                             control={control}
-                            render={({ field: { ref, value } }: FieldValues) => (
+                            render={({ field: { ref } }: FieldValues) => (
                               <Select
                                 inputRef={ref}
                                 onChange={(e) => handleMultiCat(e, index)}
