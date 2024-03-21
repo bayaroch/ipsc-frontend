@@ -172,22 +172,22 @@ export const CATEGORIES = [
   },
   {
     id: 2,
-    name: 'Super Junior (16-с доош насны)',
+    name: 'Super Junior',
     shorthand: 'Super Junior',
   },
   {
     id: 3,
-    name: 'Junior (21-с доош насны)',
+    name: 'Junior',
     shorthand: 'Junior',
   },
   {
     id: 4,
-    name: 'Senior (50-с дээш насны)',
+    name: 'Senior',
     shorthand: 'Senior',
   },
   {
     id: 5,
-    name: 'Super Senior (60-с дээш насны)',
+    name: 'Super Senior',
     shorthand: 'Super Senior',
   },
   {

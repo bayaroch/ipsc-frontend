@@ -272,7 +272,7 @@ const MatchListItem: React.FC<ListItemProps> = ({ item, user, href }) => {
                       padding: '0px 16px',
                       marginTop: '3px',
                     }}
-                  >{`Level ${item.lvl}`}</Box>
+                  >{item.is_practice ? 'Practice' : `Level ${item.lvl}`}</Box>
                 </StatItem>
                 <StatItem title={'Бүртгүүлсэн'}>
                   <AvatarGroup

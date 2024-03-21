@@ -20,9 +20,9 @@ const categoryCalc = (
   let category = null
   const isLady = gender === GENDER.FEMALE
 
-  if (age < 16) {
+  if (age < 14) {
     category = CATEGORY.SUPER_JUNIOR
-  } else if (age > 16 && age < 21) {
+  } else if (age >= 14 && age < 18) {
     category = CATEGORY.JUNIOR
   } else if (age > 50 && age < 60) {
     category = CATEGORY.SENIOR

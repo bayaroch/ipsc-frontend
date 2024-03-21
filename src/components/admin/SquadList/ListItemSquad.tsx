@@ -7,6 +7,7 @@ import Radio from '@mui/material/Radio'
 import { AvatarGroup, Typography, Chip, Stack } from '@mui/material'
 import CustomAvatar from '@components/common/Avatar'
 import { Colors } from '@theme/colors'
+import LockIcon from '@mui/icons-material/Lock'
 
 export interface SquadListProps {
   data: SquadListData
@@ -57,6 +58,9 @@ const ListItemSquad: React.FC<SquadListProps> = (props) => {
         }}
       >
         <Typography sx={{ color: '#fff', fontSize: 13 }} noWrap>
+          { data.locked ? (
+            <LockIcon sx={{verticalAlign:"middle"}}/>
+          ) : null}
           {data.name}
         </Typography>
       </Box>
@@ -70,6 +74,7 @@ const ListItemSquad: React.FC<SquadListProps> = (props) => {
             onChange={() => onSelectChange && onSelectChange(data.id)}
             value={data.id}
             name="radio-button"
+            disabled={data.locked}
           />
         ) : null}
 

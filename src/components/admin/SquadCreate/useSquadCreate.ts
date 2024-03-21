@@ -6,12 +6,14 @@ import * as yup from 'yup'
 export interface SquadCreateInputType {
   name: string
   remark: string
+  locked: boolean
   time_end: string
   time_start: string
 }
 export interface SquadValidateType {
   name: string
   remark: string
+  locked: boolean
 }
 
 const useSquadCreate = () => {
@@ -29,6 +31,7 @@ const useSquadCreate = () => {
     defaultValues: {
       name: '',
       remark: '',
+      locked: false,
     },
   })
 
