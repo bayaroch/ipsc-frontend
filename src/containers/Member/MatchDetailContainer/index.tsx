@@ -190,7 +190,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
         class_id: userData.class_id,
         is_ro: is_ro,
         remark: null,
-        is_verified: detail.lvl === 1 ? true : false,
+        is_verified: detail.is_practice === true ? true : false,
         team_id: team_id,
       }
       register(params)
@@ -367,7 +367,9 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
               create={teamCreate}
               createMeta={createMeta}
               open={openTeam}
-              divisions={support.divisions}
+              divisions={
+                support.divisions.filter(div => detail.match_divisions.filter(item => item.is_team_result == true).map((item) => item.division_id).includes(div.id))
+              }
               currentId={currentUser.id}
             />
           )}

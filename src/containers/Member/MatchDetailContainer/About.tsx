@@ -38,7 +38,7 @@ const About: React.FC<About> = ({ detail, progress }) => {
           icon={<LocalPolice />}
           value={
             <Typography sx={{ fontWeight: 500, fontSize: 16 }} variant="body2">
-              Level {detail.lvl}
+              {detail.is_practice ? 'Practice' : `Level ${detail.lvl}`}
             </Typography>
           }
         />

@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import _ from 'lodash'
-import { Paper, Button, Box, Grid, CircularProgress } from '@mui/material/'
+import { Paper, Button, Box, Grid, CircularProgress, FormControl  } from '@mui/material/'
+import CustomSwitch from '@components/common/CustomSwitch'
+import { CustomLabel } from '@components/common/Input'
 
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import LocalizationProvider from '@mui/lab/LocalizationProvider'
@@ -35,6 +37,7 @@ const SquadCreate: React.FC<SquadCreateProps> = (props) => {
   useEffect(() => {
     if (isEdit && editData) {
       setValue('name', editData.name)
+      setValue('locked', editData.locked)
       setValue('remark', editData.remark + '')
     }
   }, [isEdit, editData])
@@ -74,6 +77,22 @@ const SquadCreate: React.FC<SquadCreateProps> = (props) => {
                     }
                   />
                 )}
+              />
+              <Controller
+                name="locked"
+                control={control}
+                render={({ field: { onChange, value } }) => {
+                  return (
+                    <FormControl>
+                      <CustomLabel text={'Түгжих'} id={'locked'} />
+                      <CustomSwitch
+                        handleChange={onChange}
+                        checked={value}
+                        name="Түгжих"
+                      />
+                    </FormControl>
+                  )
+                }}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={2}>

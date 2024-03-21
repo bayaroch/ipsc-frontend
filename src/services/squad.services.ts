@@ -14,6 +14,7 @@ export type SquadListData = {
   time_start: string
   time_end: string
   remark: string | null
+  locked: boolean
   squad_members: Array<SquadListMembers>
 }
 
@@ -45,6 +46,7 @@ export type SquadCreateParams = {
   time_start: string
   time_end: string
   remark: null | string
+  locked: boolean
 }
 
 export type SquadResponse = {
@@ -60,6 +62,7 @@ export type SquadResponseData = {
   time_start: string
   time_end: string
   remark: string | null
+  locked: boolean
   squad_members: Array<SquadListMembers>
 }
 
