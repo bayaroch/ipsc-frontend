@@ -297,16 +297,23 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
   }
 
   const renderTeamCreateButton = () => {
-    return (
-      <Button
-        type="submit"
-        onClick={() => setTeamCreate(true)}
-        variant="contained"
-        color="secondary"
-      >
-        Баг үүсгэх
-      </Button>
-    )
+    if (
+      !meta.pending &&
+      !meta.error &&
+      support.divisions
+    ) {
+      return (
+        support.divisions.filter(div => detail.match_divisions.filter(item => item.is_team_result == true).map((item) => item.division_id).includes(div.id)).length > 0 ?
+        <Button
+          type="submit"
+          onClick={() => setTeamCreate(true)}
+          variant="contained"
+          color="secondary"
+        >
+          Баг үүсгэх
+        </Button> : null
+      )
+    }
   }
 
   const renderGuestRow = (data: ParticipantsItem, index: number) => {
