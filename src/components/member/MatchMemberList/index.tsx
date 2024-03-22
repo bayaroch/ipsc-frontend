@@ -97,40 +97,46 @@ const MatchList: React.FC<MatchListProps> = (props) => {
     if (!_.isEmpty(list) && meta.loaded && !meta.error && !meta.pending) {
       return (
         <Box>
-          <Box sx={{ width: 300, m: 1 }}>
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">MatchType</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={matchType}
-                label="MatchType"
-                onChange={selectHandleChange}
-              >
-                <MenuItem value={-1}>All</MenuItem>
-                {matchTypes.map((item) => {
-                  return (
-                    <MenuItem value={item.id.toString()} key={item.id}>
-                      {item.name}
-                    </MenuItem>
-                  )
-                })}
-                
-              </Select>
-            </FormControl>
+          <Box style={{
+            display: 'flex',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+          }}>
+            <Box sx={{ width: 300, m: 1 }}>
+              <FormControl fullWidth size="small">
+                <InputLabel id="demo-simple-select-label">MatchType</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={matchType}
+                  label="MatchType"
+                  onChange={selectHandleChange}
+                >
+                  <MenuItem value={-1}>All</MenuItem>
+                  {matchTypes.map((item) => {
+                    return (
+                      <MenuItem value={item.id.toString()} key={item.id}>
+                        {item.name}
+                      </MenuItem>
+                    )
+                  })}
+                  
+                </Select>
+              </FormControl>
+            </Box>
+          
+            <ToggleButtonGroup
+              color="primary"
+              value={isPractice}
+              exclusive
+              onChange={handleChange}
+              aria-label="Platform"
+            >
+              <ToggleButton value="-1">All</ToggleButton>
+              <ToggleButton value="0">Official</ToggleButton>
+              <ToggleButton value="1">Practices</ToggleButton>
+            </ToggleButtonGroup>
           </Box>
-
-          <ToggleButtonGroup
-            color="primary"
-            value={isPractice}
-            exclusive
-            onChange={handleChange}
-            aria-label="Platform"
-          >
-            <ToggleButton value="-1">All</ToggleButton>
-            <ToggleButton value="0">Official</ToggleButton>
-            <ToggleButton value="1">Practices</ToggleButton>
-          </ToggleButtonGroup>
 
           {list.map((g, i) => {
             return (
