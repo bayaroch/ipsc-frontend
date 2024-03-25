@@ -9,6 +9,15 @@ import MatchListItem from '@components/common/MatchListItem'
 import CustomList from '@components/common/List'
 import { MatchItem } from '@store/match/actions/types'
 import { UserData } from '@services/auth.services'
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import { SupportState } from '@store/support/reducers'
+import { support as sup } from '@store/support/selectors'
+import { useSelector } from 'react-redux'
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 export interface MatchListProps {
   getList: (params: MatchPageMeta) => void
@@ -24,16 +33,13 @@ const defaultPerPage = 10
 const MatchList: React.FC<MatchListProps> = (props) => {
   const { getList, list, pagination, meta, currentUser } = props
   const [page, setPage] = useState<number>(1)
-  const [rowsPerPage, setRowsPerPage] = useState<number>(defaultPerPage)
+  const [rowsPerPage] = useState<number>(defaultPerPage)
+  const [matchType, setMatchType] = useState<string>('-1')
+  const [isPractice, setIsPractice] = useState<string>('-1')
+  const support: SupportState = useSelector(sup)
 
-  // useEffect(() => {
-  //   getList({
-  //     page: page,
-  //     per_page: rowsPerPage,
-  //     sort_order: 'DESC',
-  //     sort_column: 'match_start',
-  //   })
-  // }, [])
+  const matchTypes = support && support.matchTypes ? support.matchTypes : []
+
 
   useEffect(() => {
     getList({
@@ -41,14 +47,10 @@ const MatchList: React.FC<MatchListProps> = (props) => {
       per_page: rowsPerPage,
       sort_direction: 'desc',
       sort_column: 'match_start',
+      match_type_id: Number(matchType),
+      is_practice: Number(isPractice),
     })
-  }, [page])
-
-  useEffect(() => {
-    if (pagination && pagination.total_objects < rowsPerPage) {
-      setRowsPerPage(pagination.total_objects)
-    }
-  }, [pagination])
+  }, [page, isPractice, matchType])
 
   const handleChangePage = (
     _event: any,
@@ -56,6 +58,17 @@ const MatchList: React.FC<MatchListProps> = (props) => {
   ) => {
     setPage(newPage)
   }
+
+  const handleChange = (
+    _event: React.MouseEvent<HTMLElement>,
+    newVal: string,
+  ) => {
+    setIsPractice(newVal);
+  };
+
+  const selectHandleChange = (event: SelectChangeEvent) => {
+    setMatchType(event.target.value as string);
+  };
 
   const renderLoader = () => {
     if (!meta.loaded && meta.pending && !meta.error) {
@@ -84,6 +97,47 @@ const MatchList: React.FC<MatchListProps> = (props) => {
     if (!_.isEmpty(list) && meta.loaded && !meta.error && !meta.pending) {
       return (
         <Box>
+          <Box style={{
+            display: 'flex',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+          }}>
+            <Box sx={{ width: 300, m: 1 }}>
+              <FormControl fullWidth size="small">
+                <InputLabel id="demo-simple-select-label">MatchType</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={matchType}
+                  label="MatchType"
+                  onChange={selectHandleChange}
+                >
+                  <MenuItem value={-1}>All</MenuItem>
+                  {matchTypes.map((item) => {
+                    return (
+                      <MenuItem value={item.id.toString()} key={item.id}>
+                        {item.name}
+                      </MenuItem>
+                    )
+                  })}
+                  
+                </Select>
+              </FormControl>
+            </Box>
+          
+            <ToggleButtonGroup
+              color="primary"
+              value={isPractice}
+              exclusive
+              onChange={handleChange}
+              aria-label="Platform"
+            >
+              <ToggleButton value="-1">All</ToggleButton>
+              <ToggleButton value="0">Official</ToggleButton>
+              <ToggleButton value="1">Practices</ToggleButton>
+            </ToggleButtonGroup>
+          </Box>
+
           {list.map((g, i) => {
             return (
               <Box key={i}>

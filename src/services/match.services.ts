@@ -11,6 +11,8 @@ export type MatchPageMeta = {
   per_page: number
   sort_column?: string
   sort_direction?: 'asc' | 'desc'
+  match_type_id?: number
+  is_practice?: number
 }
 
 export type MatchCreateParams = {
@@ -269,7 +271,7 @@ export const matchServices = {
 
   getAllMatches: async (meta: MatchPageMeta): Promise<GetMatchesResponse> => {
     const { data } = await api.get<GetMatchesResponse>(
-      `${URI.MATCH}?page=${meta.page}&per_page=${meta.per_page}&sort_column=${meta.sort_column}&sort_direction=${meta.sort_direction}`
+      `${URI.MATCH}?page=${meta.page}&per_page=${meta.per_page}&sort_column=${meta.sort_column}&sort_direction=${meta.sort_direction}${meta.is_practice == -1 ? '' : '&is_practice='+meta.is_practice}${meta.match_type_id == -1 ? '' : '&match_type_id='+meta.match_type_id}`
     )
     return data
   },
