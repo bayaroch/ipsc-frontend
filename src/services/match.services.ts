@@ -271,7 +271,7 @@ export const matchServices = {
 
   getAllMatches: async (meta: MatchPageMeta): Promise<GetMatchesResponse> => {
     const { data } = await api.get<GetMatchesResponse>(
-      `${URI.MATCH}?page=${meta.page}&per_page=${meta.per_page}&sort_column=${meta.sort_column}&sort_direction=${meta.sort_direction}${meta.is_practice == -1 ? '' : '&is_practice='+meta.is_practice}${meta.match_type_id == -1 ? '' : '&match_type_id='+meta.match_type_id}`
+      `${URI.MATCH}?page=${meta.page}&per_page=${meta.per_page}&sort_column=${meta.sort_column}&sort_direction=${meta.sort_direction}${meta.is_practice == -1 || meta.is_practice == undefined ? '' : '&is_practice='+meta.is_practice}${meta.match_type_id == -1 || meta.match_type_id == undefined ? '' : '&match_type_id='+meta.match_type_id}`
     )
     return data
   },

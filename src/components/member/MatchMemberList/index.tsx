@@ -133,7 +133,7 @@ const MatchList: React.FC<MatchListProps> = (props) => {
               aria-label="Platform"
             >
               <ToggleButton value="-1">All</ToggleButton>
-              <ToggleButton value="0">Official</ToggleButton>
+              <ToggleButton value="0">Match</ToggleButton>
               <ToggleButton value="1">Practices</ToggleButton>
             </ToggleButtonGroup>
           </Box>
