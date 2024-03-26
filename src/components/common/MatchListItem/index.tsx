@@ -8,7 +8,7 @@ import {
 } from '@mui/material'
 import { Box } from '@mui/material/'
 import { MatchItem as MatchItemType } from '@store/match/actions/types'
-import { purple, yellow, orange, blue } from '@mui/material/colors'
+import { purple, yellow, orange, blue, red } from '@mui/material/colors'
 import Link from 'next/link'
 import { UserData } from '@services/auth.services'
 import { Colors } from '@theme/colors'
@@ -31,6 +31,7 @@ interface ListItemProps {
 export const colorConstants: string[] = [
   yellow[300],
   blue[100],
+  red[300],
   purple[100],
   orange[300],
 ]
@@ -267,7 +268,7 @@ const MatchListItem: React.FC<ListItemProps> = ({ item, user, href }) => {
                       lineHeight: 1.6,
                       color: '#111',
                       fontSize: 14,
-                      backgroundColor: colorConstants[item.lvl - 1],
+                      backgroundColor: (item.is_practice ? colorConstants[0] : colorConstants[item.lvl]),
                       textAlign: 'center',
                       padding: '0px 16px',
                       marginTop: '3px',
