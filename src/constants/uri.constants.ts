@@ -32,4 +32,8 @@ export const URI = {
   TEAMS_EDIT: API_ROOT + 'teams/:id',
   TEAM_MEMBERS: API_ROOT + 'team_members',
   RO: API_ROOT + 'range_officers',
+  RESEND: API_ROOT + 'verify/resend',
+  VERIFY: API_ROOT + 'verify/update',
+  FORGOT: API_ROOT + 'forgot_password',
+  RESET: API_ROOT + 'reset_password',
 }

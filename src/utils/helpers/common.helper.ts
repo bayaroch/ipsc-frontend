@@ -61,6 +61,14 @@ const categoryTitleHelper = (
   return result
 }
 
+const categoryTitleHelperAlt = (
+  ids: number | undefined
+): { id: number; name: string }[] => {
+  const catIdArray = [ids]
+  const result = _.filter(CAT_DATA, (c) => catIdArray.includes(c.id))
+  return result
+}
+
 const groupTitleHelper = (
   id: number | string,
   divisions: SupportItem[]
@@ -213,6 +221,7 @@ const isBeforeMatch = (start: string): boolean => {
 
 export const helper = {
   categoryTitleHelper,
+  categoryTitleHelperAlt,
   classTitleHelper,
   categoryCalc,
   groupTitleHelper,

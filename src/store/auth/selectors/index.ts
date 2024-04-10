@@ -15,3 +15,9 @@ export const category = createSelector(
   authState,
   (state) => helper.categoryCalc(state.user?.birthday, state.user?.gender)[0] // selecting only first cat exluded lady future change might be needed sending multiple categories 1, 6 etc
 )
+export const verificationStatus = createSelector(
+  authState,
+  (state) => state.user?.verified
+)
+
+export const getPwdMsg = createSelector(authState, (state) => state.pwdMsg)

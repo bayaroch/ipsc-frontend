@@ -10,6 +10,7 @@ export const initialState: AuthState = {
   user: undefined,
   token: undefined,
   category: undefined,
+  pwdMsg: undefined,
 }
 
 export default createReducer(initialState, (builder) => {
@@ -25,6 +26,15 @@ export default createReducer(initialState, (builder) => {
   })
   builder.addCase(profile.fulfilled, (state, action) => {
     state.user = updateCurrentUser(state.user, action.payload.data)
+  })
+  builder.addCase(actions.forgot.fulfilled, (state, action) => {
+    state.pwdMsg = action.payload.data
+  })
+  builder.addCase(actions.reset.fulfilled, (state, action) => {
+    state.pwdMsg = action.payload.data
+  })
+  builder.addCase(actions.clearPwdMsg, (state) => {
+    state.pwdMsg = undefined
   })
 })
 

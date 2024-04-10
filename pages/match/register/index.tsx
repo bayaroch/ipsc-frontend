@@ -16,7 +16,8 @@ const MatchDetail: PageWithLayoutType = () => {
   const { id } = router.query
 
   const { list, getList, meta } = usePublicMatch()
-  const { isLoggedIn } = useAuth()
+  const { isLoggedIn, isVerified } = useAuth()
+  
 
   const data = _.find(list, (l) => l.id == Number(id as string))
 
@@ -27,6 +28,10 @@ const MatchDetail: PageWithLayoutType = () => {
   useEffect(() => {
     if (isLoggedIn === true) {
       if (id) router.push(`/member/matches/${id}`)
+      console.log('isVerified: ', isVerified)
+      if (isVerified === false) {
+        router.push('/member/verification')
+      }
     }
   }, [isLoggedIn, id])
 

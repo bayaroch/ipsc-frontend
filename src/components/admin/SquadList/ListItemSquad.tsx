@@ -8,6 +8,7 @@ import { AvatarGroup, Typography, Chip, Stack } from '@mui/material'
 import CustomAvatar from '@components/common/Avatar'
 import { Colors } from '@theme/colors'
 import LockIcon from '@mui/icons-material/Lock'
+import { ParticipantsItem } from '@services/match.services'
 
 export interface SquadListProps {
   data: SquadListData
@@ -17,6 +18,8 @@ export interface SquadListProps {
   nameMode?: boolean
   isEdit: boolean
   tempId?: number
+  filteredBy?: Array<ParticipantsItem>
+  isAdmin?: boolean
 }
 
 const ListItemSquad: React.FC<SquadListProps> = (props) => {
@@ -28,6 +31,8 @@ const ListItemSquad: React.FC<SquadListProps> = (props) => {
     isEdit,
     nameMode,
     tempId,
+    filteredBy,
+    isAdmin,
   } = props
 
   return (
@@ -74,7 +79,7 @@ const ListItemSquad: React.FC<SquadListProps> = (props) => {
             onChange={() => onSelectChange && onSelectChange(data.id)}
             value={data.id}
             name="radio-button"
-            disabled={data.locked}
+            disabled={!isAdmin ? data.locked : false}
           />
         ) : null}
 
@@ -114,7 +119,8 @@ const ListItemSquad: React.FC<SquadListProps> = (props) => {
             >
               {_.isEmpty(data.squad_members)
                 ? null
-                : data.squad_members.map((item, index) => {
+                : filteredBy && filteredBy.length > 0 ?
+                  data.squad_members.filter((item) => filteredBy.map((item) => item.user_id).includes(item.user_id)).map((item, index) => {
                     return (
                       <CustomAvatar
                         key={index}
@@ -123,14 +129,27 @@ const ListItemSquad: React.FC<SquadListProps> = (props) => {
                         alt={item.user.firstname}
                       />
                     )
-                  })}
+                  })
+                  :
+                  data.squad_members.map((item, index) => {
+                    return (
+                      <CustomAvatar
+                        key={index}
+                        sx={{ height: 24, width: 24 }}
+                        src={item.user?.img_url}
+                        alt={item.user.firstname}
+                      />
+                    )
+                  })
+                }
               )
             </AvatarGroup>
           ) : (
             <Stack direction="row" spacing={1} flexWrap={'wrap'}>
               {_.isEmpty(data.squad_members)
                 ? null
-                : data.squad_members.map((item, index) => {
+                : filteredBy && filteredBy.length > 0 ?
+                  data.squad_members.filter((item) => filteredBy.map((item) => item.user_id).includes(item.user_id)).map((item, index) => {
                     return (
                       <Chip
                         size={'small'}
@@ -139,7 +158,19 @@ const ListItemSquad: React.FC<SquadListProps> = (props) => {
                         label={`${item.user?.lastname}. ${item.user?.firstname}`}
                       />
                     )
-                  })}
+                  })
+                  :
+                  data.squad_members.map((item, index) => {
+                    return (
+                      <Chip
+                        size={'small'}
+                        sx={{ height: 24, mb: 0.5 }}
+                        key={index}
+                        label={`${item.user?.lastname}. ${item.user?.firstname}`}
+                      />
+                    )
+                  })
+              }
             </Stack>
           )}
         </Box>

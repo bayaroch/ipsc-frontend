@@ -79,10 +79,15 @@ const MemberTable: React.FC<TableProps> = (props) => {
               <TableCell align="right">MINOR</TableCell>
               <TableCell align="right">
                 {helper
-                  .categoryTitleHelper(row.user.birthday, row.user.gender)
+                  .categoryTitleHelperAlt(row.category_id)
                   .map((c, index) => {
                     return `${index === 1 ? ' | ' : ''}${c.name}`
                   })}
+                {/* {helper
+                  .categoryTitleHelper(row.user.birthday, row.user.gender)
+                  .map((c, index) => {
+                    return `${index === 1 ? ' | ' : ''}${c.name}`
+                  })} */}
               </TableCell>
               <TableCell align="right">
                 {_.get(row, 'team.name', '-')}

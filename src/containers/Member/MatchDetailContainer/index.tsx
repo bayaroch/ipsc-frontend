@@ -37,10 +37,12 @@ import { ParticipantsItem } from '@services/match.services'
 import MatchFiles from './MatchFiles'
 import Teams from './Teams'
 import useSquadJoin from '../SquadJoinContainer/useSquadJoin'
-import { SquadJoinParams } from '@services/squad.services'
+import { SquadChangeParams, SquadJoinParams } from '@services/squad.services'
 import TeamCreateDialog from '../Team/TeamCreateDialog'
 import SquadList from '@components/admin/SquadList'
 import RoList from './RoList'
+import { SquadHelper } from '@store/squads/reducers/helpers'
+import { useConfirm } from 'material-ui-confirm'
 
 interface MatchDetailProps {
   id: string
@@ -89,9 +91,12 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
   } = useMatchDetail()
 
   const { listMeta, join, change, list } = useSquadJoin(id)
-
+  const confirm = useConfirm()
   const isRegistered = participants.find(
     (user) => user?.user?.id === userData?.id
+  )
+  const verifiedParticipants = participants.filter(
+    (item) => item.is_verified === true
   )
   const isRo = !_.isEmpty(userData && userData.mo_badge)
   const isAdmin = userData?.usertype === USER_TYPE.USER_ADMIN
@@ -164,15 +169,67 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
       return (
         <Box>
           <SquadList
-            isEdit={false}
+            isEdit={isRegisterActive && isRegistered?.is_verified == 1}
             userId={userData.id}
+            onSelectChange={(id) => onSelectChange(id)}
             onExpandMembers={() => null}
             list={list}
+            filteredBy={verifiedParticipants}
           />
         </Box>
       )
     }
     return null
+  }
+
+  const onSelectChange = (id: number) => {
+    const existSquad = SquadHelper.isExist(list, userData.id)
+
+    const existInThis = SquadHelper.isExistInThis(list, userData.id, id)
+    // const selected = _.filter(list, (s) => s.id == id)[0].squad_members
+    const selected = verifiedParticipants && verifiedParticipants.length> 0 ?  _.filter(list, (s) => s.id == id)[0].squad_members.filter((item) => verifiedParticipants.map((item) => item.user_id).includes(item.user_id)) : _.filter(list, (s) => s.id == id)[0].squad_members
+    const max = selected.length >= detail.per_squad
+
+    if (!existInThis && !max) {
+      confirm({
+        title: 'Скуад сонголт',
+        description: existSquad
+          ? 'Та скуад өөрчлөх гэж байна.'
+          : 'Та шинээр скуад сонгож байна',
+        confirmationText: 'Тийм',
+        cancellationText: 'Үгүй',
+      })
+        .then(() => {
+          if (existSquad) {
+            const params: SquadChangeParams = {
+              data: {
+                squad_id: id,
+                user_id: userData.id,
+                is_rm: false,
+                is_ro: false,
+                notify_squad_id: null,
+              },
+              id: existSquad,
+            }
+
+            change(params)
+          }
+        })
+        .catch(() => {
+          // setSelectedData(undefined)
+        })
+    } else if (max && !existInThis) {
+      confirm({
+        title: 'Скуад дүүрсэн байна.',
+        description: `Тэмцээний нэг скуадад орох оролцогчдын хязгаар: ${detail.per_squad}.`,
+        confirmationText: 'Ок',
+        cancellationText: null,
+      })
+        .then(() => null)
+        .catch(() => {
+          // setSelectedData(undefined)
+        })
+    }
   }
 
   const handleRegister = (
@@ -206,7 +263,6 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
   ) => {
     setOpen(false)
     // eslint-disable-next-line no-console
-    console.log('im here')
     if (id && userData.class_id) {
       const params = {
         match_id: Number(id),
@@ -362,6 +418,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
             squadMeta={listMeta}
             isOpenOnly={isOpenOnly}
             isRegistered={isRegistered ? true : false}
+            filteredBy={verifiedParticipants}
             onRegister={handleRegister}
             onRegisterThenJoin={handleRegisterThenJoin}
             onUpdate={handleUpdate}

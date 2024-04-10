@@ -1,18 +1,20 @@
 import { createReducer } from '@reduxjs/toolkit'
 import * as actions from '../actions'
-import { MemberPaginationMeta, MemberItem } from '@services/account.services'
+import { MemberPaginationMeta, MemberItem, VerifyItem } from '@services/account.services'
 import _ from 'lodash'
 
 export type MatchState = {
   memberList: MemberItem[] | undefined
   memberMeta: MemberPaginationMeta | undefined
   profile: MemberItem | undefined
+  verifyMsg: VerifyItem | undefined
 }
 
 const initialState: MatchState = {
   memberList: undefined,
   memberMeta: undefined,
   profile: undefined,
+  verifyMsg: undefined,
 }
 
 export default createReducer(initialState, (builder) => {
@@ -37,5 +39,14 @@ export default createReducer(initialState, (builder) => {
   })
   builder.addCase(actions.clearProfileData, (state) => {
     state.profile = undefined
+  })
+  builder.addCase(actions.resend.fulfilled, (state, action) => {
+    state.verifyMsg = action.payload.data
+  })
+  builder.addCase(actions.updateVerify.fulfilled, (state, action) => {
+    state.verifyMsg = action.payload.data
+    if ( action.payload.data.user != undefined ) {
+      state.profile = action.payload.data.user
+    }
   })
 })
