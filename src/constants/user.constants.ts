@@ -6,6 +6,11 @@ export enum USER_TYPE {
   USER_STUDENT = 0,
 }
 
+export enum USER_VERIFICATION_STATUS {
+  VERIFIED = 1,
+  UNVERIFIED = 0,
+}
+
 export enum PF {
   PF_MAJOR = 'MAJOR',
   PF_MINOR = 'MINOR',

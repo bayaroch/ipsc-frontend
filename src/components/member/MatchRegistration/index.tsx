@@ -69,6 +69,7 @@ interface PickerProps {
   onUpdate: (id: number, category_id: number, is_ro: number, team: number | null) => void
   myRegistration?: ParticipantsItem | undefined
   isRegsiterActive: boolean
+  filteredBy?: Array<ParticipantsItem>
 }
 
 const Transition = forwardRef(function Transition(
@@ -100,6 +101,7 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
 
     isRegistered,
     maxSquad,
+    filteredBy,
   } = props
 
   const confirm = useConfirm()
@@ -197,6 +199,7 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
             onSelectChange={(id) => onSelectChange(id)}
             onExpandMembers={() => null}
             list={squadList}
+            filteredBy={filteredBy}
           />
         </Box>
       )
@@ -208,7 +211,7 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
     const existSquad = SquadHelper.isExist(squadList, userData.id)
 
     const existInThis = SquadHelper.isExistInThis(squadList, userData.id, id)
-    const selected = _.filter(squadList, (s) => s.id == id)[0].squad_members
+    const selected = filteredBy && filteredBy.length> 0 ?  _.filter(squadList, (s) => s.id == id)[0].squad_members.filter((item) => filteredBy.map((item) => item.user_id).includes(item.user_id)) : _.filter(squadList, (s) => s.id == id)[0].squad_members
     const max = selected.length >= maxSquad
 
     if (!existInThis && !max) {

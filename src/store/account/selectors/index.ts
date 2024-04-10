@@ -27,3 +27,5 @@ export const paginationMeta = createSelector(
 )
 
 export const getProfile = createSelector(getState, (state) => state.profile)
+
+export const getVerifyMsg = createSelector(getState, (state) => state.verifyMsg)

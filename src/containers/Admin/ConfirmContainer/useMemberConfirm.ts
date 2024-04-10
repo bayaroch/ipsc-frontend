@@ -14,6 +14,9 @@ import { MatchItem } from '@store/match/actions/types'
 import { UpdateMatchParams } from '@services/match.services'
 import { support } from '@store/support/selectors'
 import { SupportItem } from '@services/support.services'
+import { SquadChangeParams, SquadJoinParams, SquadListData } from '@services/squad.services'
+import { squadList, squadJoin, squadChange } from '@store/squads/actions'
+import { squads } from '@store/squads/selectors'
 
 const _listMeta = createMetaSelector(getParticipants)
 const _detailMeta = createMetaSelector(getMatch)
@@ -31,6 +34,10 @@ const useMemberConfirm = (
   respond: (params: UpdateMatchParams) => void
   divisions: SupportItem[]
   deleteMember: (id: number) => void
+
+  sList: SquadListData[]
+  join: (params: SquadJoinParams) => void
+  change: (params: SquadChangeParams) => void
 } => {
   const dispatch = useDispatch()
 
@@ -38,6 +45,7 @@ const useMemberConfirm = (
     if (id) {
       dispatch(getParticipants({ id: Number(id) }))
       dispatch(getMatch(id))
+      dispatch(squadList(id))
     }
   }, [id])
 
@@ -58,6 +66,14 @@ const useMemberConfirm = (
   const { divisions } = useSelector(support)
   const respondMeta = useSelector(_respondMeta)
 
+  const sList = useSelector(squads)
+  const join = (params: SquadJoinParams) => {
+    dispatch(squadJoin(params))
+  }
+  const change = (params: SquadChangeParams) => {
+    dispatch(squadChange(params))
+  }
+
   return {
     detail,
     list,
@@ -68,6 +84,9 @@ const useMemberConfirm = (
     divisions,
     update,
     deleteMember,
+    sList,
+    join,
+    change,
   }
 }
 

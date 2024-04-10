@@ -32,6 +32,7 @@ export type MemberItem = {
   class_id: number
   mo_badge?: null | string
   img_url?: string
+  verified: boolean
 }
 export type GetMemberResponse = {
   data: Array<MemberItem>
@@ -53,6 +54,7 @@ export type UserCreateParams = {
   class_id: number
   img_url?: string
   mo_badge?: null | string
+  verified: boolean
 }
 
 export type UserCreateResponse = {
@@ -81,6 +83,24 @@ export type UserUpdateParams = {
     enabled: boolean | number
     class_id: number
     img_url?: string
+    verified: boolean
+  }
+}
+
+export type VerifyItem = {
+  msg: string
+  user: MemberItem | undefined
+}
+export type VerifyResponse = {
+  data: VerifyItem
+  status: string
+  version: string
+}
+
+export type UserVerifyParams = {
+  id: number
+  data: {
+    code: string
   }
 }
 
@@ -104,6 +124,17 @@ export const accountServices = {
   },
   profile: async (params: string): Promise<ProfileResponse> => {
     const { data } = await api.get<ProfileResponse>(`${URI.ACCOUNT}/${params}`)
+    return data
+  },
+  resend: async (params: string): Promise<VerifyResponse> => {
+    const { data } = await api.get<VerifyResponse>(`${URI.RESEND}/${params}`)
+    return data
+  },
+  verifyUser: async (params: UserVerifyParams): Promise<VerifyResponse> => {
+    const { data } = await api.patch<VerifyResponse>(
+      `${URI.VERIFY}/${params.id}`,
+      params.data
+    )
     return data
   },
 }

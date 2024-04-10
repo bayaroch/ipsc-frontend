@@ -6,6 +6,8 @@ import {
   UserCreateParams,
   UserUpdateParams,
   ProfileResponse,
+  UserVerifyParams,
+  VerifyResponse
 } from '@services/account.services'
 import { createAsyncThunk, createAction } from '@reduxjs/toolkit'
 import {
@@ -73,6 +75,36 @@ export const profile = createAsyncThunk<ProfileResponse, string>(
     }
   }
 )
+
+export const resend = createAsyncThunk<VerifyResponse, string>(
+  ACCOUNT_ACTION_TYPE.GET_RESEND,
+  async (params, { rejectWithValue }) => {
+    try {
+      const res = await accountServices.resend(params)
+      return res
+    } catch (error) {
+      if (!error) {
+        throw error
+      }
+      return rejectWithValue(error)
+    }
+  }
+)
+
+export const updateVerify = createAsyncThunk<
+  VerifyResponse,
+  UserVerifyParams
+>(ACCOUNT_ACTION_TYPE.UPDATE_VERIFY, async (params, { rejectWithValue }) => {
+  try {
+    const res = await accountServices.verifyUser(params)
+    return res
+  } catch (error) {
+    if (!error) {
+      throw error
+    }
+    return rejectWithValue(error)
+  }
+})
 
 export const clearMemberData = createAction(CLEAR_MEMBER_DATA)
 export const clearProfileData = createAction(CLEAR_PROFILE_DATA)
