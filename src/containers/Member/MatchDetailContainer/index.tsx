@@ -272,7 +272,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
         class_id: userData.class_id,
         is_ro: is_ro,
         remark: null,
-        is_verified: detail.lvl === 1 ? true : false,
+        is_verified: detail.is_practice === true ? true : false,
         team_id: team_id,
       }
       registerThenJoin(params, squadParams)
