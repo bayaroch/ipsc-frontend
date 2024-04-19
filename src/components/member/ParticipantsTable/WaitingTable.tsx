@@ -83,11 +83,18 @@ const WaitingTable: React.FC<TableProps> = (props) => {
               </TableCell>
               <TableCell align="right">MINOR</TableCell>
               <TableCell align="right">
-                {helper
+                {
+                  helper
+                  .categoryTitleHelperAlt(row.category_id)
+                  .map((c, index) => {
+                    return `${index === 1 ? ' | ' : ''}${c.name}`
+                  })
+                }
+                {/* {helper
                   .categoryTitleHelper(row.user.birthday, row.user.gender)
                   .map((c, index) => {
                     return `${index === 1 ? ' | ' : ''}${c.name}`
-                  })}
+                  })} */}
               </TableCell>
             </TableRow>
           ))}
