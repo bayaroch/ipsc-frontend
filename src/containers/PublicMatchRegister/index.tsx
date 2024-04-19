@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Divider,
   Box,
@@ -15,7 +15,7 @@ import CustomInput from '@components/common/Input'
 import _ from 'lodash'
 import Select from '@components/common/Select'
 import { FieldValues } from 'react-hook-form'
-import { CATEGORIES, CLASS, DIVISIONS } from '@constants/common.constants'
+import { CATEGORIES, CLASS } from '@constants/common.constants'
 import { GENDER_DATA } from '@constants/user.constants'
 import usePublicMatchRegister from './usePublicMatchRegister'
 import { Alert, LoadingButton } from '@mui/lab'
@@ -23,10 +23,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { registerPublicMatch } from '@store/match/actions'
 import { createMetaSelector } from '@store/metadata/selectors'
 import { RegisterPublicMatchParams, UserDetail } from '@services/match.services'
+import { DivisionsItem } from '@services/match.services'
 
 interface PublicMatchRegisterProps {
   id: string
   title: string
+  match_divisions: DivisionsItem[]
 }
 
 const registerPublicMeta = createMetaSelector(registerPublicMatch)
@@ -34,6 +36,7 @@ const registerPublicMeta = createMetaSelector(registerPublicMatch)
 const PublicMatchRegister: React.FC<PublicMatchRegisterProps> = ({
   id,
   title,
+  match_divisions,
 }) => {
   const { methods, Controller } = usePublicMatchRegister()
 
@@ -48,6 +51,7 @@ const PublicMatchRegister: React.FC<PublicMatchRegisterProps> = ({
   console.log(errors)
   const dispatch = useDispatch()
   const meta = useSelector(registerPublicMeta)
+  const [catIds, setCatIds] = useState<string[]>([])
 
   useEffect(() => {
     if (id) {
@@ -390,6 +394,12 @@ const PublicMatchRegister: React.FC<PublicMatchRegisterProps> = ({
                 render={({ field: { ref, onChange, value } }: FieldValues) => (
                   <Select
                     onChange={onChange}
+                    onBlur={() => {
+                      const ids = match_divisions.find((item) => item.division_id == value)?.categories
+                      if (ids) {
+                        setCatIds(ids)
+                      }
+                    }}
                     fullWidth={true}
                     value={value}
                     inputRef={ref}
@@ -402,9 +412,9 @@ const PublicMatchRegister: React.FC<PublicMatchRegisterProps> = ({
                         : ''
                     }
                   >
-                    {DIVISIONS.map((item, index) => {
+                    {match_divisions.map((item, index) => {
                       return (
-                        <MenuItem value={item.id} key={index}>
+                        <MenuItem value={item.division_id} key={index}>
                           {item.name}
                         </MenuItem>
                       )
@@ -432,7 +442,7 @@ const PublicMatchRegister: React.FC<PublicMatchRegisterProps> = ({
                         : ''
                     }
                   >
-                    {CATEGORIES.map((item, index) => {
+                    {CATEGORIES.filter(item => catIds.includes(item.id.toString())).map((item, index) => {
                       return (
                         <MenuItem value={item.id} key={index}>
                           {item.name}

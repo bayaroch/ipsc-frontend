@@ -43,7 +43,7 @@ const MatchDetail: PageWithLayoutType = () => {
           <Box>
             <BasicLoader meta={meta} />
             {data && isLoggedIn === false ? (
-              <PublicMatchRegister id={id as string} title={data?.name} />
+              <PublicMatchRegister id={id as string} title={data?.name} match_divisions={data?.match_divisions} />
             ) : null}
           </Box>
         </>
