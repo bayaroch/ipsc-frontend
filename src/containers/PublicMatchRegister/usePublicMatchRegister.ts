@@ -9,8 +9,8 @@ const usePublicMatchRegister = () => {
     () =>
       yup.object().shape({
         match_id: yup.number().required(validation.required),
-        division_id: yup.number().required(validation.required),
-        category_id: yup.number().required(validation.required),
+        division_id: yup.number().required(validation.required).min(1),
+        category_id: yup.number().required(validation.required).min(1),
         class_id: yup.number().required(validation.required),
         usercode: yup.string().required(validation.required).max(4).min(4),
         gender: yup.number().required(validation.required),
@@ -45,8 +45,8 @@ const usePublicMatchRegister = () => {
     resolver: yupResolver(validationSchema),
     defaultValues: {
       match_id: 0,
-      division_id: 2,
-      category_id: 1,
+      division_id: 0,
+      category_id: 0,
       class_id: 1,
       remark: '',
       usercode: '',
@@ -62,7 +62,7 @@ const usePublicMatchRegister = () => {
       register_no: '',
       phone_no: '',
     },
-    mode: 'onBlur',
+    mode: 'all',
   })
 
   return {

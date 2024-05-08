@@ -48,7 +48,6 @@ const PublicMatchRegister: React.FC<PublicMatchRegisterProps> = ({
     formState: { errors, isDirty, isValid },
   } = methods
 
-  console.log(errors)
   const dispatch = useDispatch()
   const meta = useSelector(registerPublicMeta)
   const [catIds, setCatIds] = useState<string[]>([])
@@ -395,6 +394,7 @@ const PublicMatchRegister: React.FC<PublicMatchRegisterProps> = ({
                   <Select
                     onChange={onChange}
                     onBlur={() => {
+                      setValue('category_id', Number(0))
                       const ids = match_divisions.find((item) => item.division_id == value)?.categories
                       if (ids) {
                         setCatIds(ids)

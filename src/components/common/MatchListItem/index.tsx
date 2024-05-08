@@ -8,7 +8,7 @@ import {
 } from '@mui/material'
 import { Box } from '@mui/material/'
 import { MatchItem as MatchItemType } from '@store/match/actions/types'
-import { purple, yellow, orange, blue, red } from '@mui/material/colors'
+import { purple, yellow, orange, blue, red, grey } from '@mui/material/colors'
 import Link from 'next/link'
 import { UserData } from '@services/auth.services'
 import { Colors } from '@theme/colors'
@@ -29,6 +29,7 @@ interface ListItemProps {
 }
 
 export const colorConstants: string[] = [
+  grey[500],
   yellow[300],
   blue[100],
   red[300],

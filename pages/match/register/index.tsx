@@ -28,7 +28,6 @@ const MatchDetail: PageWithLayoutType = () => {
   useEffect(() => {
     if (isLoggedIn === true) {
       if (id) router.push(`/member/matches/${id}`)
-      console.log('isVerified: ', isVerified)
       if (isVerified === false) {
         router.push('/member/verification')
       }
