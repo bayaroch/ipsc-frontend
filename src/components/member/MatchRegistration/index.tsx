@@ -113,6 +113,7 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
   // const [teamAllowed, setCTeamAllowed] = useState<boolean>(false)
   const [newSquad, setNewSquad] = useState<null | SquadJoinParams>(null)
   const [team, setValueId] = useState<string>('')
+  const [checked, setChecked] = useState([0]);
 
   const filteredTeams = _.filter(myTeams, (m) => m.division.id === selected)
 
@@ -150,6 +151,8 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
   const handleNext = () => {
     if (selected === -1) {
       validate && validate('Division сонгоно уу')
+    } else if (checked[0] === 0) {
+      validate && validate('Category сонгоно уу')
     } else {
       setShowSquad(true)
     }
@@ -344,8 +347,6 @@ const MatchRegistration: React.FC<PickerProps> = (props) => {
         </>
       )
   }
-
-  const [checked, setChecked] = useState([0]);
 
   const handleToggle = (value: number) => () => {
 
