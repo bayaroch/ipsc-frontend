@@ -54,7 +54,8 @@ const ImportDialog = ({
   }, [dialogOpen])
 
   const handleImport = async () => {
-    if (file && zip) {
+    // if (file && zip) {
+    if (file) {
       setLoading(true)
       try {
         setError(null)

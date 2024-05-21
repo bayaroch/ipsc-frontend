@@ -212,7 +212,7 @@ export type ImportParams = {
   rts: string
   match_id?: number | string
   exclude_codes?: string
-  add_zip: FileWithPath
+  add_zip: FileWithPath | null
 }
 
 export type RegisterPublicMatchParams = {
@@ -313,7 +313,9 @@ export const matchServices = {
     if (params.match_id) {
       formData.append('match_id', String(params.match_id))
     }
-    formData.append('add_zip', params.add_zip)
+    if (params.add_zip) {
+      formData.append('add_zip', params.add_zip)
+    }
     if (params.exclude_codes) {
       formData.append('exclude_codes', params.exclude_codes)
     }
