@@ -6,6 +6,10 @@ import {
   IconButton,
   Stack,
   Typography,
+  Paper,
+  Tabs,
+  Tab,
+  BoxProps
 } from '@mui/material/'
 import _ from 'lodash'
 import useRanks from './useRanks'
@@ -23,6 +27,32 @@ import moment from 'moment'
 import MatchScorePopup from './MatchScorePopup'
 import Link from 'next/link'
 import { Colors } from '@theme/colors'
+
+interface TabPanelProps extends BoxProps {
+  value: number
+  index: number
+}
+
+const TabPanel = ({ children, value, index, ...other }: TabPanelProps) => {
+  return (
+    <Box
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+    </Box>
+  )
+}
+
+function a11yProps(index: number) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  }
+}
 
 const ExpandableTableRow = ({
   children,
@@ -112,6 +142,12 @@ const RanksContainer: React.FC = () => {
     user_id: number
     division_id: number
   } | null>(null)
+
+  const [value, setValue] = useState<number>(0)
+
+  const handleChange = (_event: React.SyntheticEvent, newValue: any) => {
+    setValue(newValue)
+  }
 
   useEffect(() => {
     ranks()
@@ -253,47 +289,90 @@ const RanksContainer: React.FC = () => {
   const renderList = () => {
     if (meta.loaded && !meta.pending && !_.isEmpty(list)) {
       return (
-        <PaperTable
-          tableProps={{
-            sx: {
-              minWidth: 1100,
-              '& .MuiTableCell-root': {
-                p: 1,
-                borderLeft: '1px solid rgba(224, 224, 224, 1)',
-                maxWidth: 90,
-                fontSize: 13,
-              },
-            },
-          }}
-          head={
-            <>
-              <TableRow>
-                <TableCell sx={{ width: 50 }} align="center"></TableCell>
-                <TableCell sx={{ width: 80 }} align="center"></TableCell>
-                <TableCell sx={{ maxWidth: 120, minWidth: 120 }} align="center">
-                  Нэр
-                </TableCell>
-                <TableCell
-                  align="center"
-                  sx={{ maxWidth: 100, minWidth: 100 }}
-                  colSpan={2}
-                >
-                  Gender Rank
-                </TableCell>
-                <TableCell align="center">RP</TableCell>
-                <TableCell
-                  sx={{ maxWidth: 80, minWidth: 80 }}
-                  align="center"
-                  colSpan={2}
-                >
-                  Тэмцээний тоо
-                </TableCell>
-              </TableRow>
-            </>
-          }
-          renderRow={renderRow}
-          data={list}
-        />
+        <Paper sx={{ padding: 0 }}>
+          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              aria-label="basic tabs example"
+            >
+              <Tab label="Handgun" {...a11yProps(0)} />
+              <Tab label="Rifle" {...a11yProps(1)} />
+              <Tab label="PCC" {...a11yProps(2)} />
+            </Tabs>
+          </Box>
+          <TabPanel value={value} index={0}>
+            <PaperTable
+              tableProps={{
+                sx: {
+                  minWidth: 1100,
+                  '& .MuiTableCell-root': {
+                    p: 1,
+                    borderLeft: '1px solid rgba(224, 224, 224, 1)',
+                    maxWidth: 90,
+                    fontSize: 13,
+                  },
+                },
+              }}
+              head={
+                <>
+                  <TableRow>
+                    <TableCell sx={{ width: 50 }} align="center"></TableCell>
+                    <TableCell sx={{ width: 80 }} align="center"></TableCell>
+                    <TableCell sx={{ maxWidth: 120, minWidth: 120 }} align="center">
+                      Нэр
+                    </TableCell>
+                    <TableCell
+                      align="center"
+                      sx={{ maxWidth: 100, minWidth: 100 }}
+                      colSpan={2}
+                    >
+                      Gender Rank
+                    </TableCell>
+                    <TableCell align="center">RP</TableCell>
+                    <TableCell
+                      sx={{ maxWidth: 80, minWidth: 80 }}
+                      align="center"
+                      colSpan={2}
+                    >
+                      Тэмцээний тоо
+                    </TableCell>
+                  </TableRow>
+                </>
+              }
+              renderRow={renderRow}
+              data={list}
+            />
+          </TabPanel>
+          {value === 1 ? (
+            <TabPanel value={value} index={1}>
+              <Box
+                alignItems="center"
+                justifyContent="center"
+                display="flex"
+                minHeight={450}
+              >
+                No Data
+              </Box>
+            </TabPanel>
+          ) : (
+            <></>
+          )}
+          {value === 2 ? (
+            <TabPanel value={value} index={2}>
+              <Box
+                alignItems="center"
+                justifyContent="center"
+                display="flex"
+                minHeight={450}
+              >
+                No Data
+              </Box>
+            </TabPanel>
+          ) : (
+            <></>
+          )}
+        </Paper>
       )
     }
   }
