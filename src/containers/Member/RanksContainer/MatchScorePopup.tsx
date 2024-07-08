@@ -90,7 +90,7 @@ const MatchScorePopup: React.FC<PickerProps> = (props) => {
                 Хамгийн бага онооны буудалтын тоо {detail.rts}
               </Typography>
             </Box>
-            <Score data={data} divisions={divisions} classData={classData} />
+            <Score data={data} divisions={divisions} classData={classData} isAdmin={false} />
           </Box>
         ) : null}
       </Box>

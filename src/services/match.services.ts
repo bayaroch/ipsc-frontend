@@ -200,6 +200,7 @@ export type ScoreItem = {
   pts: number
   user: UserData
   user_id: number
+  badges: string
 }
 
 export type MatchDeleteResponse = {
@@ -208,11 +209,17 @@ export type MatchDeleteResponse = {
 }
 
 export type ImportParams = {
-  match_html: FileWithPath
+  match_html: FileWithPath | null
   rts: string
   match_id?: number | string
   exclude_codes?: string
   add_zip: FileWithPath | null
+  match_xls: FileWithPath | null
+}
+
+export type MathSscoreBadgeParams = {
+  id?: number
+  badges?: string
 }
 
 export type RegisterPublicMatchParams = {
@@ -308,7 +315,9 @@ export const matchServices = {
 
   importMatch: async (params: ImportParams): Promise<any> => {
     const formData = new FormData()
-    formData.append('match_html', params.match_html)
+    if (params.match_html) {
+      formData.append('match_html', params.match_html)
+    }
     formData.append('rts', params.rts)
     if (params.match_id) {
       formData.append('match_id', String(params.match_id))
@@ -318,6 +327,9 @@ export const matchServices = {
     }
     if (params.exclude_codes) {
       formData.append('exclude_codes', params.exclude_codes)
+    }
+    if (params.match_xls) {
+      formData.append('match_xls', params.match_xls)
     }
     const res = await api.post(URI.MATCH_SCORE, formData, {
       headers: { 'Content-Type': 'multipart/form-data' },

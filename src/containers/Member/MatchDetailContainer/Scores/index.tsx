@@ -12,10 +12,11 @@ export interface MatchListProps {
   data: DivisionScoreList
   divisions: SupportItem[]
   classData: SupportItem[]
+  isAdmin: boolean
 }
 
 const Score: React.FC<MatchListProps> = (props) => {
-  const { data, divisions, classData } = props
+  const { data, divisions, classData, isAdmin } = props
 
   return (
     <>
@@ -51,6 +52,7 @@ const Score: React.FC<MatchListProps> = (props) => {
                 ''
               )}
               classData={classData}
+              isAdmin={isAdmin}
             />
           </Box>
         ))}

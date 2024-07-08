@@ -8,6 +8,7 @@ import {
   HtmlRounded,
 } from '@mui/icons-material'
 import { Box, Button, ButtonGroup } from '@mui/material'
+import { Colors } from '@theme/colors'
 
 interface ActionProps {
   data: number
@@ -44,7 +45,7 @@ const TableActions: React.FC<ActionProps> = (props) => {
         </Button>
 
         <Button
-          disabled={isScore}
+          style={{ borderRadius: 0, borderColor: isScore ? Colors.darkgreen : Colors.white }}
           onClick={() => {
             onImport && onImport(data)
           }}

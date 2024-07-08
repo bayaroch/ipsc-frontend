@@ -165,6 +165,7 @@ const PublicMatchDetail: React.FC<PublicMatchDetailProps> = ({
                 classData={support.class}
                 divisions={support.divisions}
                 data={scores}
+                isAdmin={false}
               />
             ) : null}
 

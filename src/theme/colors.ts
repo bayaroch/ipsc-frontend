@@ -38,4 +38,7 @@ export const Colors = {
     '#981643',
     '#FF4786',
   ],
+  gold: '#FFD700',
+  silver: '#C0C0C0',
+  bronze: '#CD7F32',
 }

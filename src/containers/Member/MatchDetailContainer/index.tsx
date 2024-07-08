@@ -631,6 +631,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
                 classData={support.class}
                 divisions={support.divisions}
                 data={scoreFiltered}
+                isAdmin={isAdmin}
               />
             ) : null}
 
