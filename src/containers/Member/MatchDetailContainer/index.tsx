@@ -576,7 +576,13 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
                       <Paper>
                         {!_.isEmpty(detail.additional_info) ? (
                           <Info
-                            detail={detail.additional_info}
+                            detail={
+                              <Typography component="span">
+                                <HTMLParser
+                                  html={detail.additional_info ? detail.additional_info : ''}
+                                />
+                              </Typography>
+                            }
                             title="Нэмэлт мэдээлэл"
                           />
                         ) : null}
