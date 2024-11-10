@@ -1,5 +1,5 @@
-const DOMAIN = 'https://api.tactical.mn'
-// const DOMAIN = 'http://localhost:4000'
+// const DOMAIN = 'https://api.tactical.mn'
+const DOMAIN = 'http://localhost:4000'
 const REST_API_PATH = '/api/v1/'
 const API_ROOT = REST_API_PATH
 

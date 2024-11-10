@@ -134,7 +134,8 @@ const registrationDate = (
 
 const isRegisterActive = (start: string, end: string): boolean => {
   const today = moment()
-  const isBetween = today.isBetween(start, end, 'days', '[]')
+  // const isBetween = today.isBetween(start, end, 'days', '[]')
+  const isBetween = today.isBetween(start, end)
   return isBetween
 }
 
