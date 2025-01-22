@@ -651,7 +651,7 @@ const MatchDetail: React.FC<MatchDetailProps> = ({ id, userData }) => {
                   padding={3}
                 >
                   <Typography variant="h3">Оролцогчдын мэдээлэл</Typography>
-                  <Typography>/хүлээлгийн жагсаалт хамаарахгүй/</Typography>
+                  <Typography>verified/total</Typography>
                 </Box>
                 <StatTable data={stat} />
               </>
