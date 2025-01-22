@@ -28,7 +28,7 @@ const StatTable: React.FC<TableProps> = (props) => {
             <TableCell align="right">Super Junior</TableCell>
             <TableCell align="right">Senior</TableCell>
             <TableCell align="right">Super Senior</TableCell>
-            <TableCell align="right">Verified</TableCell>
+            <TableCell align="right">Verified/Total</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
